@@ -162,6 +162,7 @@ function renderItems() {
     let allItems = itemsData.items;
     console.log(`全アイテム数: ${allItems.length}`);
     console.log('allItems:', allItems);
+    console.log('最初の10個のアイテム名:', allItems.slice(0, 10).map(item => item.name));
     
     // カテゴリフィルタリング
     if (currentCategory !== 'all') {
