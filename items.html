@@ -16,10 +16,14 @@
         <!-- 検索・フィルター・結果 -->
         <div class="search-section">
             <div class="search-container">
-                <input type="text" 
-                       id="searchInput" 
-                       class="search-input" 
-                       placeholder="アイテム名で検索...">
+                <div class="search-wrapper">
+                    <input type="text" 
+                           id="searchInput" 
+                           class="search-input" 
+                           placeholder="アイテム名で検索..."
+                           autocomplete="off">
+                    <div id="searchSuggestions" class="search-suggestions"></div>
+                </div>
             </div>
             
             <div class="filter-container">

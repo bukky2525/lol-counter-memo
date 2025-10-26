@@ -12,6 +12,7 @@ const searchInput = document.getElementById('searchInput');
 const categorySelect = document.getElementById('categorySelect');
 const itemsContainer = document.getElementById('itemsContainer');
 const resultsCount = document.getElementById('resultsCount');
+const searchSuggestions = document.getElementById('searchSuggestions');
 
 // DDragon APIのバージョン
 const DDragonVersion = '15.17.1';
@@ -61,8 +62,25 @@ function setupEventListeners() {
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             currentSearchTerm = e.target.value.toLowerCase();
+            showSearchSuggestions(e.target.value);
             filterAndRenderItems();
         });
+        
+        searchInput.addEventListener('focus', () => {
+            if (searchInput.value) {
+                showSearchSuggestions(searchInput.value);
+            }
+        });
+        
+        searchInput.addEventListener('blur', () => {
+            // 少し遅延させてクリックイベントを処理
+            setTimeout(() => {
+                hideSearchSuggestions();
+            }, 200);
+        });
+        
+        // キーボードナビゲーション
+        searchInput.addEventListener('keydown', handleSearchKeydown);
     }
     
     if (categorySelect) {
@@ -71,6 +89,13 @@ function setupEventListeners() {
             filterAndRenderItems();
         });
     }
+    
+    // クリック外しで候補を隠す
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-wrapper')) {
+            hideSearchSuggestions();
+        }
+    });
 }
 
 // アイテムをフィルタリングして表示
@@ -293,6 +318,121 @@ function showError(message) {
                 <p>${message}</p>
             </div>
         `;
+    }
+}
+
+// 検索候補を表示
+function showSearchSuggestions(query) {
+    if (!searchSuggestions || !query.trim()) {
+        hideSearchSuggestions();
+        return;
+    }
+    
+    const suggestions = getSearchSuggestions(query);
+    
+    if (suggestions.length === 0) {
+        hideSearchSuggestions();
+        return;
+    }
+    
+    const suggestionsHtml = suggestions.map(item => {
+        const iconUrl = `https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/item/${item.image.full}`;
+        const price = item.gold.total || 0;
+        const category = item.tags ? item.tags[0] : '';
+        const categoryName = getTagDisplayName(category);
+        
+        return `
+            <div class="suggestion-item" onclick="selectSuggestion('${item.name}')">
+                <img src="${iconUrl}" alt="${item.name}" class="suggestion-icon">
+                <span class="suggestion-name">${item.name}</span>
+                <span class="suggestion-category">${categoryName}</span>
+                <span class="suggestion-price">${price}G</span>
+            </div>
+        `;
+    }).join('');
+    
+    searchSuggestions.innerHTML = suggestionsHtml;
+    searchSuggestions.classList.add('show');
+}
+
+// 検索候補を非表示
+function hideSearchSuggestions() {
+    if (searchSuggestions) {
+        searchSuggestions.classList.remove('show');
+    }
+}
+
+// 検索候補を取得
+function getSearchSuggestions(query) {
+    if (!query.trim()) return [];
+    
+    const queryLower = query.toLowerCase();
+    const suggestions = [];
+    
+    // アイテム名で検索
+    filteredItems.forEach(item => {
+        if (item.name.toLowerCase().includes(queryLower)) {
+            suggestions.push(item);
+        }
+    });
+    
+    // 説明文でも検索
+    filteredItems.forEach(item => {
+        if (item.plaintext && item.plaintext.toLowerCase().includes(queryLower)) {
+            if (!suggestions.find(s => s.name === item.name)) {
+                suggestions.push(item);
+            }
+        }
+    });
+    
+    // 価格順でソートして最大10件まで
+    return suggestions
+        .sort((a, b) => (a.gold.total || 0) - (b.gold.total || 0))
+        .slice(0, 10);
+}
+
+// 候補を選択
+function selectSuggestion(itemName) {
+    searchInput.value = itemName;
+    currentSearchTerm = itemName.toLowerCase();
+    hideSearchSuggestions();
+    filterAndRenderItems();
+}
+
+// キーボードナビゲーション
+function handleSearchKeydown(e) {
+    const suggestions = searchSuggestions.querySelectorAll('.suggestion-item');
+    const activeSuggestion = searchSuggestions.querySelector('.suggestion-item.active');
+    
+    if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (activeSuggestion) {
+            const next = activeSuggestion.nextElementSibling;
+            if (next) {
+                activeSuggestion.classList.remove('active');
+                next.classList.add('active');
+            }
+        } else if (suggestions.length > 0) {
+            suggestions[0].classList.add('active');
+        }
+    } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (activeSuggestion) {
+            const prev = activeSuggestion.previousElementSibling;
+            if (prev) {
+                activeSuggestion.classList.remove('active');
+                prev.classList.add('active');
+            }
+        }
+    } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (activeSuggestion) {
+            const itemName = activeSuggestion.querySelector('.suggestion-name').textContent;
+            selectSuggestion(itemName);
+        }
+    } else if (e.key === 'Escape') {
+        hideSearchSuggestions();
+        searchInput.blur();
     }
 }
 
