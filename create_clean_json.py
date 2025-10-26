@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-文字エンコーディングを修正してitems_data.jsonを再作成
+確実にUTF-8エンコーディングでitems_data.jsonを作成
 """
 
 import json
 import requests
+import re
 
-def fetch_and_fix_encoding():
-    """APIからデータを取得して正しいエンコーディングで保存"""
+def create_clean_items_data():
+    """クリーンなUTF-8エンコーディングでitems_data.jsonを作成"""
     url = "http://ddragon.leagueoflegends.com/cdn/15.17.1/data/ja_JP/item.json"
     
     try:
@@ -18,10 +19,10 @@ def fetch_and_fix_encoding():
         
         print(f"取得したアイテム数: {len(data['data'])}")
         
-        # 簡略化されたデータ構造で再作成
+        # アイテムを処理
         items = []
         for item_id, item_data in data['data'].items():
-            # 基本的なアイテムのみ処理
+            # 基本的なアイテムのみ処理（価格が0より大きいもの）
             if item_data.get('name') and item_data.get('gold', {}).get('total', 0) > 0:
                 item = {
                     'id': item_id,
@@ -36,11 +37,16 @@ def fetch_and_fix_encoding():
                 
                 # オプション項目
                 if item_data.get('description'):
-                    item['description'] = clean_description(item_data['description'])
+                    clean_desc = clean_description(item_data['description'])
+                    if clean_desc:
+                        item['description'] = clean_desc
+                
                 if item_data.get('plaintext'):
                     item['plaintext'] = item_data['plaintext']
+                
                 if item_data.get('from'):
                     item['buildsFrom'] = item_data['from']
+                
                 if item_data.get('into'):
                     item['buildsInto'] = item_data['into']
                     
@@ -64,11 +70,18 @@ def fetch_and_fix_encoding():
             'version': data['version']
         }
         
-        # UTF-8で保存（BOMなし）
-        with open('items_data.json', 'w', encoding='utf-8', newline='') as f:
+        # UTF-8で保存（BOMなし、LF改行）
+        with open('items_data.json', 'w', encoding='utf-8', newline='\n') as f:
             json.dump(final_data, f, ensure_ascii=False, indent=2)
         
         print(f"保存完了: {len(items)}個のアイテム")
+        
+        # 検証
+        with open('items_data.json', 'r', encoding='utf-8') as f:
+            verify_data = json.load(f)
+            print(f"検証: {len(verify_data['items'])}個のアイテムが保存されました")
+            print(f"最初のアイテム: {verify_data['items'][0]['name']}")
+        
         return True
         
     except Exception as e:
@@ -167,7 +180,6 @@ def convert_stats(stats):
 
 def clean_description(description):
     """説明文からHTMLタグを削除"""
-    import re
     if not description:
         return ""
     clean = re.sub(r'<[^>]+>', '', description)
@@ -175,4 +187,4 @@ def clean_description(description):
     return clean.strip()
 
 if __name__ == "__main__":
-    fetch_and_fix_encoding()
+    create_clean_items_data()
