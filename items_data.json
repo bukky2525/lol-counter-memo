@@ -1,99 +1,114 @@
 {
   "items": [
     {
-      "name": "アビサル マスク",
-      "englishName": "Abyssal Mask",
-      "category": "DEFENSE",
-      "subcategory": "Health",
-      "price": 2850,
-      "buildPrice": 1200,
-      "stats": {
-        "health": 350,
-        "magicResist": 50,
-        "abilityHaste": 15
-      },
-      "passive": "荒廃: 周囲の敵チャンピオンが受ける魔法ダメージが12%増加する。",
-      "buildsFrom": ["キンドルジェム", "ネガトロン クローク"],
-      "buildsInto": []
-    },
-    {
-      "name": "アンブラル グレイブ",
-      "englishName": "Umbral Glaive",
-      "category": "ATTACK",
-      "subcategory": "Damage",
-      "price": 2500,
-      "buildPrice": 450,
-      "stats": {
-        "attackDamage": 55,
-        "lethality": 15,
-        "abilityHaste": 10
-      },
-      "passive": "ブラックアウト: 敵のステルス ワードやトラップの近くにいる場合、8秒間両方を可視化する。抹消: 通常攻撃でワードに追加ダメージを与える。",
-      "buildsFrom": ["セレイテッド ダーク", "コールフィールド ウォーハンマー"],
-      "buildsInto": []
-    },
-    {
-      "name": "ビジラント ワードストーン",
-      "englishName": "Vigilant Wardstone",
-      "category": "TOOLS",
-      "subcategory": "Vision",
-      "price": 2300,
-      "buildPrice": 1200,
-      "stats": {
-        "health": 250,
-        "abilityHaste": 20,
-        "armor": 25,
-        "magicResist": 30
-      },
-      "passive": "アーケインキャッシュ: 購入した「コントロール ワード」を最大3個まで保持できる。凝視: 「ステルス ワード」と「コントロール ワード」の設置可能数の上限が1増加する。",
-      "buildsFrom": ["ウォッチフル ワードストーン"],
-      "buildsInto": []
-    },
-    {
-      "name": "ウォッチフル ワードストーン",
-      "englishName": "Watchful Wardstone",
-      "category": "TOOLS",
-      "subcategory": "Vision",
-      "price": 1100,
-      "buildPrice": 1100,
-      "stats": {
-        "health": 150,
-        "abilityHaste": 10,
-        "armor": 10,
-        "magicResist": 15
-      },
-      "passive": "アーケインキャッシュ: 購入した「コントロール ワード」を最大3個まで保持できる。",
-      "buildsFrom": [],
-      "buildsInto": ["ビジラント ワードストーン"]
-    },
-    {
-      "name": "ワールド アトラス",
-      "englishName": "World Atlas",
+      "id": "1001",
+      "name": "ブーツ",
+      "englishName": "Boots of Speed",
       "category": "START",
       "subcategory": "Lane",
-      "price": 400,
-      "buildPrice": 400,
-      "stats": {},
-      "passive": "",
+      "price": 300,
+      "buildPrice": 300,
+      "sellPrice": 210,
+      "description": "移動速度25",
+      "plaintext": "移動速度がわずかに上昇",
+      "stats": {
+        "FlatMovementSpeedMod": 25
+      },
+      "tags": ["Boots"],
       "buildsFrom": [],
-      "buildsInto": []
+      "buildsInto": ["3005", "3047", "3006", "3009", "3010", "3020", "3111", "3117", "3158"],
+      "image": "1001.png"
     },
     {
-      "name": "ザズ＝ザクのレルムスパイク",
-      "englishName": "Zaz'Zak's Realmspike",
-      "category": "TOOLS",
-      "subcategory": "Vision",
-      "price": 400,
-      "buildPrice": 0,
+      "id": "1004",
+      "name": "フェアリー チャーム",
+      "englishName": "Faerie Charm",
+      "category": "START",
+      "subcategory": "Lane",
+      "price": 200,
+      "buildPrice": 200,
+      "sellPrice": 140,
+      "description": "基本マナ自動回復50%",
+      "plaintext": "マナ自動回復がわずかに上昇",
+      "stats": {},
+      "tags": ["ManaRegen"],
+      "buildsFrom": [],
+      "buildsInto": ["3114", "3012", "4642"],
+      "image": "1004.png"
+    },
+    {
+      "id": "1006",
+      "name": "再生の珠",
+      "englishName": "Rejuvenation Bead",
+      "category": "START",
+      "subcategory": "Lane",
+      "price": 300,
+      "buildPrice": 300,
+      "sellPrice": 120,
+      "description": "基本体力自動回復100%",
+      "plaintext": "体力自動回復がわずかに上昇",
+      "stats": {},
+      "tags": ["HealthRegen"],
+      "buildsFrom": [],
+      "buildsInto": ["3109", "3211", "323109", "3801"],
+      "image": "1006.png"
+    },
+    {
+      "id": "1011",
+      "name": "ジャイアント ベルト",
+      "englishName": "Giant's Belt",
+      "category": "DEFENSE",
+      "subcategory": "Health",
+      "price": 900,
+      "buildPrice": 500,
+      "sellPrice": 630,
+      "description": "体力350",
+      "plaintext": "体力が大幅に上昇",
       "stats": {
-        "health": 200,
-        "healthRegen": "75%",
-        "manaRegen": "75%",
-        "goldPer10": 5
+        "FlatHPPoolMod": 350
       },
-      "passive": "ヴォイドの爆発: チャンピオンにスキルでダメージを与えると爆発が起こり、魔法ダメージを与える。発動効果 (4チャージ): 視界を付与するインビジブル状態の「ステルス ワード」を設置する。",
-      "buildsFrom": ["世界の恵み"],
-      "buildsInto": []
+      "tags": ["Health"],
+      "buildsFrom": ["1028"],
+      "buildsInto": ["4637", "3084", "2502", "3083", "3116", "3119", "3143", "323119", "3748", "6665", "6609", "6667", "8001"],
+      "image": "1011.png"
+    },
+    {
+      "id": "1018",
+      "name": "アジリティ クローク",
+      "englishName": "Cloak of Agility",
+      "category": "ATTACK",
+      "subcategory": "CriticalStrike",
+      "price": 600,
+      "buildPrice": 600,
+      "sellPrice": 420,
+      "description": "クリティカル率15%",
+      "plaintext": "クリティカル率がやや上昇",
+      "stats": {
+        "FlatCritChanceMod": 0.15
+      },
+      "tags": ["CriticalStrike"],
+      "buildsFrom": [],
+      "buildsInto": ["667666", "3031", "3086", "6670", "3033", "3508", "3095", "6676"],
+      "image": "1018.png"
+    },
+    {
+      "id": "1026",
+      "name": "ブラスティング ワンド",
+      "englishName": "Blasting Wand",
+      "category": "MAGIC",
+      "subcategory": "SpellDamage",
+      "price": 850,
+      "buildPrice": 850,
+      "sellPrice": 595,
+      "description": "魔力45",
+      "plaintext": "魔力がやや上昇",
+      "stats": {
+        "FlatMagicDamageMod": 45
+      },
+      "tags": ["SpellDamage"],
+      "buildsFrom": [],
+      "buildsInto": ["326621", "4637", "4628", "3135", "3115", "3100", "3116", "3118", "3165", "326657"],
+      "image": "1026.png"
     }
   ],
   "categories": {
@@ -125,7 +140,7 @@
       "name": "攻撃",
       "subcategories": {
         "Damage": "攻撃力",
-        "Criticalstrike": "クリティカル",
+        "CriticalStrike": "クリティカル",
         "Attackspeed": "攻撃速度",
         "Lifesteal": "ライフステール"
       }
@@ -133,7 +148,7 @@
     "MAGIC": {
       "name": "魔法",
       "subcategories": {
-        "Spelldamage": "魔法攻撃力",
+        "SpellDamage": "魔法攻撃力",
         "Cooldownreduction": "クールダウン",
         "Mana": "マナ",
         "Manaregen": "マナ回復"
@@ -161,5 +176,6 @@
         "Tenacity": "テナシティ"
       }
     }
-  }
+  },
+  "version": "15.17.1"
 }
