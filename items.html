@@ -11,10 +11,9 @@
         <!-- ヘッダー -->
         <header class="page-header">
             <h1>⚔️ League of Legends アイテム一覧</h1>
-            <p>DDragon APIから取得した最新のアイテム情報</p>
         </header>
         
-        <!-- 検索・フィルター -->
+        <!-- 検索・フィルター・結果 -->
         <div class="search-section">
             <div class="search-container">
                 <input type="text" 
@@ -43,11 +42,10 @@
                     <option value="Jungle">ジャングル</option>
                 </select>
             </div>
-        </div>
-        
-        <!-- 結果表示 -->
-        <div class="results-section">
-            <div class="results-count" id="resultsCount">検索結果: 読み込み中...</div>
+            
+            <div class="results-container">
+                <div class="results-count" id="resultsCount">検索結果: 読み込み中...</div>
+            </div>
         </div>
         
         <!-- アイテムコンテナ -->
