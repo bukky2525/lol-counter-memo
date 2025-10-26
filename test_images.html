@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チャンピオン画像テスト</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background: #1a1a2e;
+            color: white;
+        }
+        .champion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        .champion-card {
+            background: #16213e;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .champion-card img {
+            width: 64px;
+            height: 64px;
+            border-radius: 8px;
+            border: 2px solid #0f3460;
+        }
+        .champion-card.error img {
+            border-color: #ff0000;
+        }
+        .champion-name {
+            margin-top: 5px;
+            font-size: 12px;
+        }
+        .stats {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #16213e;
+            border-radius: 10px;
+        }
+        .error-count {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        .success-count {
+            color: #51cf66;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>チャンピオン画像読み込みテスト</h1>
+    <div class="stats">
+        <p>読み込み中: <span id="loading">0</span></p>
+        <p class="success-count">成功: <span id="success">0</span></p>
+        <p class="error-count">エラー: <span id="error">0</span></p>
+        <p id="errorList"></p>
+    </div>
+    <div class="champion-grid" id="championGrid"></div>
+
+    <script>
+        const DDragonVersion = '14.24.1';
+        let successCount = 0;
+        let errorCount = 0;
+        const errorChampions = [];
+
+        fetch('champion_images.json')
+            .then(response => response.json())
+            .then(championImages => {
+                const grid = document.getElementById('championGrid');
+                document.getElementById('loading').textContent = Object.keys(championImages).length;
+
+                Object.entries(championImages).forEach(([jpName, enName]) => {
+                    const card = document.createElement('div');
+                    card.className = 'champion-card';
+                    
+                    const img = document.createElement('img');
+                    const imageUrl = `https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/champion/${enName}.png`;
+                    img.src = imageUrl;
+                    img.alt = jpName;
+                    
+                    img.onload = () => {
+                        successCount++;
+                        document.getElementById('success').textContent = successCount;
+                        console.log(`✓ ${jpName} (${enName})`);
+                    };
+                    
+                    img.onerror = () => {
+                        errorCount++;
+                        card.classList.add('error');
+                        errorChampions.push({jpName, enName, url: imageUrl});
+                        document.getElementById('error').textContent = errorCount;
+                        document.getElementById('errorList').innerHTML = 
+                            '<strong>エラーのあるチャンピオン:</strong><br>' + 
+                            errorChampions.map(c => `${c.jpName} (${c.enName})`).join('<br>');
+                        console.error(`✗ ${jpName} (${enName}) - ${imageUrl}`);
+                    };
+                    
+                    const name = document.createElement('div');
+                    name.className = 'champion-name';
+                    name.textContent = `${jpName}\n(${enName})`;
+                    
+                    card.appendChild(img);
+                    card.appendChild(name);
+                    grid.appendChild(card);
+                });
+            })
+            .catch(error => {
+                console.error('JSONの読み込みに失敗:', error);
+                document.body.innerHTML = '<h2>エラー: champion_images.jsonの読み込みに失敗しました</h2>';
+            });
+    </script>
+</body>
+</html>
+
