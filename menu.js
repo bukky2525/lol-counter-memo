@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function openMenu() {
         sidebar.classList.add('open');
         overlay.classList.add('show');
+        document.body.classList.add('sidebar-open');
         document.body.style.overflow = 'hidden'; // スクロールを無効化
     }
 
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeMenu() {
         sidebar.classList.remove('open');
         overlay.classList.remove('show');
+        document.body.classList.remove('sidebar-open');
         document.body.style.overflow = ''; // スクロールを有効化
     }
 
