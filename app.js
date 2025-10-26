@@ -211,18 +211,20 @@ function renderChampions() {
             // チャンピオンリンクに中ボタンクリック対応を追加
             const championLink = championItem.querySelector('.champion-link');
             if (championLink) {
-                championLink.addEventListener('mousedown', function(e) {
-                    // 中ボタンクリック（button: 1）の場合
-                    if (e.button === 1) {
-                        e.preventDefault(); // デフォルトのスクロール動作を防ぐ
+                // auxclick: 中ボタンやその他の補助ボタンのクリック
+                championLink.addEventListener('auxclick', function(e) {
+                    if (e.button === 1) { // 中ボタン
+                        e.preventDefault();
                         const url = this.getAttribute('data-url');
                         window.open(url, '_blank');
                     }
                 });
                 
-                // コンテキストメニュー（右クリック）も防がない
-                championLink.addEventListener('contextmenu', function(e) {
-                    // 右クリックメニューは許可
+                // mousedown: 中ボタン押下時のスクロール動作を防ぐ
+                championLink.addEventListener('mousedown', function(e) {
+                    if (e.button === 1) { // 中ボタン
+                        e.preventDefault();
+                    }
                 });
             }
             
