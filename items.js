@@ -49,10 +49,10 @@ function loadData() {
             console.log('itemsData設定完了:', itemsData);
             
             try {
-                initializeCategoryButtons();
-                console.log('カテゴリボタン初期化完了');
+                initializeCategorySelect();
+                console.log('カテゴリセレクト初期化完了');
             } catch (error) {
-                console.error('カテゴリボタン初期化エラー:', error);
+                console.error('カテゴリセレクト初期化エラー:', error);
                 throw error;
             }
             
@@ -76,8 +76,8 @@ function loadData() {
         });
 }
 
-// カテゴリボタンを初期化
-function initializeCategoryButtons() {
+// カテゴリセレクトを初期化
+function initializeCategorySelect() {
     // データの存在確認
     if (!itemsData || !itemsData.categories) {
         console.error('カテゴリデータが見つかりません');
@@ -85,36 +85,67 @@ function initializeCategoryButtons() {
     }
     
     const categories = [
-        { id: 'all', name: '全アイテム' },
+        { value: 'all', text: 'すべてのカテゴリ' },
         ...Object.keys(itemsData.categories).map(categoryId => ({
-            id: categoryId,
-            name: itemsData.categories[categoryId].name
+            value: categoryId,
+            text: itemsData.categories[categoryId].name
         }))
     ];
 
-    categoryFilters.innerHTML = categories.map(cat => 
-        `<button class="category-btn ${cat.id === 'all' ? 'active' : ''}" data-category="${cat.id}">${cat.name}</button>`
-    ).join('');
+    if (categorySelect) {
+        categorySelect.innerHTML = categories.map(cat => 
+            `<option value="${cat.value}">${cat.text}</option>`
+        ).join('');
+    }
 }
 
 // イベントリスナー設定
 function setupEventListeners() {
-    // カテゴリフィルター
-    categoryFilters.addEventListener('click', (e) => {
-        if (e.target.classList.contains('category-btn')) {
-            document.querySelectorAll('.category-btn').forEach(btn => 
-                btn.classList.remove('active')
-            );
-            e.target.classList.add('active');
-            currentCategory = e.target.getAttribute('data-category');
-            renderItems();
-        }
-    });
-
     // 検索ボックス
     if (searchBox) {
         searchBox.addEventListener('input', (e) => {
             searchTerm = e.target.value.toLowerCase();
+            renderItems();
+        });
+    }
+
+    // カテゴリセレクト
+    if (categorySelect) {
+        categorySelect.addEventListener('change', (e) => {
+            currentCategory = e.target.value;
+            renderItems();
+        });
+    }
+
+    // 価格セレクト
+    if (priceSelect) {
+        priceSelect.addEventListener('change', (e) => {
+            currentPrice = e.target.value;
+            renderItems();
+        });
+    }
+
+    // ステータスセレクト
+    if (statusSelect) {
+        statusSelect.addEventListener('change', (e) => {
+            currentStatus = e.target.value;
+            renderItems();
+        });
+    }
+
+    // フィルタークリアボタン
+    if (clearFiltersBtn) {
+        clearFiltersBtn.addEventListener('click', () => {
+            searchTerm = '';
+            currentCategory = 'all';
+            currentPrice = 'all';
+            currentStatus = 'all';
+            
+            if (searchBox) searchBox.value = '';
+            if (categorySelect) categorySelect.value = 'all';
+            if (priceSelect) priceSelect.value = 'all';
+            if (statusSelect) statusSelect.value = 'all';
+            
             renderItems();
         });
     }
