@@ -122,6 +122,7 @@ function getItemIconUrl(itemId) {
 
 // 検索マッチング
 function matchesSearch(item) {
+    console.log('matchesSearch呼び出し:', item);
     if (!searchTerm) return true;
     
     const nameMatch = (item.name || '').toLowerCase().includes(searchTerm);
@@ -129,6 +130,7 @@ function matchesSearch(item) {
     const descriptionMatch = (item.description || '').toLowerCase().includes(searchTerm);
     const plaintextMatch = (item.plaintext || '').toLowerCase().includes(searchTerm);
     
+    console.log('検索結果:', { nameMatch, englishNameMatch, descriptionMatch, plaintextMatch });
     return nameMatch || englishNameMatch || descriptionMatch || plaintextMatch;
 }
 
@@ -156,15 +158,26 @@ function renderItems() {
     // 全アイテムを取得
     let allItems = itemsData.items;
     console.log(`全アイテム数: ${allItems.length}`);
+    console.log('allItems:', allItems);
     
     // カテゴリフィルタリング
     if (currentCategory !== 'all') {
-        allItems = allItems.filter(item => item.category === currentCategory);
+        console.log(`カテゴリフィルタリング開始: ${currentCategory}`);
+        console.log('allItems before filter:', allItems);
+        allItems = allItems.filter(item => {
+            console.log('フィルタリング中のアイテム:', item);
+            return item.category === currentCategory;
+        });
         console.log(`カテゴリ "${currentCategory}" のアイテム数: ${allItems.length}`);
     }
     
     // 検索フィルタリング
-    const filteredItems = allItems.filter(item => matchesSearch(item));
+    console.log('検索フィルタリング開始');
+    console.log('allItems before search filter:', allItems);
+    const filteredItems = allItems.filter(item => {
+        console.log('検索フィルタリング中のアイテム:', item);
+        return matchesSearch(item);
+    });
     console.log(`検索フィルター後のアイテム数: ${filteredItems.length}`);
     
     if (filteredItems.length === 0) {
