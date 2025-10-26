@@ -28,6 +28,17 @@ function loadData() {
         })
         .then(data => {
             console.log('アイテムデータ読み込み成功:', data);
+            console.log('アイテム数:', data.items ? data.items.length : 0);
+            console.log('カテゴリ数:', data.categories ? Object.keys(data.categories).length : 0);
+            
+            // データの存在確認
+            if (!data.items || !Array.isArray(data.items)) {
+                throw new Error('items配列が見つかりません');
+            }
+            if (!data.categories || typeof data.categories !== 'object') {
+                throw new Error('categoriesオブジェクトが見つかりません');
+            }
+            
             itemsData = data;
             initializeCategoryButtons();
             renderItems();
@@ -38,6 +49,7 @@ function loadData() {
                 <div class="no-results">
                     <h3>データの読み込みに失敗しました</h3>
                     <p>エラー: ${error.message}</p>
+                    <p>ページを再読み込みしてください。</p>
                 </div>
             `;
         });
@@ -88,10 +100,10 @@ function getItemIconUrl(itemId) {
 function matchesSearch(item) {
     if (!searchTerm) return true;
     
-    const nameMatch = item.name.toLowerCase().includes(searchTerm);
-    const englishNameMatch = item.englishName.toLowerCase().includes(searchTerm);
-    const descriptionMatch = item.description.toLowerCase().includes(searchTerm);
-    const plaintextMatch = item.plaintext.toLowerCase().includes(searchTerm);
+    const nameMatch = (item.name || '').toLowerCase().includes(searchTerm);
+    const englishNameMatch = (item.englishName || '').toLowerCase().includes(searchTerm);
+    const descriptionMatch = (item.description || '').toLowerCase().includes(searchTerm);
+    const plaintextMatch = (item.plaintext || '').toLowerCase().includes(searchTerm);
     
     return nameMatch || englishNameMatch || descriptionMatch || plaintextMatch;
 }
@@ -101,16 +113,31 @@ function renderItems() {
     itemsContainer.innerHTML = '';
     let totalVisible = 0;
 
+    // データの存在確認
+    if (!itemsData || !itemsData.items || !Array.isArray(itemsData.items)) {
+        console.error('itemsDataが正しく読み込まれていません');
+        itemsContainer.innerHTML = `
+            <div class="no-results">
+                <h3>データの読み込みエラー</h3>
+                <p>アイテムデータが正しく読み込まれていません。</p>
+            </div>
+        `;
+        return;
+    }
+
     // 全アイテムを取得
-    let allItems = itemsData.items || [];
+    let allItems = itemsData.items;
+    console.log(`全アイテム数: ${allItems.length}`);
     
     // カテゴリフィルタリング
     if (currentCategory !== 'all') {
         allItems = allItems.filter(item => item.category === currentCategory);
+        console.log(`カテゴリ "${currentCategory}" のアイテム数: ${allItems.length}`);
     }
     
     // 検索フィルタリング
     const filteredItems = allItems.filter(item => matchesSearch(item));
+    console.log(`検索フィルター後のアイテム数: ${filteredItems.length}`);
     
     if (filteredItems.length === 0) {
         itemsContainer.innerHTML = `
@@ -137,11 +164,16 @@ function renderItems() {
         const categoryItems = itemsByCategory[categoryId];
         const category = itemsData.categories[categoryId];
         
+        if (!category) {
+            console.warn(`カテゴリ "${categoryId}" が見つかりません`);
+            return;
+        }
+        
         const categorySection = document.createElement('div');
         categorySection.className = 'items-category';
         
         const itemsHtml = categoryItems.map(item => {
-            const statsHtml = Object.keys(item.stats).map(stat => {
+            const statsHtml = Object.keys(item.stats || {}).map(stat => {
                 const value = item.stats[stat];
                 return `<span class="stat">${stat}: ${value}</span>`;
             }).join(' ');
@@ -153,7 +185,7 @@ function renderItems() {
                          class="item-icon"
                          onerror="this.src='https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/item/1001.png'">
                     <div class="item-name">${item.name}</div>
-                    <div class="item-category">${category.name} - ${category.subcategories[item.subcategory]}</div>
+                    <div class="item-category">${category.name} - ${category.subcategories[item.subcategory] || item.subcategory}</div>
                     <div class="item-cost">🪙 ${item.price}G (売却: ${item.sellPrice}G)</div>
                     <div class="item-stats">${statsHtml}</div>
                     ${item.description ? `<div class="item-description">${item.description}</div>` : ''}
