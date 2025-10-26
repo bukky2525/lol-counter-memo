@@ -9,6 +9,11 @@ body {
     transition: padding-left 0.3s ease;
 }
 
+/* サイドバーが開いている時のメインコンテンツ調整 */
+body.sidebar-open {
+    padding-left: 300px;
+}
+
 /* ハンバーガーメニューボタン */
 .menu-toggle {
     position: fixed;
@@ -346,6 +351,11 @@ li {
     body {
         padding: 10px;
         padding-top: 80px; /* メニューボタン分のスペース */
+    }
+    
+    /* スマホではサイドバーが開いてもメインコンテンツは動かさない */
+    body.sidebar-open {
+        padding-left: 10px;
     }
     
     .menu-toggle {
