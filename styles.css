@@ -3,29 +3,39 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 20px;
-    padding-left: 220px; /* サイドメニュー分のスペース */
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     color: white;
     min-height: 100vh;
+    transition: padding-left 0.3s ease;
 }
 
-/* ハンバーガーメニューボタン（スマホのみ表示） */
+/* ハンバーガーメニューボタン */
 .menu-toggle {
     position: fixed;
-    top: 15px;
-    left: 15px;
+    top: 20px;
+    left: 20px;
     z-index: 1001;
     background: rgba(255,215,0,0.9);
     border: none;
     border-radius: 8px;
-    width: 45px;
-    height: 45px;
-    font-size: 24px;
-    color: #1e3c72;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     transition: all 0.3s ease;
-    display: none; /* デフォルトで非表示 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.menu-toggle span {
+    width: 20px;
+    height: 3px;
+    background: #1e3c72;
+    border-radius: 2px;
+    transition: all 0.3s ease;
 }
 
 .menu-toggle:hover {
@@ -33,17 +43,21 @@ body {
     transform: scale(1.1);
 }
 
-/* サイドバー（常時表示） */
+.menu-toggle:hover span {
+    background: #1e3c72;
+}
+
+/* サイドバー */
 .sidebar {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 200px;
+    left: -280px;
+    width: 280px;
     height: 100vh;
-    background: linear-gradient(180deg, rgba(20, 40, 80, 0.95) 0%, rgba(30, 60, 114, 0.95) 100%);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    box-shadow: 2px 0 15px rgba(0,0,0,0.5);
+    background: linear-gradient(180deg, rgba(20, 40, 80, 0.98) 0%, rgba(30, 60, 114, 0.98) 100%);
+    backdrop-filter: blur(15px);
+    z-index: 1002;
+    box-shadow: 2px 0 20px rgba(0,0,0,0.6);
     overflow-y: auto;
     transition: left 0.3s ease;
 }
@@ -54,9 +68,9 @@ body {
 
 .sidebar-header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 25px 15px;
+    padding: 20px;
     border-bottom: 2px solid rgba(255,215,0,0.5);
     background: rgba(255,215,0,0.1);
 }
@@ -70,7 +84,6 @@ body {
 }
 
 .close-btn {
-    display: none; /* PC版では非表示 */
     background: none;
     border: none;
     color: #ffd700;
@@ -79,6 +92,7 @@ body {
     padding: 0;
     width: 40px;
     height: 40px;
+    display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
@@ -92,29 +106,31 @@ body {
 .sidebar-menu {
     list-style: none;
     padding: 0;
-    margin: 30px 0;
+    margin: 20px 0;
 }
 
 .sidebar-menu li {
-    margin: 5px 0;
+    margin: 0;
 }
 
 .menu-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 18px 20px;
+    gap: 12px;
+    padding: 18px 25px;
     color: white;
     text-decoration: none;
     transition: all 0.3s ease;
     border-left: 4px solid transparent;
     font-size: 16px;
+    font-weight: 500;
 }
 
 .menu-item:hover {
     background: rgba(255,215,0,0.2);
     border-left-color: #ffd700;
-    padding-left: 25px;
+    padding-left: 30px;
+    transform: translateX(5px);
 }
 
 .menu-item.active {
@@ -319,40 +335,31 @@ li {
 }
 
 /* レスポンシブデザイン */
-@media (max-width: 968px) {
+@media (max-width: 768px) {
     body {
         padding: 10px;
-        padding-top: 70px; /* メニューボタン分のスペース */
-        padding-left: 10px;
+        padding-top: 80px; /* メニューボタン分のスペース */
     }
     
-    /* スマホではハンバーガーメニューを表示 */
     .menu-toggle {
-        display: block;
+        top: 15px;
+        left: 15px;
+        width: 45px;
+        height: 45px;
     }
     
-    /* スマホではサイドバーを隠す */
+    .menu-toggle span {
+        width: 18px;
+        height: 2px;
+    }
+    
     .sidebar {
-        left: -250px;
         width: 250px;
+        left: -250px;
     }
     
     .sidebar.open {
         left: 0;
-    }
-    
-    /* スマホでは閉じるボタンを表示 */
-    .close-btn {
-        display: flex;
-    }
-    
-    .sidebar-header {
-        justify-content: space-between;
-        padding: 20px;
-    }
-    
-    .sidebar-header h2 {
-        font-size: 18px;
     }
     
     .lane-filters {
