@@ -14,13 +14,6 @@ const itemsContainer = document.getElementById('itemsContainer');
 const resultsCount = document.getElementById('resultsCount');
 const searchSuggestions = document.getElementById('searchSuggestions');
 
-console.log('DOM elements:', {
-    searchInput,
-    categorySelect,
-    itemsContainer,
-    resultsCount,
-    searchSuggestions
-});
 
 // DDragon APIのバージョン
 const DDragonVersion = '15.17.1';
@@ -49,10 +42,25 @@ async function loadItemsFromDDragon() {
         itemsData = data.data;
         console.log(`取得したアイテム数: ${Object.keys(itemsData).length}`);
         
-        // フィルタリング可能なアイテムのみを抽出
-        filteredItems = Object.values(itemsData).filter(item => {
-            return item.gold && item.gold.purchasable && item.maps && item.maps['11']; // Summoner's Riftで購入可能
+        // 最初のアイテムの構造を確認
+        const firstItemKey = Object.keys(itemsData)[0];
+        const firstItem = itemsData[firstItemKey];
+        console.log('最初のアイテム構造:', {
+            key: firstItemKey,
+            item: firstItem,
+            id: firstItem.id,
+            name: firstItem.name
         });
+        
+        // フィルタリング可能なアイテムのみを抽出（IDを追加）
+        filteredItems = Object.entries(itemsData)
+            .filter(([id, item]) => {
+                return item.gold && item.gold.purchasable && item.maps && item.maps['11']; // Summoner's Riftで購入可能
+            })
+            .map(([id, item]) => ({
+                ...item,
+                id: id // アイテムIDを追加
+            }));
         
         console.log(`フィルタリング後のアイテム数: ${filteredItems.length}`);
         
@@ -359,6 +367,11 @@ function showItemDetail(itemId) {
 
 // アイテムアイコンURLを取得
 function getItemIconUrl(itemId) {
+    // アイテムIDが存在しない場合は空文字を返す
+    if (!itemId) {
+        console.warn('itemId is undefined or null:', itemId);
+        return '';
+    }
     // アイテムIDが数値の場合は文字列に変換
     const id = itemId.toString();
     return `https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/item/${id}.png`;
