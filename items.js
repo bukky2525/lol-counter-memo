@@ -9,10 +9,8 @@ let currentCategory = 'all';
 
 // DOM要素
 const searchInput = document.getElementById('searchInput');
-const categorySelect = document.getElementById('categorySelect');
+const categoryButtons = document.querySelectorAll('.lane-btn[data-category]');
 const itemsContainer = document.getElementById('itemsContainer');
-const resultsCount = document.getElementById('resultsCount');
-const searchSuggestions = document.getElementById('searchSuggestions');
 
 // DDragon APIのバージョン
 const DDragonVersion = '15.17.1';
@@ -59,42 +57,20 @@ async function loadItemsFromDDragon() {
 
 // イベントリスナー設定
 function setupEventListeners() {
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            currentSearchTerm = e.target.value.toLowerCase();
-            showSearchSuggestions(e.target.value);
+    // 検索入力
+    searchInput.addEventListener('input', (e) => {
+        currentSearchTerm = e.target.value.toLowerCase();
+        filterAndRenderItems();
+    });
+
+    // カテゴリボタン
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            currentCategory = button.getAttribute('data-category');
             filterAndRenderItems();
         });
-        
-        searchInput.addEventListener('focus', () => {
-            if (searchInput.value) {
-                showSearchSuggestions(searchInput.value);
-            }
-        });
-        
-        searchInput.addEventListener('blur', () => {
-            // 少し遅延させてクリックイベントを処理
-            setTimeout(() => {
-                hideSearchSuggestions();
-            }, 200);
-        });
-        
-        // キーボードナビゲーション
-        searchInput.addEventListener('keydown', handleSearchKeydown);
-    }
-    
-    if (categorySelect) {
-        categorySelect.addEventListener('change', (e) => {
-            currentCategory = e.target.value;
-            filterAndRenderItems();
-        });
-    }
-    
-    // クリック外しで候補を隠す
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.search-wrapper')) {
-            hideSearchSuggestions();
-        }
     });
 }
 
@@ -160,104 +136,6 @@ function renderItems(items = filteredItems) {
     `).join('');
 
     itemsContainer.innerHTML = itemsHtml;
-}
-
-// 検索候補を表示
-function showSearchSuggestions(query) {
-    if (!query.trim()) {
-        hideSearchSuggestions();
-        return;
-    }
-
-    const suggestions = getSearchSuggestions(query);
-    
-    if (suggestions.length === 0) {
-        hideSearchSuggestions();
-        return;
-    }
-
-    const suggestionsHtml = suggestions.map(item => `
-        <div class="suggestion-item" data-item-name="${item.name}">
-            <img src="${getItemIconUrl(item.id)}" 
-                 alt="${item.name}" 
-                 class="suggestion-icon"
-                 onerror="this.style.display='none'">
-            <span class="suggestion-name">${item.name}</span>
-            <span class="suggestion-price">${item.gold ? item.gold.total + 'G' : ''}</span>
-            <span class="suggestion-category">${(item.tags || []).join(', ')}</span>
-        </div>
-    `).join('');
-
-    searchSuggestions.innerHTML = suggestionsHtml;
-    searchSuggestions.classList.add('show');
-}
-
-// 検索候補を非表示
-function hideSearchSuggestions() {
-    searchSuggestions.classList.remove('show');
-}
-
-// 検索候補を取得
-function getSearchSuggestions(query) {
-    const filtered = filteredItems.filter(item => {
-        const name = item.name ? item.name.toLowerCase() : '';
-        const plaintext = item.plaintext ? item.plaintext.toLowerCase() : '';
-        return name.includes(query.toLowerCase()) || plaintext.includes(query.toLowerCase());
-    });
-
-    // 価格でソートして上位10件を返す
-    return filtered
-        .sort((a, b) => {
-            const priceA = a.gold ? a.gold.total : 0;
-            const priceB = b.gold ? b.gold.total : 0;
-            return priceA - priceB;
-        })
-        .slice(0, 10);
-}
-
-// 候補を選択
-function selectSuggestion(itemName) {
-    searchInput.value = itemName;
-    currentSearchTerm = itemName.toLowerCase();
-    hideSearchSuggestions();
-    filterAndRenderItems();
-}
-
-// キーボードナビゲーション
-let selectedSuggestionIndex = -1;
-
-function handleSearchKeydown(e) {
-    const suggestions = searchSuggestions.querySelectorAll('.suggestion-item');
-    
-    switch (e.key) {
-        case 'ArrowDown':
-            e.preventDefault();
-            selectedSuggestionIndex = Math.min(selectedSuggestionIndex + 1, suggestions.length - 1);
-            updateSuggestionSelection(suggestions);
-            break;
-        case 'ArrowUp':
-            e.preventDefault();
-            selectedSuggestionIndex = Math.max(selectedSuggestionIndex - 1, -1);
-            updateSuggestionSelection(suggestions);
-            break;
-        case 'Enter':
-            e.preventDefault();
-            if (selectedSuggestionIndex >= 0 && suggestions[selectedSuggestionIndex]) {
-                const itemName = suggestions[selectedSuggestionIndex].getAttribute('data-item-name');
-                selectSuggestion(itemName);
-            }
-            break;
-        case 'Escape':
-            hideSearchSuggestions();
-            selectedSuggestionIndex = -1;
-            break;
-    }
-}
-
-function updateSuggestionSelection(suggestions) {
-    suggestions.forEach((suggestion, index) => {
-        suggestion.classList.toggle('active', index === selectedSuggestionIndex);
-    });
 }
 
 // アイテム詳細を表示
