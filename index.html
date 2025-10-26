@@ -4,42 +4,198 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOLカウンターピック</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+        
+        .search-container {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255,215,0,0.5);
+        }
+        
+        .lane-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .lane-btn {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid transparent;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .lane-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        .lane-btn.active {
+            background: #ffd700;
+            color: #1e3c72;
+            border-color: #ffd700;
+        }
+        
+        .champion-section {
+            background: rgba(255,255,255,0.1);
+            margin-bottom: 20px;
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .champion-section.hidden {
+            display: none;
+        }
+        
+        h2, h3 {
+            color: #ffd700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        li {
+            background: rgba(255,255,255,0.1);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+        }
+        
+        img {
+            border-radius: 5px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #ccc;
+            font-size: 18px;
+        }
+        
+        @media (max-width: 768px) {
+            .lane-filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .lane-btn {
+                width: 200px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>LOLカウンターピック メモ</h1>
+    <div class="container">
+        <h1>LOLカウンターピック メモ</h1>
+        
+        <div class="search-container">
+            <input type="text" id="searchBox" class="search-box" placeholder="チャンピオン名で検索...">
+            <div class="lane-filters">
+                <button class="lane-btn active" data-lane="all">全レーン</button>
+                <button class="lane-btn" data-lane="top">トップ</button>
+                <button class="lane-btn" data-lane="jungle">ジャングル</button>
+                <button class="lane-btn" data-lane="mid">ミッド</button>
+                <button class="lane-btn" data-lane="adc">ボット</button>
+                <button class="lane-btn" data-lane="support">サポート</button>
+            </div>
+        </div>
 
-    <h2>TOP</h2>
-    <ul>
-        <li><b>敵:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Garen.png" width="32" height="32" alt="ガレン"> ガレン</li>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Teemo.png" width="32" height="32" alt="ティーモ"> ティーモ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kayle.png" width="32" height="32" alt="ケイル"> ケイル, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Darius.png" width="32" height="32" alt="ダリウス"> ダリウス</li>
-    </ul>
-    <ul>
-        <li><b>敵:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Darius.png" width="32" height="32" alt="ダリウス"> ダリウス</li>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Yorick.png" width="32" height="32" alt="ヨリック"> ヨリック, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Vayne.png" width="32" height="32" alt="ヴェイン"> ヴェイン</li>
-    </ul>
+        <div class="champion-section" data-lane="top">
+            <h2>TOP</h2>
+            <ul>
+                <li><b>敵:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Garen.png" width="32" height="32" alt="ガレン"> ガレン</li>
+                <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Teemo.png" width="32" height="32" alt="ティーモ"> ティーモ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kayle.png" width="32" height="32" alt="ケイル"> ケイル, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Darius.png" width="32" height="32" alt="ダリウス"> ダリウス</li>
+            </ul>
+            <ul>
+                <li><b>敵:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Darius.png" width="32" height="32" alt="ダリウス"> ダリウス</li>
+                <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Yorick.png" width="32" height="32" alt="ヨリック"> ヨリック, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Vayne.png" width="32" height="32" alt="ヴェイン"> ヴェイン</li>
+            </ul>
+        </div>
 
-    <h2>MID</h2>
-    <ul>
-        <li><b>敵:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Zed.png" width="32" height="32" alt="ゼド"> ゼド</li>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Malzahar.png" width="32" height="32" alt="マルザハール"> マルザハール, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lissandra.png" width="32" height="32" alt="リサンドラ"> リサンドラ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Diana.png" width="32" height="32" alt="ダイアナ"> ダイアナ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Galio.png" width="32" height="32" alt="ガリオ"> ガリオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kassadin.png" width="32" height="32" alt="カサディン"> カサディン</li>
-    </ul>
+        <div class="champion-section" data-lane="mid">
+            <h2>MID</h2>
+            <ul>
+                <li><b>敵:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Zed.png" width="32" height="32" alt="ゼド"> ゼド</li>
+                <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Malzahar.png" width="32" height="32" alt="マルザハール"> マルザハール, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lissandra.png" width="32" height="32" alt="リサンドラ"> リサンドラ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Diana.png" width="32" height="32" alt="ダイアナ"> ダイアナ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Galio.png" width="32" height="32" alt="ガリオ"> ガリオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kassadin.png" width="32" height="32" alt="カサディン"> カサディン</li>
+            </ul>
+        </div>
 
-    <h2>WR - 各チャンピオンのカウンターリスト！</h2>
-    
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Aatrox.png" width="32" height="32" alt="アートロックス"> アートロックス</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Irelia.png" width="24" height="24" alt="イレリア"> イレリア, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Darius.png" width="24" height="24" alt="ダリウス"> ダリウス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ornn.png" width="24" height="24" alt="オーン"> オーン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Jax.png" width="24" height="24" alt="ジャックス"> ジャックス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Yasuo.png" width="24" height="24" alt="ヤスオ"> ヤスオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Malphite.png" width="24" height="24" alt="マルファイト"> マルファイト, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Vayne.png" width="24" height="24" alt="ヴェイン"> ヴェイン</li>
-    </ul>
+        <div class="champion-section" data-lane="all">
+            <h2>WR - 各チャンピオンのカウンターリスト！</h2>
+            
+            <div class="champion-item" data-champion="アートロックス" data-lanes="top">
+                <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Aatrox.png" width="32" height="32" alt="アートロックス"> アートロックス</h3>
+                <ul>
+                    <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Irelia.png" width="24" height="24" alt="イレリア"> イレリア, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Darius.png" width="24" height="24" alt="ダリウス"> ダリウス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ornn.png" width="24" height="24" alt="オーン"> オーン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Jax.png" width="24" height="24" alt="ジャックス"> ジャックス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Yasuo.png" width="24" height="24" alt="ヤスオ"> ヤスオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Malphite.png" width="24" height="24" alt="マルファイト"> マルファイト, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Vayne.png" width="24" height="24" alt="ヴェイン"> ヴェイン</li>
+                </ul>
+            </div>
 
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ahri.png" width="32" height="32" alt="アーリ"> アーリ</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kassadin.png" width="24" height="24" alt="カサディン"> カサディン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Galio.png" width="24" height="24" alt="ガリオ"> ガリオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Annie.png" width="24" height="24" alt="アニー"> アニー, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Diana.png" width="24" height="24" alt="ダイアナ"> ダイアナ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Malzahar.png" width="24" height="24" alt="マルザハール"> マルザハール, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lissandra.png" width="24" height="24" alt="リサンドラ"> リサンドラ</li>
-    </ul>
+            <div class="champion-item" data-champion="アーリ" data-lanes="mid">
+                <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ahri.png" width="32" height="32" alt="アーリ"> アーリ</h3>
+                <ul>
+                    <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kassadin.png" width="24" height="24" alt="カサディン"> カサディン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Galio.png" width="24" height="24" alt="ガリオ"> ガリオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Annie.png" width="24" height="24" alt="アニー"> アニー, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Diana.png" width="24" height="24" alt="ダイアナ"> ダイアナ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Malzahar.png" width="24" height="24" alt="マルザハール"> マルザハール, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lissandra.png" width="24" height="24" alt="リサンドラ"> リサンドラ</li>
+                </ul>
+            </div>
 
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Akali.png" width="32" height="32" alt="アカリ"> アカリ</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Galio.png" width="24" height="24" alt="ガリオ"> ガリオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Annie.png" width="24" height="24" alt="アニー"> アニー, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Malzahar.png" width="24" height="24" alt="マルザハール"> マルザハール, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Diana.png" width="24" height="24" alt="ダイアナ"> ダイアナ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lissandra.png" width="24" height="24" alt="リサンドラ"> リサンドラ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kassadin.png" width="24" height="24" alt="カサディン"> カサディン</li>
-    </ul>
+            <div class="champion-item" data-champion="アカリ" data-lanes="mid">
+                <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Akali.png" width="32" height="32" alt="アカリ"> アカリ</h3>
+                <ul>
+                    <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Galio.png" width="24" height="24" alt="ガリオ"> ガリオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Annie.png" width="24" height="24" alt="アニー"> アニー, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Malzahar.png" width="24" height="24" alt="マルザハール"> マルザハール, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Diana.png" width="24" height="24" alt="ダイアナ"> ダイアナ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lissandra.png" width="24" height="24" alt="リサンドラ"> リサンドラ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kassadin.png" width="24" height="24" alt="カサディン"> カサディン</li>
+                </ul>
+            </div>
 
     <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Akshan.png" width="32" height="32" alt="アクシャ"> アクシャ</h3>
     <ul>
