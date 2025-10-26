@@ -248,16 +248,16 @@ function renderItems() {
                              onerror="this.src='https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/item/1001.png'">
                         <div class="item-details">
                             <div class="item-name">${item.name}</div>
-                            <div class="item-effect">${item.description ? item.description.replace(/ /g, ' ') : '基本アイテム'}</div>
+                            <div class="item-effect">${item.plaintext || item.description || '基本アイテム'}</div>
                             <div class="item-stats-section">
                                 <div class="stats-label">主要ステータス</div>
-                                ${Object.keys(item.stats || {}).slice(0, 6).map(stat => `
+                                ${Object.keys(item.stats || {}).map(stat => `
                                     <div class="stat-row">
                                         <span class="stat-name">${stat}</span>
                                         <span class="stat-value">+${item.stats[stat]}</span>
                                     </div>
                                 `).join('')}
-                                ${Object.keys(item.stats || {}).length > 6 ? `<div class="more-stats">他${Object.keys(item.stats).length - 6}個...</div>` : ''}
+
                             </div>
                             <div class="item-tags">
                                 ${item.tags.map(tag => `<span class="item-tag">${tag}</span>`).join('')}
