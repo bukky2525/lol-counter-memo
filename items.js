@@ -259,11 +259,22 @@ function renderItems() {
     });
     console.log(`検索フィルター後のアイテム数: ${filteredItems.length}`);
     
-    // あいうえお順でソート
+    // カテゴリ別にグループ化してソート（LoL Guideと同じ順序）
+    const categoryOrder = ['START', 'BASIC', 'EPIC', 'LEGENDARY', 'MYTHIC', 'BOOTS', 'CONSUMABLE', 'WARD', 'JUNGLE', 'OTHER'];
+    
     filteredItems.sort((a, b) => {
-        const nameA = a.name || '';
-        const nameB = b.name || '';
-        return nameA.localeCompare(nameB, 'ja');
+        const categoryA = categoryOrder.indexOf(a.category);
+        const categoryB = categoryOrder.indexOf(b.category);
+        
+        // カテゴリが異なる場合はカテゴリ順でソート
+        if (categoryA !== categoryB) {
+            return categoryA - categoryB;
+        }
+        
+        // 同じカテゴリ内では価格順でソート
+        const priceA = a.price || 0;
+        const priceB = b.price || 0;
+        return priceA - priceB;
     });
     
     if (filteredItems.length === 0) {
@@ -328,13 +339,14 @@ function renderItems() {
                 </div>
             </div>
         `;
-    }).join('');
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+    });
 
-    itemsContainer.innerHTML = `
-        <div class="items-grid">
-            ${itemsHtml}
-        </div>
-    `;
+    itemsContainer.innerHTML = itemsHtml;
     
     totalVisible = filteredItems.length;
 
