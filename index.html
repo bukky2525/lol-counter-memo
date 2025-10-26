@@ -263,6 +263,101 @@
             });
         }
 
+        // ローマ字をひらがなに変換（訓令式・ヘボン式両対応）
+        function romajiToHiragana(str) {
+            let result = str.toLowerCase();
+            
+            // 3文字の組み合わせ
+            const threeCharMap = {
+                'kya':'きゃ','kyu':'きゅ','kyo':'きょ',
+                'sha':'しゃ','shu':'しゅ','sho':'しょ',
+                'sya':'しゃ','syu':'しゅ','syo':'しょ',
+                'cha':'ちゃ','chu':'ちゅ','cho':'ちょ',
+                'tya':'ちゃ','tyu':'ちゅ','tyo':'ちょ',
+                'nya':'にゃ','nyu':'にゅ','nyo':'にょ',
+                'hya':'ひゃ','hyu':'ひゅ','hyo':'ひょ',
+                'mya':'みゃ','myu':'みゅ','myo':'みょ',
+                'rya':'りゃ','ryu':'りゅ','ryo':'りょ',
+                'gya':'ぎゃ','gyu':'ぎゅ','gyo':'ぎょ',
+                'zya':'じゃ','zyu':'じゅ','zyo':'じょ',
+                'jya':'じゃ','jyu':'じゅ','jyo':'じょ',
+                'bya':'びゃ','byu':'びゅ','byo':'びょ',
+                'pya':'ぴゃ','pyu':'ぴゅ','pyo':'ぴょ',
+                'tsu':'つ','chi':'ち','shi':'し'
+            };
+            
+            // 2文字の組み合わせ
+            const twoCharMap = {
+                'ka':'か','ki':'き','ku':'く','ke':'け','ko':'こ',
+                'sa':'さ','si':'し','su':'す','se':'せ','so':'そ',
+                'ta':'た','ti':'ち','tu':'つ','te':'て','to':'と',
+                'na':'な','ni':'に','nu':'ぬ','ne':'ね','no':'の',
+                'ha':'は','hi':'ひ','hu':'ふ','he':'へ','ho':'ほ',
+                'ma':'ま','mi':'み','mu':'む','me':'め','mo':'も',
+                'ya':'や','yu':'ゆ','yo':'よ',
+                'ra':'ら','ri':'り','ru':'る','re':'れ','ro':'ろ',
+                'wa':'わ','wo':'を',
+                'ga':'が','gi':'ぎ','gu':'ぐ','ge':'げ','go':'ご',
+                'za':'ざ','zi':'じ','zu':'ず','ze':'ぜ','zo':'ぞ',
+                'da':'だ','di':'ぢ','du':'づ','de':'で','do':'ど',
+                'ba':'ば','bi':'び','bu':'ぶ','be':'べ','bo':'ぼ',
+                'pa':'ぱ','pi':'ぴ','pu':'ぷ','pe':'ぺ','po':'ぽ',
+                'ja':'じゃ','ji':'じ','ju':'じゅ','jo':'じょ',
+                'fa':'ふぁ','fi':'ふぃ','fu':'ふ','fe':'ふぇ','fo':'ふぉ',
+                'va':'ゔぁ','vi':'ゔぃ','vu':'ゔ','ve':'ゔぇ','vo':'ゔぉ',
+                'nn':'ん','n\'':'ん'
+            };
+            
+            // 1文字
+            const oneCharMap = {
+                'a':'あ','i':'い','u':'う','e':'え','o':'お',
+                'n':'ん'
+            };
+            
+            let hiragana = '';
+            let i = 0;
+            
+            while (i < result.length) {
+                // 3文字チェック
+                let threeChar = result.substring(i, i + 3);
+                if (threeCharMap[threeChar]) {
+                    hiragana += threeCharMap[threeChar];
+                    i += 3;
+                    continue;
+                }
+                
+                // 2文字チェック
+                let twoChar = result.substring(i, i + 2);
+                if (twoCharMap[twoChar]) {
+                    hiragana += twoCharMap[twoChar];
+                    i += 2;
+                    continue;
+                }
+                
+                // 促音（っ）のチェック
+                let nextChar = result.charAt(i + 1);
+                if (result.charAt(i) === nextChar && nextChar !== '' && 'kstpbgzdjfh'.includes(nextChar)) {
+                    hiragana += 'っ';
+                    i++;
+                    continue;
+                }
+                
+                // 1文字チェック
+                let oneChar = result.charAt(i);
+                if (oneCharMap[oneChar]) {
+                    hiragana += oneCharMap[oneChar];
+                    i++;
+                    continue;
+                }
+                
+                // マッチしない場合はそのまま
+                hiragana += oneChar;
+                i++;
+            }
+            
+            return hiragana;
+        }
+
         // カタカナをローマ字に変換（ヘボン式）
         function katakanaToRomaji(str) {
             const kanaMap = {
@@ -317,7 +412,12 @@
                 const englishName = championImages[championName];
                 if (englishName && englishName.toLowerCase().startsWith(query)) return true;
                 
-                // 2. ローマ字での検索（前方一致）- フォールバック
+                // 2. ローマ字→ひらがな変換して検索（前方一致）
+                const inputHiragana = romajiToHiragana(query);
+                const championHiragana = katakanaToHiragana(championName);
+                if (championHiragana.startsWith(inputHiragana)) return true;
+                
+                // 3. ローマ字変換での検索（前方一致）- フォールバック
                 const romaji = katakanaToRomaji(championName);
                 if (romaji.startsWith(query)) return true;
             } else {
