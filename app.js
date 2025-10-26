@@ -84,6 +84,17 @@ function getChampionIconUrl(championName) {
     return `https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/champion/${englishName}.png`;
 }
 
+// OP.GG URLを生成
+function getOpggUrl(championName, lane) {
+    const englishName = championImages[championName] || championName;
+    // チャンピオン名を小文字に変換し、特殊文字を処理
+    const formattedName = englishName.toLowerCase()
+        .replace(/'/g, '')  // アポストロフィを削除
+        .replace(/\s+/g, ''); // スペースを削除
+    
+    return `https://www.op.gg/champions/${formattedName}/${lane}/build`;
+}
+
 // 検索マッチング関数
 function matchesSearch(championName, searchQuery) {
     if (!searchQuery) return true;
@@ -170,7 +181,9 @@ function renderChampions() {
                 <div class="champion-header">
                     <img src="${getChampionIconUrl(champion)}" 
                          alt="${champion}" 
-                         class="champion-icon"
+                         class="champion-icon champion-icon-clickable"
+                         data-champion="${champion}"
+                         data-lane="${data.lane}"
                          onerror="this.style.display='none'">
                     <div class="champion-title">
                         <h3>${champion}（${laneNames[data.lane]}）</h3>
@@ -180,7 +193,19 @@ function renderChampions() {
                     <li><b>カウンター:</b><br>${countersHtml}</li>
                 </ul>
             `;
+            
+            // チャンピオンアイコンにクリックイベントを追加
             championsContainer.appendChild(championItem);
+            const championIcon = championItem.querySelector('.champion-icon-clickable');
+            if (championIcon) {
+                championIcon.addEventListener('click', function() {
+                    const championName = this.getAttribute('data-champion');
+                    const lane = this.getAttribute('data-lane');
+                    const opggUrl = getOpggUrl(championName, lane);
+                    window.open(opggUrl, '_blank');
+                });
+            }
+            
             visibleCount++;
         });
     });

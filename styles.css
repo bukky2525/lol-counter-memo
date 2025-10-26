@@ -107,6 +107,20 @@ h1 {
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
+.champion-icon-clickable {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.champion-icon-clickable:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(255, 215, 0, 0.6);
+}
+
+.champion-icon-clickable:active {
+    transform: scale(0.95);
+}
+
 .champion-title {
     flex: 1;
 }
