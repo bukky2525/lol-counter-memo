@@ -14,6 +14,14 @@ const itemsContainer = document.getElementById('itemsContainer');
 const resultsCount = document.getElementById('resultsCount');
 const searchSuggestions = document.getElementById('searchSuggestions');
 
+console.log('DOM elements:', {
+    searchInput,
+    categorySelect,
+    itemsContainer,
+    resultsCount,
+    searchSuggestions
+});
+
 // DDragon APIのバージョン
 const DDragonVersion = '15.17.1';
 
@@ -142,6 +150,9 @@ function filterAndRenderItems() {
 
 // アイテムを表示
 function renderItems(items = filteredItems) {
+    console.log('renderItems called with', items.length, 'items');
+    console.log('itemsContainer:', itemsContainer);
+    
     if (items.length === 0) {
         itemsContainer.innerHTML = `
             <div class="no-results">
@@ -175,7 +186,9 @@ function renderItems(items = filteredItems) {
         </div>
     `;
 
+    console.log('Setting innerHTML, itemsHtml length:', itemsHtml.length);
     itemsContainer.innerHTML = itemsHtml;
+    console.log('innerHTML set successfully');
 }
 
 // 検索候補を表示
