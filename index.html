@@ -265,7 +265,8 @@
 
         // ローマ字をひらがなに変換（訓令式・ヘボン式両対応）
         function romajiToHiragana(str) {
-            let result = str.toLowerCase();
+            // cをkに変換（cha, chi以外）
+            let result = str.toLowerCase().replace(/c(?![hyi])/g, 'k');
             
             // 3文字の組み合わせ
             const threeCharMap = {
@@ -273,6 +274,7 @@
                 'sha':'しゃ','shu':'しゅ','sho':'しょ',
                 'sya':'しゃ','syu':'しゅ','syo':'しょ',
                 'cha':'ちゃ','chu':'ちゅ','cho':'ちょ',
+                'cya':'ちゃ','cyu':'ちゅ','cyo':'ちょ',
                 'tya':'ちゃ','tyu':'ちゅ','tyo':'ちょ',
                 'nya':'にゃ','nyu':'にゅ','nyo':'にょ',
                 'hya':'ひゃ','hyu':'ひゅ','hyo':'ひょ',
@@ -289,6 +291,7 @@
             // 2文字の組み合わせ
             const twoCharMap = {
                 'ka':'か','ki':'き','ku':'く','ke':'け','ko':'こ',
+                'ca':'か','ci':'し','cu':'く','ce':'せ','co':'こ',
                 'sa':'さ','si':'し','su':'す','se':'せ','so':'そ',
                 'ta':'た','ti':'ち','tu':'つ','te':'て','to':'と',
                 'na':'な','ni':'に','nu':'ぬ','ne':'ね','no':'の',
@@ -336,7 +339,7 @@
                 
                 // 促音（っ）のチェック
                 let nextChar = result.charAt(i + 1);
-                if (result.charAt(i) === nextChar && nextChar !== '' && 'kstpbgzdjfh'.includes(nextChar)) {
+                if (result.charAt(i) === nextChar && nextChar !== '' && 'kstpbgzdjfhc'.includes(nextChar)) {
                     hiragana += 'っ';
                     i++;
                     continue;
