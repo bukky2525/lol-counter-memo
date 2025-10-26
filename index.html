@@ -125,6 +125,91 @@
             font-size: 18px;
         }
         
+        .champion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px 0;
+        }
+        
+        .champion {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .champion:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        .champion a {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            text-decoration: none;
+            color: white;
+            height: 100%;
+        }
+        
+        .champion img {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .champion-name {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+        
+        .champion-id {
+            font-size: 12px;
+            color: #ccc;
+            font-style: italic;
+        }
+        
+        .champion a {
+            flex-direction: column;
+            text-align: center;
+            padding: 20px 15px;
+        }
+        
+        .champion a img {
+            margin-right: 0;
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .champion-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+            
+            .champion a {
+                padding: 15px 10px;
+            }
+            
+            .champion img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .champion-name {
+                font-size: 12px;
+            }
+            
+            .champion-id {
+                font-size: 10px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .lane-filters {
                 flex-direction: column;
@@ -155,7 +240,7 @@
 
 
         <div class="champion-section" data-lane="all">
-            <h2>WR - 各チャンピオンのカウンターリスト！</h2>
+            <h2>各チャンピオンのカウンターリスト！</h2>
             
             <div class="champion-item" data-champion="アートロックス" data-lanes="top">
                 <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Aatrox.png" width="32" height="32" alt="アートロックス"> アートロックス</h3>
@@ -1013,6 +1098,1167 @@
         <li><b>カウンター:</b> ズィグス, ハイマーディンガー, ラックス, シンドラ, カタリナ, ゼド</li>
     </ul>
         </div>
+
+        <div class="champion-section" data-lane="all">
+            <h2>全チャンピオン一覧（OP.GGリンク）</h2>
+            <div class="champion-grid">
+                <div class="champion">
+                    <a href="https://op.gg/champions/ivern/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Ivern.png" alt="アイバーン">
+                        <span class="champion-name">アイバーン</span>
+                        <span class="champion-id">(Ivern)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/akali/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Akali.png" alt="アカリ">
+                        <span class="champion-name">アカリ</span>
+                        <span class="champion-id">(Akali)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/akshan/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Akshan.png" alt="アクシャン">
+                        <span class="champion-name">アクシャン</span>
+                        <span class="champion-id">(Akshan)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/azir/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Azir.png" alt="アジール">
+                        <span class="champion-name">アジール</span>
+                        <span class="champion-id">(Azir)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/ashe/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Ashe.png" alt="アッシュ">
+                        <span class="champion-name">アッシュ</span>
+                        <span class="champion-id">(Ashe)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/anivia/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Anivia.png" alt="アニビア">
+                        <span class="champion-name">アニビア</span>
+                        <span class="champion-id">(Anivia)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/annie/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Annie.png" alt="アニー">
+                        <span class="champion-name">アニー</span>
+                        <span class="champion-id">(Annie)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/aphelios/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Aphelios.png" alt="アフェリオス">
+                        <span class="champion-name">アフェリオス</span>
+                        <span class="champion-id">(Aphelios)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/amumu/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Amumu.png" alt="アムム">
+                        <span class="champion-name">アムム</span>
+                        <span class="champion-id">(Amumu)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/alistar/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Alistar.png" alt="アリスター">
+                        <span class="champion-name">アリスター</span>
+                        <span class="champion-id">(Alistar)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/urgot/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Urgot.png" alt="アーゴット">
+                        <span class="champion-name">アーゴット</span>
+                        <span class="champion-id">(Urgot)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/ahri/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Ahri.png" alt="アーリ">
+                        <span class="champion-name">アーリ</span>
+                        <span class="champion-id">(Ahri)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/evelynn/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Evelynn.png" alt="イブリン">
+                        <span class="champion-name">イブリン</span>
+                        <span class="champion-id">(Evelynn)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/illaoi/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Illaoi.png" alt="イラオイ">
+                        <span class="champion-name">イラオイ</span>
+                        <span class="champion-id">(Illaoi)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/irelia/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Irelia.png" alt="イレリア">
+                        <span class="champion-name">イレリア</span>
+                        <span class="champion-id">(Irelia)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/udyr/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Udyr.png" alt="ウディア">
+                        <span class="champion-name">ウディア</span>
+                        <span class="champion-id">(Udyr)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/monkeyking/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/MonkeyKing.png" alt="ウーコン">
+                        <span class="champion-name">ウーコン</span>
+                        <span class="champion-id">(MonkeyKing)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/aatrox/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Aatrox.png" alt="エイトロックス">
+                        <span class="champion-name">エイトロックス</span>
+                        <span class="champion-id">(Aatrox)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/ekko/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Ekko.png" alt="エコー">
+                        <span class="champion-name">エコー</span>
+                        <span class="champion-id">(Ekko)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/ezreal/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Ezreal.png" alt="エズリアル">
+                        <span class="champion-name">エズリアル</span>
+                        <span class="champion-id">(Ezreal)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/elise/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Elise.png" alt="エリス">
+                        <span class="champion-name">エリス</span>
+                        <span class="champion-id">(Elise)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/olaf/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Olaf.png" alt="オラフ">
+                        <span class="champion-name">オラフ</span>
+                        <span class="champion-id">(Olaf)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/orianna/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Orianna.png" alt="オリアナ">
+                        <span class="champion-name">オリアナ</span>
+                        <span class="champion-id">(Orianna)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/aurelionsol/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/AurelionSol.png" alt="オレリオン・ソル">
+                        <span class="champion-name">オレリオン・ソル</span>
+                        <span class="champion-id">(AurelionSol)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/ornn/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Ornn.png" alt="オーン">
+                        <span class="champion-name">オーン</span>
+                        <span class="champion-id">(Ornn)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/kaisa/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Kaisa.png" alt="カイ＝サ">
+                        <span class="champion-name">カイ＝サ</span>
+                        <span class="champion-id">(Kaisa)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/kassadin/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Kassadin.png" alt="カサディン">
+                        <span class="champion-name">カサディン</span>
+                        <span class="champion-id">(Kassadin)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/cassiopeia/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Cassiopeia.png" alt="カシオペア">
+                        <span class="champion-name">カシオペア</span>
+                        <span class="champion-id">(Cassiopeia)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/katarina/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Katarina.png" alt="カタリナ">
+                        <span class="champion-name">カタリナ</span>
+                        <span class="champion-id">(Katarina)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/camille/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Camille.png" alt="カミール">
+                        <span class="champion-name">カミール</span>
+                        <span class="champion-id">(Camille)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/kalista/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Kalista.png" alt="カリスタ">
+                        <span class="champion-name">カリスタ</span>
+                        <span class="champion-id">(Kalista)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/karma/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Karma.png" alt="カルマ">
+                        <span class="champion-name">カルマ</span>
+                        <span class="champion-id">(Karma)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/ksante/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/KSante.png" alt="カ・サンテ">
+                        <span class="champion-name">カ・サンテ</span>
+                        <span class="champion-id">(KSante)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/karthus/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Karthus.png" alt="カーサス">
+                        <span class="champion-name">カーサス</span>
+                        <span class="champion-id">(Karthus)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/khazix/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Khazix.png" alt="カ＝ジックス">
+                        <span class="champion-name">カ＝ジックス</span>
+                        <span class="champion-id">(Khazix)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/galio/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Galio.png" alt="ガリオ">
+                        <span class="champion-name">ガリオ</span>
+                        <span class="champion-id">(Galio)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/garen/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Garen.png" alt="ガレン">
+                        <span class="champion-name">ガレン</span>
+                        <span class="champion-id">(Garen)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/gangplank/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Gangplank.png" alt="ガングプランク">
+                        <span class="champion-name">ガングプランク</span>
+                        <span class="champion-id">(Gangplank)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/qiyana/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Qiyana.png" alt="キヤナ">
+                        <span class="champion-name">キヤナ</span>
+                        <span class="champion-id">(Qiyana)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/kindred/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Kindred.png" alt="キンドレッド">
+                        <span class="champion-name">キンドレッド</span>
+                        <span class="champion-id">(Kindred)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/quinn/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Quinn.png" alt="クイン">
+                        <span class="champion-name">クイン</span>
+                        <span class="champion-id">(Quinn)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/kled/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Kled.png" alt="クレッド">
+                        <span class="champion-name">クレッド</span>
+                        <span class="champion-id">(Kled)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/gwen/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Gwen.png" alt="グウェン">
+                        <span class="champion-name">グウェン</span>
+                        <span class="champion-id">(Gwen)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/gragas/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Gragas.png" alt="グラガス">
+                        <span class="champion-name">グラガス</span>
+                        <span class="champion-id">(Gragas)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/graves/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Graves.png" alt="グレイブス">
+                        <span class="champion-name">グレイブス</span>
+                        <span class="champion-id">(Graves)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/caitlyn/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Caitlyn.png" alt="ケイトリン">
+                        <span class="champion-name">ケイトリン</span>
+                        <span class="champion-id">(Caitlyn)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/kayle/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Kayle.png" alt="ケイル">
+                        <span class="champion-name">ケイル</span>
+                        <span class="champion-id">(Kayle)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/kayn/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Kayn.png" alt="ケイン">
+                        <span class="champion-name">ケイン</span>
+                        <span class="champion-id">(Kayn)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/kennen/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Kennen.png" alt="ケネン">
+                        <span class="champion-name">ケネン</span>
+                        <span class="champion-id">(Kennen)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/kogmaw/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/KogMaw.png" alt="コグ＝マウ">
+                        <span class="champion-name">コグ＝マウ</span>
+                        <span class="champion-id">(KogMaw)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/corki/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Corki.png" alt="コーキ">
+                        <span class="champion-name">コーキ</span>
+                        <span class="champion-id">(Corki)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/sion/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Sion.png" alt="サイオン">
+                        <span class="champion-name">サイオン</span>
+                        <span class="champion-id">(Sion)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/sylas/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Sylas.png" alt="サイラス">
+                        <span class="champion-name">サイラス</span>
+                        <span class="champion-id">(Sylas)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/samira/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Samira.png" alt="サミーラ">
+                        <span class="champion-name">サミーラ</span>
+                        <span class="champion-id">(Samira)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/zyra/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Zyra.png" alt="ザイラ">
+                        <span class="champion-name">ザイラ</span>
+                        <span class="champion-id">(Zyra)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/zac/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Zac.png" alt="ザック">
+                        <span class="champion-name">ザック</span>
+                        <span class="champion-id">(Zac)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/xayah/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Xayah.png" alt="ザヤ">
+                        <span class="champion-name">ザヤ</span>
+                        <span class="champion-id">(Xayah)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/shen/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Shen.png" alt="シェン">
+                        <span class="champion-name">シェン</span>
+                        <span class="champion-id">(Shen)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/shaco/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Shaco.png" alt="シャコ">
+                        <span class="champion-name">シャコ</span>
+                        <span class="champion-id">(Shaco)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/singed/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Singed.png" alt="シンジド">
+                        <span class="champion-name">シンジド</span>
+                        <span class="champion-id">(Singed)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/syndra/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Syndra.png" alt="シンドラ">
+                        <span class="champion-name">シンドラ</span>
+                        <span class="champion-id">(Syndra)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/xinzhao/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/XinZhao.png" alt="シン・ジャオ">
+                        <span class="champion-name">シン・ジャオ</span>
+                        <span class="champion-id">(XinZhao)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/shyvana/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Shyvana.png" alt="シヴァーナ">
+                        <span class="champion-name">シヴァーナ</span>
+                        <span class="champion-id">(Shyvana)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/sivir/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Sivir.png" alt="シヴィア">
+                        <span class="champion-name">シヴィア</span>
+                        <span class="champion-id">(Sivir)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/jayce/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Jayce.png" alt="ジェイス">
+                        <span class="champion-name">ジェイス</span>
+                        <span class="champion-id">(Jayce)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/ziggs/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Ziggs.png" alt="ジグス">
+                        <span class="champion-name">ジグス</span>
+                        <span class="champion-id">(Ziggs)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/jax/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Jax.png" alt="ジャックス">
+                        <span class="champion-name">ジャックス</span>
+                        <span class="champion-id">(Jax)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/janna/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Janna.png" alt="ジャンナ">
+                        <span class="champion-name">ジャンナ</span>
+                        <span class="champion-id">(Janna)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/jarvaniv/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/JarvanIV.png" alt="ジャーヴァンⅣ">
+                        <span class="champion-name">ジャーヴァンⅣ</span>
+                        <span class="champion-id">(JarvanIV)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/zilean/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Zilean.png" alt="ジリアン">
+                        <span class="champion-name">ジリアン</span>
+                        <span class="champion-id">(Zilean)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/jhin/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Jhin.png" alt="ジン">
+                        <span class="champion-name">ジン</span>
+                        <span class="champion-id">(Jhin)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/jinx/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Jinx.png" alt="ジンクス">
+                        <span class="champion-name">ジンクス</span>
+                        <span class="champion-id">(Jinx)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/swain/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Swain.png" alt="スウェイン">
+                        <span class="champion-name">スウェイン</span>
+                        <span class="champion-id">(Swain)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/skarner/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Skarner.png" alt="スカーナー">
+                        <span class="champion-name">スカーナー</span>
+                        <span class="champion-id">(Skarner)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/thresh/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Thresh.png" alt="スレッシュ">
+                        <span class="champion-name">スレッシュ</span>
+                        <span class="champion-id">(Thresh)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/sejuani/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Sejuani.png" alt="セジュアニ">
+                        <span class="champion-name">セジュアニ</span>
+                        <span class="champion-id">(Sejuani)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/sett/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Sett.png" alt="セト">
+                        <span class="champion-name">セト</span>
+                        <span class="champion-id">(Sett)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/senna/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Senna.png" alt="セナ">
+                        <span class="champion-name">セナ</span>
+                        <span class="champion-id">(Senna)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/seraphine/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Seraphine.png" alt="セラフィーン">
+                        <span class="champion-name">セラフィーン</span>
+                        <span class="champion-id">(Seraphine)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/zed/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Zed.png" alt="ゼド">
+                        <span class="champion-name">ゼド</span>
+                        <span class="champion-id">(Zed)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/xerath/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Xerath.png" alt="ゼラス">
+                        <span class="champion-name">ゼラス</span>
+                        <span class="champion-id">(Xerath)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/zeri/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Zeri.png" alt="ゼリ">
+                        <span class="champion-name">ゼリ</span>
+                        <span class="champion-id">(Zeri)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/sona/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Sona.png" alt="ソナ">
+                        <span class="champion-name">ソナ</span>
+                        <span class="champion-id">(Sona)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/soraka/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Soraka.png" alt="ソラカ">
+                        <span class="champion-name">ソラカ</span>
+                        <span class="champion-id">(Soraka)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/zoe/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Zoe.png" alt="ゾーイ">
+                        <span class="champion-name">ゾーイ</span>
+                        <span class="champion-id">(Zoe)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/tahmkench/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/TahmKench.png" alt="タム・ケンチ">
+                        <span class="champion-name">タム・ケンチ</span>
+                        <span class="champion-id">(TahmKench)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/taric/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Taric.png" alt="タリック">
+                        <span class="champion-name">タリック</span>
+                        <span class="champion-id">(Taric)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/taliyah/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Taliyah.png" alt="タリヤ">
+                        <span class="champion-name">タリヤ</span>
+                        <span class="champion-id">(Taliyah)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/talon/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Talon.png" alt="タロン">
+                        <span class="champion-name">タロン</span>
+                        <span class="champion-id">(Talon)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/diana/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Diana.png" alt="ダイアナ">
+                        <span class="champion-name">ダイアナ</span>
+                        <span class="champion-id">(Diana)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/darius/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Darius.png" alt="ダリウス">
+                        <span class="champion-name">ダリウス</span>
+                        <span class="champion-id">(Darius)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/chogath/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Chogath.png" alt="チョ＝ガス">
+                        <span class="champion-name">チョ＝ガス</span>
+                        <span class="champion-id">(Chogath)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/twistedfate/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/TwistedFate.png" alt="ツイステッド・フェイト">
+                        <span class="champion-name">ツイステッド・フェイト</span>
+                        <span class="champion-id">(TwistedFate)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/teemo/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Teemo.png" alt="ティーモ">
+                        <span class="champion-name">ティーモ</span>
+                        <span class="champion-id">(Teemo)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/twitch/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Twitch.png" alt="トゥイッチ">
+                        <span class="champion-name">トゥイッチ</span>
+                        <span class="champion-id">(Twitch)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/trundle/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Trundle.png" alt="トランドル">
+                        <span class="champion-name">トランドル</span>
+                        <span class="champion-id">(Trundle)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/tristana/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Tristana.png" alt="トリスターナ">
+                        <span class="champion-name">トリスターナ</span>
+                        <span class="champion-id">(Tristana)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/tryndamere/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Tryndamere.png" alt="トリンダメア">
+                        <span class="champion-name">トリンダメア</span>
+                        <span class="champion-id">(Tryndamere)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/drmundo/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/DrMundo.png" alt="ドクター・ムンド">
+                        <span class="champion-name">ドクター・ムンド</span>
+                        <span class="champion-id">(DrMundo)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/draven/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Draven.png" alt="ドレイヴン">
+                        <span class="champion-name">ドレイヴン</span>
+                        <span class="champion-id">(Draven)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/nasus/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Nasus.png" alt="ナサス">
+                        <span class="champion-name">ナサス</span>
+                        <span class="champion-id">(Nasus)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/naafiri/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Naafiri.png" alt="ナフィーリ">
+                        <span class="champion-name">ナフィーリ</span>
+                        <span class="champion-id">(Naafiri)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/nami/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Nami.png" alt="ナミ">
+                        <span class="champion-name">ナミ</span>
+                        <span class="champion-id">(Nami)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/gnar/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Gnar.png" alt="ナー">
+                        <span class="champion-name">ナー</span>
+                        <span class="champion-id">(Gnar)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/nidalee/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Nidalee.png" alt="ニダリー">
+                        <span class="champion-name">ニダリー</span>
+                        <span class="champion-id">(Nidalee)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/neeko/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Neeko.png" alt="ニーコ">
+                        <span class="champion-name">ニーコ</span>
+                        <span class="champion-id">(Neeko)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/nilah/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Nilah.png" alt="ニーラ">
+                        <span class="champion-name">ニーラ</span>
+                        <span class="champion-id">(Nilah)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/nunu/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Nunu.png" alt="ヌヌ＆ウィルンプ">
+                        <span class="champion-name">ヌヌ＆ウィルンプ</span>
+                        <span class="champion-id">(Nunu)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/nocturne/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Nocturne.png" alt="ノクターン">
+                        <span class="champion-name">ノクターン</span>
+                        <span class="champion-id">(Nocturne)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/nautilus/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Nautilus.png" alt="ノーチラス">
+                        <span class="champion-name">ノーチラス</span>
+                        <span class="champion-id">(Nautilus)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/heimerdinger/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Heimerdinger.png" alt="ハイマーディンガー">
+                        <span class="champion-name">ハイマーディンガー</span>
+                        <span class="champion-id">(Heimerdinger)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/bard/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Bard.png" alt="バード">
+                        <span class="champion-name">バード</span>
+                        <span class="champion-id">(Bard)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/pyke/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Pyke.png" alt="パイク">
+                        <span class="champion-name">パイク</span>
+                        <span class="champion-id">(Pyke)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/pantheon/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Pantheon.png" alt="パンテオン">
+                        <span class="champion-name">パンテオン</span>
+                        <span class="champion-id">(Pantheon)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/viktor/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Viktor.png" alt="ビクター">
+                        <span class="champion-name">ビクター</span>
+                        <span class="champion-id">(Viktor)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/fiora/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Fiora.png" alt="フィオラ">
+                        <span class="champion-name">フィオラ</span>
+                        <span class="champion-id">(Fiora)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/fizz/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Fizz.png" alt="フィズ">
+                        <span class="champion-name">フィズ</span>
+                        <span class="champion-id">(Fizz)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/fiddlesticks/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Fiddlesticks.png" alt="フィドルスティックス">
+                        <span class="champion-name">フィドルスティックス</span>
+                        <span class="champion-id">(Fiddlesticks)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/briar/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Briar.png" alt="ブライアー">
+                        <span class="champion-name">ブライアー</span>
+                        <span class="champion-id">(Briar)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/braum/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Braum.png" alt="ブラウム">
+                        <span class="champion-name">ブラウム</span>
+                        <span class="champion-id">(Braum)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/vladimir/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Vladimir.png" alt="ブラッドミア">
+                        <span class="champion-name">ブラッドミア</span>
+                        <span class="champion-id">(Vladimir)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/brand/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Brand.png" alt="ブランド">
+                        <span class="champion-name">ブランド</span>
+                        <span class="champion-id">(Brand)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/blitzcrank/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Blitzcrank.png" alt="ブリッツクランク">
+                        <span class="champion-name">ブリッツクランク</span>
+                        <span class="champion-id">(Blitzcrank)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/hecarim/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Hecarim.png" alt="ヘカリム">
+                        <span class="champion-name">ヘカリム</span>
+                        <span class="champion-id">(Hecarim)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/veigar/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Veigar.png" alt="ベイガー">
+                        <span class="champion-name">ベイガー</span>
+                        <span class="champion-id">(Veigar)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/belveth/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Belveth.png" alt="ベル＝ヴェス">
+                        <span class="champion-name">ベル＝ヴェス</span>
+                        <span class="champion-id">(Belveth)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/volibear/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Volibear.png" alt="ボリベア">
+                        <span class="champion-name">ボリベア</span>
+                        <span class="champion-id">(Volibear)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/poppy/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Poppy.png" alt="ポッピー">
+                        <span class="champion-name">ポッピー</span>
+                        <span class="champion-id">(Poppy)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/maokai/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Maokai.png" alt="マオカイ">
+                        <span class="champion-name">マオカイ</span>
+                        <span class="champion-id">(Maokai)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/masteryi/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/MasterYi.png" alt="マスター・イー">
+                        <span class="champion-name">マスター・イー</span>
+                        <span class="champion-id">(MasterYi)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/malzahar/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Malzahar.png" alt="マルザハール">
+                        <span class="champion-name">マルザハール</span>
+                        <span class="champion-id">(Malzahar)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/malphite/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Malphite.png" alt="マルファイト">
+                        <span class="champion-name">マルファイト</span>
+                        <span class="champion-id">(Malphite)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/missfortune/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/MissFortune.png" alt="ミス・フォーチュン">
+                        <span class="champion-name">ミス・フォーチュン</span>
+                        <span class="champion-id">(MissFortune)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/milio/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Milio.png" alt="ミリオ">
+                        <span class="champion-name">ミリオ</span>
+                        <span class="champion-id">(Milio)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/morgana/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Morgana.png" alt="モルガナ">
+                        <span class="champion-name">モルガナ</span>
+                        <span class="champion-id">(Morgana)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/mordekaiser/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Mordekaiser.png" alt="モルデカイザー">
+                        <span class="champion-name">モルデカイザー</span>
+                        <span class="champion-id">(Mordekaiser)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/yasuo/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Yasuo.png" alt="ヤスオ">
+                        <span class="champion-name">ヤスオ</span>
+                        <span class="champion-id">(Yasuo)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/yuumi/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Yuumi.png" alt="ユーミ">
+                        <span class="champion-name">ユーミ</span>
+                        <span class="champion-id">(Yuumi)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/yone/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Yone.png" alt="ヨネ">
+                        <span class="champion-name">ヨネ</span>
+                        <span class="champion-id">(Yone)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/yorick/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Yorick.png" alt="ヨリック">
+                        <span class="champion-name">ヨリック</span>
+                        <span class="champion-id">(Yorick)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/ryze/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Ryze.png" alt="ライズ">
+                        <span class="champion-name">ライズ</span>
+                        <span class="champion-id">(Ryze)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/rakan/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Rakan.png" alt="ラカン">
+                        <span class="champion-name">ラカン</span>
+                        <span class="champion-id">(Rakan)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/lux/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Lux.png" alt="ラックス">
+                        <span class="champion-name">ラックス</span>
+                        <span class="champion-id">(Lux)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/rammus/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Rammus.png" alt="ラムス">
+                        <span class="champion-name">ラムス</span>
+                        <span class="champion-id">(Rammus)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/rumble/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Rumble.png" alt="ランブル">
+                        <span class="champion-name">ランブル</span>
+                        <span class="champion-id">(Rumble)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/lissandra/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Lissandra.png" alt="リサンドラ">
+                        <span class="champion-name">リサンドラ</span>
+                        <span class="champion-id">(Lissandra)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/lillia/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Lillia.png" alt="リリア">
+                        <span class="champion-name">リリア</span>
+                        <span class="champion-id">(Lillia)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/riven/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Riven.png" alt="リヴェン">
+                        <span class="champion-name">リヴェン</span>
+                        <span class="champion-id">(Riven)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/leesin/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/LeeSin.png" alt="リー・シン">
+                        <span class="champion-name">リー・シン</span>
+                        <span class="champion-id">(LeeSin)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/lucian/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Lucian.png" alt="ルシアン">
+                        <span class="champion-name">ルシアン</span>
+                        <span class="champion-id">(Lucian)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/leblanc/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Leblanc.png" alt="ルブラン">
+                        <span class="champion-name">ルブラン</span>
+                        <span class="champion-id">(Leblanc)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/lulu/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Lulu.png" alt="ルル">
+                        <span class="champion-name">ルル</span>
+                        <span class="champion-id">(Lulu)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/leona/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Leona.png" alt="レオナ">
+                        <span class="champion-name">レオナ</span>
+                        <span class="champion-id">(Leona)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/reksai/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/RekSai.png" alt="レク＝サイ">
+                        <span class="champion-name">レク＝サイ</span>
+                        <span class="champion-id">(RekSai)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/renata/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Renata.png" alt="レナータ・グラスク">
+                        <span class="champion-name">レナータ・グラスク</span>
+                        <span class="champion-id">(Renata)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/renekton/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Renekton.png" alt="レネクトン">
+                        <span class="champion-name">レネクトン</span>
+                        <span class="champion-id">(Renekton)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/rell/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Rell.png" alt="レル">
+                        <span class="champion-name">レル</span>
+                        <span class="champion-id">(Rell)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/rengar/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Rengar.png" alt="レンガー">
+                        <span class="champion-name">レンガー</span>
+                        <span class="champion-id">(Rengar)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/warwick/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Warwick.png" alt="ワーウィック">
+                        <span class="champion-name">ワーウィック</span>
+                        <span class="champion-id">(Warwick)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/vi/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Vi.png" alt="ヴァイ">
+                        <span class="champion-name">ヴァイ</span>
+                        <span class="champion-id">(Vi)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/varus/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Varus.png" alt="ヴァルス">
+                        <span class="champion-name">ヴァルス</span>
+                        <span class="champion-id">(Varus)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/viego/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Viego.png" alt="ヴィエゴ">
+                        <span class="champion-name">ヴィエゴ</span>
+                        <span class="champion-id">(Viego)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/vayne/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Vayne.png" alt="ヴェイン">
+                        <span class="champion-name">ヴェイン</span>
+                        <span class="champion-id">(Vayne)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/vex/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Vex.png" alt="ヴェックス">
+                        <span class="champion-name">ヴェックス</span>
+                        <span class="champion-id">(Vex)</span>
+                    </a>
+                </div>
+                <div class="champion">
+                    <a href="https://op.gg/champions/velkoz/counters" target="_blank">
+                        <img src="http://ddragon.leagueoflegends.com/cdn/13.21.1/img/champion/Velkoz.png" alt="ヴェル＝コズ">
+                        <span class="champion-name">ヴェル＝コズ</span>
+                        <span class="champion-id">(Velkoz)</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -1020,7 +2266,7 @@
         const searchBox = document.getElementById('searchBox');
         const laneButtons = document.querySelectorAll('.lane-btn');
         const championSections = document.querySelectorAll('.champion-section');
-        const championItems = document.querySelectorAll('.champion-item');
+        const championItems = document.querySelectorAll('.champion-grid .champion');
         
         let currentLane = 'all';
         let searchTerm = '';
@@ -1048,66 +2294,44 @@
 
         // フィルタリング機能
         function filterContent() {
-            championSections.forEach(section => {
-                const sectionLane = section.getAttribute('data-lane');
-                let shouldShowSection = false;
+            const allChampionItems = document.querySelectorAll('.champion-grid .champion');
+            let anyVisible = false;
 
-                // レーンフィルタリング
-                if (currentLane === 'all' || sectionLane === currentLane) {
-                    shouldShowSection = true;
+            allChampionItems.forEach(item => {
+                const championName = item.querySelector('.champion-name').textContent.toLowerCase();
+                const championId = item.querySelector('.champion-id').textContent.toLowerCase();
+
+                let shouldShowItem = true;
+
+                // Search filtering
+                if (searchTerm) {
+                    shouldShowItem = championName.includes(searchTerm) || championId.includes(searchTerm.replace(/ /g, ''));
                 }
 
-                // 検索フィルタリング
-                if (shouldShowSection && searchTerm) {
-                    const sectionText = section.textContent.toLowerCase();
-                    shouldShowSection = sectionText.includes(searchTerm);
-                }
-
-                // セクションの表示/非表示
-                if (shouldShowSection) {
-                    section.classList.remove('hidden');
-                } else {
-                    section.classList.add('hidden');
-                }
-            });
-
-            // チャンピオンアイテムのフィルタリング
-            championItems.forEach(item => {
-                const championName = item.getAttribute('data-champion').toLowerCase();
-                const itemLanes = item.getAttribute('data-lanes').split(',');
-                let shouldShowItem = false;
-
-                // レーンフィルタリング
-                if (currentLane === 'all' || itemLanes.includes(currentLane)) {
-                    shouldShowItem = true;
-                }
-
-                // 検索フィルタリング
-                if (shouldShowItem && searchTerm) {
-                    shouldShowItem = championName.includes(searchTerm);
-                }
-
-                // アイテムの表示/非表示
                 if (shouldShowItem) {
                     item.style.display = 'block';
+                    anyVisible = true;
                 } else {
                     item.style.display = 'none';
                 }
             });
 
+            // Update the visibility of the main champion-section based on whether any items are visible
+            const mainChampionSection = document.querySelector('.champion-section[data-lane="all"]');
+            if (mainChampionSection) {
+                if (anyVisible) {
+                    mainChampionSection.classList.remove('hidden');
+                } else {
+                    mainChampionSection.classList.add('hidden');
+                }
+            }
+
             // 結果が見つからない場合のメッセージ
-            showNoResultsMessage();
+            showNoResultsMessage(anyVisible);
         }
 
         // 結果が見つからない場合のメッセージ表示
-        function showNoResultsMessage() {
-            const visibleSections = Array.from(championSections).filter(section => 
-                !section.classList.contains('hidden')
-            );
-            const visibleItems = Array.from(championItems).filter(item => 
-                item.style.display !== 'none'
-            );
-
+        function showNoResultsMessage(anyVisible) {
             // 既存のno-resultsメッセージを削除
             const existingMessage = document.querySelector('.no-results');
             if (existingMessage) {
@@ -1115,13 +2339,13 @@
             }
 
             // 結果が見つからない場合
-            if (visibleSections.length === 0 && visibleItems.length === 0 && searchTerm) {
+            if (!anyVisible && searchTerm) {
                 const noResultsDiv = document.createElement('div');
                 noResultsDiv.className = 'no-results';
                 noResultsDiv.innerHTML = `
                     <h3>検索結果が見つかりません</h3>
                     <p>"${searchTerm}" に一致するチャンピオンが見つかりませんでした。</p>
-                    <p>別のキーワードで検索するか、レーンフィルターを変更してみてください。</p>
+                    <p>別のキーワードで検索してみてください。</p>
                 `;
                 
                 const container = document.querySelector('.container');
