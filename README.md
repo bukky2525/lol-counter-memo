@@ -2,9 +2,12 @@
 
 League of Legends（LoL）の全チャンピオンのカウンターピック情報をまとめたWebアプリケーションです。
 
+🌐 **デモサイト**: [https://lol-counter-memo.netlify.app/](https://lol-counter-memo.netlify.app/)
+
 ## 機能
 
 - 📊 **90以上のチャンピオン**のカウンター情報を収録
+- 🖼️ **チャンピオン画像**: Data Dragon APIから公式アイコンを表示
 - 🔍 **検索機能**: チャンピオン名で素早く検索
 - 🎯 **レーンフィルター**: トップ、ジャングル、ミッド、ボット、サポート別に絞り込み
 - 📱 **レスポンシブデザイン**: スマートフォンでも快適に閲覧可能
@@ -21,7 +24,10 @@ League of Legends（LoL）の全チャンピオンのカウンターピック情
 
 - `index.html` - メインのHTMLファイル
 - `counter_data.json` - カウンターデータ（JSON形式）
+- `champion_images.json` - チャンピオン名と画像のマッピング
 - `official_champion_names.json` - 公式チャンピオン名リスト
+- `netlify.toml` - Netlifyデプロイ設定
+- `test_images.html` - 画像読み込みテストページ
 - `extract_champion_names.py` - チャンピオン名抽出スクリプト
 - `fix_champion_names.py` - チャンピオン名修正スクリプト
 - `compare_names.py` - チャンピオン名比較スクリプト
