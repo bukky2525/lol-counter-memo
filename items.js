@@ -50,6 +50,7 @@ async function loadItemsFromDDragon() {
         
         // アイテムを表示
         renderItems();
+        updateResultsCount(filteredItems.length);
         
     } catch (error) {
         console.error('アイテムデータの取得に失敗:', error);
@@ -90,6 +91,16 @@ function setupEventListeners() {
         });
     }
     
+    // 検索候補のクリックイベント
+    if (searchSuggestions) {
+        searchSuggestions.addEventListener('click', (e) => {
+            if (e.target.classList.contains('suggestion-item')) {
+                const itemName = e.target.getAttribute('data-item-name');
+                selectSuggestion(itemName);
+            }
+        });
+    }
+    
     // クリック外しで候補を隠す
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.search-wrapper')) {
@@ -126,6 +137,7 @@ function filterAndRenderItems() {
     });
 
     renderItems(filtered);
+    updateResultsCount(filtered.length);
 }
 
 // アイテムを表示
@@ -334,7 +346,16 @@ function showItemDetail(itemId) {
 
 // アイテムアイコンURLを取得
 function getItemIconUrl(itemId) {
-    return `https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/item/${itemId}.png`;
+    // アイテムIDが数値の場合は文字列に変換
+    const id = itemId.toString();
+    return `https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/item/${id}.png`;
+}
+
+// 検索数を更新
+function updateResultsCount(count) {
+    if (resultsCount) {
+        resultsCount.textContent = `検索結果: ${count}件`;
+    }
 }
 
 // エラー表示
