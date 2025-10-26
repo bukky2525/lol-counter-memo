@@ -81,7 +81,7 @@
             border-color: #ffd700;
         }
         
-        .champion-section {
+        .champion-item {
             background: rgba(255,255,255,0.1);
             margin-bottom: 20px;
             border-radius: 15px;
@@ -90,7 +90,7 @@
             border: 1px solid rgba(255,255,255,0.2);
         }
         
-        .champion-section.hidden {
+        .champion-item.hidden {
             display: none;
         }
         
@@ -112,16 +112,16 @@
             border-left: 4px solid #ffd700;
         }
         
-        img {
-            border-radius: 5px;
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-        
         .no-results {
             text-align: center;
             padding: 40px;
             color: #ccc;
+            font-size: 18px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
             font-size: 18px;
         }
         
@@ -145,993 +145,111 @@
             <input type="text" id="searchBox" class="search-box" placeholder="チャンピオン名で検索...">
             <div class="lane-filters">
                 <button class="lane-btn active" data-lane="all">全レーン</button>
-                <button class="lane-btn" data-lane="top">トッチE/button>
+                <button class="lane-btn" data-lane="top">トップ</button>
                 <button class="lane-btn" data-lane="jungle">ジャングル</button>
-                <button class="lane-btn" data-lane="mid">ミッチE/button>
-                <button class="lane-btn" data-lane="adc">ボッチE/button>
-                <button class="lane-btn" data-lane="support">サポ�EチE/button>
+                <button class="lane-btn" data-lane="mid">ミッド</button>
+                <button class="lane-btn" data-lane="adc">ボット</button>
+                <button class="lane-btn" data-lane="support">サポート</button>
             </div>
         </div>
 
-
-        <div class="champion-section" data-lane="all">
-            <h2>吁E��ャンピオンのカウンターリスト！E/h2>
-            
-            <div class="champion-item" data-champion="アートロチE��ス" data-lanes="top">
-                <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Aatrox.png" width="32" height="32" alt="アートロチE��ス"> アートロチE��ス</h3>
-                <ul>
-                    <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Irelia.png" width="24" height="24" alt="イレリア"> イレリア, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Darius.png" width="24" height="24" alt="ダリウス"> ダリウス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ornn.png" width="24" height="24" alt="オーン"> オーン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Jax.png" width="24" height="24" alt="ジャチE��ス"> ジャチE��ス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Yasuo.png" width="24" height="24" alt="ヤスオ"> ヤスオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Malphite.png" width="24" height="24" alt="マルファイチE> マルファイチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Vayne.png" width="24" height="24" alt="ヴェイン"> ヴェイン</li>
-                </ul>
-            </div>
-
-            <div class="champion-item" data-champion="アーリ" data-lanes="mid">
-                <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ahri.png" width="32" height="32" alt="アーリ"> アーリ</h3>
-                <ul>
-                    <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Yasuo.png" width="24" height="24" alt="ヤスオ"> ヤスオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ekko.png" width="24" height="24" alt="エコー"> エコー, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Diana.png" width="24" height="24" alt="ダイアチE> ダイアチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Irelia.png" width="24" height="24" alt="イレリア"> イレリア, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kassadin.png" width="24" height="24" alt="カサチE��ン"> カサチE��ン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Galio.png" width="24" height="24" alt="ガリオ"> ガリオ</li>
-                </ul>
-            </div>
-
-            <div class="champion-item" data-champion="アカリ" data-lanes="mid">
-                <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Akali.png" width="32" height="32" alt="アカリ"> アカリ</h3>
-                <ul>
-                    <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kassadin.png" width="24" height="24" alt="カサチE��ン"> カサチE��ン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Galio.png" width="24" height="24" alt="ガリオ"> ガリオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Annie.png" width="24" height="24" alt="アニ�E"> アニ�E, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Veigar.png" width="24" height="24" alt="ベイガー"> ベイガー, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Akshan.png" width="24" height="24" alt="アクシャ"> アクシャ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Vex.png" width="24" height="24" alt="ヴェチE��ス"> ヴェチE��ス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/TwistedFate.png" width="24" height="24" alt="チE��スチE��ド�EフェイチE> チE��スチE��ド�EフェイチE/li>
-                </ul>
-            </div>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Akshan.png" width="32" height="32" alt="アクシャ"> アクシャ</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Yasuo.png" width="24" height="24" alt="ヤスオ"> ヤスオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Irelia.png" width="24" height="24" alt="イレリア"> イレリア, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lissandra.png" width="24" height="24" alt="リサンドラ"> リサンドラ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Veigar.png" width="24" height="24" alt="ベイガー"> ベイガー, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Zed.png" width="24" height="24" alt="ゼチE> ゼチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Fizz.png" width="24" height="24" alt="フィズ"> フィズ</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Alistar.png" width="32" height="32" alt="アリスター"> アリスター</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Janna.png" width="24" height="24" alt="ジャチE> ジャチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Morgana.png" width="24" height="24" alt="モルガチE> モルガチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Thresh.png" width="24" height="24" alt="スレチE��ュ"> スレチE��ュ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Zyra.png" width="24" height="24" alt="ズヤ"> ズヤ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lulu.png" width="24" height="24" alt="ルル"> ルル, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Rakan.png" width="24" height="24" alt="ラカン"> ラカン</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Amumu.png" width="32" height="32" alt="アンベッサ"> アンベッサ�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Pantheon.png" width="24" height="24" alt="パンチE��ン"> パンチE��ン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Jayce.png" width="24" height="24" alt="ジェイス"> ジェイス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Darius.png" width="24" height="24" alt="ダリウス"> ダリウス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Garen.png" width="24" height="24" alt="ガレン"> ガレン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Singed.png" width="24" height="24" alt="シンジチE> シンジチE/li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Amumu.png" width="32" height="32" alt="アンベッサ"> アンベッサ�E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Shyvana.png" width="24" height="24" alt="シャイバナ"> シャイバナ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/KhaZix.png" width="24" height="24" alt="カズィチE��ス"> カズィチE��ス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Wukong.png" width="24" height="24" alt="ウーコン"> ウーコン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Viego.png" width="24" height="24" alt="ビエゴ"> ビエゴ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Fiddlesticks.png" width="24" height="24" alt="フィドルスチE��チE��ス"> フィドルスチE��チE��ス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Warwick.png" width="24" height="24" alt="ウォーウィチE��"> ウォーウィチE��</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Amumu.png" width="32" height="32" alt="アムム"> アムム</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Shyvana.png" width="24" height="24" alt="シャイバナ"> シャイバナ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/LeeSin.png" width="24" height="24" alt="リー・シン"> リー・シン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Vi.png" width="24" height="24" alt="ヴィ"> ヴィ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Warwick.png" width="24" height="24" alt="ウォーウィチE��"> ウォーウィチE��, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/KhaZix.png" width="24" height="24" alt="カズィチE��ス"> カズィチE��ス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Volibear.png" width="24" height="24" alt="ボリベア"> ボリベア, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Olaf.png" width="24" height="24" alt="オラチE> オラチE/li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Annie.png" width="32" height="32" alt="アニ�E"> アニ�E</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kassadin.png" width="24" height="24" alt="カサチE��ン"> カサチE��ン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Brand.png" width="24" height="24" alt="ブランチE> ブランチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Orianna.png" width="24" height="24" alt="オリアチE> オリアチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Fizz.png" width="24" height="24" alt="フィズ"> フィズ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Veigar.png" width="24" height="24" alt="ベイガー"> ベイガー, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lux.png" width="24" height="24" alt="ラチE��ス"> ラチE��ス</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ashe.png" width="32" height="32" alt="アチE��ュ"> アチE��ュ</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Caitlyn.png" width="24" height="24" alt="ケイトリン"> ケイトリン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Draven.png" width="24" height="24" alt="ドレイヴン"> ドレイヴン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Jhin.png" width="24" height="24" alt="ジン"> ジン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Tristana.png" width="24" height="24" alt="トリスターチE> トリスターチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ezreal.png" width="24" height="24" alt="エズリアル"> エズリアル, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lucian.png" width="24" height="24" alt="ルシアン"> ルシアン</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/AurelionSol.png" width="32" height="32" alt="オーレリオン・ソル"> オーレリオン・ソル</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Fizz.png" width="24" height="24" alt="フィズ"> フィズ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Zed.png" width="24" height="24" alt="ゼチE> ゼチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Yasuo.png" width="24" height="24" alt="ヤスオ"> ヤスオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lux.png" width="24" height="24" alt="ラチE��ス"> ラチE��ス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Katarina.png" width="24" height="24" alt="カタリチE> カタリチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Karma.png" width="24" height="24" alt="カルチE> カルチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Galio.png" width="24" height="24" alt="ガリオ"> ガリオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Zyra.png" width="24" height="24" alt="ズヤ"> ズヤ</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Blitzcrank.png" width="32" height="32" alt="ブリチE��クランキング"> ブリチE��クランキング</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Leona.png" width="24" height="24" alt="レオチE> レオチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Alistar.png" width="24" height="24" alt="アリスター"> アリスター, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Morgana.png" width="24" height="24" alt="モルガチE> モルガチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Thresh.png" width="24" height="24" alt="スレチE��ュ"> スレチE��ュ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Braum.png" width="24" height="24" alt="ブラウム"> ブラウム, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Rakan.png" width="24" height="24" alt="ラカン"> ラカン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Zyra.png" width="24" height="24" alt="ズヤ"> ズヤ</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Brand.png" width="32" height="32" alt="ブランチE> ブランド（ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Fizz.png" width="24" height="24" alt="フィズ"> フィズ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Galio.png" width="24" height="24" alt="ガリオ"> ガリオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lux.png" width="24" height="24" alt="ラチE��ス"> ラチE��ス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Zed.png" width="24" height="24" alt="ゼチE> ゼチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Corki.png" width="24" height="24" alt="コーキー"> コーキー, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ekko.png" width="24" height="24" alt="エコー"> エコー</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Brand.png" width="32" height="32" alt="ブランチE> ブランド（サポ�Eト！E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Maokai.png" width="24" height="24" alt="マオカイ"> マオカイ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Pyke.png" width="24" height="24" alt="パイク"> パイク, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Nautilus.png" width="24" height="24" alt="ノ�Eチラス"> ノ�Eチラス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Blitzcrank.png" width="24" height="24" alt="ブリチE��クランキング"> ブリチE��クランキング, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Morgana.png" width="24" height="24" alt="モルガチE> モルガチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Braum.png" width="24" height="24" alt="ブラウム"> ブラウム</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Braum.png" width="32" height="32" alt="ブラウム"> ブラウム</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Morgana.png" width="24" height="24" alt="モルガチE> モルガチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Leona.png" width="24" height="24" alt="レオチE> レオチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Soraka.png" width="24" height="24" alt="ソラカ"> ソラカ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Alistar.png" width="24" height="24" alt="アリスター"> アリスター, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Karma.png" width="24" height="24" alt="カルチE> カルチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Vayne.png" width="24" height="24" alt="ヴェイン"> ヴェイン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Senna.png" width="24" height="24" alt="セチE> セチE/li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Caitlyn.png" width="32" height="32" alt="ケイトリン"> ケイトリン</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Jhin.png" width="24" height="24" alt="ジン"> ジン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ezreal.png" width="24" height="24" alt="エズリアル"> エズリアル, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Nilah.png" width="24" height="24" alt="ニ�Eラ"> ニ�Eラ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Twitch.png" width="24" height="24" alt="チE��チE��"> チE��チE��, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Jinx.png" width="24" height="24" alt="ジンクス"> ジンクス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Draven.png" width="24" height="24" alt="ドレイヴン"> ドレイヴン</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Camille.png" width="32" height="32" alt="カミ�Eル"> カミ�Eル</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Renekton.png" width="24" height="24" alt="レネクトン"> レネクトン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Darius.png" width="24" height="24" alt="ダリウス"> ダリウス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Fiora.png" width="24" height="24" alt="フィオラ"> フィオラ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Riven.png" width="24" height="24" alt="リヴェン"> リヴェン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Nasus.png" width="24" height="24" alt="ナサス"> ナサス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Shen.png" width="24" height="24" alt="シェン"> シェン</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Corki.png" width="32" height="32" alt="コーキー"> コーキー�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Zed.png" width="24" height="24" alt="ゼチE> ゼチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Fizz.png" width="24" height="24" alt="フィズ"> フィズ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lux.png" width="24" height="24" alt="ラチE��ス"> ラチE��ス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ahri.png" width="24" height="24" alt="アーリ"> アーリ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Brand.png" width="24" height="24" alt="ブランチE> ブランチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Syndra.png" width="24" height="24" alt="シンドラ"> シンドラ</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Corki.png" width="32" height="32" alt="コーキー"> コーキー�E�EDC�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Caitlyn.png" width="24" height="24" alt="ケイトリン"> ケイトリン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Draven.png" width="24" height="24" alt="ドレイヴン"> ドレイヴン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ashe.png" width="24" height="24" alt="アチE��ュ"> アチE��ュ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Varus.png" width="24" height="24" alt="ヴァルス"> ヴァルス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lucian.png" width="24" height="24" alt="ルシアン"> ルシアン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Sivir.png" width="24" height="24" alt="シヴィル"> シヴィル</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Darius.png" width="32" height="32" alt="ダリウス"> ダリウス�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Vayne.png" width="24" height="24" alt="ヴェイン"> ヴェイン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ornn.png" width="24" height="24" alt="オーン"> オーン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kayle.png" width="24" height="24" alt="ケイル"> ケイル, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Jayce.png" width="24" height="24" alt="ジェイス"> ジェイス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Urgot.png" width="24" height="24" alt="ウルゴチE��"> ウルゴチE��</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Darius.png" width="32" height="32" alt="ダリウス"> ダリウス�E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Wukong.png" width="24" height="24" alt="ウーコン"> ウーコン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Nunu.png" width="24" height="24" alt="ヌヌ"> ヌヌ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/MasterYi.png" width="24" height="24" alt="マスターヤイ"> マスターヤイ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ekko.png" width="24" height="24" alt="エコー"> エコー, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Evelynn.png" width="24" height="24" alt="エヴリン"> エヴリン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Viego.png" width="24" height="24" alt="ビエゴ"> ビエゴ</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Diana.png" width="32" height="32" alt="ダイアチE> ダイアナ（ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kayle.png" width="24" height="24" alt="ケイル"> ケイル, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Fizz.png" width="24" height="24" alt="フィズ"> フィズ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Pantheon.png" width="24" height="24" alt="パンチE��ン"> パンチE��ン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Gragas.png" width="24" height="24" alt="グラガス"> グラガス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ekko.png" width="24" height="24" alt="エコー"> エコー, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Jayce.png" width="24" height="24" alt="ジェイス"> ジェイス</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Diana.png" width="32" height="32" alt="ダイアチE> ダイアナ（ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Fizz.png" width="24" height="24" alt="フィズ"> フィズ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Jax.png" width="24" height="24" alt="ジャチE��ス"> ジャチE��ス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Pantheon.png" width="24" height="24" alt="パンチE��ン"> パンチE��ン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Tryndamere.png" width="24" height="24" alt="トラインダムアー"> トラインダムアー, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kayle.png" width="24" height="24" alt="ケイル"> ケイル, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ekko.png" width="24" height="24" alt="エコー"> エコー</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/DrMundo.png" width="32" height="32" alt="ドクター・ムンチE> ドクター・ムンド（トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Darius.png" width="24" height="24" alt="ダリウス"> ダリウス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Aatrox.png" width="24" height="24" alt="アートロチE��ス"> アートロチE��ス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Vayne.png" width="24" height="24" alt="ヴェイン"> ヴェイン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Gwen.png" width="24" height="24" alt="グウェン"> グウェン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Fiora.png" width="24" height="24" alt="フィオラ"> フィオラ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Camille.png" width="24" height="24" alt="カミ�Eル"> カミ�Eル, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Gragas.png" width="24" height="24" alt="グラガス"> グラガス</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/DrMundo.png" width="32" height="32" alt="ドクター・ムンチE> ドクター・ムンド（ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Gragas.png" width="24" height="24" alt="グラガス"> グラガス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/XinZhao.png" width="24" height="24" alt="シン・ジャオ"> シン・ジャオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kayn.png" width="24" height="24" alt="ケイン"> ケイン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Viego.png" width="24" height="24" alt="ビエゴ"> ビエゴ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lillia.png" width="24" height="24" alt="リリア"> リリア, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ekko.png" width="24" height="24" alt="エコー"> エコー</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Draven.png" width="32" height="32" alt="ドレイヴン"> ドレイヴン</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Senna.png" width="24" height="24" alt="セチE> セチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Jhin.png" width="24" height="24" alt="ジン"> ジン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ashe.png" width="24" height="24" alt="アチE��ュ"> アチE��ュ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Nilah.png" width="24" height="24" alt="ニ�Eラ"> ニ�Eラ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ziggs.png" width="24" height="24" alt="ズィグス"> ズィグス</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ekko.png" width="32" height="32" alt="エコー"> エコー�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kassadin.png" width="24" height="24" alt="カサチE��ン"> カサチE��ン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Galio.png" width="24" height="24" alt="ガリオ"> ガリオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Swain.png" width="24" height="24" alt="スウェイン"> スウェイン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Irelia.png" width="24" height="24" alt="イレリア"> イレリア, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Yasuo.png" width="24" height="24" alt="ヤスオ"> ヤスオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Akali.png" width="24" height="24" alt="アカリ"> アカリ</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ekko.png" width="32" height="32" alt="エコー"> エコー�E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/KhaZix.png" width="24" height="24" alt="カズィチE��ス"> カズィチE��ス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Rengar.png" width="24" height="24" alt="レンガー"> レンガー, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Amumu.png" width="24" height="24" alt="アムム"> アムム, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Vi.png" width="24" height="24" alt="ヴィ"> ヴィ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Nunu.png" width="24" height="24" alt="ヌヌ"> ヌヌ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Talon.png" width="24" height="24" alt="タロン"> タロン</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Evelynn.png" width="32" height="32" alt="エヴリン"> エヴリン</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/KhaZix.png" width="24" height="24" alt="カズィチE��ス"> カズィチE��ス, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/XinZhao.png" width="24" height="24" alt="シン・ジャオ"> シン・ジャオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/LeeSin.png" width="24" height="24" alt="リー・シン"> リー・シン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/MasterYi.png" width="24" height="24" alt="マスターヤイ"> マスターヤイ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Rengar.png" width="24" height="24" alt="レンガー"> レンガー, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Fiddlesticks.png" width="24" height="24" alt="フィドルスチE��チE��ス"> フィドルスチE��チE��ス</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ezreal.png" width="32" height="32" alt="エズリアル"> エズリアル</h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Nilah.png" width="24" height="24" alt="ニ�Eラ"> ニ�Eラ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Vayne.png" width="24" height="24" alt="ヴェイン"> ヴェイン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Draven.png" width="24" height="24" alt="ドレイヴン"> ドレイヴン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Tristana.png" width="24" height="24" alt="トリスターチE> トリスターチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kalista.png" width="24" height="24" alt="カリスタ"> カリスタ</li>
-    </ul>
-
-    <h3>フィドルスチE��チE��ス</h3>
-    <ul>
-        <li><b>カウンター:</b> シャイバナ, ヴィ, アムム, エコー, シン・ジャオ, ドクター・ムンチE/li>
-    </ul>
-
-    <h3>フィオラ</h3>
-    <ul>
-        <li><b>カウンター:</b> ウォーウィチE��, ヴェイン, パンチE��ン, ダリウス, レネクトン, マルファイチE/li>
-    </ul>
-
-    <h3>フィズ�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ダイアチE グラガス, カサチE��ン, アカリ, ケイル, アニ�E</li>
-    </ul>
-
-    <h3>フィズ�E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ケイン, エヴリン, ヴィ, ウォーウィチE��, カズィチE��ス, マスターヤイ</li>
-    </ul>
-
-    <h3>ガリオ�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ヤスオ, スウェイン, オリアチE アーリ, ヴェチE��ス, シンドラ</li>
-    </ul>
-
-    <h3>ガリオ�E�サポ�Eト！E/h3>
-    <ul>
-        <li><b>カウンター:</b> アリスター, ルル, ジャチE ブラウム, ズヤ, ラチE��ス</li>
-    </ul>
-
-    <h3>ガレン</h3>
-    <ul>
-        <li><b>カウンター:</b> ダリウス, カミ�Eル, ケイル, フィオラ, シェン, オーン, ヴェイン</li>
-    </ul>
-
-    <h3>グナ�E</h3>
-    <ul>
-        <li><b>カウンター:</b> イレリア, ダリウス, オラチE レネクトン, ナサス, カミ�Eル</li>
-    </ul>
-
-    <h3>グラガス�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> パンチE��ン, アートロチE��ス, ジャチE��ス, ダリウス, ケネン, ガレン</li>
-    </ul>
-
-    <h3>グラガス�E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> リー・シン, レンガー, カズィチE��ス, ビエゴ, エヴリン, ダイアチE/li>
-    </ul>
-
-    <h3>グレイブス</h3>
-    <ul>
-        <li><b>カウンター:</b> エヴリン, ヴィ, レンガー, カズィチE��ス, ラモス, フィドルスチE��チE��ス</li>
-    </ul>
-
-    <h3>グウェン</h3>
-    <ul>
-        <li><b>カウンター:</b> フィオラ, ジャチE��ス, リヴェン, ダリウス, ナサス, トラインダムアー</li>
-    </ul>
-
-    <h3>ヘカリム</h3>
-    <ul>
-        <li><b>カウンター:</b> マスターヤイ, エヴリン, ウォーウィチE��, ヴィ, ジャーヴァンⅣ, グレイブス</li>
-    </ul>
-
-    <h3>ハイマ�EチE��ンガー</h3>
-    <ul>
-        <li><b>カウンター:</b> ゾーイ, ベイガー, エコー, シンドラ, ラチE��ス, ゼチE/li>
-    </ul>
-
-    <h3>イレリア�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> エコー, ゾーイ, ヴェチE��ス, アニ�E, ヤスオ, シンドラ</li>
-    </ul>
-
-    <h3>イレリア�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ガレン, ダリウス, レネクトン, マルファイチE ナサス, セチE��</li>
-    </ul>
-
-    <h3>ジャチE/h3>
-    <ul>
-        <li><b>カウンター:</b> ナミ, ブリチE��クランキング, ラチE��ス, ソチE ソラカ, セチE/li>
-    </ul>
-
-    <h3>ジャーヴァンⅣ</h3>
-    <ul>
-        <li><b>カウンター:</b> ヴィ, リー・シン, シン・ジャオ, ヌヌ, エコー, グウェン</li>
-    </ul>
-
-    <h3>ジャチE��ス�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> レネクトン, ガレン, パンチE��ン, ウルゴチE��, ドクター・ムンチE シンジチE グラガス</li>
-    </ul>
-
-    <h3>ジャチE��ス�E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> カズィチE��ス, ケイン, ラモス, フィドルスチE��チE��ス, エヴリン, リリア</li>
-    </ul>
-
-    <h3>ジェイス�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ブランチE アニ�E, ガリオ, ゾーイ, ダイアチE ヴェチE��ス</li>
-    </ul>
-
-    <h3>ジェイス�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> オラチE レネクトン, フィオラ, ウーコン, パンチE��ン, ウルゴチE��</li>
-    </ul>
-
-    <h3>ジン</h3>
-    <ul>
-        <li><b>カウンター:</b> ルシアン, ヴェイン, トリスターチE ニ�Eラ, チE��チE��, ジンクス</li>
-    </ul>
-
-    <h3>ジンクス</h3>
-    <ul>
-        <li><b>カウンター:</b> ドレイヴン, トリスターチE ゼヤ, チE��チE��, ニ�Eラ, セチE/li>
-    </ul>
-
-    <h3>カイ�E�サ</h3>
-    <ul>
-        <li><b>カウンター:</b> ヴェイン, ゼヤ, エズリアル, シヴィル, ルシアン, ケイトリン</li>
-    </ul>
-
-    <h3>カリスタ</h3>
-    <ul>
-        <li><b>カウンター:</b> ニ�Eラ, ゼヤ, ルシアン, チE��チE��, アチE��ュ, ゼリ</li>
-    </ul>
-
-    <h3>カルマ（サポ�Eト！E/h3>
-    <ul>
-        <li><b>カウンター:</b> ソチE ルル, ブリチE��クランキング, ズヤ, ラカン, モルガチE/li>
-    </ul>
-
-    <h3>カルマ（ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ベイガー, ラチE��ス, オリアチE アーリ, ヤスオ, エコー</li>
-    </ul>
-
-    <h3>カサチE��ン</h3>
-    <ul>
-        <li><b>カウンター:</b> ゼチE ヤスオ, リヴェン, ヨチE エコー, ジェイス</li>
-    </ul>
-
-    <h3>カタリチE/h3>
-    <ul>
-        <li><b>カウンター:</b> フィズ, ケイル, ヤスオ, パンチE��ン, アニ�E, アーリ, ガリオ</li>
-    </ul>
-
-    <h3>ケイル�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> パンチE��ン, リヴェン, ジャチE��ス, ウーコン, ジェイス, ヨチE/li>
-    </ul>
-
-    <h3>ケイル�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> アニ�E, オリアチE ズィグス, シンドラ, ゾーイ, チE��スチE��ド�EフェイチE/li>
-    </ul>
-
-    <h3>ケイン</h3>
-    <ul>
-        <li><b>カウンター:</b> ヴィ, レンガー, シャイバナ, エヴリン, マスターヤイ, シン・ジャオ</li>
-    </ul>
-
-    <h3>ケネン�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ナサス, イレリア, ドクター・ムンチE オラチE ヴラチE��ミ�Eル, ケイル</li>
-    </ul>
-
-    <h3>ケネン�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ダイアチE アヒ�Eル, ヴラチE��ミ�Eル, アニ�E, ガリオ, ブランチE/li>
-    </ul>
-
-    <h3>カズィチE��ス</h3>
-    <ul>
-        <li><b>カウンター:</b> レンガー, ヴィ, リー・シン, ボリベア, ウォーウィチE��, ラモス</li>
-    </ul>
-
-    <h3>キンドレチE��</h3>
-    <ul>
-        <li><b>カウンター:</b> リー・シン, グラガス, マスターヤイ, エヴリン, カズィチE��ス, ヴィ</li>
-    </ul>
-
-    <h3>リー・シン</h3>
-    <ul>
-        <li><b>カウンター:</b> ラモス, ウーコン, フィドルスチE��チE��ス, ウォーウィチE��, グレイブス</li>
-    </ul>
-
-    <h3>レオチE/h3>
-    <ul>
-        <li><b>カウンター:</b> モルガチE アリスター, ジャチE カルチE ブラウム, スレチE��ュ</li>
-    </ul>
-
-    <h3>リリア</h3>
-    <ul>
-        <li><b>カウンター:</b> レンガー, エコー, ダイアチE マスターヤイ, エヴリン, ジャーヴァンⅣ</li>
-    </ul>
-
-    <h3>リサンドラ</h3>
-    <ul>
-        <li><b>カウンター:</b> ヴェチE��ス, ラチE��ス, マルファイチE カサチE��ン, ヴァルス, ガリオ</li>
-    </ul>
-
-    <h3>ルシアン�E�EDC�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ヴェイン, アチE��ュ, ニ�Eラ, ケイトリン, チE��チE��, トリスターチE/li>
-    </ul>
-
-    <h3>ルシアン�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ブランチE ガリオ, アニ�E, オーレリオン・ソル, フィズ, ヤスオ</li>
-    </ul>
-
-    <h3>ルル</h3>
-    <ul>
-        <li><b>カウンター:</b> ソチE ソラカ, ブリチE��クランキング, ラカン, カルチE レオチE/li>
-    </ul>
-
-    <h3>ラチE��ス�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> フィズ, カサチE��ン, アーリ, ヤスオ, カルチE ヨチE/li>
-    </ul>
-
-    <h3>ラチE��ス�E�サポ�Eト！E/h3>
-    <ul>
-        <li><b>カウンター:</b> ソチE ブリチE��クランキング, ソラカ, ノ�Eチラス, ズヤ, レオチE/li>
-    </ul>
-
-    <h3>マスターヤイ</h3>
-    <ul>
-        <li><b>カウンター:</b> ラモス, ヴィ, アムム, カズィチE��ス, ウォーウィチE��, ケイン</li>
-    </ul>
-
-    <h3>マルファイト（トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> フィオラ, オラチE ダリウス, ガレン, シェン, ドクター・ムンチE/li>
-    </ul>
-
-    <h3>マルファイト（ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ダイアチE アニ�E, モルガチE フィズ, エコー, カサチE��ン</li>
-    </ul>
-
-    <h3>マルファイト（サポ�Eト！E/h3>
-    <ul>
-        <li><b>カウンター:</b> モルガチE ソチE セチE ラカン, スレチE��ュ, ノ�Eチラス</li>
-    </ul>
-
-    <h3>マオカイ�E�サポ�Eト！E/h3>
-    <ul>
-        <li><b>カウンター:</b> ブラウム, アリスター, ジャチE スレチE��ュ, ルル, ズヤ</li>
-    </ul>
-
-    <h3>マオカイ�E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ラモス, ウォーウィチE��, ジャーヴァンⅣ, ヌヌ, レンガー, リリア</li>
-    </ul>
-
-    <h3>マオカイ�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ガレン, ドクター・ムンチE ナサス, セチE��, カミ�Eル, フィオラ</li>
-    </ul>
-
-    <h3>ミリオ</h3>
-    <ul>
-        <li><b>カウンター:</b> ブリチE��クランキング, スレチE��ュ, パイク, ノ�Eチラス, セチE ラチE��ス</li>
-    </ul>
-
-    <h3>ミス・フォーチュン</h3>
-    <ul>
-        <li><b>カウンター:</b> トリスターチE ドレイヴン, ケイトリン, ルシアン, セチE ヴェイン</li>
-    </ul>
-
-    <h3>モルチE��イザー�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> オラチE フィオラ, ウォーウィチE��, リヴェン, ジャチE��ス, グウェン</li>
-    </ul>
-
-    <h3>モルチE��イザー�E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> マスターヤイ, ウォーウィチE��, リリア, エコー, パンチE��ン, グラガス</li>
-    </ul>
-
-    <h3>モルガナ（サポ�Eト！E/h3>
-    <ul>
-        <li><b>カウンター:</b> カルチE ジャチE ソチE ソラカ, ユチE ルル</li>
-    </ul>
-
-    <h3>モルガナ（ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> フィズ, ゼチE カタリチE セラフィーチE トリスターチE リサンドラ</li>
-    </ul>
-
-    <h3>モルガナ（ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ゼチE フィズ, オラチE アムム, レンガー, アンベッサ</li>
-    </ul>
-
-    <h3>ナミ</h3>
-    <ul>
-        <li><b>カウンター:</b> ルル, ブリチE��クランキング, モルガチE レオチE アリスター, ソチE/li>
-    </ul>
-
-    <h3>ナサス</h3>
-    <ul>
-        <li><b>カウンター:</b> ダリウス, チE��ーモ, パンチE��ン, ボリベア, オラチE ガレン, カミ�Eル, グウェン</li>
-    </ul>
-
-    <h3>ノ�Eチラス</h3>
-    <ul>
-        <li><b>カウンター:</b> モルガチE ジャチE アリスター, ラカン, セラフィーチE ルル</li>
-    </ul>
-
-    <h3>ニ�Eラ�E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ラモス, ヴィ, アムム, アンベッサ, フィドルスチE��チE��ス, エヴリン</li>
-    </ul>
-
-    <h3>ニ�Eラ�E�EDC�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ケイトリン, ゼヤ, シヴィル, ドレイヴン, ジンクス, アチE��ュ</li>
-    </ul>
-
-    <h3>ヌヌ</h3>
-    <ul>
-        <li><b>カウンター:</b> リー・シン, ヴィ, カズィチE��ス, ダイアチE エヴリン, グラガス</li>
-    </ul>
-
-    <h3>オラフ（ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> グラガス, ジャーヴァンⅣ, ウォーウィチE��, レンガー, フィドルスチE��チE��ス, マスターヤイ</li>
-    </ul>
-
-    <h3>オラフ（トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ボリベア, ジャチE��ス, ケイル, セチE��, リヴェン</li>
-    </ul>
-
-    <h3>オリアチE/h3>
-    <ul>
-        <li><b>カウンター:</b> ダイアチE グラガス, ズィグス, アーリ, ゼチE シンドラ</li>
-    </ul>
-
-    <h3>オーン</h3>
-    <ul>
-        <li><b>カウンター:</b> フィオラ, シェン, オラチE カミ�Eル, ヴェイン, グウェン</li>
-    </ul>
-
-    <h3>パンチE��ン�E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ラモス, ヴィ, ダイアチE レンガー, シャイバナ, ドクター・ムンチE/li>
-    </ul>
-
-    <h3>パンチE��ン�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> フィオラ, マルファイチE カミ�Eル, オラチE シェン, ジェイス</li>
-    </ul>
-
-    <h3>パンチE��ン�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> オリアチE アーリ, ゾーイ, シンドラ, ジェイス, スウェイン</li>
-    </ul>
-
-    <h3>パイク</h3>
-    <ul>
-        <li><b>カウンター:</b> レオチE ノ�Eチラス, ラカン, ブリチE��クランキング, マオカイ, ブラウム</li>
-    </ul>
-
-    <h3>ラカン</h3>
-    <ul>
-        <li><b>カウンター:</b> ルル, レオチE ジャチE アリスター, カルチE ミリオ</li>
-    </ul>
-
-    <h3>ラモス</h3>
-    <ul>
-        <li><b>カウンター:</b> フィドルスチE��チE��ス, エヴリン, リリア, アムム, ヌヌ, シャイバナ</li>
-    </ul>
-
-    <h3>レネクトン</h3>
-    <ul>
-        <li><b>カウンター:</b> ヴェイン, ガレン, オラチE ケイル, チE��ーモ, パンチE��ン</li>
-    </ul>
-
-    <h3>レンガー</h3>
-    <ul>
-        <li><b>カウンター:</b> ラモス, アムム, ジャーヴァンⅣ, ウォーウィチE��, マスターヤイ, ヴィ</li>
-    </ul>
-
-    <h3>リヴェン</h3>
-    <ul>
-        <li><b>カウンター:</b> オーン, シェン, セチE��, ウルゴチE��, レネクトン, ガレン</li>
-    </ul>
-
-    <h3>ランブル</h3>
-    <ul>
-        <li><b>カウンター:</b> ガレン, ジェイス, サイオン, シェン, カミ�Eル, トラインダムアー</li>
-    </ul>
-
-    <h3>サミラ</h3>
-    <ul>
-        <li><b>カウンター:</b> ドレイヴン, ミス・フォーチュン, セチE ニ�Eラ, ジンクス, ゼヤ</li>
-    </ul>
-
-    <h3>セナ（サポ�Eト！E/h3>
-    <ul>
-        <li><b>カウンター:</b> ブリチE��クランキング, ラカン, レオチE スレチE��ュ, ブラウム, ノ�Eチラス</li>
-    </ul>
-
-    <h3>セナ！EDC�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ケイトリン, ジン, エズリアル, カリスタ, ルシアン, ヴェイン</li>
-    </ul>
-
-    <h3>セラフィーヌ（サポ�Eト！E/h3>
-    <ul>
-        <li><b>カウンター:</b> ソチE ソラカ, ジャチE セチE パイク, ミリオ</li>
-    </ul>
-
-    <h3>セラフィーヌ（ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> フィズ, ズィグス, イレリア, カタリチE ケイル, ゼチE/li>
-    </ul>
-
-    <h3>セチE��</h3>
-    <ul>
-        <li><b>カウンター:</b> マルファイチE レネクトン, ガレン, パンチE��ン, シンジチE ボリベア</li>
-    </ul>
-
-    <h3>シェン</h3>
-    <ul>
-        <li><b>カウンター:</b> ダリウス, チE��ーモ, セチE��, ケイル, オラチE グウェン</li>
-    </ul>
-
-    <h3>シャイバナ</h3>
-    <ul>
-        <li><b>カウンター:</b> ヴィ, リー・シン, カズィチE��ス, グラガス, ボリベア, グウェン</li>
-    </ul>
-
-    <h3>シンジチE/h3>
-    <ul>
-        <li><b>カウンター:</b> ケネン, リヴェン, フィオラ, ウルゴチE��, ウォーウィチE��, ダリウス</li>
-    </ul>
-
-    <h3>サイオン�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> パンチE��ン, アートロチE��ス, ガレン, ナサス, ダリウス, リヴェン, ジャチE��ス</li>
-    </ul>
-
-    <h3>サイオン�E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ウォーウィチE��, アンベッサ, グウェン, ヴィ, キンドレチE��</li>
-    </ul>
-
-    <h3>シヴィル</h3>
-    <ul>
-        <li><b>カウンター:</b> ジン, ジンクス, カイ�E�サ, ミス・フォーチュン, アチE��ュ</li>
-    </ul>
-
-    <h3>ソチE/h3>
-    <ul>
-        <li><b>カウンター:</b> ブリチE��クランキング, レオチE スレチE��ュ, ノ�Eチラス, ズヤ, アリスター</li>
-    </ul>
-
-    <h3>ソラカ</h3>
-    <ul>
-        <li><b>カウンター:</b> ブリチE��クランキング, スレチE��ュ, レオチE パイク, ノ�Eチラス, アリスター</li>
-    </ul>
-
-    <h3>スウェイン�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> アーリ, ジェイス, アクシャ, フィズ, ヨチE ガリオ</li>
-    </ul>
-
-    <h3>スウェイン�E�サポ�Eト！E/h3>
-    <ul>
-        <li><b>カウンター:</b> ブランチE ラチE��ス, ルル, モルガチE ジャチE ズヤ</li>
-    </ul>
-
-    <h3>シンドラ</h3>
-    <ul>
-        <li><b>カウンター:</b> カサチE��ン, フィズ, ラチE��ス, ヤスオ, ケイル, タロン</li>
-    </ul>
-
-    <h3>タロン�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> フィズ, ヴェチE��ス, ベイガー, フィズ, カサチE��ン, カタリチE/li>
-    </ul>
-
-    <h3>タロン�E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ラモス, シン・ジャオ, アムム, ダイアチE フィドルスチE��チE��ス, ヴィ</li>
-    </ul>
-
-    <h3>チE��ーモ�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> パンチE��ン, ジェイス, オーン, マルファイチE リヴェン, イレリア</li>
-    </ul>
-
-    <h3>チE��ーモ�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> フィズ, ラチE��ス, カルチE ガリオ, ゾーイ, ヴェチE��ス</li>
-    </ul>
-
-    <h3>スレチE��ュ</h3>
-    <ul>
-        <li><b>カウンター:</b> ルル, モルガチE ジャチE ナミ, ズヤ, セラフィーチE/li>
-    </ul>
-
-    <h3>トリスターチE/h3>
-    <ul>
-        <li><b>カウンター:</b> ドレイヴン, シヴィル, ルシアン, ジンクス, ケイトリン, ニ�Eラ</li>
-    </ul>
-
-    <h3>トラインダムアー�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> マルファイチE チE��ーモ, ダリウス, レネクトン, セチE��</li>
-    </ul>
-
-    <h3>トラインダムアー�E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> フィズ, ケイル, エコー, グラガス, ウォーウィチE��</li>
-    </ul>
-
-    <h3>チE��スチE��ド�EフェイチE/h3>
-    <ul>
-        <li><b>カウンター:</b> フィズ, ダイアチE アーリ, ヤスオ, ベイガー, ゼチE/li>
-    </ul>
-
-    <h3>チE��チE���E�EDC�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ジン, トリスターチE カイ�E�サ, ドレイヴン, ゼヤ, サミラ</li>
-    </ul>
-
-    <h3>チE��チE���E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ヴィ, カズィチE��ス, レンガー, エヴリン, リー・シン, ケイン</li>
-    </ul>
-
-    <h3>ウルゴチE��</h3>
-    <ul>
-        <li><b>カウンター:</b> ドクター・ムンチE ケイル, チE��ーモ, オラチE ガレン, オーン</li>
-    </ul>
-
-    <h3>ヴァルス�E�EDC�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> チE��チE��, ジンクス, ミス・フォーチュン, シヴィル, サミラ, ジン</li>
-    </ul>
-
-    <h3>ヴァルス�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> アニ�E, ゾーイ, ジェイス, ヤスオ, カタリチE ヨチE/li>
-    </ul>
-
-    <h3>ヴェイン�E�EDC�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ケイトリン, ドレイヴン, ヴァルス, アチE��ュ, トリスターチE ニ�Eラ</li>
-    </ul>
-
-    <h3>ヴェイン�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> パンチE��ン, チE��ーモ, マルファイチE ヨチE ジェイス, ヴラチE��ミ�Eル</li>
-    </ul>
-
-    <h3>ベイガー</h3>
-    <ul>
-        <li><b>カウンター:</b> ゼチE カタリチE ダイアチE ゾーイ, ジェイス, エコー</li>
-    </ul>
-
-    <h3>ヴェチE��ス</h3>
-    <ul>
-        <li><b>カウンター:</b> パンチE��ン, ガリオ, ベイガー, カサチE��ン, カタリチE ケイル</li>
-    </ul>
-
-    <h3>ヴィ</h3>
-    <ul>
-        <li><b>カウンター:</b> リー・シン, シン・ジャオ, ウォーウィチE��, ダイアチE ボリベア, オラチE/li>
-    </ul>
-
-    <h3>ビエゴ</h3>
-    <ul>
-        <li><b>カウンター:</b> ラモス, エヴリン, ウォーウィチE��, ヴィ, エコー, アムム</li>
-    </ul>
-
-    <h3>ヴィクター</h3>
-    <ul>
-        <li><b>カウンター:</b> エコー, フィズ, ゼチE カサチE��ン, ヤスオ, アカリ</li>
-    </ul>
-
-    <h3>ヴラチE��ミ�Eル�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> フィズ, カサチE��ン, アーリ, オリアチE ズィグス</li>
-    </ul>
-
-    <h3>ヴラチE��ミ�Eル�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ケネン, カミ�Eル, イレリア, リヴェン, ダリウス, ヨチE ナサス, アートロチE��ス</li>
-    </ul>
-
-    <h3>ボリベア�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ジェイス, ヴェイン, チE��ーモ, フィオラ, ダリウス, ケイル</li>
-    </ul>
-
-    <h3>ボリベア�E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ウーコン, マスターヤイ, アムム, レンガー, リリア, フィドルスチE��チE��ス</li>
-    </ul>
-
-    <h3>ウォーウィチE���E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> エヴリン, ヌヌ, レンガー, マオカイ, ラモス, ヴィ</li>
-    </ul>
-
-    <h3>ウォーウィチE���E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ケイル, オラチE ウルゴチE��, シンジチE ダリウス, ナサス</li>
-    </ul>
-
-    <h3>ウーコン�E�ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> リー・シン, アムム, ジャーヴァンⅣ, エヴリン, ヴィ, シャイバナ</li>
-    </ul>
-
-    <h3>ウーコン�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> オーン, ダリウス, ガレン, ナサス, オラチE ボリベア</li>
-    </ul>
-
-    <h3>ゼヤ</h3>
-    <ul>
-        <li><b>カウンター:</b> ミス・フォーチュン, トリスターチE ヴァルス, ケイトリン, ドレイヴン</li>
-    </ul>
-
-    <h3>シン・ジャオ</h3>
-    <ul>
-        <li><b>カウンター:</b> マルファイチE ラモス, リー・シン, エヴリン, エコー, マスターヤイ</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Yasuo.png" width="32" height="32" alt="ヤスオ"> ヤスオ�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Malzahar.png" width="24" height="24" alt="マルザハ�Eル"> マルザハ�Eル, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Annie.png" width="24" height="24" alt="アニ�E"> アニ�E, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Diana.png" width="24" height="24" alt="ダイアチE> ダイアチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Galio.png" width="24" height="24" alt="ガリオ"> ガリオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lissandra.png" width="24" height="24" alt="リサンドラ"> リサンドラ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Pantheon.png" width="24" height="24" alt="パンチE��ン"> パンチE��ン</li>
-    </ul>
-
-    <h3>ヤスオ�E�トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> レネクトン, ナサス, トラインダムアー, ガレン, カミ�Eル, ダリウス</li>
-    </ul>
-
-    <h3>ヨネ（トチE�E�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> パンチE��ン, ウルゴチE��, リヴェン, フィオラ, ガレン, セチE��</li>
-    </ul>
-
-    <h3>ヨネ（ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> アニ�E, ゼチE フィズ, アーリ, ベイガー, タロン</li>
-    </ul>
-
-    <h3>ユチE/h3>
-    <ul>
-        <li><b>カウンター:</b> レオチE アリスター, ラカン, ブリチE��クランキング, ソラカ, ソチE/li>
-    </ul>
-
-    <h3>ゼリ</h3>
-    <ul>
-        <li><b>カウンター:</b> ドレイヴン, トリスターチE ジン, ケイトリン, ヴェイン, サミラ</li>
-    </ul>
-
-    <h3><img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Zed.png" width="32" height="32" alt="ゼチE> ゼド（ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Malzahar.png" width="24" height="24" alt="マルザハ�Eル"> マルザハ�Eル, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Lissandra.png" width="24" height="24" alt="リサンドラ"> リサンドラ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Diana.png" width="24" height="24" alt="ダイアチE> ダイアチE <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Galio.png" width="24" height="24" alt="ガリオ"> ガリオ, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Kassadin.png" width="24" height="24" alt="カサチE��ン"> カサチE��ン, <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Annie.png" width="24" height="24" alt="アニ�E"> アニ�E</li>
-    </ul>
-
-    <h3>ゼド（ジャングル�E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ラモス, アムム, キンドレチE��, レンガー, ケイン, マスターヤイ</li>
-    </ul>
-
-    <h3>ズィグス</h3>
-    <ul>
-        <li><b>カウンター:</b> ケイル, タロン, ブランチE エコー, アニ�E, ガレン</li>
-    </ul>
-
-    <h3>ゾーイ</h3>
-    <ul>
-        <li><b>カウンター:</b> ベイガー, アーリ, カサチE��ン, チE��スチE��ド�EフェイチE アカリ, ゼチE/li>
-    </ul>
-
-    <h3>ズヤ�E�サポ�Eト！E/h3>
-    <ul>
-        <li><b>カウンター:</b> ジャチE ソチE スレチE��ュ, モルガチE アリスター, ソラカ</li>
-    </ul>
-
-    <h3>ズヤ�E�ミチE���E�E/h3>
-    <ul>
-        <li><b>カウンター:</b> ズィグス, ハイマ�EチE��ンガー, ラチE��ス, シンドラ, カタリチE ゼチE/li>
-    </ul>
+        <div id="championsContainer">
+            <div class="loading">データを読み込んでいます...</div>
         </div>
     </div>
 
     <script>
-        // 検索とフィルタリング機�E
+        let counterData = {};
         const searchBox = document.getElementById('searchBox');
         const laneButtons = document.querySelectorAll('.lane-btn');
-        const championSections = document.querySelectorAll('.champion-section');
-        const championItems = document.querySelectorAll('.champion-item');
+        const championsContainer = document.getElementById('championsContainer');
         
         let currentLane = 'all';
         let searchTerm = '';
 
-        // レーンフィルターボタンのイベントリスナ�E
+        // JSONファイルを読み込む
+        fetch('counter_data.json')
+            .then(response => response.json())
+            .then(data => {
+                counterData = data;
+                renderChampions();
+            })
+            .catch(error => {
+                console.error('データの読み込みに失敗しました:', error);
+                championsContainer.innerHTML = '<div class="no-results"><h3>データの読み込みに失敗しました</h3><p>counter_data.jsonファイルが見つかりません。</p></div>';
+            });
+
+        // チャンピオンデータを描画
+        function renderChampions() {
+            championsContainer.innerHTML = '';
+            let visibleCount = 0;
+
+            const laneNames = {
+                'top': 'トップ',
+                'jungle': 'ジャングル',
+                'mid': 'ミッド',
+                'adc': 'ボット',
+                'support': 'サポート'
+            };
+
+            Object.keys(counterData).sort().forEach(champion => {
+                counterData[champion].forEach(data => {
+                    // レーンフィルタリング
+                    if (currentLane !== 'all' && data.lane !== currentLane) {
+                        return;
+                    }
+
+                    // 検索フィルタリング
+                    if (searchTerm && !champion.toLowerCase().includes(searchTerm) && 
+                        !data.counters.some(c => c.toLowerCase().includes(searchTerm))) {
+                        return;
+                    }
+
+                    const championItem = document.createElement('div');
+                    championItem.className = 'champion-item';
+                    championItem.innerHTML = `
+                        <h3>${champion}（${laneNames[data.lane]}）</h3>
+                        <ul>
+                            <li><b>カウンター:</b> ${data.counters.join(', ')}</li>
+                        </ul>
+                    `;
+                    championsContainer.appendChild(championItem);
+                    visibleCount++;
+                });
+            });
+
+            // 結果が見つからない場合のメッセージ
+            if (visibleCount === 0) {
+                championsContainer.innerHTML = `
+                    <div class="no-results">
+                        <h3>検索結果が見つかりません</h3>
+                        <p>"${searchTerm}" に一致するチャンピオンが見つかりませんでした。</p>
+                        <p>別のキーワードで検索するか、レーンフィルターを変更してみてください。</p>
+                    </div>
+                `;
+            }
+        }
+
+        // レーンフィルターボタンのイベントリスナー
         laneButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // アクチE��ブ�Eタンを更新
+                // アクティブボタンを更新
                 laneButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
                 
                 // 現在のレーンを更新
                 currentLane = button.getAttribute('data-lane');
                 
-                // フィルタリングを実衁E
-                filterContent();
+                // フィルタリングを実施
+                renderChampions();
             });
         });
 
-        // 検索ボックスのイベントリスナ�E
+        // 検索ボックスのイベントリスナー
         searchBox.addEventListener('input', (e) => {
             searchTerm = e.target.value.toLowerCase();
-            filterContent();
+            renderChampions();
         });
-
-        // フィルタリング機�E
-        function filterContent() {
-            championSections.forEach(section => {
-                const sectionLane = section.getAttribute('data-lane');
-                let shouldShowSection = false;
-
-                // レーンフィルタリング
-                if (currentLane === 'all' || sectionLane === currentLane) {
-                    shouldShowSection = true;
-                }
-
-                // 検索フィルタリング
-                if (shouldShowSection && searchTerm) {
-                    const sectionText = section.textContent.toLowerCase();
-                    shouldShowSection = sectionText.includes(searchTerm);
-                }
-
-                // セクションの表示/非表示
-                if (shouldShowSection) {
-                    section.classList.remove('hidden');
-            } else {
-                    section.classList.add('hidden');
-                }
-            });
-
-            // チャンピオンアイチE��のフィルタリング
-            championItems.forEach(item => {
-                const championName = item.getAttribute('data-champion').toLowerCase();
-                const itemLanes = item.getAttribute('data-lanes').split(',');
-                let shouldShowItem = false;
-
-                // レーンフィルタリング
-                if (currentLane === 'all' || itemLanes.includes(currentLane)) {
-                    shouldShowItem = true;
-                }
-
-                // 検索フィルタリング
-                if (shouldShowItem && searchTerm) {
-                    shouldShowItem = championName.includes(searchTerm);
-                }
-
-                // アイチE��の表示/非表示
-                if (shouldShowItem) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            // 結果が見つからなぁE��合�EメチE��ージ
-            showNoResultsMessage();
-        }
-
-        // 結果が見つからなぁE��合�EメチE��ージ表示
-        function showNoResultsMessage() {
-            const visibleSections = Array.from(championSections).filter(section => 
-                !section.classList.contains('hidden')
-            );
-            
-            const visibleItems = Array.from(championItems).filter(item => 
-                item.style.display !== 'none'
-            );
-
-            // 既存�Eno-resultsメチE��ージを削除
-            const existingMessage = document.querySelector('.no-results');
-            if (existingMessage) {
-                existingMessage.remove();
-            }
-
-            // 結果が見つからなぁE��吁E
-            if (visibleSections.length === 0 && visibleItems.length === 0 && searchTerm) {
-                const noResultsDiv = document.createElement('div');
-                noResultsDiv.className = 'no-results';
-                noResultsDiv.innerHTML = `
-                    <h3>検索結果が見つかりません</h3>
-                    <p>"${searchTerm}" に一致するチャンピオンが見つかりませんでした、E/p>
-                    <p>別のキーワードで検索するか、レーンフィルターを変更してみてください、E/p>
-                `;
-                
-                const container = document.querySelector('.container');
-                container.appendChild(noResultsDiv);
-            }
-        }
-
-        // 初期匁E
-        filterContent();
     </script>
 </body>
 </html>
