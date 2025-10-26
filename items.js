@@ -246,7 +246,7 @@ function renderItems() {
                     <div class="item-category">${category.name} - ${category.subcategories[item.subcategory] || item.subcategory}</div>
                     <div class="item-cost">🪙 ${item.price}G (売却: ${item.sellPrice}G)</div>
                     <div class="item-stats">${statsHtml}</div>
-                    ${item.description ? `<div class="item-description">${item.description}</div>` : ''}
+                    ${item.description ? `<div class="item-description">${item.description.replace(/ /g, '<br>')}</div>` : ''}
                 </div>
             `;
         }).join('');
