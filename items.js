@@ -82,20 +82,20 @@ function loadData() {
         });
 }
 
-// カテゴリセレクトを初期化
+// カテゴリセレクトを初期化（LoL Guideのカテゴリに固定）
 function initializeCategorySelect() {
-    // データの存在確認
-    if (!itemsData || !itemsData.categories) {
-        console.error('カテゴリデータが見つかりません');
-        return;
-    }
-    
     const categories = [
         { value: 'all', text: 'すべてのカテゴリ' },
-        ...Object.keys(itemsData.categories).map(categoryId => ({
-            value: categoryId,
-            text: itemsData.categories[categoryId].name
-        }))
+        { value: 'START', text: 'スタートアイテム' },
+        { value: 'BASIC', text: '基本アイテム' },
+        { value: 'EPIC', text: 'エピックアイテム' },
+        { value: 'LEGENDARY', text: 'レジェンダリーアイテム' },
+        { value: 'MYTHIC', text: 'ミシックアイテム' },
+        { value: 'BOOTS', text: 'ブーツ' },
+        { value: 'CONSUMABLE', text: '消費アイテム' },
+        { value: 'WARD', text: 'ワード' },
+        { value: 'JUNGLE', text: 'ジャングル' },
+        { value: 'OTHER', text: 'その他' }
     ];
 
     if (categorySelect) {
