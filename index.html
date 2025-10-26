@@ -206,17 +206,39 @@
 
         // JSONファイルを読み込む
         Promise.all([
-            fetch('counter_data.json').then(response => response.json()),
-            fetch('champion_images.json').then(response => response.json())
+            fetch('counter_data.json')
+                .then(response => {
+                    console.log('counter_data.json response status:', response.status);
+                    if (!response.ok) {
+                        throw new Error(`counter_data.json: HTTP ${response.status}`);
+                    }
+                    return response.json();
+                }),
+            fetch('champion_images.json')
+                .then(response => {
+                    console.log('champion_images.json response status:', response.status);
+                    if (!response.ok) {
+                        throw new Error(`champion_images.json: HTTP ${response.status}`);
+                    }
+                    return response.json();
+                })
         ])
             .then(([counterDataJson, championImagesJson]) => {
+                console.log('データ読み込み成功');
+                console.log('チャンピオン数:', Object.keys(counterDataJson).length);
                 counterData = counterDataJson;
                 championImages = championImagesJson;
                 renderChampions();
             })
             .catch(error => {
                 console.error('データの読み込みに失敗しました:', error);
-                championsContainer.innerHTML = '<div class="no-results"><h3>データの読み込みに失敗しました</h3><p>データファイルが見つかりません。</p></div>';
+                championsContainer.innerHTML = `
+                    <div class="no-results">
+                        <h3>データの読み込みに失敗しました</h3>
+                        <p>エラー: ${error.message}</p>
+                        <p>ブラウザのコンソール（F12）でエラー詳細を確認してください。</p>
+                    </div>
+                `;
             });
 
         // チャンピオンアイコンURLを取得
