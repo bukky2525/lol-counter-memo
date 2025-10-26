@@ -187,14 +187,16 @@ function renderChampions() {
                 </span>`
             ).join('');
             
+            const opggUrl = getOpggUrl(champion, data.lane);
+            
             championItem.innerHTML = `
                 <div class="champion-header">
-                    <img src="${getChampionIconUrl(champion)}" 
-                         alt="${champion}" 
-                         class="champion-icon champion-icon-clickable"
-                         data-champion="${champion}"
-                         data-lane="${data.lane}"
-                         onerror="this.style.display='none'">
+                    <a href="${opggUrl}" target="_blank" rel="noopener noreferrer" class="champion-link">
+                        <img src="${getChampionIconUrl(champion)}" 
+                             alt="${champion}" 
+                             class="champion-icon champion-icon-clickable"
+                             onerror="this.style.display='none'">
+                    </a>
                     <div class="champion-title">
                         <h3>${champion}（${laneNames[data.lane]}）</h3>
                     </div>
@@ -206,28 +208,6 @@ function renderChampions() {
             
             // チャンピオンアイコンにクリックイベントを追加
             championsContainer.appendChild(championItem);
-            const championIcon = championItem.querySelector('.champion-icon-clickable');
-            if (championIcon) {
-                championIcon.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const championName = this.getAttribute('data-champion');
-                    const lane = this.getAttribute('data-lane');
-                    const opggUrl = getOpggUrl(championName, lane);
-                    console.log('Opening OP.GG:', opggUrl);
-                    window.open(opggUrl, '_blank');
-                });
-                
-                // タッチイベントも追加（スマホ対応）
-                championIcon.addEventListener('touchend', function(e) {
-                    e.preventDefault();
-                    const championName = this.getAttribute('data-champion');
-                    const lane = this.getAttribute('data-lane');
-                    const opggUrl = getOpggUrl(championName, lane);
-                    console.log('Opening OP.GG (touch):', opggUrl);
-                    window.open(opggUrl, '_blank');
-                });
-            }
             
             visibleCount++;
         });

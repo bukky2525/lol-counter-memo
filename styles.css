@@ -107,20 +107,27 @@ h1 {
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
+.champion-link {
+    display: block;
+    text-decoration: none;
+    position: relative;
+}
+
 .champion-icon-clickable {
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     user-select: none;
     -webkit-user-select: none;
     -webkit-tap-highlight-color: transparent;
+    display: block;
 }
 
-.champion-icon-clickable:hover {
+.champion-link:hover .champion-icon-clickable {
     transform: scale(1.1);
     box-shadow: 0 6px 12px rgba(255, 215, 0, 0.6);
 }
 
-.champion-icon-clickable:active {
+.champion-link:active .champion-icon-clickable {
     transform: scale(0.95);
     box-shadow: 0 8px 16px rgba(255, 215, 0, 0.8);
 }
