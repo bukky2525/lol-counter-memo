@@ -314,7 +314,6 @@ function renderItems() {
                     <h3 class="category-title">${categoryName}</h3>
                     <div class="category-items">
                         ${groupedItems[category].map(item => `
-        return `
             <div class="item-card" onclick="showItemDetail('${item.id}')">
                 <div class="item-header">
                     <div class="item-price">${item.price}G</div>
