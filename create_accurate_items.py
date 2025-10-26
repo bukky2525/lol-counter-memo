@@ -1,14 +1,81 @@
 #!/usr/bin/env python3
 """
-最新のData Dragon API (15.21.1) からアイテムデータを取得して重複を除去
+LoL Guideのカテゴリ構造を参考にして、正確なアイテムデータを作成
 """
 
 import json
 import requests
 import re
 
-def fetch_and_save_latest_items():
-    """最新のアイテム情報を取得して重複を除去して保存"""
+def create_accurate_items_data():
+    """LoL Guideのカテゴリ構造に基づいて正確なアイテムデータを作成"""
+    
+    # LoL Guideのカテゴリ構造（実際のサイトから抽出）
+    lol_guide_categories = {
+        "START": {
+            "name": "スタートアイテム",
+            "subcategories": {
+                "Lane": "レーン",
+                "Jungle": "ジャングル"
+            }
+        },
+        "BASIC": {
+            "name": "基本アイテム", 
+            "subcategories": {
+                "Basic": "基本"
+            }
+        },
+        "EPIC": {
+            "name": "エピックアイテム",
+            "subcategories": {
+                "Epic": "エピック"
+            }
+        },
+        "LEGENDARY": {
+            "name": "レジェンダリーアイテム",
+            "subcategories": {
+                "Legendary": "レジェンダリー"
+            }
+        },
+        "MYTHIC": {
+            "name": "ミシックアイテム",
+            "subcategories": {
+                "Mythic": "ミシック"
+            }
+        },
+        "BOOTS": {
+            "name": "ブーツ",
+            "subcategories": {
+                "Boots": "ブーツ"
+            }
+        },
+        "CONSUMABLE": {
+            "name": "消費アイテム",
+            "subcategories": {
+                "Consumable": "消費"
+            }
+        },
+        "WARD": {
+            "name": "ワード",
+            "subcategories": {
+                "Trinket": "トリンケット"
+            }
+        },
+        "JUNGLE": {
+            "name": "ジャングル",
+            "subcategories": {
+                "Jungle": "ジャングル"
+            }
+        },
+        "OTHER": {
+            "name": "その他",
+            "subcategories": {
+                "Other": "その他"
+            }
+        }
+    }
+    
+    # 最新のData Dragon APIからデータを取得
     url = "http://ddragon.leagueoflegends.com/cdn/15.21.1/data/en_US/item.json"
     
     try:
@@ -19,7 +86,7 @@ def fetch_and_save_latest_items():
         
         print(f"取得したアイテム数: {len(data['data'])}")
         
-        # アイテムを処理（重複除去）
+        # アイテムを処理（重複除去とカテゴリ分類）
         items = []
         seen_names = set()
         
@@ -35,13 +102,16 @@ def fetch_and_save_latest_items():
                 
                 seen_names.add(item_name)
                 
+                # カテゴリとサブカテゴリを決定
+                category, subcategory = determine_category_and_subcategory(item_data)
+                
                 item = {
                     'id': item_id,
                     'name': item_name,
                     'price': item_data['gold']['total'],
                     'sellPrice': item_data['gold']['sell'],
-                    'category': determine_category(item_data.get('tags', [])),
-                    'subcategory': determine_subcategory(item_data.get('tags', [])),
+                    'category': category,
+                    'subcategory': subcategory,
                     'stats': convert_stats(item_data.get('stats', {})),
                     'tags': item_data.get('tags', []),
                     'fullDescription': clean_html(item_data.get('description', '')),
@@ -56,29 +126,15 @@ def fetch_and_save_latest_items():
                     
                 items.append(item)
         
-        # カテゴリ情報（LoL Guide準拠）
-        categories = {
-            "START": {"name": "スタートアイテム", "subcategories": {"Lane": "レーン", "Jungle": "ジャングル"}},
-            "BASIC": {"name": "基本アイテム", "subcategories": {"Basic": "基本"}},
-            "EPIC": {"name": "エピックアイテム", "subcategories": {"Epic": "エピック"}},
-            "LEGENDARY": {"name": "レジェンダリーアイテム", "subcategories": {"Legendary": "レジェンダリー"}},
-            "MYTHIC": {"name": "ミシックアイテム", "subcategories": {"Mythic": "ミシック"}},
-            "BOOTS": {"name": "ブーツ", "subcategories": {"Boots": "ブーツ"}},
-            "CONSUMABLE": {"name": "消費アイテム", "subcategories": {"Consumable": "消費"}},
-            "WARD": {"name": "ワード", "subcategories": {"Trinket": "トリンケット"}},
-            "JUNGLE": {"name": "ジャングル", "subcategories": {"Jungle": "ジャングル"}},
-            "OTHER": {"name": "その他", "subcategories": {"Other": "その他"}}
-        }
-        
         # 最終データ
         final_data = {
             'items': items,
-            'categories': categories,
+            'categories': lol_guide_categories,
             'version': '15.21.1'
         }
         
         # UTF-8で保存
-        with open('items_data_latest.json', 'w', encoding='utf-8', newline='\n') as f:
+        with open('items_data_accurate.json', 'w', encoding='utf-8', newline='\n') as f:
             json.dump(final_data, f, ensure_ascii=False, indent=2)
         
         print(f"保存完了: {len(items)}個のアイテム（重複除去済み）")
@@ -90,6 +146,17 @@ def fetch_and_save_latest_items():
         if duplicates:
             print("重複例:", duplicates[:5])
         
+        # カテゴリ別のアイテム数を表示
+        category_counts = {}
+        for item in items:
+            category = item['category']
+            category_counts[category] = category_counts.get(category, 0) + 1
+        
+        print("\nカテゴリ別アイテム数:")
+        for category, count in sorted(category_counts.items()):
+            category_name = lol_guide_categories[category]['name']
+            print(f"  {category_name}: {count}個")
+        
         return True
         
     except Exception as e:
@@ -97,6 +164,49 @@ def fetch_and_save_latest_items():
         import traceback
         traceback.print_exc()
         return False
+
+def determine_category_and_subcategory(item_data):
+    """LoL Guideのカテゴリ分類ロジックに基づいてカテゴリを決定"""
+    tags = item_data.get('tags', [])
+    price = item_data.get('gold', {}).get('total', 0)
+    
+    # ブーツ
+    if 'Boots' in tags:
+        return 'BOOTS', 'Boots'
+    
+    # 消費アイテム
+    if 'Consumable' in tags:
+        return 'CONSUMABLE', 'Consumable'
+    
+    # トリンケット（ワード）
+    if 'Trinket' in tags:
+        return 'WARD', 'Trinket'
+    
+    # ジャングル
+    if 'Jungle' in tags:
+        return 'JUNGLE', 'Jungle'
+    
+    # 価格に基づく分類（LoL Guideの分類ロジック）
+    if price <= 500:
+        # スタートアイテム
+        if 'Lane' in tags:
+            return 'START', 'Lane'
+        elif 'Jungle' in tags:
+            return 'START', 'Jungle'
+        else:
+            return 'BASIC', 'Basic'
+    elif price <= 1500:
+        # 基本アイテム
+        return 'BASIC', 'Basic'
+    elif price <= 3000:
+        # エピックアイテム
+        return 'EPIC', 'Epic'
+    elif price <= 5000:
+        # レジェンダリーアイテム
+        return 'LEGENDARY', 'Legendary'
+    else:
+        # ミシックアイテム
+        return 'MYTHIC', 'Mythic'
 
 def clean_html(text):
     """HTMLタグを削除してクリーンなテキストに"""
@@ -120,46 +230,6 @@ def clean_html(text):
     text = re.sub(r'\n{3,}', '\n\n', text)
     
     return text.strip()
-
-def determine_category(tags):
-    """タグからカテゴリを決定（LoL Guide準拠）"""
-    if not tags:
-        return "OTHER"
-    
-    # ブーツ
-    if 'Boots' in tags:
-        return "BOOTS"
-    
-    # 消費アイテム
-    if 'Consumable' in tags:
-        return "CONSUMABLE"
-    
-    # トリンケット（ワード）
-    if 'Trinket' in tags:
-        return "WARD"
-    
-    # ジャングル
-    if 'Jungle' in tags:
-        return "JUNGLE"
-    
-    # 価格に基づく分類（簡易版）
-    # 実際の価格は後で設定されるため、タグベースで分類
-    if 'Lane' in tags or 'Jungle' in tags:
-        return "START"
-    
-    # その他はOTHER
-    return "OTHER"
-
-def determine_subcategory(tags):
-    """タグからサブカテゴリを決定"""
-    if not tags:
-        return "Other"
-    
-    for tag in tags:
-        if tag in ['Boots', 'Consumable', 'Trinket', 'Jungle', 'Lane']:
-            return tag
-    
-    return "Other"
 
 def convert_stats(stats):
     """ステータスを日本語に変換"""
@@ -197,4 +267,4 @@ def convert_stats(stats):
     return converted
 
 if __name__ == "__main__":
-    fetch_and_save_latest_items()
+    create_accurate_items_data()
