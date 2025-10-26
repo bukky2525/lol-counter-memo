@@ -19,17 +19,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // データ読み込み
 function loadData() {
+    console.log('データ読み込み開始...');
+    
     fetch('items_data.json')
         .then(response => {
+            console.log('レスポンス受信:', response.status);
             if (!response.ok) {
                 throw new Error(`items_data.json: HTTP ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
-            console.log('アイテムデータ読み込み成功:', data);
-            console.log('アイテム数:', data.items ? data.items.length : 0);
-            console.log('カテゴリ数:', data.categories ? Object.keys(data.categories).length : 0);
+            console.log('JSON解析成功:', data);
+            console.log('アイテム数:', data.items ? data.items.length : 'undefined');
+            console.log('カテゴリ数:', data.categories ? Object.keys(data.categories).length : 'undefined');
             
             // データの存在確認
             if (!data.items || !Array.isArray(data.items)) {
@@ -40,6 +43,8 @@ function loadData() {
             }
             
             itemsData = data;
+            console.log('itemsData設定完了:', itemsData);
+            
             initializeCategoryButtons();
             renderItems();
         })
@@ -116,12 +121,16 @@ function matchesSearch(item) {
 
 // アイテムを描画
 function renderItems() {
+    console.log('renderItems開始');
+    console.log('itemsData:', itemsData);
+    
     itemsContainer.innerHTML = '';
     let totalVisible = 0;
 
     // データの存在確認
     if (!itemsData || !itemsData.items || !Array.isArray(itemsData.items)) {
         console.error('itemsDataが正しく読み込まれていません');
+        console.error('itemsData:', itemsData);
         itemsContainer.innerHTML = `
             <div class="no-results">
                 <h3>データの読み込みエラー</h3>
@@ -165,8 +174,11 @@ function renderItems() {
         itemsByCategory[categoryKey].push(item);
     });
 
+    console.log('カテゴリ別グループ化完了:', Object.keys(itemsByCategory));
+
     // カテゴリごとに表示
     Object.keys(itemsByCategory).forEach(categoryId => {
+        console.log(`カテゴリ "${categoryId}" を処理中...`);
         const categoryItems = itemsByCategory[categoryId];
         const category = itemsData.categories[categoryId];
         
