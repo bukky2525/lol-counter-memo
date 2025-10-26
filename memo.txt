@@ -1,0 +1,3 @@
+indexhtmlを開いてNInsyou.phpまで開くが
+phpの認証コードを送信を押すとPythonを開いてしまう
+index.htmlのformとapp.py、Ninsyoou.phpを確認

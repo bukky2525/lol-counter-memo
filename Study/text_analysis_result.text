@@ -1,0 +1,5 @@
+入力されたテキスト： Hello World! This is a test.Hello World! This is a test.Hello World! This is a test.hello hello hello
+文字数： 101
+単語数： 21
+単語の出現回数： Counter({'hello': 6, 'world': 3, 'this': 3, 'is': 3, 'a': 3, 'test': 3})
+最も出た単語： [('hello', 6)]

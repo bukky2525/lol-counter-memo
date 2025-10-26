@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登録ページ</title>
+    <script>
+        function submitFroms() {
+            document.getElementById('form1').submit();  //一個目のフォーム
+            document.getElementById('form2').submit();  //二個目
+        }
+    </script>
+</head>
+<body>
+    <!--Ninsyou.phpに送信する-->
+    
+    <form id="form1" action="form.py" method="post">
+        <!--emailを入力させる-->
+        <label for="email">メールアドレス：</label>
+        <input type="email" id="email" name="email" required>
+        <!--requiredは必須事項という意味-->
+    </form>
+
+    <form id="form2" action="Code/Ninsyou.php" method="post">
+        
+
+        <!--passを入力させる-->
+        <label for="pass">パスワード：</label>
+        <input type="password" id="pass" name="pass">
+
+        <!--入力されたものを送信する-->
+        <br>
+        <button type="submit">送信</button>
+    </form>
+
+</body>
+</html>
