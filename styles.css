@@ -54,8 +54,8 @@ body {
     left: -280px;
     width: 280px;
     height: 100vh;
-    background: linear-gradient(180deg, rgba(20, 40, 80, 0.98) 0%, rgba(30, 60, 114, 0.98) 100%);
-    backdrop-filter: blur(15px);
+    background: #0d1117;
+    border-right: 1px solid #21262d;
     z-index: 1002;
     box-shadow: 2px 0 20px rgba(0,0,0,0.6);
     overflow-y: auto;
@@ -70,43 +70,43 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    border-bottom: 2px solid rgba(255,215,0,0.5);
-    background: rgba(255,215,0,0.1);
+    padding: 16px 20px;
+    border-bottom: 1px solid #21262d;
+    background: #161b22;
 }
 
 .sidebar-header h2 {
     margin: 0;
-    color: #ffd700;
-    font-size: 20px;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    color: #f0f6fc;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .close-btn {
     background: none;
     border: none;
-    color: #ffd700;
-    font-size: 32px;
+    color: #7d8590;
+    font-size: 24px;
     cursor: pointer;
     padding: 0;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    border-radius: 6px;
 }
 
 .close-btn:hover {
-    transform: rotate(90deg);
-    color: #fff;
+    background: #21262d;
+    color: #f0f6fc;
 }
 
 .sidebar-menu {
     list-style: none;
     padding: 0;
-    margin: 20px 0;
+    margin: 0;
 }
 
 .sidebar-menu li {
@@ -117,27 +117,34 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 18px 25px;
-    color: white;
+    padding: 12px 20px;
+    color: #f0f6fc;
     text-decoration: none;
-    transition: all 0.3s ease;
-    border-left: 4px solid transparent;
-    font-size: 16px;
+    transition: all 0.2s ease;
+    font-size: 14px;
     font-weight: 500;
+    border-radius: 0;
 }
 
 .menu-item:hover {
-    background: rgba(255,215,0,0.2);
-    border-left-color: #ffd700;
-    padding-left: 30px;
-    transform: translateX(5px);
+    background: #21262d;
+    color: #f0f6fc;
 }
 
 .menu-item.active {
-    background: rgba(255,215,0,0.3);
-    border-left-color: #ffd700;
-    color: #ffd700;
-    font-weight: bold;
+    background: #21262d;
+    color: #f0f6fc;
+    font-weight: 600;
+    border-right: 2px solid #f85149;
+}
+
+.menu-item .icon {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
 }
 
 /* オーバーレイ */
