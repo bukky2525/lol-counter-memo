@@ -336,7 +336,7 @@ function renderItems() {
                             `).join('')}
                         </div>
                         <div class="item-tags">
-                            ${item.tags.map(tag => `<span class="item-tag">${tag}</span>`).join('')}
+                            ${(item.tags || []).map(tag => `<span class="item-tag">${tag}</span>`).join('')}
                         </div>
                         ${item.buildsInto && item.buildsInto.length > 0 ? `
                             <div class="item-evolutions">
