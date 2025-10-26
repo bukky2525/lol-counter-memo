@@ -191,7 +191,7 @@ function renderChampions() {
             
             championItem.innerHTML = `
                 <div class="champion-header">
-                    <a href="${opggUrl}" target="_blank" rel="noopener noreferrer" class="champion-link">
+                    <a href="${opggUrl}" target="_blank" rel="noopener noreferrer" class="champion-link" data-url="${opggUrl}">
                         <img src="${getChampionIconUrl(champion)}" 
                              alt="${champion}" 
                              class="champion-icon champion-icon-clickable"
@@ -206,8 +206,25 @@ function renderChampions() {
                 </ul>
             `;
             
-            // チャンピオンアイコンにクリックイベントを追加
             championsContainer.appendChild(championItem);
+            
+            // チャンピオンリンクに中ボタンクリック対応を追加
+            const championLink = championItem.querySelector('.champion-link');
+            if (championLink) {
+                championLink.addEventListener('mousedown', function(e) {
+                    // 中ボタンクリック（button: 1）の場合
+                    if (e.button === 1) {
+                        e.preventDefault(); // デフォルトのスクロール動作を防ぐ
+                        const url = this.getAttribute('data-url');
+                        window.open(url, '_blank');
+                    }
+                });
+                
+                // コンテキストメニュー（右クリック）も防がない
+                championLink.addEventListener('contextmenu', function(e) {
+                    // 右クリックメニューは許可
+                });
+            }
             
             visibleCount++;
         });
