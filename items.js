@@ -29,11 +29,11 @@ function loadData() {
     
     // キャッシュを無効化するためにタイムスタンプを追加
     const timestamp = new Date().getTime();
-    fetch(`items_data_accurate.json?t=${timestamp}`)
+    fetch(`items_data_japanese.json?t=${timestamp}`)
         .then(response => {
             console.log('レスポンス受信:', response.status);
             if (!response.ok) {
-                throw new Error(`items_data_accurate.json: HTTP ${response.status}`);
+                throw new Error(`items_data_japanese.json: HTTP ${response.status}`);
             }
             return response.json();
         })

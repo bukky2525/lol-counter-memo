@@ -1,90 +1,36 @@
 #!/usr/bin/env python3
 """
-LoL Guideのカテゴリ構造を参考にして、正確なアイテムデータを作成
+日本語のData Dragon API (15.17.1) を使用して正確なアイテムデータを作成
 """
 
 import json
 import requests
 import re
 
-def create_accurate_items_data():
-    """LoL Guideのカテゴリ構造に基づいて正確なアイテムデータを作成"""
+def create_japanese_items_data():
+    """日本語のData Dragon APIから正確なアイテムデータを作成"""
     
-    # LoL Guideのカテゴリ構造（実際のサイトから抽出）
-    lol_guide_categories = {
-        "START": {
-            "name": "スタートアイテム",
-            "subcategories": {
-                "Lane": "レーン",
-                "Jungle": "ジャングル"
-            }
-        },
-        "BASIC": {
-            "name": "基本アイテム", 
-            "subcategories": {
-                "Basic": "基本"
-            }
-        },
-        "EPIC": {
-            "name": "エピックアイテム",
-            "subcategories": {
-                "Epic": "エピック"
-            }
-        },
-        "LEGENDARY": {
-            "name": "レジェンダリーアイテム",
-            "subcategories": {
-                "Legendary": "レジェンダリー"
-            }
-        },
-        "MYTHIC": {
-            "name": "ミシックアイテム",
-            "subcategories": {
-                "Mythic": "ミシック"
-            }
-        },
-        "BOOTS": {
-            "name": "ブーツ",
-            "subcategories": {
-                "Boots": "ブーツ"
-            }
-        },
-        "CONSUMABLE": {
-            "name": "消費アイテム",
-            "subcategories": {
-                "Consumable": "消費"
-            }
-        },
-        "WARD": {
-            "name": "ワード",
-            "subcategories": {
-                "Trinket": "トリンケット"
-            }
-        },
-        "JUNGLE": {
-            "name": "ジャングル",
-            "subcategories": {
-                "Jungle": "ジャングル"
-            }
-        },
-        "OTHER": {
-            "name": "その他",
-            "subcategories": {
-                "Other": "その他"
-            }
-        }
-    }
-    
-    # 最新のData Dragon APIからデータを取得
-    url = "http://ddragon.leagueoflegends.com/cdn/15.21.1/data/en_US/item.json"
+    # 日本語APIからデータを取得
+    url = "http://ddragon.leagueoflegends.com/cdn/15.17.1/data/ja_JP/item.json"
     
     try:
-        print("最新APIからデータを取得中...")
+        print("日本語APIからデータを取得中...")
         response = requests.get(url)
         response.raise_for_status()
         data = response.json()
         
         print(f"取得したアイテム数: {len(data['data'])}")
+        
+        # tree構造からカテゴリ情報を取得
+        tree = data.get('tree', [])
+        category_mapping = {}
+        
+        for category in tree:
+            header = category['header']
+            tags = category['tags']
+            category_mapping[header] = tags
+        
+        print("カテゴリマッピング:", category_mapping)
         
         # アイテムを処理（重複除去とカテゴリ分類）
         items = []
@@ -103,7 +49,7 @@ def create_accurate_items_data():
                 seen_names.add(item_name)
                 
                 # カテゴリとサブカテゴリを決定
-                category, subcategory = determine_category_and_subcategory(item_data)
+                category, subcategory = determine_category_from_tree(item_data, category_mapping)
                 
                 item = {
                     'id': item_id,
@@ -112,7 +58,7 @@ def create_accurate_items_data():
                     'sellPrice': item_data['gold']['sell'],
                     'category': category,
                     'subcategory': subcategory,
-                    'stats': convert_stats(item_data.get('stats', {})),
+                    'stats': convert_stats_to_japanese(item_data.get('stats', {})),
                     'tags': item_data.get('tags', []),
                     'fullDescription': clean_html(item_data.get('description', '')),
                     'plaintext': item_data.get('plaintext', '')
@@ -126,15 +72,29 @@ def create_accurate_items_data():
                     
                 items.append(item)
         
+        # LoL Guide準拠のカテゴリ情報
+        categories = {
+            "START": {"name": "スタートアイテム", "subcategories": {"Lane": "レーン", "Jungle": "ジャングル"}},
+            "BASIC": {"name": "基本アイテム", "subcategories": {"Basic": "基本"}},
+            "EPIC": {"name": "エピックアイテム", "subcategories": {"Epic": "エピック"}},
+            "LEGENDARY": {"name": "レジェンダリーアイテム", "subcategories": {"Legendary": "レジェンダリー"}},
+            "MYTHIC": {"name": "ミシックアイテム", "subcategories": {"Mythic": "ミシック"}},
+            "BOOTS": {"name": "ブーツ", "subcategories": {"Boots": "ブーツ"}},
+            "CONSUMABLE": {"name": "消費アイテム", "subcategories": {"Consumable": "消費"}},
+            "WARD": {"name": "ワード", "subcategories": {"Trinket": "トリンケット"}},
+            "JUNGLE": {"name": "ジャングル", "subcategories": {"Jungle": "ジャングル"}},
+            "OTHER": {"name": "その他", "subcategories": {"Other": "その他"}}
+        }
+        
         # 最終データ
         final_data = {
             'items': items,
-            'categories': lol_guide_categories,
-            'version': '15.21.1'
+            'categories': categories,
+            'version': '15.17.1'
         }
         
         # UTF-8で保存
-        with open('items_data_accurate.json', 'w', encoding='utf-8', newline='\n') as f:
+        with open('items_data_japanese.json', 'w', encoding='utf-8', newline='\n') as f:
             json.dump(final_data, f, ensure_ascii=False, indent=2)
         
         print(f"保存完了: {len(items)}個のアイテム（重複除去済み）")
@@ -154,7 +114,7 @@ def create_accurate_items_data():
         
         print("\nカテゴリ別アイテム数:")
         for category, count in sorted(category_counts.items()):
-            category_name = lol_guide_categories[category]['name']
+            category_name = categories[category]['name']
             print(f"  {category_name}: {count}個")
         
         return True
@@ -165,48 +125,50 @@ def create_accurate_items_data():
         traceback.print_exc()
         return False
 
-def determine_category_and_subcategory(item_data):
-    """LoL Guideのカテゴリ分類ロジックに基づいてカテゴリを決定"""
+def determine_category_from_tree(item_data, category_mapping):
+    """tree構造に基づいてカテゴリを決定"""
     tags = item_data.get('tags', [])
     price = item_data.get('gold', {}).get('total', 0)
     
-    # ブーツ
-    if 'Boots' in tags:
-        return 'BOOTS', 'Boots'
+    # tree構造のカテゴリをチェック
+    for category, category_tags in category_mapping.items():
+        if any(tag in tags for tag in category_tags):
+            if category == "START":
+                if "LANE" in tags:
+                    return "START", "Lane"
+                elif "JUNGLE" in tags:
+                    return "START", "Jungle"
+                else:
+                    return "START", "Lane"
+            elif category == "MOVEMENT":
+                return "BOOTS", "Boots"
+            elif category == "TOOLS":
+                if "CONSUMABLE" in tags:
+                    return "CONSUMABLE", "Consumable"
+                elif "VISION" in tags:
+                    return "WARD", "Trinket"
+                else:
+                    return "OTHER", "Other"
+            elif category == "DEFENSE":
+                return "LEGENDARY", "Legendary"
+            elif category == "ATTACK":
+                return "LEGENDARY", "Legendary"
+            elif category == "MAGIC":
+                return "LEGENDARY", "Legendary"
+            elif category == "UNCATEGORIZED":
+                return "OTHER", "Other"
     
-    # 消費アイテム
-    if 'Consumable' in tags:
-        return 'CONSUMABLE', 'Consumable'
-    
-    # トリンケット（ワード）
-    if 'Trinket' in tags:
-        return 'WARD', 'Trinket'
-    
-    # ジャングル
-    if 'Jungle' in tags:
-        return 'JUNGLE', 'Jungle'
-    
-    # 価格に基づく分類（LoL Guideの分類ロジック）
+    # 価格に基づく分類（フォールバック）
     if price <= 500:
-        # スタートアイテム
-        if 'Lane' in tags:
-            return 'START', 'Lane'
-        elif 'Jungle' in tags:
-            return 'START', 'Jungle'
-        else:
-            return 'BASIC', 'Basic'
+        return "START", "Lane"
     elif price <= 1500:
-        # 基本アイテム
-        return 'BASIC', 'Basic'
+        return "BASIC", "Basic"
     elif price <= 3000:
-        # エピックアイテム
-        return 'EPIC', 'Epic'
+        return "EPIC", "Epic"
     elif price <= 5000:
-        # レジェンダリーアイテム
-        return 'LEGENDARY', 'Legendary'
+        return "LEGENDARY", "Legendary"
     else:
-        # ミシックアイテム
-        return 'MYTHIC', 'Mythic'
+        return "MYTHIC", "Mythic"
 
 def clean_html(text):
     """HTMLタグを削除してクリーンなテキストに"""
@@ -231,7 +193,7 @@ def clean_html(text):
     
     return text.strip()
 
-def convert_stats(stats):
+def convert_stats_to_japanese(stats):
     """ステータスを日本語に変換"""
     stat_mapping = {
         'FlatHPPoolMod': '体力',
@@ -263,8 +225,12 @@ def convert_stats(stats):
     for stat_key, stat_value in stats.items():
         if stat_value != 0:
             japanese_key = stat_mapping.get(stat_key, stat_key)
-            converted[japanese_key] = stat_value
+            # パーセンテージ値を適切に表示
+            if 'Percent' in stat_key or 'CritChance' in stat_key:
+                converted[japanese_key] = f"{stat_value * 100:.0f}%"
+            else:
+                converted[japanese_key] = stat_value
     return converted
 
 if __name__ == "__main__":
-    create_accurate_items_data()
+    create_japanese_items_data()
