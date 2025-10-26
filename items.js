@@ -192,7 +192,15 @@ function renderItems() {
 
     // カテゴリごとにグループ化
     const itemsByCategory = {};
+    console.log('グループ化開始, filteredItems:', filteredItems);
+    
+    if (!Array.isArray(filteredItems)) {
+        console.error('filteredItems is not an array:', filteredItems);
+        return;
+    }
+    
     filteredItems.forEach(item => {
+        console.log('グループ化中のアイテム:', item);
         const categoryKey = item.category;
         if (!itemsByCategory[categoryKey]) {
             itemsByCategory[categoryKey] = [];
