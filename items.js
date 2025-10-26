@@ -23,11 +23,11 @@ function loadData() {
     
     // キャッシュを無効化するためにタイムスタンプを追加
     const timestamp = new Date().getTime();
-    fetch(`items_data_v3.json?t=${timestamp}`)
+    fetch(`items_data_final.json?t=${timestamp}`)
         .then(response => {
             console.log('レスポンス受信:', response.status);
             if (!response.ok) {
-                throw new Error(`items_data_v3.json: HTTP ${response.status}`);
+                throw new Error(`items_data_final.json: HTTP ${response.status}`);
             }
             return response.json();
         })
@@ -251,12 +251,13 @@ function renderItems() {
                             <div class="item-effect">${item.description ? item.description.replace(/ /g, ' ') : '基本アイテム'}</div>
                             <div class="item-stats-section">
                                 <div class="stats-label">主要ステータス</div>
-                                ${Object.keys(item.stats || {}).map(stat => `
+                                ${Object.keys(item.stats || {}).slice(0, 6).map(stat => `
                                     <div class="stat-row">
                                         <span class="stat-name">${stat}</span>
                                         <span class="stat-value">+${item.stats[stat]}</span>
                                     </div>
                                 `).join('')}
+                                ${Object.keys(item.stats || {}).length > 6 ? `<div class="more-stats">他${Object.keys(item.stats).length - 6}個...</div>` : ''}
                             </div>
                             <div class="item-tags">
                                 ${item.tags.map(tag => `<span class="item-tag">${tag}</span>`).join('')}
@@ -334,10 +335,8 @@ function showItemDetail(itemId) {
                 <div class="item-detail-description">
                     <h3>アイテム説明</h3>
                     <div class="description-content">
-                        ${Object.keys(item.stats || {}).map(stat => `
-                            <div class="stat-line">${stat} ${item.stats[stat]}</div>
-                        `).join('')}
-                        ${item.description ? `<div class="effect-line">${item.description}</div>` : ''}
+                        ${item.fullDescription ? `<div class="full-description">${item.fullDescription}</div>` : ''}
+                        ${item.plaintext ? `<div class="plaintext-description">${item.plaintext}</div>` : ''}
                     </div>
                 </div>
                 
