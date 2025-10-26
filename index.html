@@ -190,8 +190,8 @@
 
         <div id="championsContainer">
             <div class="loading">データを読み込んでいます...</div>
-        </div>
-    </div>
+            </div>
+            </div>
 
     <script>
         let counterData = {};
@@ -263,7 +263,7 @@
             });
         }
 
-        // カタカナをローマ字に変換（簡易版）
+        // カタカナをローマ字に変換（ヘボン式）
         function katakanaToRomaji(str) {
             const kanaMap = {
                 'ア':'a','イ':'i','ウ':'u','エ':'e','オ':'o',
@@ -283,13 +283,21 @@
                 'パ':'pa','ピ':'pi','プ':'pu','ペ':'pe','ポ':'po',
                 'ァ':'a','ィ':'i','ゥ':'u','ェ':'e','ォ':'o',
                 'ャ':'ya','ュ':'yu','ョ':'yo','ッ':'',
-                'ー':'','・':''
+                'ー':'','・':'',
+                'ヴ':'vu','ヴァ':'va','ヴィ':'vi','ヴェ':'ve','ヴォ':'vo'
             };
             
             let romaji = '';
             for (let i = 0; i < str.length; i++) {
-                const char = str[i];
-                romaji += kanaMap[char] || char;
+                // 2文字の組み合わせをチェック
+                const twoChar = str.substring(i, i + 2);
+                if (kanaMap[twoChar]) {
+                    romaji += kanaMap[twoChar];
+                    i++; // 2文字分進める
+                } else {
+                    const char = str[i];
+                    romaji += kanaMap[char] || char;
+                }
             }
             return romaji.toLowerCase();
         }
@@ -305,13 +313,13 @@
             
             if (isRomajiInput) {
                 // ローマ字入力の場合は前方一致
-                // 1. ローマ字での検索（前方一致）
-                const romaji = katakanaToRomaji(championName);
-                if (romaji.startsWith(query)) return true;
-                
-                // 2. 英語名での検索（前方一致）
+                // 1. 英語名での検索（前方一致）- 優先
                 const englishName = championImages[championName];
                 if (englishName && englishName.toLowerCase().startsWith(query)) return true;
+                
+                // 2. ローマ字での検索（前方一致）- フォールバック
+                const romaji = katakanaToRomaji(championName);
+                if (romaji.startsWith(query)) return true;
             } else {
                 // 日本語入力の場合は部分一致
                 // 1. 日本語名での部分一致（カタカナ）
@@ -379,8 +387,8 @@
                                  onerror="this.style.display='none'">
                             <div class="champion-title">
                                 <h3>${champion}（${laneNames[data.lane]}）</h3>
-                            </div>
-                        </div>
+        </div>
+    </div>
                         <ul>
                             <li><b>カウンター:</b><br>${countersHtml}</li>
                         </ul>
