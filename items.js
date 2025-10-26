@@ -27,7 +27,7 @@ function loadData() {
         .then(response => {
             console.log('レスポンス受信:', response.status);
             if (!response.ok) {
-                throw new Error(`items_data.json: HTTP ${response.status}`);
+                throw new Error(`items_data_v2.json: HTTP ${response.status}`);
             }
             return response.json();
         })
