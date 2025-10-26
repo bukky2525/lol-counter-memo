@@ -37,59 +37,105 @@
     <div class="overlay" id="overlay"></div>
     
         <div class="container">
+            <!-- ページヘッダー -->
             <div class="page-header">
-                <h1 class="page-title">アイテム一覧</h1>
-                <p class="page-description">League of Legendsの全アイテム情報を確認できます。カテゴリ、ステータス、価格で絞り込み検索が可能です。</p>
-            </div>
-            
-            <div class="search-container">
-                <div class="filter-row">
-                    <input type="text" id="searchBox" class="search-box" placeholder="アイテム名で検索...">
-                    <select class="filter-select" id="categorySelect">
-                        <option value="all">すべてのカテゴリ</option>
-                        <option value="START">スタートアイテム</option>
-                        <option value="BASIC">基本アイテム</option>
-                        <option value="EPIC">エピックアイテム</option>
-                        <option value="LEGENDARY">レジェンダリーアイテム</option>
-                        <option value="MYTHIC">ミシックアイテム</option>
-                        <option value="BOOTS">ブーツ</option>
-                        <option value="CONSUMABLE">消費アイテム</option>
-                        <option value="WARD">ワード</option>
-                        <option value="JUNGLE">ジャングル</option>
-                        <option value="OTHER">その他</option>
-                    </select>
-                    <select class="filter-select" id="priceSelect">
-                        <option value="all">すべての価格</option>
-                        <option value="0-500">0-500G</option>
-                        <option value="500-1000">500-1000G</option>
-                        <option value="1000-2000">1000-2000G</option>
-                        <option value="2000+">2000G以上</option>
-                    </select>
-                    <select class="filter-select" id="statusSelect">
-                        <option value="all">すべてのステータス</option>
-                        <option value="physical-defense">物理防御</option>
-                        <option value="critical-rate">クリティカル率</option>
-                        <option value="health">体力</option>
-                        <option value="health-regen">体力回復</option>
-                        <option value="mana">マナ</option>
-                        <option value="magic-power">魔力</option>
-                        <option value="movement-speed">移動速度</option>
-                        <option value="attack-damage">攻撃力</option>
-                        <option value="magic-defense">魔法防御</option>
-                        <option value="attack-speed">攻撃速度</option>
-                        <option value="lifesteal">ライフスティール</option>
-                        <option value="movement-speed-percent">移動速度(%)</option>
-                    </select>
-                    <button class="clear-filters-btn" id="clearFiltersBtn">フィルターをクリア</button>
+                <div class="header-content">
+                    <h1 class="page-title">
+                        <span class="title-icon">⚔️</span>
+                        アイテム一覧
+                    </h1>
+                    <p class="page-description">League of Legendsの全アイテム情報を確認できます。カテゴリ、ステータス、価格で絞り込み検索が可能です。</p>
                 </div>
             </div>
             
-            <div class="results-header">
-                <div class="results-count" id="resultsCount">検索結果 (532個)</div>
+            <!-- 検索・フィルターセクション -->
+            <div class="search-section">
+                <div class="search-container">
+                    <div class="search-box-wrapper">
+                        <input type="text" id="searchBox" class="search-box" placeholder="アイテム名で検索...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                </div>
+                
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label class="filter-label">カテゴリ</label>
+                        <select class="filter-select" id="categorySelect">
+                            <option value="all">すべてのカテゴリ</option>
+                            <option value="START">スタートアイテム</option>
+                            <option value="BASIC">基本アイテム</option>
+                            <option value="EPIC">エピックアイテム</option>
+                            <option value="LEGENDARY">レジェンダリーアイテム</option>
+                            <option value="MYTHIC">ミシックアイテム</option>
+                            <option value="BOOTS">ブーツ</option>
+                            <option value="CONSUMABLE">消費アイテム</option>
+                            <option value="WARD">ワード</option>
+                            <option value="JUNGLE">ジャングル</option>
+                            <option value="OTHER">その他</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">価格</label>
+                        <select class="filter-select" id="priceSelect">
+                            <option value="all">すべての価格</option>
+                            <option value="0-500">0-500G</option>
+                            <option value="500-1000">500-1000G</option>
+                            <option value="1000-2000">1000-2000G</option>
+                            <option value="2000+">2000G以上</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">ステータス</label>
+                        <select class="filter-select" id="statusSelect">
+                            <option value="all">すべてのステータス</option>
+                            <option value="physical-defense">物理防御</option>
+                            <option value="critical-rate">クリティカル率</option>
+                            <option value="health">体力</option>
+                            <option value="health-regen">体力回復</option>
+                            <option value="mana">マナ</option>
+                            <option value="magic-power">魔力</option>
+                            <option value="movement-speed">移動速度</option>
+                            <option value="attack-damage">攻撃力</option>
+                            <option value="magic-defense">魔法防御</option>
+                            <option value="attack-speed">攻撃速度</option>
+                            <option value="lifesteal">ライフスティール</option>
+                            <option value="movement-speed-percent">移動速度(%)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-actions">
+                        <button class="clear-filters-btn" id="clearFiltersBtn">
+                            <span class="btn-icon">🗑️</span>
+                            フィルターをクリア
+                        </button>
+                    </div>
+                </div>
             </div>
             
+            <!-- 結果ヘッダー -->
+            <div class="results-section">
+                <div class="results-header">
+                    <div class="results-count" id="resultsCount">検索結果 (532個)</div>
+                    <div class="sort-options">
+                        <label class="sort-label">並び順:</label>
+                        <select class="sort-select" id="sortSelect">
+                            <option value="category">カテゴリ順</option>
+                            <option value="price-asc">価格（安い順）</option>
+                            <option value="price-desc">価格（高い順）</option>
+                            <option value="name">名前順</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- アイテムコンテナ -->
             <div id="itemsContainer">
-                <div class="loading">データを読み込んでいます...</div>
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>データを読み込んでいます...</p>
+                </div>
             </div>
         </div>
 

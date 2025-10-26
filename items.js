@@ -6,12 +6,14 @@ let itemsData = {};
 let currentCategory = 'all';
 let currentPrice = 'all';
 let currentStatus = 'all';
+let currentSort = 'category';
 let searchTerm = '';
 
 const searchBox = document.getElementById('searchBox');
 const categorySelect = document.getElementById('categorySelect');
 const priceSelect = document.getElementById('priceSelect');
 const statusSelect = document.getElementById('statusSelect');
+const sortSelect = document.getElementById('sortSelect');
 const clearFiltersBtn = document.getElementById('clearFiltersBtn');
 const resultsCount = document.getElementById('resultsCount');
 const itemsContainer = document.getElementById('itemsContainer');
@@ -139,6 +141,14 @@ function setupEventListeners() {
         });
     }
 
+    // ソートセレクト
+    if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            renderItems();
+        });
+    }
+
     // フィルタークリアボタン
     if (clearFiltersBtn) {
         clearFiltersBtn.addEventListener('click', () => {
@@ -146,11 +156,13 @@ function setupEventListeners() {
             currentCategory = 'all';
             currentPrice = 'all';
             currentStatus = 'all';
+            currentSort = 'category';
             
             if (searchBox) searchBox.value = '';
             if (categorySelect) categorySelect.value = 'all';
             if (priceSelect) priceSelect.value = 'all';
             if (statusSelect) statusSelect.value = 'all';
+            if (sortSelect) sortSelect.value = 'category';
             
             renderItems();
         });
@@ -259,22 +271,31 @@ function renderItems() {
     });
     console.log(`検索フィルター後のアイテム数: ${filteredItems.length}`);
     
-    // カテゴリ別にグループ化してソート（LoL Guideと同じ順序）
+    // ソート機能
     const categoryOrder = ['START', 'BASIC', 'EPIC', 'LEGENDARY', 'MYTHIC', 'BOOTS', 'CONSUMABLE', 'WARD', 'JUNGLE', 'OTHER'];
     
     filteredItems.sort((a, b) => {
-        const categoryA = categoryOrder.indexOf(a.category);
-        const categoryB = categoryOrder.indexOf(b.category);
-        
-        // カテゴリが異なる場合はカテゴリ順でソート
-        if (categoryA !== categoryB) {
-            return categoryA - categoryB;
+        switch (currentSort) {
+            case 'category':
+                const categoryA = categoryOrder.indexOf(a.category);
+                const categoryB = categoryOrder.indexOf(b.category);
+                if (categoryA !== categoryB) {
+                    return categoryA - categoryB;
+                }
+                return (a.price || 0) - (b.price || 0);
+                
+            case 'price-asc':
+                return (a.price || 0) - (b.price || 0);
+                
+            case 'price-desc':
+                return (b.price || 0) - (a.price || 0);
+                
+            case 'name':
+                return (a.name || '').localeCompare(b.name || '');
+                
+            default:
+                return 0;
         }
-        
-        // 同じカテゴリ内では価格順でソート
-        const priceA = a.price || 0;
-        const priceB = b.price || 0;
-        return priceA - priceB;
     });
     
     if (filteredItems.length === 0) {
