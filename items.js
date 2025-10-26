@@ -57,6 +57,12 @@ function loadData() {
 
 // カテゴリボタンを初期化
 function initializeCategoryButtons() {
+    // データの存在確認
+    if (!itemsData || !itemsData.categories) {
+        console.error('カテゴリデータが見つかりません');
+        return;
+    }
+    
     const categories = [
         { id: 'all', name: '全アイテム' },
         ...Object.keys(itemsData.categories).map(categoryId => ({
