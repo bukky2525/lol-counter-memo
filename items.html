@@ -36,20 +36,47 @@
     <!-- オーバーレイ -->
     <div class="overlay" id="overlay"></div>
     
-    <div class="container">
-        <h1>LOL アイテム一覧</h1>
-        
-        <div class="search-container">
-            <input type="text" id="searchBox" class="search-box" placeholder="アイテム名で検索...">
-            <div class="category-filters" id="categoryFilters">
-                <button class="category-btn active" data-category="all">全アイテム</button>
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">アイテム一覧</h1>
+                <p class="page-description">League of Legendsの全アイテム情報を確認できます。カテゴリ、ステータス、価格で絞り込み検索が可能です。</p>
+            </div>
+            
+            <div class="search-container">
+                <div class="filter-row">
+                    <input type="text" id="searchBox" class="search-box" placeholder="アイテム名で検索...">
+                    <select class="filter-select" id="categorySelect">
+                        <option value="all">すべてのカテゴリ</option>
+                    </select>
+                    <select class="filter-select" id="priceSelect">
+                        <option value="all">すべての価格</option>
+                        <option value="0-500">0-500G</option>
+                        <option value="500-1000">500-1000G</option>
+                        <option value="1000-2000">1000-2000G</option>
+                        <option value="2000+">2000G以上</option>
+                    </select>
+                    <select class="filter-select" id="statusSelect">
+                        <option value="all">すべてのステータス</option>
+                        <option value="attack">攻撃系</option>
+                        <option value="defense">防御系</option>
+                        <option value="magic">魔法系</option>
+                        <option value="movement">移動系</option>
+                    </select>
+                    <button class="clear-filters-btn" id="clearFiltersBtn">フィルターをクリア</button>
+                </div>
+                <div class="category-filters" id="categoryFilters">
+                    <button class="category-btn active" data-category="all">全アイテム</button>
+                </div>
+            </div>
+            
+            <div class="results-header">
+                <div class="results-count" id="resultsCount">検索結果 (532個)</div>
+            </div>
+            
+            <div id="itemsContainer">
+                <div class="loading">データを読み込んでいます...</div>
             </div>
         </div>
-
-        <div id="itemsContainer">
-            <div class="loading">データを読み込んでいます...</div>
-        </div>
-    </div>
 
     <script src="menu.js"></script>
     <script src="items.js"></script>

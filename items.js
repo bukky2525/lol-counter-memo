@@ -237,20 +237,46 @@ function renderItems() {
             }).join(' ');
             
             return `
-                <div class="item-card">
-                    <div class="item-card-header">
+                <div class="item-card" onclick="showItemDetail('${item.id}')">
+                    <div class="item-header">
+                        <div class="item-price">${item.price}G</div>
+                    </div>
+                    <div class="item-content">
                         <img src="${getItemIconUrl(item.id)}" 
                              alt="${item.name}" 
                              class="item-icon"
                              onerror="this.src='https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/item/1001.png'">
-                        <div class="item-info">
+                        <div class="item-details">
                             <div class="item-name">${item.name}</div>
-                            <div class="item-category">${category.name} - ${category.subcategories[item.subcategory] || item.subcategory}</div>
-                            <div class="item-cost">${item.price}G (売却: ${item.sellPrice}G)</div>
+                            <div class="item-effect">${item.description ? item.description.replace(/ /g, ' ') : '基本アイテム'}</div>
+                            <div class="item-stats-section">
+                                <div class="stats-label">主要ステータス</div>
+                                ${Object.keys(item.stats || {}).map(stat => `
+                                    <div class="stat-row">
+                                        <span class="stat-name">${stat}</span>
+                                        <span class="stat-value">+${item.stats[stat]}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="item-tags">
+                                ${item.tags.map(tag => `<span class="item-tag">${tag}</span>`).join('')}
+                            </div>
+                            ${item.buildsInto && item.buildsInto.length > 0 ? `
+                                <div class="item-evolutions">
+                                    <div class="evolutions-label">進化先</div>
+                                    <div class="evolutions-list">
+                                        ${item.buildsInto.slice(0, 2).map(buildId => `
+                                            <div class="evolution-item">
+                                                <img src="${getItemIconUrl(buildId)}" class="evolution-icon" alt="進化先">
+                                                <div class="evolution-name">進化先</div>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                    ${item.buildsInto.length > 2 ? `<div class="other-evolutions">他${item.buildsInto.length - 2}件</div>` : ''}
+                                </div>
+                            ` : ''}
                         </div>
                     </div>
-                    <div class="item-stats">${statsHtml}</div>
-                    ${item.description ? `<div class="item-description">${item.description.replace(/ /g, '<br>')}</div>` : ''}
                 </div>
             `;
         }).join('');
@@ -267,5 +293,113 @@ function renderItems() {
     });
 
     console.log(`表示されたアイテム数: ${totalVisible}`);
+}
+
+// アイテム詳細表示関数
+function showItemDetail(itemId) {
+    const item = itemsData.items.find(i => i.id === itemId);
+    if (!item) return;
+    
+    const category = itemsData.categories[item.category];
+    
+    // モーダルを作成
+    const modal = document.createElement('div');
+    modal.className = 'item-detail-modal';
+    modal.innerHTML = `
+        <div class="modal-overlay" onclick="closeItemDetail()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>${item.name}</h2>
+                <button class="close-modal-btn" onclick="closeItemDetail()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="item-detail-header">
+                    <img src="${getItemIconUrl(item.id)}" 
+                         alt="${item.name}" 
+                         class="detail-item-icon"
+                         onerror="this.src='https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/item/1001.png'">
+                    <div class="item-detail-info">
+                        <div class="item-detail-price">
+                            <span class="price-label">合計</span>
+                            <span class="price-value">${item.price}G</span>
+                            <span class="price-label">素材</span>
+                            <span class="price-value">${item.price}G</span>
+                            <span class="price-label">売却</span>
+                            <span class="price-value">${item.sellPrice}G</span>
+                        </div>
+                        <div class="item-detail-category">${category.name} - ${category.subcategories[item.subcategory] || item.subcategory}</div>
+                    </div>
+                </div>
+                
+                <div class="item-detail-description">
+                    <h3>アイテム説明</h3>
+                    <div class="description-content">
+                        ${Object.keys(item.stats || {}).map(stat => `
+                            <div class="stat-line">${stat} ${item.stats[stat]}</div>
+                        `).join('')}
+                        ${item.description ? `<div class="effect-line">${item.description}</div>` : ''}
+                    </div>
+                </div>
+                
+                <div class="item-detail-stats">
+                    <h3>付与ステータス</h3>
+                    <div class="stats-grid">
+                        ${Object.keys(item.stats || {}).map(stat => `
+                            <div class="stat-item">
+                                <span class="stat-name">${stat}</span>
+                                <span class="stat-value">+${item.stats[stat]}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                ${item.buildsInto && item.buildsInto.length > 0 ? `
+                    <div class="item-detail-evolutions">
+                        <h3>進化先</h3>
+                        <div class="evolutions-grid">
+                            ${item.buildsInto.map(buildId => {
+                                const buildItem = itemsData.items.find(i => i.id === buildId);
+                                return buildItem ? `
+                                    <div class="evolution-card" onclick="showItemDetail('${buildId}')">
+                                        <img src="${getItemIconUrl(buildId)}" class="evolution-icon" alt="${buildItem.name}">
+                                        <div class="evolution-name">${buildItem.name}</div>
+                                    </div>
+                                ` : '';
+                            }).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+                
+                ${item.buildsFrom && item.buildsFrom.length > 0 ? `
+                    <div class="item-detail-materials">
+                        <h3>素材</h3>
+                        <div class="materials-grid">
+                            ${item.buildsFrom.map(materialId => {
+                                const materialItem = itemsData.items.find(i => i.id === materialId);
+                                return materialItem ? `
+                                    <div class="material-card" onclick="showItemDetail('${materialId}')">
+                                        <img src="${getItemIconUrl(materialId)}" class="material-icon" alt="${materialItem.name}">
+                                        <div class="material-name">${materialItem.name}</div>
+                                    </div>
+                                ` : '';
+                            }).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    document.body.style.overflow = 'hidden';
+}
+
+// アイテム詳細を閉じる関数
+function closeItemDetail() {
+    const modal = document.querySelector('.item-detail-modal');
+    if (modal) {
+        modal.remove();
+        document.body.style.overflow = '';
+    }
 }
 
