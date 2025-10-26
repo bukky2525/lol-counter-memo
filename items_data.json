@@ -1,231 +1,165 @@
 {
+  "items": [
+    {
+      "name": "アビサル マスク",
+      "englishName": "Abyssal Mask",
+      "category": "DEFENSE",
+      "subcategory": "Health",
+      "price": 2850,
+      "buildPrice": 1200,
+      "stats": {
+        "health": 350,
+        "magicResist": 50,
+        "abilityHaste": 15
+      },
+      "passive": "荒廃: 周囲の敵チャンピオンが受ける魔法ダメージが12%増加する。",
+      "buildsFrom": ["キンドルジェム", "ネガトロン クローク"],
+      "buildsInto": []
+    },
+    {
+      "name": "アンブラル グレイブ",
+      "englishName": "Umbral Glaive",
+      "category": "ATTACK",
+      "subcategory": "Damage",
+      "price": 2500,
+      "buildPrice": 450,
+      "stats": {
+        "attackDamage": 55,
+        "lethality": 15,
+        "abilityHaste": 10
+      },
+      "passive": "ブラックアウト: 敵のステルス ワードやトラップの近くにいる場合、8秒間両方を可視化する。抹消: 通常攻撃でワードに追加ダメージを与える。",
+      "buildsFrom": ["セレイテッド ダーク", "コールフィールド ウォーハンマー"],
+      "buildsInto": []
+    },
+    {
+      "name": "ビジラント ワードストーン",
+      "englishName": "Vigilant Wardstone",
+      "category": "TOOLS",
+      "subcategory": "Vision",
+      "price": 2300,
+      "buildPrice": 1200,
+      "stats": {
+        "health": 250,
+        "abilityHaste": 20,
+        "armor": 25,
+        "magicResist": 30
+      },
+      "passive": "アーケインキャッシュ: 購入した「コントロール ワード」を最大3個まで保持できる。凝視: 「ステルス ワード」と「コントロール ワード」の設置可能数の上限が1増加する。",
+      "buildsFrom": ["ウォッチフル ワードストーン"],
+      "buildsInto": []
+    },
+    {
+      "name": "ウォッチフル ワードストーン",
+      "englishName": "Watchful Wardstone",
+      "category": "TOOLS",
+      "subcategory": "Vision",
+      "price": 1100,
+      "buildPrice": 1100,
+      "stats": {
+        "health": 150,
+        "abilityHaste": 10,
+        "armor": 10,
+        "magicResist": 15
+      },
+      "passive": "アーケインキャッシュ: 購入した「コントロール ワード」を最大3個まで保持できる。",
+      "buildsFrom": [],
+      "buildsInto": ["ビジラント ワードストーン"]
+    },
+    {
+      "name": "ワールド アトラス",
+      "englishName": "World Atlas",
+      "category": "START",
+      "subcategory": "Lane",
+      "price": 400,
+      "buildPrice": 400,
+      "stats": {},
+      "passive": "",
+      "buildsFrom": [],
+      "buildsInto": []
+    },
+    {
+      "name": "ザズ＝ザクのレルムスパイク",
+      "englishName": "Zaz'Zak's Realmspike",
+      "category": "TOOLS",
+      "subcategory": "Vision",
+      "price": 400,
+      "buildPrice": 0,
+      "stats": {
+        "health": 200,
+        "healthRegen": "75%",
+        "manaRegen": "75%",
+        "goldPer10": 5
+      },
+      "passive": "ヴォイドの爆発: チャンピオンにスキルでダメージを与えると爆発が起こり、魔法ダメージを与える。発動効果 (4チャージ): 視界を付与するインビジブル状態の「ステルス ワード」を設置する。",
+      "buildsFrom": ["世界の恵み"],
+      "buildsInto": []
+    }
+  ],
   "categories": {
-    "starter": {
-      "name": "スタートアイテム",
-      "items": [
-        {
-          "id": 1054,
-          "nameJp": "ドラン シールド",
-          "nameEn": "Doran's Shield",
-          "cost": 400,
-          "stats": "体力+80, 体力自動回復+6"
-        },
-        {
-          "id": 1055,
-          "nameJp": "ドラン ブレード",
-          "nameEn": "Doran's Blade",
-          "cost": 400,
-          "stats": "攻撃力+8, 体力+80"
-        },
-        {
-          "id": 1056,
-          "nameJp": "ドラン リング",
-          "nameEn": "Doran's Ring",
-          "cost": 400,
-          "stats": "魔力+15, 体力+70, マナ自動回復+1.25"
-        },
-        {
-          "id": 1082,
-          "nameJp": "ダークシール",
-          "nameEn": "Dark Seal",
-          "cost": 350,
-          "stats": "魔力+15, 体力+40, マナ自動回復+0.25"
-        }
-      ]
+    "START": {
+      "name": "スタート",
+      "subcategories": {
+        "Lane": "レーン",
+        "Jungle": "ジャングル"
+      }
     },
-    "boots": {
-      "name": "ブーツ",
-      "items": [
-        {
-          "id": 1001,
-          "nameJp": "ブーツ",
-          "nameEn": "Boots",
-          "cost": 300,
-          "stats": "移動速度+25"
-        },
-        {
-          "id": 3006,
-          "nameJp": "バーサーカー ブーツ",
-          "nameEn": "Berserker's Greaves",
-          "cost": 1100,
-          "stats": "攻撃速度+35%, 移動速度+45"
-        },
-        {
-          "id": 3020,
-          "nameJp": "ソーサラー シューズ",
-          "nameEn": "Sorcerer's Shoes",
-          "cost": 1100,
-          "stats": "魔法防御貫通+18, 移動速度+45"
-        },
-        {
-          "id": 3047,
-          "nameJp": "プレートスチール",
-          "nameEn": "Plated Steelcaps",
-          "cost": 1100,
-          "stats": "物理防御+20, 移動速度+45"
-        },
-        {
-          "id": 3111,
-          "nameJp": "マーキュリー ブーツ",
-          "nameEn": "Mercury's Treads",
-          "cost": 1100,
-          "stats": "魔法防御+25, 移動速度+45, 妨害効果耐性+30%"
-        },
-        {
-          "id": 3158,
-          "nameJp": "アイオニア ブーツ",
-          "nameEn": "Ionian Boots of Lucidity",
-          "cost": 900,
-          "stats": "スキルヘイスト+15, 移動速度+45"
-        },
-        {
-          "id": 3009,
-          "nameJp": "スイフトネス ブーツ",
-          "nameEn": "Boots of Swiftness",
-          "cost": 900,
-          "stats": "移動速度+60, スロウ耐性+25%"
-        }
-      ]
+    "TOOLS": {
+      "name": "ツール",
+      "subcategories": {
+        "Consumable": "消費アイテム",
+        "Goldper": "ゴールド獲得",
+        "Vision": "視界"
+      }
     },
-    "legendary": {
-      "name": "レジェンダリーアイテム",
-      "items": [
-        {
-          "id": 3031,
-          "nameJp": "インフィニティ エッジ",
-          "nameEn": "Infinity Edge",
-          "cost": 3000,
-          "stats": "攻撃力+70, クリティカル率+20%"
-        },
-        {
-          "id": 6672,
-          "nameJp": "クラーケン スレイヤー",
-          "nameEn": "Kraken Slayer",
-          "cost": 3000,
-          "stats": "攻撃力+50, 攻撃速度+40%, クリティカル率+25%"
-        },
-        {
-          "id": 6333,
-          "nameJp": "デスダンス",
-          "nameEn": "Death's Dance",
-          "cost": 3100,
-          "stats": "攻撃力+55, 物理防御+45, スキルヘイスト+15"
-        },
-        {
-          "id": 3157,
-          "nameJp": "ゾーニャの砂時計",
-          "nameEn": "Zhonya's Hourglass",
-          "cost": 2900,
-          "stats": "魔力+100, 物理防御+45, スキルヘイスト+15"
-        },
-        {
-          "id": 3089,
-          "nameJp": "ラバドン デスキャップ",
-          "nameEn": "Rabadon's Deathcap",
-          "cost": 3600,
-          "stats": "魔力+120, 魔力+35%"
-        },
-        {
-          "id": 3074,
-          "nameJp": "ラヴァナス ハイドラ",
-          "nameEn": "Ravenous Hydra",
-          "cost": 3300,
-          "stats": "攻撃力+75, スキルヘイスト+20, 体力自動回復+15"
-        },
-        {
-          "id": 3078,
-          "nameJp": "トリニティ フォース",
-          "nameEn": "Trinity Force",
-          "cost": 3333,
-          "stats": "攻撃力+40, 攻撃速度+33%, 体力+300, スキルヘイスト+20"
-        },
-        {
-          "id": 3153,
-          "nameJp": "ルインドキング ブレード",
-          "nameEn": "Blade of The Ruined King",
-          "cost": 3200,
-          "stats": "攻撃力+40, 攻撃速度+30%, ライフスティール+10%"
-        }
-      ]
+    "DEFENSE": {
+      "name": "防御",
+      "subcategories": {
+        "Health": "体力",
+        "Armor": "物理防御",
+        "Spellblock": "魔法防御",
+        "Healthregen": "体力回復"
+      }
     },
-    "mythic": {
-      "name": "ミシックアイテム",
-      "items": [
-        {
-          "id": 6692,
-          "nameJp": "エクリプス",
-          "nameEn": "Eclipse",
-          "cost": 2800,
-          "stats": "攻撃力+55, 物理防御貫通+12, スキルヘイスト+15"
-        },
-        {
-          "id": 4633,
-          "nameJp": "リフトメーカー",
-          "nameEn": "Riftmaker",
-          "cost": 3000,
-          "stats": "魔力+80, 体力+300, スキルヘイスト+15"
-        },
-        {
-          "id": 6653,
-          "nameJp": "リアンドリーの苦悶",
-          "nameEn": "Liandry's Anguish",
-          "cost": 3000,
-          "stats": "魔力+80, 体力+300, スキルヘイスト+20"
-        }
-      ]
+    "ATTACK": {
+      "name": "攻撃",
+      "subcategories": {
+        "Damage": "攻撃力",
+        "Criticalstrike": "クリティカル",
+        "Attackspeed": "攻撃速度",
+        "Lifesteal": "ライフステール"
+      }
     },
-    "support": {
-      "name": "サポートアイテム",
-      "items": [
-        {
-          "id": 3850,
-          "nameJp": "スチール ショルダーガード",
-          "nameEn": "Steel Shoulderguards",
-          "cost": 400,
-          "stats": "体力+50, 体力自動回復+25%"
-        },
-        {
-          "id": 3851,
-          "nameJp": "ランブル シーフ グローブ",
-          "nameEn": "Relic Shield",
-          "cost": 400,
-          "stats": "体力+30, 体力自動回復+50%, ゴールド+3/10秒"
-        },
-        {
-          "id": 3854,
-          "nameJp": "スペルシーフ エッジ",
-          "nameEn": "Spellthief's Edge",
-          "cost": 400,
-          "stats": "魔力+8, マナ自動回復+25%, ゴールド+3/10秒"
-        }
-      ]
+    "MAGIC": {
+      "name": "魔法",
+      "subcategories": {
+        "Spelldamage": "魔法攻撃力",
+        "Cooldownreduction": "クールダウン",
+        "Mana": "マナ",
+        "Manaregen": "マナ回復"
+      }
     },
-    "consumable": {
-      "name": "消耗品",
-      "items": [
-        {
-          "id": 2003,
-          "nameJp": "体力ポーション",
-          "nameEn": "Health Potion",
-          "cost": 50,
-          "stats": "体力+120（15秒間）"
-        },
-        {
-          "id": 2031,
-          "nameJp": "リフィル ポーション",
-          "nameEn": "Refillable Potion",
-          "cost": 150,
-          "stats": "体力+125（12秒間）×2チャージ"
-        },
-        {
-          "id": 2055,
-          "nameJp": "コントロール ワード",
-          "nameEn": "Control Ward",
-          "cost": 75,
-          "stats": "ステルスワード探知、無制限"
-        }
-      ]
+    "MOVEMENT": {
+      "name": "移動",
+      "subcategories": {
+        "Boots": "ブーツ",
+        "Nonbootsmovement": "移動速度"
+      }
+    },
+    "UNCATEGORIZED": {
+      "name": "その他",
+      "subcategories": {
+        "Active": "アクティブ",
+        "Armorpenetration": "物理貫通",
+        "Aura": "オーラ",
+        "Magicpenetration": "魔法貫通",
+        "Onhit": "オンヒット",
+        "Slow": "スロー",
+        "Stealth": "ステルス",
+        "Trinket": "トリンケット",
+        "Spellvamp": "スペルヴァンプ",
+        "Tenacity": "テナシティ"
+      }
     }
   }
 }
-
