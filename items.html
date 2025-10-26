@@ -3,144 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOL アイテム一覧</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="items-styles.css">
+    <title>LoL アイテム一覧 - DDragon API</title>
+    <link rel="stylesheet" href="items.css">
 </head>
 <body>
-        <!-- ハンバーガーメニューボタン -->
-        <button class="menu-toggle" id="menuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    
-    <!-- サイドメニュー -->
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h2>メニュー</h2>
-            <button class="close-btn" id="closeBtn">×</button>
-        </div>
-        <ul class="sidebar-menu">
-            <li><a href="index.html" class="menu-item">
-                <span class="icon">🏠</span>
-                <span>カウンターピック</span>
-            </a></li>
-            <li><a href="items.html" class="menu-item active">
-                <span class="icon">📦</span>
-                <span>アイテム一覧</span>
-            </a></li>
-        </ul>
-    </nav>
-    
-    <!-- オーバーレイ -->
-    <div class="overlay" id="overlay"></div>
-    
-        <div class="container">
-            <!-- ページヘッダー -->
-            <div class="page-header">
-                <div class="header-content">
-                    <h1 class="page-title">
-                        <span class="title-icon">⚔️</span>
-                        アイテム一覧
-                    </h1>
-                    <p class="page-description">League of Legendsの全アイテム情報を確認できます。カテゴリ、ステータス、価格で絞り込み検索が可能です。</p>
-                </div>
+    <div class="container">
+        <!-- ヘッダー -->
+        <header class="page-header">
+            <h1>⚔️ League of Legends アイテム一覧</h1>
+            <p>DDragon APIから取得した最新のアイテム情報</p>
+        </header>
+        
+        <!-- 検索・フィルター -->
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" 
+                       id="searchInput" 
+                       class="search-input" 
+                       placeholder="アイテム名で検索...">
             </div>
             
-            <!-- 検索・フィルターセクション -->
-            <div class="search-section">
-                <div class="search-container">
-                    <div class="search-box-wrapper">
-                        <input type="text" id="searchBox" class="search-box" placeholder="アイテム名で検索...">
-                        <span class="search-icon">🔍</span>
-                    </div>
-                </div>
-                
-                <div class="filters-container">
-                    <div class="filter-group">
-                        <label class="filter-label">カテゴリ</label>
-                        <select class="filter-select" id="categorySelect">
-                            <option value="all">すべてのカテゴリ</option>
-                            <option value="START">スタートアイテム</option>
-                            <option value="BASIC">基本アイテム</option>
-                            <option value="EPIC">エピックアイテム</option>
-                            <option value="LEGENDARY">レジェンダリーアイテム</option>
-                            <option value="MYTHIC">ミシックアイテム</option>
-                            <option value="BOOTS">ブーツ</option>
-                            <option value="CONSUMABLE">消費アイテム</option>
-                            <option value="WARD">ワード</option>
-                            <option value="JUNGLE">ジャングル</option>
-                            <option value="OTHER">その他</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filter-group">
-                        <label class="filter-label">価格</label>
-                        <select class="filter-select" id="priceSelect">
-                            <option value="all">すべての価格</option>
-                            <option value="0-500">0-500G</option>
-                            <option value="500-1000">500-1000G</option>
-                            <option value="1000-2000">1000-2000G</option>
-                            <option value="2000+">2000G以上</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filter-group">
-                        <label class="filter-label">ステータス</label>
-                        <select class="filter-select" id="statusSelect">
-                            <option value="all">すべてのステータス</option>
-                            <option value="physical-defense">物理防御</option>
-                            <option value="critical-rate">クリティカル率</option>
-                            <option value="health">体力</option>
-                            <option value="health-regen">体力回復</option>
-                            <option value="mana">マナ</option>
-                            <option value="magic-power">魔力</option>
-                            <option value="movement-speed">移動速度</option>
-                            <option value="attack-damage">攻撃力</option>
-                            <option value="magic-defense">魔法防御</option>
-                            <option value="attack-speed">攻撃速度</option>
-                            <option value="lifesteal">ライフスティール</option>
-                            <option value="movement-speed-percent">移動速度(%)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filter-actions">
-                        <button class="clear-filters-btn" id="clearFiltersBtn">
-                            <span class="btn-icon">🗑️</span>
-                            フィルターをクリア
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 結果ヘッダー -->
-            <div class="results-section">
-                <div class="results-header">
-                    <div class="results-count" id="resultsCount">検索結果 (532個)</div>
-                    <div class="sort-options">
-                        <label class="sort-label">並び順:</label>
-                        <select class="sort-select" id="sortSelect">
-                            <option value="category">カテゴリ順</option>
-                            <option value="price-asc">価格（安い順）</option>
-                            <option value="price-desc">価格（高い順）</option>
-                            <option value="name">名前順</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- アイテムコンテナ -->
-            <div id="itemsContainer">
-                <div class="loading">
-                    <div class="loading-spinner"></div>
-                    <p>データを読み込んでいます...</p>
-                </div>
+            <div class="filter-container">
+                <select id="categorySelect" class="category-select">
+                    <option value="all">すべてのカテゴリ</option>
+                    <option value="Boots">ブーツ</option>
+                    <option value="Health">体力</option>
+                    <option value="HealthRegen">体力回復</option>
+                    <option value="Mana">マナ</option>
+                    <option value="ManaRegen">マナ回復</option>
+                    <option value="Armor">物理防御</option>
+                    <option value="SpellBlock">魔法防御</option>
+                    <option value="Damage">攻撃力</option>
+                    <option value="SpellDamage">魔法攻撃力</option>
+                    <option value="AttackSpeed">攻撃速度</option>
+                    <option value="CriticalStrike">クリティカル</option>
+                    <option value="LifeSteal">ライフステール</option>
+                    <option value="Consumable">消費アイテム</option>
+                    <option value="Vision">視界</option>
+                    <option value="Jungle">ジャングル</option>
+                </select>
             </div>
         </div>
-
-    <script src="menu.js"></script>
+        
+        <!-- 結果表示 -->
+        <div class="results-section">
+            <div class="results-count" id="resultsCount">検索結果: 読み込み中...</div>
+        </div>
+        
+        <!-- アイテムコンテナ -->
+        <div id="itemsContainer" class="items-container">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>アイテムデータを読み込み中...</p>
+            </div>
+        </div>
+    </div>
+    
     <script src="items.js"></script>
 </body>
 </html>
-
