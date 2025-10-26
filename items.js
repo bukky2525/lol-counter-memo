@@ -270,102 +270,67 @@ function renderItems() {
         return;
     }
 
-    // カテゴリごとにグループ化
-    const itemsByCategory = {};
-    console.log('グループ化開始, filteredItems:', filteredItems);
+    // あいうえお順で直接表示（カテゴリグループ化なし）
+    console.log('あいうえお順で表示開始');
     
     if (!Array.isArray(filteredItems)) {
         console.error('filteredItems is not an array:', filteredItems);
         return;
     }
     
-    filteredItems.forEach(item => {
-        console.log('グループ化中のアイテム:', item);
-        const categoryKey = item.category;
-        if (!itemsByCategory[categoryKey]) {
-            itemsByCategory[categoryKey] = [];
-        }
-        itemsByCategory[categoryKey].push(item);
-    });
-
-    console.log('カテゴリ別グループ化完了:', Object.keys(itemsByCategory));
-
-    // カテゴリごとに表示
-    Object.keys(itemsByCategory).forEach(categoryId => {
-        console.log(`カテゴリ "${categoryId}" を処理中...`);
-        const categoryItems = itemsByCategory[categoryId];
-        const category = itemsData.categories[categoryId];
-        
-        if (!category) {
-            console.warn(`カテゴリ "${categoryId}" が見つかりません`);
-            return;
-        }
-        
-        const categorySection = document.createElement('div');
-        categorySection.className = 'items-category';
-        
-        const itemsHtml = categoryItems.map(item => {
-            const statsHtml = Object.keys(item.stats || {}).map(stat => {
-                const value = item.stats[stat];
-                return `<span class="stat">${stat}: ${value}</span>`;
-            }).join(' ');
-            
-            return `
-                <div class="item-card" onclick="showItemDetail('${item.id}')">
-                    <div class="item-header">
-                        <div class="item-price">${item.price}G</div>
-                    </div>
-                    <div class="item-content">
-                        <img src="${getItemIconUrl(item.id)}" 
-                             alt="${item.name}" 
-                             class="item-icon"
-                             onerror="this.src='https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/item/1001.png'">
-                        <div class="item-details">
-                            <div class="item-name">${item.name}</div>
-                            <div class="item-effect">${item.plaintext || item.description || '基本アイテム'}</div>
-                            <div class="item-stats-section">
-                                <div class="stats-label">主要ステータス</div>
-                                ${Object.keys(item.stats || {}).map(stat => `
-                                    <div class="stat-row">
-                                        <span class="stat-name">${stat}</span>
-                                        <span class="stat-value">+${item.stats[stat]}</span>
-                                    </div>
-                                `).join('')}
-
-                            </div>
-                            <div class="item-tags">
-                                ${item.tags.map(tag => `<span class="item-tag">${tag}</span>`).join('')}
-                            </div>
-                            ${item.buildsInto && item.buildsInto.length > 0 ? `
-                                <div class="item-evolutions">
-                                    <div class="evolutions-label">進化先</div>
-                                    <div class="evolutions-list">
-                                        ${item.buildsInto.slice(0, 2).map(buildId => `
-                                            <div class="evolution-item">
-                                                <img src="${getItemIconUrl(buildId)}" class="evolution-icon" alt="進化先">
-                                                <div class="evolution-name">進化先</div>
-                                            </div>
-                                        `).join('')}
-                                    </div>
-                                    ${item.buildsInto.length > 2 ? `<div class="other-evolutions">他${item.buildsInto.length - 2}件</div>` : ''}
+    const itemsHtml = filteredItems.map(item => {
+        return `
+            <div class="item-card" onclick="showItemDetail('${item.id}')">
+                <div class="item-header">
+                    <div class="item-price">${item.price}G</div>
+                </div>
+                <div class="item-content">
+                    <img src="${getItemIconUrl(item.id)}" 
+                         alt="${item.name}" 
+                         class="item-icon"
+                         onerror="this.src='https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/item/1001.png'">
+                    <div class="item-details">
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-effect">${item.plaintext || item.description || '基本アイテム'}</div>
+                        <div class="item-stats-section">
+                            <div class="stats-label">主要ステータス</div>
+                            ${Object.keys(item.stats || {}).map(stat => `
+                                <div class="stat-row">
+                                    <span class="stat-name">${stat}</span>
+                                    <span class="stat-value">+${item.stats[stat]}</span>
                                 </div>
-                            ` : ''}
+                            `).join('')}
                         </div>
+                        <div class="item-tags">
+                            ${item.tags.map(tag => `<span class="item-tag">${tag}</span>`).join('')}
+                        </div>
+                        ${item.buildsInto && item.buildsInto.length > 0 ? `
+                            <div class="item-evolutions">
+                                <div class="evolutions-label">進化先</div>
+                                <div class="evolutions-list">
+                                    ${item.buildsInto.slice(0, 2).map(buildId => `
+                                        <div class="evolution-item">
+                                            <img src="${getItemIconUrl(buildId)}" class="evolution-icon" alt="進化先">
+                                            <div class="evolution-name">進化先</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                ${item.buildsInto.length > 2 ? `<div class="other-evolutions">他${item.buildsInto.length - 2}件</div>` : ''}
+                            </div>
+                        ` : ''}
                     </div>
                 </div>
-            `;
-        }).join('');
-
-        categorySection.innerHTML = `
-            <h2>${category.name} (${categoryItems.length}個)</h2>
-            <div class="items-grid">
-                ${itemsHtml}
             </div>
         `;
+    }).join('');
 
-        itemsContainer.appendChild(categorySection);
-        totalVisible += categoryItems.length;
-    });
+    itemsContainer.innerHTML = `
+        <div class="items-grid">
+            ${itemsHtml}
+        </div>
+    `;
+    
+    totalVisible = filteredItems.length;
 
     console.log(`表示されたアイテム数: ${totalVisible}`);
 }
