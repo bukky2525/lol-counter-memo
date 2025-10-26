@@ -287,15 +287,33 @@ function renderItems() {
         return;
     }
 
-    // あいうえお順で直接表示（カテゴリグループ化なし）
-    console.log('あいうえお順で表示開始');
+    // カテゴリ別にグループ化して表示（LoL Guideと同じ形式）
+    console.log('カテゴリ別グループ化で表示開始');
     
     if (!Array.isArray(filteredItems)) {
         console.error('filteredItems is not an array:', filteredItems);
         return;
     }
     
-    const itemsHtml = filteredItems.map(item => {
+    const groupedItems = {};
+    filteredItems.forEach(item => {
+        const category = item.category;
+        if (!groupedItems[category]) {
+            groupedItems[category] = [];
+        }
+        groupedItems[category].push(item);
+    });
+    
+    // カテゴリ順で表示
+    let itemsHtml = '';
+    categoryOrder.forEach(category => {
+        if (groupedItems[category] && groupedItems[category].length > 0) {
+            const categoryName = itemsData.categories[category]?.name || category;
+            itemsHtml += `
+                <div class="category-section">
+                    <h3 class="category-title">${categoryName}</h3>
+                    <div class="category-items">
+                        ${groupedItems[category].map(item => `
         return `
             <div class="item-card" onclick="showItemDetail('${item.id}')">
                 <div class="item-header">
