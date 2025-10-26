@@ -109,10 +109,12 @@ function setupEventListeners() {
     });
 
     // 検索ボックス
-    searchBox.addEventListener('input', (e) => {
-        searchTerm = e.target.value.toLowerCase();
-        renderItems();
-    });
+    if (searchBox) {
+        searchBox.addEventListener('input', (e) => {
+            searchTerm = e.target.value.toLowerCase();
+            renderItems();
+        });
+    }
 }
 
 // アイテムアイコンURLを取得
