@@ -86,13 +86,23 @@ function getChampionIconUrl(championName) {
 
 // OP.GG URLを生成
 function getOpggUrl(championName, lane) {
-    const englishName = championImages[championName] || championName;
+    const englishName = championImages[championName];
+    
+    if (!englishName) {
+        console.error('英語名が見つかりません:', championName);
+        return 'https://op.gg/ja/lol/champions';
+    }
+    
     // チャンピオン名を小文字に変換し、特殊文字を処理
     const formattedName = englishName.toLowerCase()
         .replace(/'/g, '')  // アポストロフィを削除
-        .replace(/\s+/g, ''); // スペースを削除
+        .replace(/\s+/g, '') // スペースを削除
+        .replace(/\./g, ''); // ドットを削除
     
-    return `https://op.gg/ja/lol/champions/${formattedName}/build`;
+    const url = `https://op.gg/ja/lol/champions/${formattedName}/build`;
+    console.log(`チャンピオン: ${championName} → 英語名: ${englishName} → URL: ${url}`);
+    
+    return url;
 }
 
 // 検索マッチング関数
