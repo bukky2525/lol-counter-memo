@@ -476,7 +476,7 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.1
+        "PercentAttackSpeedMod": 0.1
       },
       "tags": [
         "AttackSpeed"
@@ -505,7 +505,7 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.15
+        "PercentAttackSpeedMod": 0.15
       },
       "tags": [
         "AttackSpeed",
@@ -1149,7 +1149,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 50,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "SpellDamage",
@@ -1676,7 +1676,7 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.15
+        "PercentAttackSpeedMod": 0.15
       },
       "tags": [
         "AttackSpeed",
@@ -1771,7 +1771,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 55,
-        "移動速度%": 0.06
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "SpellDamage",
@@ -1885,7 +1885,7 @@
       "stats": {
         "体力": 300,
         "物理防御": 45,
-        "移動速度%": 0.06
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "Health",
@@ -1956,7 +1956,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "移動速度": 55,
-        "攻撃速度%": 0.35
+        "PercentAttackSpeedMod": 0.35
       },
       "tags": [
         "AttackSpeed",
@@ -2059,7 +2059,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 45,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Damage",
@@ -2168,8 +2168,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.6,
-        "移動速度%": 0.08
+        "PercentAttackSpeedMod": 0.6,
+        "PercentMovementSpeedMod": 0.08
       },
       "tags": [
         "CriticalStrike",
@@ -2351,7 +2351,7 @@
       "stats": {
         "体力": 450,
         "攻撃力": 40,
-        "攻撃速度%": 0.3
+        "PercentAttackSpeedMod": 0.3
       },
       "tags": [
         "Health",
@@ -2410,7 +2410,7 @@
       "stats": {
         "体力": 333,
         "攻撃力": 35,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Health",
@@ -2447,8 +2447,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.45,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.45,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "CriticalStrike",
@@ -2467,8 +2467,8 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 45,
-        "攻撃速度%": 0.4,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.4,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -2502,7 +2502,7 @@
       "subcategory": "Spellblock",
       "stats": {
         "魔法防御": 40,
-        "攻撃速度%": 0.5
+        "PercentAttackSpeedMod": 0.5
       },
       "tags": [
         "SpellBlock",
@@ -2521,8 +2521,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.3,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.3,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "CriticalStrike",
@@ -2541,7 +2541,7 @@
       "stats": {
         "クリティカル率": 0.25,
         "攻撃力": 45,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Damage",
@@ -2558,7 +2558,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 80,
-        "移動速度%": 0.1
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "SpellDamage",
@@ -2708,7 +2708,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "魔法攻撃力": 70,
-        "攻撃速度%": 0.45
+        "PercentAttackSpeedMod": 0.45
       },
       "tags": [
         "AttackSpeed",
@@ -2800,7 +2800,7 @@
       "stats": {
         "魔法攻撃力": 25,
         "攻撃力": 20,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Damage",
@@ -2874,7 +2874,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 55,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -2953,7 +2953,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 30,
-        "攻撃速度%": 0.2,
+        "PercentAttackSpeedMod": 0.2,
         "ライフステール": 0.1
       },
       "tags": [
@@ -3064,8 +3064,8 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.5,
-        "移動速度%": 0.1
+        "PercentAttackSpeedMod": 0.5,
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "AttackSpeed",
@@ -3105,7 +3105,7 @@
       "stats": {
         "体力": 500,
         "攻撃力": 40,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -3123,7 +3123,7 @@
       "subcategory": "Health",
       "stats": {
         "攻撃力": 25,
-        "攻撃速度%": 0.35,
+        "PercentAttackSpeedMod": 0.35,
         "ライフステール": 0.05
       },
       "tags": [
@@ -3223,7 +3223,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 30,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Damage",
@@ -3243,7 +3243,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "魔法攻撃力": 40,
-        "移動速度%": 0.06
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "AttackSpeed",
@@ -3284,7 +3284,7 @@
       "stats": {
         "体力": 300,
         "物理防御": 40,
-        "移動速度%": 0.07
+        "PercentMovementSpeedMod": 0.07
       },
       "tags": [
         "Health",
@@ -3375,7 +3375,7 @@
       "stats": {
         "魔法防御": 50,
         "体力": 400,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -3399,9 +3399,9 @@
         "物理防御": 30,
         "クリティカル率": 0.25,
         "攻撃力": 90,
-        "攻撃速度%": 0.6,
+        "PercentAttackSpeedMod": 0.6,
         "ライフステール": 0.1,
-        "移動速度%": 0.1
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "Health",
@@ -3446,7 +3446,7 @@
       "stats": {
         "体力": 350,
         "魔法攻撃力": 65,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -3557,7 +3557,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 80,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "SpellDamage",
@@ -3653,7 +3653,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 55,
-        "移動速度%": 0.1
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "SpellDamage",
@@ -3749,7 +3749,7 @@
       "stats": {
         "体力": 375,
         "攻撃力": 40,
-        "攻撃速度%": 0.15
+        "PercentAttackSpeedMod": 0.15
       },
       "tags": [
         "Health",
@@ -3955,8 +3955,8 @@
       "stats": {
         "クリティカル率": 0.2,
         "攻撃力": 50,
-        "攻撃速度%": 0.15,
-        "移動速度%": 0.07
+        "PercentAttackSpeedMod": 0.15,
+        "PercentMovementSpeedMod": 0.07
       },
       "tags": [
         "Damage",
@@ -3976,8 +3976,8 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 30,
-        "攻撃速度%": 0.35,
-        "移動速度%": 0.07
+        "PercentAttackSpeedMod": 0.35,
+        "PercentMovementSpeedMod": 0.07
       },
       "tags": [
         "Damage",
@@ -4013,8 +4013,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.35,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.35,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "CriticalStrike",
@@ -4287,7 +4287,7 @@
         "魔法防御": 100,
         "体力": 800,
         "物理防御": 50,
-        "移動速度%": 0.05
+        "PercentMovementSpeedMod": 0.05
       },
       "tags": [
         "Health",
@@ -4328,7 +4328,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 130,
-        "攻撃速度%": 0.4,
+        "PercentAttackSpeedMod": 0.4,
         "ライフステール": 0.3
       },
       "tags": [
@@ -4353,8 +4353,8 @@
         "物理防御": 50,
         "クリティカル率": 0.2,
         "攻撃力": 65,
-        "攻撃速度%": 0.3,
-        "移動速度%": 0.1
+        "PercentAttackSpeedMod": 0.3,
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "Health",
@@ -4610,7 +4610,7 @@
       "stats": {
         "体力": 250,
         "物理防御": 40,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -4701,7 +4701,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "移動速度": 45,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "AttackSpeed",
@@ -4956,7 +4956,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 55,
-        "攻撃速度%": 0.35
+        "PercentAttackSpeedMod": 0.35
       },
       "tags": [
         "Damage",
@@ -5166,8 +5166,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.65,
-        "移動速度%": 0.1
+        "PercentAttackSpeedMod": 0.65,
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "CriticalStrike",
@@ -5242,7 +5242,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 20,
-        "攻撃速度%": 0.2
+        "PercentAttackSpeedMod": 0.2
       },
       "tags": [
         "Damage",
@@ -5341,7 +5341,7 @@
       "subcategory": "Health",
       "stats": {
         "体力": 200,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -5517,7 +5517,7 @@
       "stats": {
         "体力": 450,
         "攻撃力": 40,
-        "攻撃速度%": 0.2
+        "PercentAttackSpeedMod": 0.2
       },
       "tags": [
         "Health",
@@ -5643,7 +5643,7 @@
       "stats": {
         "体力": 333,
         "攻撃力": 36,
-        "攻撃速度%": 0.3
+        "PercentAttackSpeedMod": 0.3
       },
       "tags": [
         "Health",
@@ -5739,8 +5739,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.4,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.4,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "CriticalStrike",
@@ -5764,8 +5764,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.15,
-        "攻撃速度%": 0.15,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.15,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "CriticalStrike",
@@ -5796,8 +5796,8 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 45,
-        "攻撃速度%": 0.3,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.3,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -5842,7 +5842,7 @@
       "subcategory": "Spellblock",
       "stats": {
         "魔法防御": 45,
-        "攻撃速度%": 0.5
+        "PercentAttackSpeedMod": 0.5
       },
       "tags": [
         "SpellBlock",
@@ -5867,8 +5867,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.35,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.35,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "CriticalStrike",
@@ -5914,7 +5914,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 100,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "SpellDamage",
@@ -6154,7 +6154,7 @@
       "subcategory": "Nonbootsmovement",
       "stats": {
         "魔法攻撃力": 30,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "NonbootsMovement",
@@ -6215,7 +6215,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "魔法攻撃力": 80,
-        "攻撃速度%": 0.5
+        "PercentAttackSpeedMod": 0.5
       },
       "tags": [
         "AttackSpeed",
@@ -6371,7 +6371,7 @@
       "stats": {
         "魔法攻撃力": 30,
         "攻撃力": 30,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Damage",
@@ -6416,7 +6416,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 30,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Damage",
@@ -6615,7 +6615,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 55,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -6663,7 +6663,7 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.2
+        "PercentAttackSpeedMod": 0.2
       },
       "tags": [
         "AttackSpeed"
@@ -6796,7 +6796,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 40,
-        "攻撃速度%": 0.25,
+        "PercentAttackSpeedMod": 0.25,
         "ライフステール": 0.1
       },
       "tags": [
@@ -7008,7 +7008,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "移動速度": 50,
-        "攻撃速度%": 0.4
+        "PercentAttackSpeedMod": 0.4
       },
       "tags": [
         "AttackSpeed",
@@ -7155,7 +7155,7 @@
       "stats": {
         "体力": 500,
         "攻撃力": 40,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -7283,7 +7283,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 65,
-        "移動速度%": 0.06
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "SpellDamage",
@@ -7334,7 +7334,7 @@
       "stats": {
         "体力": 300,
         "物理防御": 45,
-        "移動速度%": 0.06
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "Health",
@@ -7679,7 +7679,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "魔法攻撃力": 55,
-        "移動速度%": 0.06
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "AttackSpeed",
@@ -7868,7 +7868,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 30,
-        "攻撃速度%": 0.35
+        "PercentAttackSpeedMod": 0.35
       },
       "tags": [
         "Damage",
@@ -7911,7 +7911,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "魔法攻撃力": 45,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "AttackSpeed",
@@ -7962,7 +7962,7 @@
       "stats": {
         "体力": 350,
         "物理防御": 55,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -8566,7 +8566,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 25,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -8592,7 +8592,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 50,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -8718,7 +8718,7 @@
       "subcategory": "Health",
       "stats": {
         "体力": 600,
-        "攻撃速度%": 0.6
+        "PercentAttackSpeedMod": 0.6
       },
       "tags": [
         "Health",
@@ -8737,7 +8737,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 60,
-        "移動速度%": 0.05
+        "PercentMovementSpeedMod": 0.05
       },
       "tags": [
         "SpellDamage",
@@ -8792,7 +8792,7 @@
       "stats": {
         "魔法防御": 55,
         "体力": 400,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -8848,9 +8848,9 @@
         "物理防御": 30,
         "クリティカル率": 0.3,
         "攻撃力": 70,
-        "攻撃速度%": 0.5,
+        "PercentAttackSpeedMod": 0.5,
         "ライフステール": 0.1,
-        "移動速度%": 0.1
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "Health",
@@ -8887,8 +8887,8 @@
       "subcategory": "Armor",
       "stats": {
         "物理防御": 55,
-        "攻撃速度%": 0.5,
-        "移動速度%": 0.05
+        "PercentAttackSpeedMod": 0.5,
+        "PercentMovementSpeedMod": 0.05
       },
       "tags": [
         "Armor",
@@ -8906,8 +8906,8 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 55,
-        "攻撃速度%": 0.45,
-        "移動速度%": 0.15
+        "PercentAttackSpeedMod": 0.45,
+        "PercentMovementSpeedMod": 0.15
       },
       "tags": [
         "Damage",
@@ -9081,7 +9081,7 @@
       "stats": {
         "クリティカル率": 0.25,
         "攻撃力": 45,
-        "攻撃速度%": 0.4
+        "PercentAttackSpeedMod": 0.4
       },
       "tags": [
         "Damage",
@@ -9135,7 +9135,7 @@
       "subcategory": "Health",
       "stats": {
         "体力": 500,
-        "攻撃速度%": 0.75
+        "PercentAttackSpeedMod": 0.75
       },
       "tags": [
         "Health",
@@ -9152,7 +9152,7 @@
       "subcategory": "Health",
       "stats": {
         "体力": 1100,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -9169,8 +9169,8 @@
       "category": "ATTACK",
       "subcategory": "Damage",
       "stats": {
-        "攻撃速度%": 0.5,
-        "移動速度%": 0.05
+        "PercentAttackSpeedMod": 0.5,
+        "PercentMovementSpeedMod": 0.05
       },
       "tags": [
         "Damage",
@@ -9191,7 +9191,7 @@
       "stats": {
         "魔法防御": 65,
         "物理防御": 65,
-        "移動速度%": 0.1
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "SpellBlock",
@@ -9336,8 +9336,8 @@
       "stats": {
         "クリティカル率": 0.25,
         "攻撃力": 65,
-        "攻撃速度%": 0.3,
-        "移動速度%": 0.06
+        "PercentAttackSpeedMod": 0.3,
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "Damage",
@@ -9394,8 +9394,8 @@
       "category": "ATTACK",
       "subcategory": "Damage",
       "stats": {
-        "攻撃速度%": 0.6,
-        "移動速度%": 0.06
+        "PercentAttackSpeedMod": 0.6,
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "Damage",
@@ -9414,8 +9414,8 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.7,
-        "移動速度%": 0.08
+        "PercentAttackSpeedMod": 0.7,
+        "PercentMovementSpeedMod": 0.08
       },
       "tags": [
         "AttackSpeed",
@@ -9434,7 +9434,7 @@
       "stats": {
         "体力": 300,
         "魔法攻撃力": 80,
-        "攻撃速度%": 0.4
+        "PercentAttackSpeedMod": 0.4
       },
       "tags": [
         "Health",
@@ -9522,8 +9522,8 @@
       "category": "ATTACK",
       "subcategory": "Damage",
       "stats": {
-        "攻撃速度%": 0.5,
-        "移動速度%": 0.06
+        "PercentAttackSpeedMod": 0.5,
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "Damage",
@@ -9542,7 +9542,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 80,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "SpellDamage",
@@ -9650,7 +9650,7 @@
       "stats": {
         "魔法防御": 35,
         "物理防御": 35,
-        "攻撃速度%": 0.4
+        "PercentAttackSpeedMod": 0.4
       },
       "tags": [
         "Health",
@@ -9670,7 +9670,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 60,
-        "移動速度%": 0.08
+        "PercentMovementSpeedMod": 0.08
       },
       "tags": [
         "Damage",
@@ -9726,8 +9726,8 @@
         "魔法防御": 30,
         "体力": 500,
         "物理防御": 30,
-        "攻撃速度%": 0.3,
-        "移動速度%": 0.08
+        "PercentAttackSpeedMod": 0.3,
+        "PercentMovementSpeedMod": 0.08
       },
       "tags": [
         "Damage",
@@ -9743,7 +9743,7 @@
       "category": "ATTACK",
       "subcategory": "Damage",
       "stats": {
-        "攻撃速度%": 0.3
+        "PercentAttackSpeedMod": 0.3
       },
       "tags": [
         "Damage",
@@ -9799,7 +9799,7 @@
       "category": "MAGIC",
       "subcategory": "Spelldamage",
       "stats": {
-        "攻撃速度%": 0.3
+        "PercentAttackSpeedMod": 0.3
       },
       "tags": [
         "SpellDamage",
@@ -9840,7 +9840,7 @@
       "stats": {
         "体力": 350,
         "魔法攻撃力": 70,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -10157,7 +10157,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 90,
-        "移動速度%": 0.06
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "SpellDamage",
@@ -10520,7 +10520,7 @@
       "stats": {
         "体力": 450,
         "攻撃力": 40,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Health",
@@ -10563,8 +10563,8 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.4,
-        "移動速度%": 0.08
+        "PercentAttackSpeedMod": 0.4,
+        "PercentMovementSpeedMod": 0.08
       },
       "tags": [
         "AttackSpeed",
@@ -10585,7 +10585,7 @@
       "stats": {
         "魔法防御": 55,
         "物理防御": 55,
-        "移動速度%": 0.08
+        "PercentMovementSpeedMod": 0.08
       },
       "tags": [
         "SpellBlock",
@@ -10658,7 +10658,7 @@
         "物理防御": 10,
         "クリティカル率": 0.25,
         "攻撃力": 90,
-        "攻撃速度%": 0.3,
+        "PercentAttackSpeedMod": 0.3,
         "ライフステール": 0.1
       },
       "tags": [
@@ -10961,8 +10961,8 @@
       "stats": {
         "クリティカル率": 0.2,
         "攻撃力": 50,
-        "攻撃速度%": 0.15,
-        "移動速度%": 0.07
+        "PercentAttackSpeedMod": 0.15,
+        "PercentMovementSpeedMod": 0.07
       },
       "tags": [
         "Damage",
@@ -10986,8 +10986,8 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.5,
-        "移動速度%": 0.08
+        "PercentAttackSpeedMod": 0.5,
+        "PercentMovementSpeedMod": 0.08
       },
       "tags": [
         "AttackSpeed",
@@ -11043,8 +11043,8 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 45,
-        "攻撃速度%": 0.4,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.4,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -11089,8 +11089,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.4,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.4,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "CriticalStrike",
@@ -11158,7 +11158,7 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "AttackSpeed",
@@ -11179,7 +11179,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 15,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -11409,7 +11409,7 @@
       "stats": {
         "物理防御": 30,
         "攻撃力": 50,
-        "移動速度%": 0.05
+        "PercentMovementSpeedMod": 0.05
       },
       "tags": [
         "Armor",
