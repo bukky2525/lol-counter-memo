@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOL アイテム一覧</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="items-styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>LOL アイテム一覧</h1>
+        
+        <div class="nav-links">
+            <a href="index.html" class="nav-btn">← カウンターピックに戻る</a>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" id="searchBox" class="search-box" placeholder="アイテム名で検索...">
+            <div class="category-filters" id="categoryFilters">
+                <button class="category-btn active" data-category="all">全アイテム</button>
+            </div>
+        </div>
+
+        <div id="itemsContainer">
+            <div class="loading">データを読み込んでいます...</div>
+        </div>
+    </div>
+
+    <script src="items.js"></script>
+</body>
+</html>
+

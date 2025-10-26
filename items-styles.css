@@ -1,0 +1,152 @@
+/* アイテムページ専用スタイル */
+
+.nav-links {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.nav-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid #ffd700;
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: rgba(255,215,0,0.3);
+    transform: translateY(-2px);
+}
+
+.category-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.category-btn {
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid transparent;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.category-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+.category-btn.active {
+    background: #ffd700;
+    color: #1e3c72;
+    border-color: #ffd700;
+}
+
+.items-category {
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 30px;
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.items-category h2 {
+    color: #ffd700;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.item-card {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.item-card:hover {
+    background: rgba(255,255,255,0.15);
+    border-color: #ffd700;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(255,215,0,0.3);
+}
+
+.item-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    border: 2px solid rgba(255,215,0,0.5);
+    margin-bottom: 10px;
+}
+
+.item-name {
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.item-name-en {
+    color: #ccc;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.item-cost {
+    color: #ffa500;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.item-stats {
+    color: #ccc;
+    font-size: 11px;
+    margin-top: 8px;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .items-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+    }
+    
+    .item-card {
+        padding: 10px;
+    }
+    
+    .item-icon {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .category-filters {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+    
+    .category-btn {
+        width: 100%;
+        font-size: 12px;
+        padding: 10px 8px;
+    }
+}
+

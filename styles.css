@@ -18,7 +18,30 @@ h1 {
     text-align: center;
     color: #ffd700;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+}
+
+.nav-links {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.nav-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid #ffd700;
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: rgba(255,215,0,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255,215,0,0.4);
 }
 
 /* 検索コンテナ */
