@@ -280,12 +280,24 @@ body {
     display: inline-block;
 }
 
-/* アイテムタグ */
-.item-tags {
+/* アイテムステータス */
+.item-stats {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 12px;
+    gap: 4px;
+    margin: 8px 0;
+    min-height: 20px;
+}
+
+.stat-item {
+    background: rgba(0, 255, 0, 0.1);
+    color: #4CAF50;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    white-space: nowrap;
 }
 
 .item-tag {
@@ -297,7 +309,7 @@ body {
     font-weight: 500;
     border: 1px solid rgba(255,215,0,0.2);
     transition: all 0.3s ease;
-    margin: 2px;
+    margin: 1px;
 }
 
 .item-tag:hover {

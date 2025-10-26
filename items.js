@@ -186,6 +186,9 @@ function renderItems(items = filteredItems) {
                             <div class="item-price">${item.gold ? item.gold.total + 'G' : '価格不明'}</div>
                         </div>
                     </div>
+                    <div class="item-stats">
+                        ${getItemStats(item)}
+                    </div>
                     <div class="item-tags">
                         ${(item.tags || []).map(tag => `<span class="item-tag">${tag}</span>`).join('')}
                     </div>
@@ -363,6 +366,43 @@ function showItemDetail(itemId) {
             modal.remove();
         }
     });
+}
+
+// アイテムのステータスを取得
+function getItemStats(item) {
+    if (!item.stats) return '';
+    
+    const stats = [];
+    const statMap = {
+        'FlatPhysicalDamageMod': { name: '攻撃力', suffix: '' },
+        'FlatMagicDamageMod': { name: '魔力', suffix: '' },
+        'FlatHPPoolMod': { name: '体力', suffix: '' },
+        'FlatMPPoolMod': { name: 'マナ', suffix: '' },
+        'FlatArmorMod': { name: '物理防御', suffix: '' },
+        'FlatSpellBlockMod': { name: '魔法防御', suffix: '' },
+        'FlatMovementSpeedMod': { name: '移動速度', suffix: '' },
+        'PercentAttackSpeedMod': { name: '攻撃速度', suffix: '%' },
+        'FlatCritChanceMod': { name: 'クリティカル率', suffix: '%' },
+        'PercentLifeStealMod': { name: 'ライフステール', suffix: '%' },
+        'FlatHPRegenMod': { name: '体力回復', suffix: '' },
+        'FlatMPRegenMod': { name: 'マナ回復', suffix: '' }
+    };
+    
+    Object.entries(item.stats).forEach(([key, value]) => {
+        if (value && value !== 0 && statMap[key]) {
+            const stat = statMap[key];
+            let displayValue = value;
+            
+            // パーセンテージの場合は100倍して表示
+            if (stat.suffix === '%' && value < 1) {
+                displayValue = Math.round(value * 100);
+            }
+            
+            stats.push(`<span class="stat-item">${stat.name}: +${displayValue}${stat.suffix}</span>`);
+        }
+    });
+    
+    return stats.slice(0, 3).join(''); // 最大3つのステータスを表示
 }
 
 // アイテムアイコンURLを取得
