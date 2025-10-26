@@ -92,7 +92,7 @@ function getOpggUrl(championName, lane) {
         .replace(/'/g, '')  // アポストロフィを削除
         .replace(/\s+/g, ''); // スペースを削除
     
-    return `https://op.gg/ja/lol/champions/${formattedName}/${lane}/build`;
+    return `https://op.gg/ja/lol/champions/${formattedName}/build`;
 }
 
 // 検索マッチング関数
