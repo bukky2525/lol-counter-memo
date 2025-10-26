@@ -197,15 +197,51 @@ function renderItems() {
     console.log('allItems:', allItems);
     console.log('最初の10個のアイテム名:', allItems.slice(0, 10).map(item => item.name));
     
-    // カテゴリフィルタリング
-    if (currentCategory !== 'all') {
-        console.log(`カテゴリフィルタリング開始: ${currentCategory}`);
-        console.log('allItems before filter:', allItems);
+    // ステータスフィルタリング
+    if (currentStatus !== 'all') {
+        console.log(`ステータスフィルタリング開始: ${currentStatus}`);
         allItems = allItems.filter(item => {
-            console.log('フィルタリング中のアイテム:', item);
-            return item.category === currentCategory;
+            const stats = item.stats || {};
+            const statusMapping = {
+                'physical-defense': '物理防御',
+                'critical-rate': 'クリティカル率',
+                'health': '体力',
+                'health-regen': '体力回復',
+                'mana': 'マナ',
+                'magic-power': '魔法攻撃力',
+                'movement-speed': '移動速度',
+                'attack-damage': '攻撃力',
+                'magic-defense': '魔法防御',
+                'attack-speed': '攻撃速度',
+                'lifesteal': 'ライフステール',
+                'movement-speed-percent': '移動速度%'
+            };
+            
+            const targetStat = statusMapping[currentStatus];
+            return targetStat && stats[targetStat] !== undefined;
         });
-        console.log(`カテゴリ "${currentCategory}" のアイテム数: ${allItems.length}`);
+        console.log(`ステータス "${currentStatus}" のアイテム数: ${allItems.length}`);
+    }
+    
+    // 価格フィルタリング
+    if (currentPrice !== 'all') {
+        console.log(`価格フィルタリング開始: ${currentPrice}`);
+        allItems = allItems.filter(item => {
+            const price = item.price || 0;
+            switch (currentPrice) {
+                case '0-500':
+                    return price >= 0 && price <= 500;
+                case '500-1000':
+                    return price > 500 && price <= 1000;
+                case '1000-2000':
+                    return price > 1000 && price <= 2000;
+                case '2000+':
+                    return price > 2000;
+                default:
+                    return true;
+            }
+        });
+        console.log(`価格 "${currentPrice}" のアイテム数: ${allItems.length}`);
     }
     
     // 検索フィルタリング
