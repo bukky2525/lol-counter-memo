@@ -476,7 +476,7 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.1
+        "PercentAttackSpeedMod": 0.1
       },
       "tags": [
         "AttackSpeed"
@@ -505,7 +505,7 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.15
+        "PercentAttackSpeedMod": 0.15
       },
       "tags": [
         "AttackSpeed",
@@ -784,20 +784,6 @@
       "description": "ジャングル コンパニオンモスストンパーを召喚する。モスストンパーはモンスターとの戦闘を手助けしてくれる。モスストンパーの勇気モンスターを狩ることでコンパニオンが成長し、「スマイト」が強化される。最大まで成長するとシールドを付与する。このシールドは大型モンスターをキルするか非戦闘状態になると自動的に回復する。"
     },
     {
-      "id": "1104",
-      "name": "ヘラルドの瞳",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Trinket",
-      "stats": {},
-      "tags": [
-        "Trinket",
-        "Active"
-      ],
-      "description": "発動効果 - 消費: 「ヘラルドの瞳」を砕き、リフトヘラルドを召喚する儀式を始める。召喚後、リフトヘラルドをクリックすることで、どう突撃するか操作できる。この操作効果は召喚時に1回、その後は近くで敵の建造物が破壊されるたびに1回利用できる。"
-    },
-    {
       "id": "1105",
       "name": "モスストンパーの幼体",
       "price": 450,
@@ -857,293 +843,6 @@
       "buildsFrom": [
         "3134",
         "3133"
-      ]
-    },
-    {
-      "id": "1500",
-      "name": "貫通弾",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Healthregen",
-      "stats": {},
-      "tags": [
-        "HealthRegen",
-        "ManaRegen",
-        "OnHit"
-      ]
-    },
-    {
-      "id": "1501",
-      "name": "防衛拡張",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": []
-    },
-    {
-      "id": "1502",
-      "name": "強化装甲",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Armor",
-      "stats": {},
-      "tags": [
-        "Armor",
-        "ManaRegen",
-        "OnHit"
-      ],
-      "description": "強化装甲: 付近に敵のレーンミニオンまたはリフトヘラルドがいない場合、確定ダメージを含め80%のダメージ軽減を得る。"
-    },
-    {
-      "id": "1503",
-      "name": "番人の瞳",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Healthregen",
-      "stats": {},
-      "tags": [
-        "HealthRegen",
-        "ManaRegen",
-        "OnHit"
-      ]
-    },
-    {
-      "id": "1504",
-      "name": "ヴァンガード",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Armor",
-      "stats": {},
-      "tags": [
-        "Armor",
-        "ManaRegen",
-        "OnHit"
-      ]
-    },
-    {
-      "id": "1506",
-      "name": "強化装甲",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Armor",
-      "stats": {},
-      "tags": [
-        "Armor",
-        "ManaRegen",
-        "OnHit"
-      ],
-      "description": "強化装甲: 付近に敵のレーンミニオンまたはリフトヘラルドがいない場合、確定ダメージを含め66%のダメージ軽減を得る。体力自動回復: 本拠地タワーは体力が回復するが、現在の体力の区切りを超えては回復しない。本拠地タワーの体力は33%、66%、100%で区切られる。"
-    },
-    {
-      "id": "1507",
-      "name": "オーバーチャージ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Armor",
-      "stats": {},
-      "tags": [
-        "Armor",
-        "ManaRegen",
-        "OnHit"
-      ]
-    },
-    {
-      "id": "1508",
-      "name": "アンチタワー ソックス",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Armor",
-      "stats": {},
-      "tags": [
-        "Armor",
-        "ManaRegen",
-        "OnHit"
-      ]
-    },
-    {
-      "id": "1509",
-      "name": "ガスト",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Armor",
-      "stats": {},
-      "tags": [
-        "Armor",
-        "ManaRegen",
-        "OnHit"
-      ]
-    },
-    {
-      "id": "1510",
-      "name": "フリーキッシュ ガスト",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Armor",
-      "stats": {},
-      "tags": [
-        "Armor",
-        "ManaRegen",
-        "OnHit"
-      ]
-    },
-    {
-      "id": "1511",
-      "name": "スーパー メカ アーマー",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Armor",
-      "stats": {},
-      "tags": [
-        "Armor",
-        "ManaRegen",
-        "OnHit"
-      ]
-    },
-    {
-      "id": "1512",
-      "name": "スーパー メカ パワー フィールド",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Armor",
-      "stats": {},
-      "tags": [
-        "Armor",
-        "ManaRegen",
-        "OnHit"
-      ]
-    },
-    {
-      "id": "1515",
-      "name": "タワー プレート",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Armor",
-      "stats": {},
-      "tags": [
-        "Armor"
-      ]
-    },
-    {
-      "id": "1516",
-      "name": "建造物の賞金",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Healthregen",
-      "stats": {},
-      "tags": [
-        "HealthRegen",
-        "ManaRegen",
-        "OnHit"
-      ]
-    },
-    {
-      "id": "1517",
-      "name": "建造物の賞金",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Healthregen",
-      "stats": {},
-      "tags": [
-        "HealthRegen",
-        "ManaRegen",
-        "OnHit"
-      ]
-    },
-    {
-      "id": "1518",
-      "name": "建造物の賞金",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Healthregen",
-      "stats": {},
-      "tags": [
-        "HealthRegen",
-        "ManaRegen",
-        "OnHit"
-      ]
-    },
-    {
-      "id": "1519",
-      "name": "建造物の賞金",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Healthregen",
-      "stats": {},
-      "tags": [
-        "HealthRegen",
-        "ManaRegen",
-        "OnHit"
-      ]
-    },
-    {
-      "id": "1520",
-      "name": "オーバーチャージHA",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Armor",
-      "stats": {},
-      "tags": [
-        "Armor",
-        "ManaRegen",
-        "OnHit"
-      ]
-    },
-    {
-      "id": "1521",
-      "name": "防衛拡張",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Onhit",
-      "stats": {},
-      "tags": [
-        "OnHit"
-      ]
-    },
-    {
-      "id": "1522",
-      "name": "タワー パワーアップ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Armor",
-      "stats": {},
-      "tags": [
-        "Armor",
-        "Damage"
-      ]
-    },
-    {
-      "id": "1523",
-      "name": "オーバーチャージ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "DEFENSE",
-      "subcategory": "Armor",
-      "stats": {},
-      "tags": [
-        "Armor",
-        "ManaRegen",
-        "OnHit"
       ]
     },
     {
@@ -1408,17 +1107,6 @@
       "plaintext": "タンク系チャンピオン向けの初期アイテム"
     },
     {
-      "id": "2052",
-      "name": "ポロのおやつ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "発動効果 - 消費: 近くにいるポロに美味しいおやつを食べさせてサイズを大きくする。放し飼いで伸び伸びと草を食べて育ったアヴァローサン産地鶏と、ZMO不使用の有機フレヨルド産ハーブをブレンドし、風味豊かに仕上げました。かわいいポロのゴキゲンな生活に必要な栄養素を、バランス良く含有しています。すべての収益はノクサスの動物虐待防止運動に寄付されます。"
-    },
-    {
       "id": "2055",
       "name": "コントロール ワード",
       "price": 75,
@@ -1461,7 +1149,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 50,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "SpellDamage",
@@ -1583,45 +1271,6 @@
         "CooldownReduction"
       ],
       "description": "同じジュースの効果は重複しないが、異なるジュースを複数同時に使用することはできる。発動効果 - 消費: 戦闘開始時に自動で発動する。飲むと次のラウンドで20+ 15%のスキルヘイストを獲得する。とにかく急ぎたい人のために。本物の雷でできています！"
-    },
-    {
-      "id": "2145",
-      "name": "幸運のダイス",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "TOOLS",
-      "subcategory": "Consumable",
-      "stats": {},
-      "tags": [
-        "Consumable"
-      ],
-      "description": "発動効果 - 消費: サイコロを投げて追加のリロールを1回獲得する。スキルだけでは足りない時のために。"
-    },
-    {
-      "id": "2146",
-      "name": "強化された幸運のダイス",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "TOOLS",
-      "subcategory": "Consumable",
-      "stats": {},
-      "tags": [
-        "Consumable"
-      ],
-      "description": "発動効果 - 消費: サイコロを投げて追加のリロールを5回獲得する。スキルだけでは足りない時のために。"
-    },
-    {
-      "id": "2150",
-      "name": "スキル エリクサー",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "TOOLS",
-      "subcategory": "Consumable",
-      "stats": {},
-      "tags": [
-        "Consumable"
-      ],
-      "description": "使用スキルポイントを1獲得する。このアイテムを使用してもチャンピオンレベルは上昇しない。また、通常のスキルレベル上限を越えてスキルポイントを割り振ることもできない。"
     },
     {
       "id": "2151",
@@ -2027,7 +1676,7 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.15
+        "PercentAttackSpeedMod": 0.15
       },
       "tags": [
         "AttackSpeed",
@@ -2122,7 +1771,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 55,
-        "移動速度%": 0.06
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "SpellDamage",
@@ -2236,7 +1885,7 @@
       "stats": {
         "体力": 300,
         "物理防御": 45,
-        "移動速度%": 0.06
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "Health",
@@ -2307,7 +1956,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "移動速度": 55,
-        "攻撃速度%": 0.35
+        "PercentAttackSpeedMod": 0.35
       },
       "tags": [
         "AttackSpeed",
@@ -2410,7 +2059,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 45,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Damage",
@@ -2519,8 +2168,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.6,
-        "移動速度%": 0.08
+        "PercentAttackSpeedMod": 0.6,
+        "PercentMovementSpeedMod": 0.08
       },
       "tags": [
         "CriticalStrike",
@@ -2702,7 +2351,7 @@
       "stats": {
         "体力": 450,
         "攻撃力": 40,
-        "攻撃速度%": 0.3
+        "PercentAttackSpeedMod": 0.3
       },
       "tags": [
         "Health",
@@ -2761,7 +2410,7 @@
       "stats": {
         "体力": 333,
         "攻撃力": 35,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Health",
@@ -2798,8 +2447,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.45,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.45,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "CriticalStrike",
@@ -2818,8 +2467,8 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 45,
-        "攻撃速度%": 0.4,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.4,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -2853,7 +2502,7 @@
       "subcategory": "Spellblock",
       "stats": {
         "魔法防御": 40,
-        "攻撃速度%": 0.5
+        "PercentAttackSpeedMod": 0.5
       },
       "tags": [
         "SpellBlock",
@@ -2872,8 +2521,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.3,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.3,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "CriticalStrike",
@@ -2892,7 +2541,7 @@
       "stats": {
         "クリティカル率": 0.25,
         "攻撃力": 45,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Damage",
@@ -2909,7 +2558,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 80,
-        "移動速度%": 0.1
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "SpellDamage",
@@ -3059,7 +2708,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "魔法攻撃力": 70,
-        "攻撃速度%": 0.45
+        "PercentAttackSpeedMod": 0.45
       },
       "tags": [
         "AttackSpeed",
@@ -3151,7 +2800,7 @@
       "stats": {
         "魔法攻撃力": 25,
         "攻撃力": 20,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Damage",
@@ -3225,7 +2874,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 55,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -3304,7 +2953,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 30,
-        "攻撃速度%": 0.2,
+        "PercentAttackSpeedMod": 0.2,
         "ライフステール": 0.1
       },
       "tags": [
@@ -3415,8 +3064,8 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.5,
-        "移動速度%": 0.1
+        "PercentAttackSpeedMod": 0.5,
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "AttackSpeed",
@@ -3456,7 +3105,7 @@
       "stats": {
         "体力": 500,
         "攻撃力": 40,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -3474,7 +3123,7 @@
       "subcategory": "Health",
       "stats": {
         "攻撃力": 25,
-        "攻撃速度%": 0.35,
+        "PercentAttackSpeedMod": 0.35,
         "ライフステール": 0.05
       },
       "tags": [
@@ -3574,7 +3223,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 30,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Damage",
@@ -3594,7 +3243,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "魔法攻撃力": 40,
-        "移動速度%": 0.06
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "AttackSpeed",
@@ -3635,7 +3284,7 @@
       "stats": {
         "体力": 300,
         "物理防御": 40,
-        "移動速度%": 0.07
+        "PercentMovementSpeedMod": 0.07
       },
       "tags": [
         "Health",
@@ -3726,7 +3375,7 @@
       "stats": {
         "魔法防御": 50,
         "体力": 400,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -3750,9 +3399,9 @@
         "物理防御": 30,
         "クリティカル率": 0.25,
         "攻撃力": 90,
-        "攻撃速度%": 0.6,
+        "PercentAttackSpeedMod": 0.6,
         "ライフステール": 0.1,
-        "移動速度%": 0.1
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "Health",
@@ -3797,7 +3446,7 @@
       "stats": {
         "体力": 350,
         "魔法攻撃力": 65,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -3908,7 +3557,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 80,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "SpellDamage",
@@ -4004,7 +3653,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 55,
-        "移動速度%": 0.1
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "SpellDamage",
@@ -4100,7 +3749,7 @@
       "stats": {
         "体力": 375,
         "攻撃力": 40,
-        "攻撃速度%": 0.15
+        "PercentAttackSpeedMod": 0.15
       },
       "tags": [
         "Health",
@@ -4306,8 +3955,8 @@
       "stats": {
         "クリティカル率": 0.2,
         "攻撃力": 50,
-        "攻撃速度%": 0.15,
-        "移動速度%": 0.07
+        "PercentAttackSpeedMod": 0.15,
+        "PercentMovementSpeedMod": 0.07
       },
       "tags": [
         "Damage",
@@ -4327,8 +3976,8 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 30,
-        "攻撃速度%": 0.35,
-        "移動速度%": 0.07
+        "PercentAttackSpeedMod": 0.35,
+        "PercentMovementSpeedMod": 0.07
       },
       "tags": [
         "Damage",
@@ -4364,8 +4013,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.35,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.35,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "CriticalStrike",
@@ -4638,7 +4287,7 @@
         "魔法防御": 100,
         "体力": 800,
         "物理防御": 50,
-        "移動速度%": 0.05
+        "PercentMovementSpeedMod": 0.05
       },
       "tags": [
         "Health",
@@ -4679,7 +4328,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 130,
-        "攻撃速度%": 0.4,
+        "PercentAttackSpeedMod": 0.4,
         "ライフステール": 0.3
       },
       "tags": [
@@ -4704,8 +4353,8 @@
         "物理防御": 50,
         "クリティカル率": 0.2,
         "攻撃力": 65,
-        "攻撃速度%": 0.3,
-        "移動速度%": 0.1
+        "PercentAttackSpeedMod": 0.3,
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "Health",
@@ -4738,17 +4387,6 @@
         "AbilityHaste"
       ],
       "description": "体力350魔法防御50スキルヘイスト15荒廃周囲の敵チャンピオンが受ける魔法ダメージが12%増加する。"
-    },
-    {
-      "id": "2403",
-      "name": "ミニオン吸収装置",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "発動効果 - 消費: 対象のレーンミニオンを倒す。(0秒)"
     },
     {
       "id": "2420",
@@ -4972,7 +4610,7 @@
       "stats": {
         "体力": 250,
         "物理防御": 40,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -5063,7 +4701,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "移動速度": 45,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "AttackSpeed",
@@ -5318,7 +4956,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 55,
-        "攻撃速度%": 0.35
+        "PercentAttackSpeedMod": 0.35
       },
       "tags": [
         "Damage",
@@ -5528,8 +5166,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.65,
-        "移動速度%": 0.1
+        "PercentAttackSpeedMod": 0.65,
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "CriticalStrike",
@@ -5604,7 +5242,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 20,
-        "攻撃速度%": 0.2
+        "PercentAttackSpeedMod": 0.2
       },
       "tags": [
         "Damage",
@@ -5703,7 +5341,7 @@
       "subcategory": "Health",
       "stats": {
         "体力": 200,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -5879,7 +5517,7 @@
       "stats": {
         "体力": 450,
         "攻撃力": 40,
-        "攻撃速度%": 0.2
+        "PercentAttackSpeedMod": 0.2
       },
       "tags": [
         "Health",
@@ -6005,7 +5643,7 @@
       "stats": {
         "体力": 333,
         "攻撃力": 36,
-        "攻撃速度%": 0.3
+        "PercentAttackSpeedMod": 0.3
       },
       "tags": [
         "Health",
@@ -6101,8 +5739,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.4,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.4,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "CriticalStrike",
@@ -6126,8 +5764,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.15,
-        "攻撃速度%": 0.15,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.15,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "CriticalStrike",
@@ -6158,8 +5796,8 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 45,
-        "攻撃速度%": 0.3,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.3,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -6204,7 +5842,7 @@
       "subcategory": "Spellblock",
       "stats": {
         "魔法防御": 45,
-        "攻撃速度%": 0.5
+        "PercentAttackSpeedMod": 0.5
       },
       "tags": [
         "SpellBlock",
@@ -6229,8 +5867,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.35,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.35,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "CriticalStrike",
@@ -6276,7 +5914,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 100,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "SpellDamage",
@@ -6516,7 +6154,7 @@
       "subcategory": "Nonbootsmovement",
       "stats": {
         "魔法攻撃力": 30,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "NonbootsMovement",
@@ -6577,7 +6215,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "魔法攻撃力": 80,
-        "攻撃速度%": 0.5
+        "PercentAttackSpeedMod": 0.5
       },
       "tags": [
         "AttackSpeed",
@@ -6733,7 +6371,7 @@
       "stats": {
         "魔法攻撃力": 30,
         "攻撃力": 30,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Damage",
@@ -6778,7 +6416,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 30,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Damage",
@@ -6977,7 +6615,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 55,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -7025,7 +6663,7 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.2
+        "PercentAttackSpeedMod": 0.2
       },
       "tags": [
         "AttackSpeed"
@@ -7158,7 +6796,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 40,
-        "攻撃速度%": 0.25,
+        "PercentAttackSpeedMod": 0.25,
         "ライフステール": 0.1
       },
       "tags": [
@@ -7370,7 +7008,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "移動速度": 50,
-        "攻撃速度%": 0.4
+        "PercentAttackSpeedMod": 0.4
       },
       "tags": [
         "AttackSpeed",
@@ -7517,7 +7155,7 @@
       "stats": {
         "体力": 500,
         "攻撃力": 40,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -7645,7 +7283,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 65,
-        "移動速度%": 0.06
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "SpellDamage",
@@ -7696,7 +7334,7 @@
       "stats": {
         "体力": 300,
         "物理防御": 45,
-        "移動速度%": 0.06
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "Health",
@@ -8041,7 +7679,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "魔法攻撃力": 55,
-        "移動速度%": 0.06
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "AttackSpeed",
@@ -8230,7 +7868,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 30,
-        "攻撃速度%": 0.35
+        "PercentAttackSpeedMod": 0.35
       },
       "tags": [
         "Damage",
@@ -8245,152 +7883,6 @@
         "3051",
         "1043"
       ]
-    },
-    {
-      "id": "3330",
-      "name": "身代わり人形",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [
-        "Active",
-        "Jungle",
-        "Lane",
-        "Trinket",
-        "Vision"
-      ],
-      "description": "売却不可発動効果 - トリンケット: 「身代わり人形」を設置する。人形は0秒間持続し、敵からはフィドルスティックスとまったく同じ姿に見える。0秒ごとに1チャージを獲得する(最大2チャージ)。敵チャンピオンが近づくと人形が発動してランダムな偽のアクションを行い、その後人形はバラバラになる。",
-      "plaintext": "一定時間ごとにステルス ワードを設置可能"
-    },
-    {
-      "id": "3340",
-      "name": "ステルス ワード",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [
-        "Active",
-        "Jungle",
-        "Lane",
-        "Trinket",
-        "Vision"
-      ],
-      "description": "発動効果 (210 - 120秒、最大2チャージ)90-120秒間視界を付与するインビジブル状態の「ステルス ワード」を設置する。",
-      "plaintext": "一定時間ごとにステルス ワードを設置可能"
-    },
-    {
-      "id": "3348",
-      "name": "アーケイン スイーパー",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [
-        "Active",
-        "Jungle",
-        "Lane",
-        "Trinket",
-        "Vision"
-      ],
-      "description": "発動効果(重複不可) - 狩人の目: 指定範囲に魔法の霧を5秒間展開し、その範囲内にいる敵チャンピオンを可視化して、その範囲内にある罠の真の視界を得る。視界の効果時間は3秒間(クールダウン30秒)。",
-      "plaintext": "発動で周辺の視界を得る"
-    },
-    {
-      "id": "3349",
-      "name": "シンギュラリティ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [
-        "Active",
-        "Jungle",
-        "Lane",
-        "Trinket",
-        "Vision"
-      ],
-      "description": "シンギュラリティ",
-      "plaintext": "光の領域を作り出し、範囲内の敵に@Slow@の<status>スロウ効果</status>を与えて視界を得る。5秒経過するか<recast>再発動</recast>で爆発し、<magicDamage>@TotalDamage@の魔法ダメージ</magicDamage>を与えて<status>スロウ効果</status>を追加で@SlowLingerDuration@秒間付与する。"
-    },
-    {
-      "id": "3363",
-      "name": "ファーサイト オルタレーション",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [
-        "Active",
-        "Trinket",
-        "Vision"
-      ],
-      "description": "発動効果 (198 - 99秒)2秒間、遠くのエリアを可視化し、敵チャンピオンが視界に入ると効果が切れるワードを設置する。",
-      "plaintext": "射程距離が上昇し、指定した範囲の視界を得る"
-    },
-    {
-      "id": "3364",
-      "name": "オラクル レンズ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [
-        "Active",
-        "Trinket",
-        "Vision"
-      ],
-      "description": "発動効果 (160 - 100秒、最大2チャージ)6秒間、周囲にある敵のステルス ワードとトラップを可視化する。",
-      "plaintext": "近くにあるステルス状態のワード、トラップを一定時間無効化"
-    },
-    {
-      "id": "3398",
-      "name": "小さなパーティーのおみやげ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "TOOLS",
-      "subcategory": "Consumable",
-      "stats": {},
-      "tags": [
-        "Consumable",
-        "GoldPer"
-      ],
-      "description": "ニャコのびっくり箱から獲得。クリックで使用: ゴールドを獲得する。"
-    },
-    {
-      "id": "3399",
-      "name": "パーティーのおみやげ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "TOOLS",
-      "subcategory": "Consumable",
-      "stats": {},
-      "tags": [
-        "Consumable",
-        "GoldPer"
-      ],
-      "description": "「パーティーのおみやげ」パーティードレイクから獲得。クリックで使用: ゴールドの山と、1スキルポイントを獲得する！スキルポイントの上限を超えてスキルポイントを獲得することはできません。また、ポイントを獲得したからといってリーグ・オブ・レジェンドのプレイが上達することもありません。追加の利用規約が適用される可能性があります。"
-    },
-    {
-      "id": "3400",
-      "name": "お前の取り分",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "TOOLS",
-      "subcategory": "Consumable",
-      "stats": {},
-      "tags": [
-        "Consumable",
-        "GoldPer"
-      ],
-      "description": "発動効果 - 消費: 0ゴールドを得る。パイクがアルティメットスキルで敵チャンピオンにとどめを刺したときに、味方が獲得できるボーナスゴールドである。キルに味方が貢献していない場合は、パイクが取り分をいただく！"
     },
     {
       "id": "3430",
@@ -8419,7 +7911,7 @@
       "subcategory": "Attackspeed",
       "stats": {
         "魔法攻撃力": 45,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "AttackSpeed",
@@ -8461,49 +7953,6 @@
       ]
     },
     {
-      "id": "3513",
-      "name": "ヘラルドの瞳",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Trinket",
-      "stats": {},
-      "tags": [
-        "Trinket",
-        "Active"
-      ],
-      "description": "発動効果 - 消費: 「ヘラルドの瞳」を砕き、リフトヘラルドを召喚する儀式を始める。召喚後、リフトヘラルドをクリックすることで、どう突撃するか操作できる。この操作効果は召喚時に1回、その後は近くで敵の建造物が破壊されるたびに1回利用できる。",
-      "plaintext": "ヘラルドの瞳 - ヴォイドの賜り物"
-    },
-    {
-      "id": "3599",
-      "name": "カリスタの復讐の黒槍",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "TOOLS",
-      "subcategory": "Consumable",
-      "stats": {},
-      "tags": [
-        "Consumable"
-      ],
-      "description": "発動効果 - 消費: 味方1体と現在のゲーム終了まで続く誓いを結び「魂盟の同志」となる。「魂盟の同志」がお互いの近くにいると、両者とも能力が強化される。",
-      "plaintext": "味方と魂盟を結ぶカリスタの槍"
-    },
-    {
-      "id": "3600",
-      "name": "カリスタの復讐の黒槍",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "TOOLS",
-      "subcategory": "Consumable",
-      "stats": {},
-      "tags": [
-        "Consumable"
-      ],
-      "description": "発動効果 - 消費: 味方1体と現在のゲーム終了まで続く誓いを結び「魂盟の同志」となる。「魂盟の同志」がお互いの近くにいると、両者とも能力が強化される。カリスタのアルティメットスキルを使用する必要がある。",
-      "plaintext": "味方と魂盟を結ぶカリスタの槍。"
-    },
-    {
       "id": "3742",
       "name": "デッド マン プレート",
       "price": 2900,
@@ -8513,7 +7962,7 @@
       "stats": {
         "体力": 350,
         "物理防御": 55,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -9085,41 +8534,6 @@
       ]
     },
     {
-      "id": "3901",
-      "name": "<rarityLegendary>乱れ撃ち</rarityLegendary><br><subtitleLeft><silver>500シルバーサーペント</silver></subtitleLeft>",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "plaintext": "「一斉砲撃」の砲撃速度が徐々に増加していく(効果時間中、6回の砲撃が追加)。"
-    },
-    {
-      "id": "3902",
-      "name": "<rarityLegendary>死の女神</rarityLegendary><br><subtitleLeft><silver>500シルバーサーペント</silver></subtitleLeft>",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "「一斉砲撃」の砲撃範囲の中心に巨大な砲弾が追加で放たれ、追加確定ダメージとスロウ効果を与える。",
-      "plaintext": "<mainText>「一斉砲撃」の砲撃範囲の中心に巨大な砲弾が追加で放たれ、<trueDamage>追加確定ダメージ</trueDamage>と<status>スロウ効果</status>を与える。</mainText>"
-    },
-    {
-      "id": "3903",
-      "name": "<rarityLegendary>士気上昇</rarityLegendary><br><subtitleLeft><silver>500シルバーサーペント</silver></subtitleLeft>",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "「一斉砲撃」の砲撃範囲内の味方は、移動速度が増加する。",
-      "plaintext": "「一斉砲撃」の砲撃範囲内の味方は、<speed>移動速度が増加</speed>する。"
-    },
-    {
       "id": "3916",
       "name": "忘却のオーブ",
       "price": 800,
@@ -9152,7 +8566,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 25,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -9178,7 +8592,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 50,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -9304,7 +8718,7 @@
       "subcategory": "Health",
       "stats": {
         "体力": 600,
-        "攻撃速度%": 0.6
+        "PercentAttackSpeedMod": 0.6
       },
       "tags": [
         "Health",
@@ -9323,7 +8737,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 60,
-        "移動速度%": 0.05
+        "PercentMovementSpeedMod": 0.05
       },
       "tags": [
         "SpellDamage",
@@ -9378,7 +8792,7 @@
       "stats": {
         "魔法防御": 55,
         "体力": 400,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -9434,9 +8848,9 @@
         "物理防御": 30,
         "クリティカル率": 0.3,
         "攻撃力": 70,
-        "攻撃速度%": 0.5,
+        "PercentAttackSpeedMod": 0.5,
         "ライフステール": 0.1,
-        "移動速度%": 0.1
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "Health",
@@ -9473,8 +8887,8 @@
       "subcategory": "Armor",
       "stats": {
         "物理防御": 55,
-        "攻撃速度%": 0.5,
-        "移動速度%": 0.05
+        "PercentAttackSpeedMod": 0.5,
+        "PercentMovementSpeedMod": 0.05
       },
       "tags": [
         "Armor",
@@ -9492,8 +8906,8 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 55,
-        "攻撃速度%": 0.45,
-        "移動速度%": 0.15
+        "PercentAttackSpeedMod": 0.45,
+        "PercentMovementSpeedMod": 0.15
       },
       "tags": [
         "Damage",
@@ -9667,7 +9081,7 @@
       "stats": {
         "クリティカル率": 0.25,
         "攻撃力": 45,
-        "攻撃速度%": 0.4
+        "PercentAttackSpeedMod": 0.4
       },
       "tags": [
         "Damage",
@@ -9721,7 +9135,7 @@
       "subcategory": "Health",
       "stats": {
         "体力": 500,
-        "攻撃速度%": 0.75
+        "PercentAttackSpeedMod": 0.75
       },
       "tags": [
         "Health",
@@ -9738,7 +9152,7 @@
       "subcategory": "Health",
       "stats": {
         "体力": 1100,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -9755,8 +9169,8 @@
       "category": "ATTACK",
       "subcategory": "Damage",
       "stats": {
-        "攻撃速度%": 0.5,
-        "移動速度%": 0.05
+        "PercentAttackSpeedMod": 0.5,
+        "PercentMovementSpeedMod": 0.05
       },
       "tags": [
         "Damage",
@@ -9777,7 +9191,7 @@
       "stats": {
         "魔法防御": 65,
         "物理防御": 65,
-        "移動速度%": 0.1
+        "PercentMovementSpeedMod": 0.1
       },
       "tags": [
         "SpellBlock",
@@ -9922,8 +9336,8 @@
       "stats": {
         "クリティカル率": 0.25,
         "攻撃力": 65,
-        "攻撃速度%": 0.3,
-        "移動速度%": 0.06
+        "PercentAttackSpeedMod": 0.3,
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "Damage",
@@ -9980,8 +9394,8 @@
       "category": "ATTACK",
       "subcategory": "Damage",
       "stats": {
-        "攻撃速度%": 0.6,
-        "移動速度%": 0.06
+        "PercentAttackSpeedMod": 0.6,
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "Damage",
@@ -10000,8 +9414,8 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.7,
-        "移動速度%": 0.08
+        "PercentAttackSpeedMod": 0.7,
+        "PercentMovementSpeedMod": 0.08
       },
       "tags": [
         "AttackSpeed",
@@ -10020,7 +9434,7 @@
       "stats": {
         "体力": 300,
         "魔法攻撃力": 80,
-        "攻撃速度%": 0.4
+        "PercentAttackSpeedMod": 0.4
       },
       "tags": [
         "Health",
@@ -10108,8 +9522,8 @@
       "category": "ATTACK",
       "subcategory": "Damage",
       "stats": {
-        "攻撃速度%": 0.5,
-        "移動速度%": 0.06
+        "PercentAttackSpeedMod": 0.5,
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "Damage",
@@ -10128,7 +9542,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 80,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "SpellDamage",
@@ -10236,7 +9650,7 @@
       "stats": {
         "魔法防御": 35,
         "物理防御": 35,
-        "攻撃速度%": 0.4
+        "PercentAttackSpeedMod": 0.4
       },
       "tags": [
         "Health",
@@ -10256,7 +9670,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 60,
-        "移動速度%": 0.08
+        "PercentMovementSpeedMod": 0.08
       },
       "tags": [
         "Damage",
@@ -10312,8 +9726,8 @@
         "魔法防御": 30,
         "体力": 500,
         "物理防御": 30,
-        "攻撃速度%": 0.3,
-        "移動速度%": 0.08
+        "PercentAttackSpeedMod": 0.3,
+        "PercentMovementSpeedMod": 0.08
       },
       "tags": [
         "Damage",
@@ -10329,7 +9743,7 @@
       "category": "ATTACK",
       "subcategory": "Damage",
       "stats": {
-        "攻撃速度%": 0.3
+        "PercentAttackSpeedMod": 0.3
       },
       "tags": [
         "Damage",
@@ -10385,7 +9799,7 @@
       "category": "MAGIC",
       "subcategory": "Spelldamage",
       "stats": {
-        "攻撃速度%": 0.3
+        "PercentAttackSpeedMod": 0.3
       },
       "tags": [
         "SpellDamage",
@@ -10426,7 +9840,7 @@
       "stats": {
         "体力": 350,
         "魔法攻撃力": 70,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Health",
@@ -10743,7 +10157,7 @@
       "subcategory": "Spelldamage",
       "stats": {
         "魔法攻撃力": 90,
-        "移動速度%": 0.06
+        "PercentMovementSpeedMod": 0.06
       },
       "tags": [
         "SpellDamage",
@@ -11106,7 +10520,7 @@
       "stats": {
         "体力": 450,
         "攻撃力": 40,
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "Health",
@@ -11149,8 +10563,8 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.4,
-        "移動速度%": 0.08
+        "PercentAttackSpeedMod": 0.4,
+        "PercentMovementSpeedMod": 0.08
       },
       "tags": [
         "AttackSpeed",
@@ -11171,7 +10585,7 @@
       "stats": {
         "魔法防御": 55,
         "物理防御": 55,
-        "移動速度%": 0.08
+        "PercentMovementSpeedMod": 0.08
       },
       "tags": [
         "SpellBlock",
@@ -11244,7 +10658,7 @@
         "物理防御": 10,
         "クリティカル率": 0.25,
         "攻撃力": 90,
-        "攻撃速度%": 0.3,
+        "PercentAttackSpeedMod": 0.3,
         "ライフステール": 0.1
       },
       "tags": [
@@ -11547,8 +10961,8 @@
       "stats": {
         "クリティカル率": 0.2,
         "攻撃力": 50,
-        "攻撃速度%": 0.15,
-        "移動速度%": 0.07
+        "PercentAttackSpeedMod": 0.15,
+        "PercentMovementSpeedMod": 0.07
       },
       "tags": [
         "Damage",
@@ -11572,8 +10986,8 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.5,
-        "移動速度%": 0.08
+        "PercentAttackSpeedMod": 0.5,
+        "PercentMovementSpeedMod": 0.08
       },
       "tags": [
         "AttackSpeed",
@@ -11629,8 +11043,8 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 45,
-        "攻撃速度%": 0.4,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.4,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -11675,8 +11089,8 @@
       "subcategory": "Criticalstrike",
       "stats": {
         "クリティカル率": 0.25,
-        "攻撃速度%": 0.4,
-        "移動速度%": 0.04
+        "PercentAttackSpeedMod": 0.4,
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "CriticalStrike",
@@ -11744,7 +11158,7 @@
       "category": "ATTACK",
       "subcategory": "Attackspeed",
       "stats": {
-        "攻撃速度%": 0.25
+        "PercentAttackSpeedMod": 0.25
       },
       "tags": [
         "AttackSpeed",
@@ -11765,7 +11179,7 @@
       "subcategory": "Damage",
       "stats": {
         "攻撃力": 15,
-        "移動速度%": 0.04
+        "PercentMovementSpeedMod": 0.04
       },
       "tags": [
         "Damage",
@@ -11995,7 +11409,7 @@
       "stats": {
         "物理防御": 30,
         "攻撃力": 50,
-        "移動速度%": 0.05
+        "PercentMovementSpeedMod": 0.05
       },
       "tags": [
         "Armor",
@@ -12033,34 +11447,6 @@
         "3134",
         "1036"
       ]
-    },
-    {
-      "id": "6702",
-      "name": "前方を偵察",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [
-        "Active",
-        "Jungle",
-        "Lane",
-        "Trinket",
-        "Vision"
-      ],
-      "description": "発動効果(重複不可): 指定地点を偵察して、5秒間範囲内の視界を確保する。範囲内にいる敵チャンピオンを可視化して、その範囲内にある罠の真の視界を得る。視界の効果時間は3秒間(クールダウン60秒)。"
-    },
-    {
-      "id": "7050",
-      "name": "ガングプランク プレースホルダー",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "plaintext": "ガングプランクの新たなインターフェースがまもなく登場！"
     },
     {
       "id": "8001",
@@ -12130,653 +11516,6 @@
         "3067",
         "1057"
       ]
-    },
-    {
-      "id": "9168",
-      "name": "ロックされた武器スロット",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "実力を証明すれば、ミス・フォーチュンが所持品欄のアップグレードを承認してくれる。[実績を完了すると解除]"
-    },
-    {
-      "id": "9171",
-      "name": "サイクロニック スライサー",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "周回する飛翔物が敵にダメージを与えてノックバックする。進化: 体力自動回復ダメージ、スキルヘイスト、効果範囲の大きさ、発射数、効果時間"
-    },
-    {
-      "id": "9172",
-      "name": "ユーミボット",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "Yuum.AI ドローンを1体召喚する。Yuum.AI は敵にダメージを与えてノックアップするほか、XPを集める。進化: 取得範囲ダメージ、スキルヘイスト、効果範囲の大きさ、効果時間、取得範囲"
-    },
-    {
-      "id": "9173",
-      "name": "レディアント フィールド",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "周囲の敵にダメージを与える。ダメージは最大体力に応じて増加する。進化: 最大体力ダメージ、効果範囲の大きさ、最大体力"
-    },
-    {
-      "id": "9174",
-      "name": "スタティック ソード",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "電撃を放つ。電撃は最も体力が多い敵の間で跳ね返る。進化: 最大体力ダメージ、スキルヘイスト、効果範囲の大きさ、クリティカル率、効果時間"
-    },
-    {
-      "id": "9175",
-      "name": "ライオネスの悲嘆",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "キャラクターの左右に三日月形の飛翔物を発射する。進化: スキルヘイストダメージ、スキルヘイスト、クリティカル率、発射数"
-    },
-    {
-      "id": "9176",
-      "name": "ガトリング バニーガン",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "扇状の範囲に継続ダメージを与える。進化: 効果時間ダメージ、スキルヘイスト、効果時間、範囲の大きさ"
-    },
-    {
-      "id": "9177",
-      "name": "灼熱のショートボウ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "炎のエリアを作り出す飛翔物を発射する。進化: 効果範囲の大きさダメージ、スキルヘイスト、効果範囲の大きさ、発射数、効果時間"
-    },
-    {
-      "id": "9178",
-      "name": "アナイアレーター",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "巨大な爆発が発生して、通常の敵をすべて倒し、エリートには大ダメージを与える。長いクールダウンあり。進化: 経験値ダメージ、スキルヘイスト、効果範囲の大きさ"
-    },
-    {
-      "id": "9179",
-      "name": "バトルバニー クロスボウ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "追加のクリティカル判定がある飛翔物をランダムな方向に向かって扇状に発射する。クリティカル時、飛翔物が貫通する。進化: クリティカル率ダメージ、スキルヘイスト、クリティカル率、発射数"
-    },
-    {
-      "id": "9180",
-      "name": "UwU ブラスター",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "最も近くにいる敵に素早く連続で飛翔物を発射し、最初に命中した対象にダメージを与える。進化: スキルヘイストダメージ、スキルヘイスト、クリティカル率、発射数"
-    },
-    {
-      "id": "9181",
-      "name": "ボルテックス グローブ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "回転する飛翔物を連続で発射する。進化: 体力自動回復ダメージ、クリティカル率、発射数"
-    },
-    {
-      "id": "9183",
-      "name": "ブレードブーメラン",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "戻ってくる飛翔物を最も近くにいる敵に向けて発射する。進化: 移動速度ダメージ、スキルヘイスト、クリティカル率、発射数"
-    },
-    {
-      "id": "9184",
-      "name": "バニー メガブラスト",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "ランダムな敵にめがけて軌道爆撃を行い、狭い範囲に大ダメージを与える(追加のクリティカル判定あり)。進化: クリティカル率ダメージ、スキルヘイスト、効果範囲の大きさ、クリティカル率"
-    },
-    {
-      "id": "9185",
-      "name": "対シャーク海中地雷",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "敵から敵に跳ね返る爆発物を発射する。進化: ダメージダメージ、スキルヘイスト、効果範囲の大きさ"
-    },
-    {
-      "id": "9187",
-      "name": "T.I.B.B.E.R.S",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "ロボ・ティバーズを召喚する。ロボ・ティバーズはなぎ払い、範囲ダメージを与える。ロボ・ティバーズは最も体力が多い敵を攻撃する。進化: 効果時間ダメージ、スキルヘイスト、効果範囲の大きさ、効果時間、移動速度"
-    },
-    {
-      "id": "9188",
-      "name": "アニマイン",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "複数の時限式飛翔物を円状に投下し、追加の爆発物爆発を放ち、広範囲にダメージを与える。進化: 効果範囲の大きさダメージ、スキルヘイスト、効果範囲の大きさ、発射数"
-    },
-    {
-      "id": "9189",
-      "name": "ファイナルシティ交通",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "回転する飛翔物を連続で発射する。進化: 体力自動回復ダメージ、クリティカル率、発射数"
-    },
-    {
-      "id": "9190",
-      "name": "エコー バットブレード",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "壁に当たると跳ね返る、貫通する飛翔物を発射する。進化: 発射数ダメージ、スキルヘイスト、クリティカル率、発射数"
-    },
-    {
-      "id": "9192",
-      "name": "毒の足跡",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": []
-    },
-    {
-      "id": "9193",
-      "name": "アイスブラスト アーマー",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "ブロックすると敵を凍らせ、ダメージを与える。ダメージは物理防御と最大体力に応じて増加する。進化: 物理防御ダメージ、スキルヘイスト、効果範囲の大きさ、効果時間、物理防御"
-    },
-    {
-      "id": "9271",
-      "name": "終わりなき旋風",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "飛翔物が恒久的に周回して、敵にダメージを与えてノックバックする。ダメージ、スキルヘイスト、発射数、効果範囲の大きさ、効果時間"
-    },
-    {
-      "id": "9272",
-      "name": "YuumiBot_Final_FINAL",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "Yuum.AI ドローンを1体召喚する。Yuum.AI は敵にダメージを与えてノックアップするほか、XPを集める。一定のダメージを与えると、体力回復アイテムをドロップする。ダメージ、スキルヘイスト、範囲の大きさ、効果時間、取得範囲"
-    },
-    {
-      "id": "9273",
-      "name": "爆発の抱擁",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "周囲の敵にダメージを与える。ダメージは最大体力に応じて増加する。燃えるゾーン内で倒された敵は爆発する。ダメージ、効果範囲の大きさ、最大体力"
-    },
-    {
-      "id": "9274",
-      "name": "プランビス エレクトロカーバー",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "対象の敵の周囲に嵐を発生させて、一定時間ダメージを与える。ダメージ、スキルヘイスト、効果範囲の大きさ、クリティカル率、効果時間"
-    },
-    {
-      "id": "9275",
-      "name": "包みこむ光",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "画面端まで届く光のビームを発射する。ダメージ、スキルヘイスト、クリティカル率、発射数"
-    },
-    {
-      "id": "9276",
-      "name": "ダブルバンバン砲",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "扇状の範囲に継続ダメージを与える。ダメージを受けた敵はスロウ効果を受け、最終的にスタンする。スタンした敵は追加ダメージを受ける。ダメージ、スキルヘイスト、効果時間、範囲の大きさ"
-    },
-    {
-      "id": "9277",
-      "name": "進化したエンバーショット",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "炎のエリアを作り出す飛翔物を発射する。時間とともに炎の範囲は広がり、ダメージが増加する。ダメージ、スキルヘイスト、効果範囲の大きさ、発射数、効果時間"
-    },
-    {
-      "id": "9278",
-      "name": "アニマポカリプス",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "巨大な爆発が発生して、通常の敵をすべて倒し、エリートには大ダメージを与える。倒した敵がドロップする経験値が増加し、一定確率でゴールドをドロップする。長いクールダウンあり。ダメージ、スキルヘイスト、効果範囲の大きさ"
-    },
-    {
-      "id": "9279",
-      "name": "バニープライム バリスタ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "追加のクリティカル判定がある飛翔物をランダムな方向に向かって扇状に発射する。クリティカル時、飛翔物が貫通する。進化: クリティカル率ダメージ、スキルヘイスト、クリティカル率、発射数"
-    },
-    {
-      "id": "9280",
-      "name": "OwO ブラスター",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "最も近くにいる敵に超高速で飛翔物で発射し、最初に命中した対象にダメージを与える。ダメージ、スキルヘイスト、クリティカル率、発射数"
-    },
-    {
-      "id": "9281",
-      "name": "テンペスト ガントレット",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "自身の周囲にミサイルを2連続で発射する。2つのミサイルの流れは互いに反対方向に回転する。ダメージ、クリティカル率、発射数"
-    },
-    {
-      "id": "9283",
-      "name": "クアッドブーメラン",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "戻ってくる飛翔物を最も近くにいる敵に向けて発射する。この飛翔物は爆発してさらに小さな飛翔物に分かれる。ダメージ、スキルヘイスト、クリティカル率、発射数"
-    },
-    {
-      "id": "9284",
-      "name": "ラピッド ラビット レインダウン",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "ランダムな敵にめがけて何度も軌道爆撃を行い、最後には巨大な爆撃を行う。ダメージ、スキルヘイスト、効果範囲の大きさ、クリティカル率"
-    },
-    {
-      "id": "9285",
-      "name": "終わりなきモブストンパー",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "敵から敵に跳ね返る爆発物を発射する。この飛翔物はターゲットを見つけるまで無限に跳ね返る。ダメージ、スキルヘイスト、効果範囲の大きさ"
-    },
-    {
-      "id": "9287",
-      "name": "T.I.B.B.E.R.S (B.E.E.Gエディション)",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "激怒したロボ・ティバーズを召喚する。ロボ・ティバーズはなぎ払い、範囲ダメージを与える。激怒したロボ・ティバーズは最も体力が多い敵を攻撃し、サイズと移動速度が増加し、時間とともにダメージが増加する。ダメージ、スキルヘイスト、効果範囲の大きさ、効果時間、移動速度"
-    },
-    {
-      "id": "9288",
-      "name": "ジンクスのトライナマイト",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "複数の時限式飛翔物を円状に投下し、追加の爆発物爆発を放ち、広範囲にダメージを与える。ダメージ、スキルヘイスト、効果範囲の大きさ、発射数"
-    },
-    {
-      "id": "9289",
-      "name": "ファイナルシティ特急",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "列車が敵の間をランダムに走り抜ける。列車が通ったあとには爆発が発生し、敵をノックアップする。倒した敵が一定確率でゴールドをドロップする。ダメージ、スキルヘイスト、クリティカル率、物理防御"
-    },
-    {
-      "id": "9290",
-      "name": "ヴェインのクロマブレード",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "壁に当たると跳ね返る飛翔物を発射する。飛翔物は触れた敵すべてにダメージを与える。跳ね返るたびに矢が与えるダメージが増加する。ダメージ、スキルヘイスト、クリティカル率、発射数"
-    },
-    {
-      "id": "9292",
-      "name": "ベアフット ケムディスペンサー",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": []
-    },
-    {
-      "id": "9293",
-      "name": "急速冷凍",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "ブロックすると凍っている敵にダメージを与え、シールドを獲得する。ダメージは物理防御、シールド、最大体力に応じて増加する。シールドが終了すると周囲のすべての敵を再び凍らせる。ダメージ、スキルヘイスト、効果範囲の大きさ、効果時間、最大体力、物理防御"
-    },
-    {
-      "id": "9300",
-      "name": "にゃおにゃお",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "指定方向に大量の銃弾を発射する。進化: スキルヘイストダメージ、スキルヘイスト、クリティカル率、発射数"
-    },
-    {
-      "id": "9301",
-      "name": "シールドスラム",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "シールドを叩きつけて扇状の範囲にダメージを与える。ダメージは物理防御に応じて増加する。進化: 物理防御ダメージ、スキルヘイスト、効果範囲の大きさ、クリティカル率、物理防御"
-    },
-    {
-      "id": "9302",
-      "name": "サウンドウェーブ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "音波を放射して命中した敵にダメージとスロウ効果を与える。進化: 発射数ダメージ、スキルヘイスト、クリティカル率、発射数、効果時間"
-    },
-    {
-      "id": "9303",
-      "name": "ピロリースワイプ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "前方をなぎ払い、自身の最大体力に応じたダメージを与える。進化: 最大体力ダメージ、スキルヘイスト、効果範囲の大きさ、クリティカル率、最大体力"
-    },
-    {
-      "id": "9304",
-      "name": "抜刀",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "毎秒「風の護り」を25個を獲得する。移動とダッシュ時には「風の護り」の獲得数が増える。「風の護り」が100個になると旋風を巻き起こし、直線上のすべての敵にダメージを与える。進化: クリティカル率ダメージ、スキルヘイスト、クリティカル率、発射数"
-    },
-    {
-      "id": "9305",
-      "name": "触手スラム",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "偶像を地面に叩きつけて一定範囲内にダメージを与え、触手を出現させる。触手は周囲の敵を攻撃する。進化: 効果時間ダメージ、スキルヘイスト、効果範囲の大きさ、効果時間"
-    },
-    {
-      "id": "9306",
-      "name": "ウィングダガー",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "前方にダガーを投げる。ダガーは敵を貫通し、追加の敵に命中するたびにダメージが低下して、地面にダガーが残る。進化: 取得範囲ダメージ、スキルヘイスト、クリティカル率、発射数、効果時間"
-    },
-    {
-      "id": "9307",
-      "name": "ガイディング ヘックス",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "空中に精霊を解き放ち、飛ばしながら誘導する。命中した敵はダメージと呪いを受ける。スキルを3回発動するたびに、対象の呪いを発動し、追加ダメージを与える。進化: 獲得経験値ダメージ、スキルヘイスト、クリティカル率、飛翔物、経験値"
-    },
-    {
-      "id": "9308",
-      "name": "バニーホップ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "固有スキルで移動速度が増加し、移動するとチャージを獲得する。最大チャージになると前方にジャンプし、一定範囲内にダメージを与える。スキルを2回使用するごとに敵をノックアップする。進化: 移動速度ダメージ、効果範囲の大きさ、クリティカル率、移動速度"
-    },
-    {
-      "id": "9400",
-      "name": "バトルキャット バラージ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "指定方向に大量の銃弾を発射する。銃弾が貫通するようになり、2体目以降の敵には与えるダメージが低下する。クールダウンが大幅に短縮される。ダメージ、スキルヘイスト、クリティカル率、発射数"
-    },
-    {
-      "id": "9401",
-      "name": "獅子の光",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "広範囲に命中し、敵に「サンライト」を付与する。「サンライト」は味方か別の武器が爆発させることが可能で、追加ダメージを与える。ダメージ、スキルヘイスト、効果範囲の大きさ、クリティカル率、物理防御"
-    },
-    {
-      "id": "9402",
-      "name": "アニマ エコー",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "ウェーブが終端に達すると戻ってくるようになり、再びダメージを与えて、セラフィーンを通り過ぎる。ダメージ、スキルヘイスト、クリティカル率、発射数、効果時間"
-    },
-    {
-      "id": "9403",
-      "name": "獰猛な斬撃",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "前方をなぎ払い、出血のスタックを付与し、自身の最大体力に応じたダメージを与える。ダメージ、スキルヘイスト、効果範囲の大きさ、クリティカル率、最大体力"
-    },
-    {
-      "id": "9404",
-      "name": "流浪の嵐",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "エネルギーに磨きをかけ、数は少ないがより大きな竜巻を放って空気を切り裂き、最終地点に到達するとダメージを与える大嵐を巻き起こす。ダメージ、スキルヘイスト、クリティカル率、発射数、効果範囲の大きさ、効果時間"
-    },
-    {
-      "id": "9405",
-      "name": "グリズリーの打撃",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "偶像を地面に叩きつけて一定範囲内にダメージを与え、触手を出現させる。触手は周囲の敵を攻撃する。一定確率で与えるダメージが大きい巨大触手が召喚される。ダメージ、スキルヘイスト、効果範囲の大きさ、効果時間"
-    },
-    {
-      "id": "9406",
-      "name": "恋人たちのリコシェ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "使い魔のダガーを自身の背後に投げるようになる。この特別なダガーは敵から敵に跳ね返り、ダメージを与えてからザヤのところに戻ってきて、小さなシールドを付与する。ダメージ、スキルヘイスト、クリティカル率、発射数、効果時間"
-    },
-    {
-      "id": "9407",
-      "name": "ホップアップ ヘックス",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "より多くの精霊魔法を発射するようになり、爆発時に呪い状態の対象の周囲にもダメージを与えるようになる。ダメージ、スキルヘイスト、クリティカル率、発射数、効果時間、経験値"
-    },
-    {
-      "id": "9408",
-      "name": "キャロット クラッシュ",
-      "price": 0,
-      "sellPrice": 0,
-      "category": "UNCATEGORIZED",
-      "subcategory": "Active",
-      "stats": {},
-      "tags": [],
-      "description": "固有スキルで移動速度が増加し、移動するとチャージを獲得する。最大チャージになると前方にジャンプし、一定範囲内にダメージを与える。スキルを2回使用するごとに敵をノックアップして範囲内が隆起し、2回目の爆発が発生して、再度ダメージを与えてノックアップする。ダメージ、効果範囲の大きさ、クリティカル率、移動速度"
     }
   ],
   "categories": {
