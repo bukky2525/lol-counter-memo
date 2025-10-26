@@ -4,10 +4,16 @@
 
 let itemsData = {};
 let currentCategory = 'all';
+let currentPrice = 'all';
+let currentStatus = 'all';
 let searchTerm = '';
 
 const searchBox = document.getElementById('searchBox');
-const categoryFilters = document.getElementById('categoryFilters');
+const categorySelect = document.getElementById('categorySelect');
+const priceSelect = document.getElementById('priceSelect');
+const statusSelect = document.getElementById('statusSelect');
+const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+const resultsCount = document.getElementById('resultsCount');
 const itemsContainer = document.getElementById('itemsContainer');
 const DDragonVersion = '15.17.1';
 
