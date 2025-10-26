@@ -342,11 +342,10 @@
                         return;
                     }
 
-                    // 検索フィルタリング
+                    // 検索フィルタリング（メインチャンピオンのみ）
                     if (searchTerm) {
                         const championMatch = matchesSearch(champion, searchTerm);
-                        const counterMatch = data.counters.some(counter => matchesSearch(counter, searchTerm));
-                        if (!championMatch && !counterMatch) {
+                        if (!championMatch) {
                             return;
                         }
                     }
