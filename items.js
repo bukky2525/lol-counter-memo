@@ -21,7 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
 function loadData() {
     console.log('データ読み込み開始...');
     
-    fetch('items_data.json')
+    // キャッシュを無効化するためにタイムスタンプを追加
+    const timestamp = new Date().getTime();
+    fetch(`items_data.json?t=${timestamp}`)
         .then(response => {
             console.log('レスポンス受信:', response.status);
             if (!response.ok) {
