@@ -117,23 +117,27 @@ function renderItems(items = filteredItems) {
         return;
     }
 
-    const itemsHtml = items.map(item => `
-        <div class="item-card" onclick="showItemDetail('${item.id}')">
-            <div class="item-header">
-                <img src="${getItemIconUrl(item.id)}" 
-                     alt="${item.name}" 
-                     class="item-icon"
-                     onerror="this.style.display='none'">
-                <div class="item-title">
-                    <h3>${item.name}</h3>
-                    <div class="item-price">${item.gold ? item.gold.total + 'G' : '価格不明'}</div>
+    const itemsHtml = `
+        <div class="items-grid">
+            ${items.map(item => `
+                <div class="item-card" onclick="showItemDetail('${item.id}')">
+                    <div class="item-header">
+                        <img src="${getItemIconUrl(item.id)}" 
+                             alt="${item.name}" 
+                             class="item-icon"
+                             onerror="this.style.display='none'">
+                        <div class="item-title">
+                            <h3>${item.name}</h3>
+                            <div class="item-price">${item.gold ? item.gold.total + 'G' : '価格不明'}</div>
+                        </div>
+                    </div>
+                    <div class="item-tags">
+                        ${(item.tags || []).map(tag => `<span class="item-tag">${tag}</span>`).join('')}
+                    </div>
                 </div>
-            </div>
-            <div class="item-tags">
-                ${(item.tags || []).map(tag => `<span class="item-tag">${tag}</span>`).join('')}
-            </div>
+            `).join('')}
         </div>
-    `).join('');
+    `;
 
     itemsContainer.innerHTML = itemsHtml;
 }
