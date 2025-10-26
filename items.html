@@ -3,10 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LoL アイテム一覧 - DDragon API</title>
+    <title>LoL アイテム一覧</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="items.css">
 </head>
 <body>
+        <!-- ハンバーガーメニューボタン -->
+        <button class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    
+    <!-- サイドメニュー -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>メニュー</h2>
+            <button class="close-btn" id="closeBtn">×</button>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html" class="menu-item">
+                <span class="icon">🏠</span>
+                <span>カウンターピック</span>
+            </a></li>
+            <li><a href="items.html" class="menu-item active">
+                <span class="icon">📦</span>
+                <span>アイテム一覧</span>
+            </a></li>
+        </ul>
+    </nav>
+    
+    <!-- オーバーレイ -->
+    <div class="overlay" id="overlay"></div>
+    
     <div class="container">
         <!-- ヘッダー -->
         <header class="page-header">
@@ -61,6 +90,7 @@
         </div>
     </div>
     
+    <script src="menu.js"></script>
     <script src="items.js"></script>
 </body>
 </html>
