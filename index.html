@@ -177,7 +177,7 @@
         <h1>LOLカウンターピック メモ</h1>
         
         <div class="search-container">
-            <input type="text" id="searchBox" class="search-box" placeholder="チャンピオン名で検索...">
+            <input type="text" id="searchBox" class="search-box" placeholder="チャンピオン名で検索... (日本語、ひらがな、ローマ字対応)">
             <div class="lane-filters">
                 <button class="lane-btn active" data-lane="all">全レーン</button>
                 <button class="lane-btn" data-lane="top">トップ</button>
@@ -247,6 +247,81 @@
             return `https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/champion/${englishName}.png`;
         }
 
+        // カタカナをひらがなに変換
+        function katakanaToHiragana(str) {
+            return str.replace(/[\u30a1-\u30f6]/g, match => {
+                const chr = match.charCodeAt(0) - 0x60;
+                return String.fromCharCode(chr);
+            });
+        }
+
+        // ひらがなをカタカナに変換
+        function hiraganaToKatakana(str) {
+            return str.replace(/[\u3041-\u3096]/g, match => {
+                const chr = match.charCodeAt(0) + 0x60;
+                return String.fromCharCode(chr);
+            });
+        }
+
+        // カタカナをローマ字に変換（簡易版）
+        function katakanaToRomaji(str) {
+            const kanaMap = {
+                'ア':'a','イ':'i','ウ':'u','エ':'e','オ':'o',
+                'カ':'ka','キ':'ki','ク':'ku','ケ':'ke','コ':'ko',
+                'サ':'sa','シ':'shi','ス':'su','セ':'se','ソ':'so',
+                'タ':'ta','チ':'chi','ツ':'tsu','テ':'te','ト':'to',
+                'ナ':'na','ニ':'ni','ヌ':'nu','ネ':'ne','ノ':'no',
+                'ハ':'ha','ヒ':'hi','フ':'fu','ヘ':'he','ホ':'ho',
+                'マ':'ma','ミ':'mi','ム':'mu','メ':'me','モ':'mo',
+                'ヤ':'ya','ユ':'yu','ヨ':'yo',
+                'ラ':'ra','リ':'ri','ル':'ru','レ':'re','ロ':'ro',
+                'ワ':'wa','ヲ':'wo','ン':'n',
+                'ガ':'ga','ギ':'gi','グ':'gu','ゲ':'ge','ゴ':'go',
+                'ザ':'za','ジ':'ji','ズ':'zu','ゼ':'ze','ゾ':'zo',
+                'ダ':'da','ヂ':'ji','ヅ':'zu','デ':'de','ド':'do',
+                'バ':'ba','ビ':'bi','ブ':'bu','ベ':'be','ボ':'bo',
+                'パ':'pa','ピ':'pi','プ':'pu','ペ':'pe','ポ':'po',
+                'ァ':'a','ィ':'i','ゥ':'u','ェ':'e','ォ':'o',
+                'ャ':'ya','ュ':'yu','ョ':'yo','ッ':'',
+                'ー':'','・':''
+            };
+            
+            let romaji = '';
+            for (let i = 0; i < str.length; i++) {
+                const char = str[i];
+                romaji += kanaMap[char] || char;
+            }
+            return romaji.toLowerCase();
+        }
+
+        // 検索マッチング関数
+        function matchesSearch(championName, searchQuery) {
+            if (!searchQuery) return true;
+            
+            const query = searchQuery.toLowerCase();
+            
+            // 1. 日本語名での部分一致（カタカナ）
+            if (championName.toLowerCase().includes(query)) return true;
+            
+            // 2. ひらがなでの検索
+            const hiragana = katakanaToHiragana(championName);
+            if (hiragana.toLowerCase().includes(query)) return true;
+            
+            // 3. ローマ字での検索
+            const romaji = katakanaToRomaji(championName);
+            if (romaji.includes(query)) return true;
+            
+            // 4. 英語名での検索
+            const englishName = championImages[championName];
+            if (englishName && englishName.toLowerCase().includes(query)) return true;
+            
+            // 5. ひらがな入力をカタカナに変換して検索
+            const katakana = hiraganaToKatakana(searchQuery);
+            if (championName.includes(katakana)) return true;
+            
+            return false;
+        }
+
         // チャンピオンデータを描画
         function renderChampions() {
             championsContainer.innerHTML = '';
@@ -268,9 +343,12 @@
                     }
 
                     // 検索フィルタリング
-                    if (searchTerm && !champion.toLowerCase().includes(searchTerm) && 
-                        !data.counters.some(c => c.toLowerCase().includes(searchTerm))) {
-                        return;
+                    if (searchTerm) {
+                        const championMatch = matchesSearch(champion, searchTerm);
+                        const counterMatch = data.counters.some(counter => matchesSearch(counter, searchTerm));
+                        if (!championMatch && !counterMatch) {
+                            return;
+                        }
                     }
 
                     const championItem = document.createElement('div');
