@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ログイン</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; }
+    </style>
+</head>
+<body>
+    <h2>パスワードを入力してください</h2>
+    <input type="password" id="password" style="font-size: 1.2em;">
+    <button onclick="login()" style="font-size: 1.2em;">認証</button>
+
+    <script>
+        function login() {
+            // ↓ ここの 'himitsu' を友達と決めた合言葉（半角英数）に変更してください
+            const correctPassword = 'himitsu'; 
+            
+            const input = document.getElementById('password').value;
+
+            if (input === correctPassword) {
+                // パスワードが合っていたら、main.html (カウンター一覧) に移動
+                window.location.href = 'main.html'; 
+            } else {
+                alert('パスワードが違います');
+            }
+        }
+        
+        // Enterキーでも認証できるようにする
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                login();
+            }
+        });
+    </script>
+</body>
+</html>
