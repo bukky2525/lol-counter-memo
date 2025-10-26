@@ -23,7 +23,7 @@ function loadData() {
     
     // キャッシュを無効化するためにタイムスタンプを追加
     const timestamp = new Date().getTime();
-    fetch(`items_data.json?t=${timestamp}`)
+    fetch(`items_data_v2.json?t=${timestamp}`)
         .then(response => {
             console.log('レスポンス受信:', response.status);
             if (!response.ok) {
