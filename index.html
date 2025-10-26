@@ -93,10 +93,45 @@
         .champion-item.hidden {
             display: none;
         }
+
+        .champion-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .champion-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 10px;
+            border: 2px solid #ffd700;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .champion-title {
+            flex: 1;
+        }
+
+        .counter-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin: 5px 8px 5px 0;
+        }
+
+        .counter-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 5px;
+            border: 1px solid rgba(255,215,0,0.5);
+            vertical-align: middle;
+        }
         
         h2, h3 {
             color: #ffd700;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            margin: 0;
         }
         
         ul {
@@ -160,24 +195,35 @@
 
     <script>
         let counterData = {};
+        let championImages = {};
         const searchBox = document.getElementById('searchBox');
         const laneButtons = document.querySelectorAll('.lane-btn');
         const championsContainer = document.getElementById('championsContainer');
+        const DDragonVersion = '14.24.1';
         
         let currentLane = 'all';
         let searchTerm = '';
 
         // JSONファイルを読み込む
-        fetch('counter_data.json')
-            .then(response => response.json())
-            .then(data => {
-                counterData = data;
+        Promise.all([
+            fetch('counter_data.json').then(response => response.json()),
+            fetch('champion_images.json').then(response => response.json())
+        ])
+            .then(([counterDataJson, championImagesJson]) => {
+                counterData = counterDataJson;
+                championImages = championImagesJson;
                 renderChampions();
             })
             .catch(error => {
                 console.error('データの読み込みに失敗しました:', error);
-                championsContainer.innerHTML = '<div class="no-results"><h3>データの読み込みに失敗しました</h3><p>counter_data.jsonファイルが見つかりません。</p></div>';
+                championsContainer.innerHTML = '<div class="no-results"><h3>データの読み込みに失敗しました</h3><p>データファイルが見つかりません。</p></div>';
             });
+
+        // チャンピオンアイコンURLを取得
+        function getChampionIconUrl(championName) {
+            const englishName = championImages[championName] || championName;
+            return `https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/champion/${englishName}.png`;
+        }
 
         // チャンピオンデータを描画
         function renderChampions() {
@@ -207,10 +253,30 @@
 
                     const championItem = document.createElement('div');
                     championItem.className = 'champion-item';
+                    
+                    // カウンターリストを画像付きで生成
+                    const countersHtml = data.counters.map(counter => 
+                        `<span class="counter-item">
+                            <img src="${getChampionIconUrl(counter)}" 
+                                 alt="${counter}" 
+                                 class="counter-icon"
+                                 onerror="this.style.display='none'">
+                            ${counter}
+                        </span>`
+                    ).join('');
+                    
                     championItem.innerHTML = `
-                        <h3>${champion}（${laneNames[data.lane]}）</h3>
+                        <div class="champion-header">
+                            <img src="${getChampionIconUrl(champion)}" 
+                                 alt="${champion}" 
+                                 class="champion-icon"
+                                 onerror="this.style.display='none'">
+                            <div class="champion-title">
+                                <h3>${champion}（${laneNames[data.lane]}）</h3>
+                            </div>
+                        </div>
                         <ul>
-                            <li><b>カウンター:</b> ${data.counters.join(', ')}</li>
+                            <li><b>カウンター:</b><br>${countersHtml}</li>
                         </ul>
                     `;
                     championsContainer.appendChild(championItem);
