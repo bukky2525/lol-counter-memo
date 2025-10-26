@@ -198,10 +198,23 @@ function renderChampions() {
             championsContainer.appendChild(championItem);
             const championIcon = championItem.querySelector('.champion-icon-clickable');
             if (championIcon) {
-                championIcon.addEventListener('click', function() {
+                championIcon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
                     const championName = this.getAttribute('data-champion');
                     const lane = this.getAttribute('data-lane');
                     const opggUrl = getOpggUrl(championName, lane);
+                    console.log('Opening OP.GG:', opggUrl);
+                    window.open(opggUrl, '_blank');
+                });
+                
+                // タッチイベントも追加（スマホ対応）
+                championIcon.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    const championName = this.getAttribute('data-champion');
+                    const lane = this.getAttribute('data-lane');
+                    const opggUrl = getOpggUrl(championName, lane);
+                    console.log('Opening OP.GG (touch):', opggUrl);
                     window.open(opggUrl, '_blank');
                 });
             }

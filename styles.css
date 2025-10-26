@@ -110,6 +110,9 @@ h1 {
 .champion-icon-clickable {
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .champion-icon-clickable:hover {
@@ -119,6 +122,7 @@ h1 {
 
 .champion-icon-clickable:active {
     transform: scale(0.95);
+    box-shadow: 0 8px 16px rgba(255, 215, 0, 0.8);
 }
 
 .champion-title {
