@@ -33,6 +33,7 @@ function loadData() {
             console.log('JSON解析成功:', data);
             console.log('アイテム数:', data.items ? data.items.length : 'undefined');
             console.log('カテゴリ数:', data.categories ? Object.keys(data.categories).length : 'undefined');
+            console.log('最初の5個のアイテム:', data.items ? data.items.slice(0, 5).map(item => item.name) : 'undefined');
             
             // データの存在確認
             if (!data.items || !Array.isArray(data.items)) {
