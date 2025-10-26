@@ -162,15 +162,31 @@ li {
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
     .lane-filters {
-        justify-content: space-between;
-        max-width: 400px;
-        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        max-width: 100%;
     }
     
     .lane-btn {
-        width: calc(50% - 5px);
-        flex: 0 0 calc(50% - 5px);
+        width: 100%;
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+    
+    .search-box {
+        font-size: 14px;
+        padding: 12px;
+    }
+    
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
     }
 }
 
