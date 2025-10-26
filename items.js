@@ -355,8 +355,7 @@ function renderItems() {
                     </div>
                 </div>
             </div>
-        `;
-                        `).join('')}
+        `).join('')}
                     </div>
                 </div>
             `;
