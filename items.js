@@ -253,6 +253,13 @@ function renderItems() {
     });
     console.log(`検索フィルター後のアイテム数: ${filteredItems.length}`);
     
+    // あいうえお順でソート
+    filteredItems.sort((a, b) => {
+        const nameA = a.name || '';
+        const nameB = b.name || '';
+        return nameA.localeCompare(nameB, 'ja');
+    });
+    
     if (filteredItems.length === 0) {
         itemsContainer.innerHTML = `
             <div class="no-results">
