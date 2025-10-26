@@ -3,10 +3,11 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 20px;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(135deg, #0F1419 0%, #1A1E28 50%, #2D3748 100%);
     color: white;
     min-height: 100vh;
     transition: padding-left 0.3s ease;
+    line-height: 1.6;
 }
 
 /* サイドバーが開いている時のメインコンテンツ調整 */
