@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoL アイテム一覧</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="items.css">
 </head>
 <body>
         <!-- ハンバーガーメニューボタン -->
@@ -36,36 +37,59 @@
     <div class="overlay" id="overlay"></div>
     
     <div class="container">
-        <h1>LoL アイテム一覧</h1>
+        <!-- ヘッダー -->
+        <header class="page-header">
+            <h1>アイテム一覧</h1>
+        </header>
         
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-box" placeholder="アイテム名で検索...">
-            <div class="lane-filters">
-                <button class="lane-btn active" data-category="all">すべてのカテゴリ</button>
-                <button class="lane-btn" data-category="Boots">ブーツ</button>
-                <button class="lane-btn" data-category="Health">体力</button>
-                <button class="lane-btn" data-category="HealthRegen">体力回復</button>
-                <button class="lane-btn" data-category="Mana">マナ</button>
-                <button class="lane-btn" data-category="ManaRegen">マナ回復</button>
-                <button class="lane-btn" data-category="Armor">物理防御</button>
-                <button class="lane-btn" data-category="SpellBlock">魔法防御</button>
-                <button class="lane-btn" data-category="Damage">攻撃力</button>
-                <button class="lane-btn" data-category="SpellDamage">魔法攻撃力</button>
-                <button class="lane-btn" data-category="AttackSpeed">攻撃速度</button>
-                <button class="lane-btn" data-category="CriticalStrike">クリティカル</button>
-                <button class="lane-btn" data-category="LifeSteal">ライフステール</button>
-                <button class="lane-btn" data-category="Consumable">消費アイテム</button>
-                <button class="lane-btn" data-category="Vision">視界</button>
-                <button class="lane-btn" data-category="Jungle">ジャングル</button>
+        <!-- 検索・フィルター・結果 -->
+        <div class="search-section">
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <input type="text" 
+                           id="searchInput" 
+                           class="search-input" 
+                           placeholder="アイテム名で検索..."
+                           autocomplete="off">
+                    <div id="searchSuggestions" class="search-suggestions"></div>
+                </div>
+            </div>
+            
+            <div class="filter-container">
+                <select id="categorySelect" class="category-select">
+                    <option value="all">すべてのカテゴリ</option>
+                    <option value="Boots">ブーツ</option>
+                    <option value="Health">体力</option>
+                    <option value="HealthRegen">体力回復</option>
+                    <option value="Mana">マナ</option>
+                    <option value="ManaRegen">マナ回復</option>
+                    <option value="Armor">物理防御</option>
+                    <option value="SpellBlock">魔法防御</option>
+                    <option value="Damage">攻撃力</option>
+                    <option value="SpellDamage">魔法攻撃力</option>
+                    <option value="AttackSpeed">攻撃速度</option>
+                    <option value="CriticalStrike">クリティカル</option>
+                    <option value="LifeSteal">ライフステール</option>
+                    <option value="Consumable">消費アイテム</option>
+                    <option value="Vision">視界</option>
+                    <option value="Jungle">ジャングル</option>
+                </select>
+            </div>
+            
+            <div class="results-container">
+                <div class="results-count" id="resultsCount">検索結果: 読み込み中...</div>
             </div>
         </div>
-
-        <div id="itemsContainer">
-            <div class="loading">データを読み込んでいます...</div>
+        
+        <!-- アイテムコンテナ -->
+        <div id="itemsContainer" class="items-container">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>アイテムデータを読み込み中...</p>
+            </div>
         </div>
     </div>
-
-    <!-- JavaScriptファイルの読み込み -->
+    
     <script src="menu.js"></script>
     <script src="items.js"></script>
 </body>
