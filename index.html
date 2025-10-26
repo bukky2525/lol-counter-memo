@@ -1031,6 +1031,125 @@
     <ul>
         <li><b>カウンター:</b> ズィグス, ハイマーディンガー, ラックス, シンドラ, カタリナ, ゼド</li>
     </ul>
+        </div>
+    </div>
 
+    <script>
+        // 検索とフィルタリング機能
+        const searchBox = document.getElementById('searchBox');
+        const laneButtons = document.querySelectorAll('.lane-btn');
+        const championSections = document.querySelectorAll('.champion-section');
+        const championItems = document.querySelectorAll('.champion-item');
+        
+        let currentLane = 'all';
+        let searchTerm = '';
+
+        // レーンフィルターボタンのイベントリスナー
+        laneButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // アクティブボタンを更新
+                laneButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // 現在のレーンを更新
+                currentLane = button.getAttribute('data-lane');
+                
+                // フィルタリングを実行
+                filterContent();
+            });
+        });
+
+        // 検索ボックスのイベントリスナー
+        searchBox.addEventListener('input', (e) => {
+            searchTerm = e.target.value.toLowerCase();
+            filterContent();
+        });
+
+        // フィルタリング機能
+        function filterContent() {
+            championSections.forEach(section => {
+                const sectionLane = section.getAttribute('data-lane');
+                let shouldShowSection = false;
+
+                // レーンフィルタリング
+                if (currentLane === 'all' || sectionLane === currentLane) {
+                    shouldShowSection = true;
+                }
+
+                // 検索フィルタリング
+                if (shouldShowSection && searchTerm) {
+                    const sectionText = section.textContent.toLowerCase();
+                    shouldShowSection = sectionText.includes(searchTerm);
+                }
+
+                // セクションの表示/非表示
+                if (shouldShowSection) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+
+            // チャンピオンアイテムのフィルタリング
+            championItems.forEach(item => {
+                const championName = item.getAttribute('data-champion').toLowerCase();
+                const itemLanes = item.getAttribute('data-lanes').split(',');
+                let shouldShowItem = false;
+
+                // レーンフィルタリング
+                if (currentLane === 'all' || itemLanes.includes(currentLane)) {
+                    shouldShowItem = true;
+                }
+
+                // 検索フィルタリング
+                if (shouldShowItem && searchTerm) {
+                    shouldShowItem = championName.includes(searchTerm);
+                }
+
+                // アイテムの表示/非表示
+                if (shouldShowItem) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // 結果が見つからない場合のメッセージ
+            showNoResultsMessage();
+        }
+
+        // 結果が見つからない場合のメッセージ表示
+        function showNoResultsMessage() {
+            const visibleSections = Array.from(championSections).filter(section => 
+                !section.classList.contains('hidden')
+            );
+            const visibleItems = Array.from(championItems).filter(item => 
+                item.style.display !== 'none'
+            );
+
+            // 既存のno-resultsメッセージを削除
+            const existingMessage = document.querySelector('.no-results');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+
+            // 結果が見つからない場合
+            if (visibleSections.length === 0 && visibleItems.length === 0 && searchTerm) {
+                const noResultsDiv = document.createElement('div');
+                noResultsDiv.className = 'no-results';
+                noResultsDiv.innerHTML = `
+                    <h3>検索結果が見つかりません</h3>
+                    <p>"${searchTerm}" に一致するチャンピオンが見つかりませんでした。</p>
+                    <p>別のキーワードで検索するか、レーンフィルターを変更してみてください。</p>
+                `;
+                
+                const container = document.querySelector('.container');
+                container.appendChild(noResultsDiv);
+            }
+        }
+
+        // 初期化
+        filterContent();
+    </script>
 </body>
 </html>
