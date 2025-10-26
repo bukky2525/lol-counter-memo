@@ -238,13 +238,17 @@ function renderItems() {
             
             return `
                 <div class="item-card">
-                    <img src="${getItemIconUrl(item.id)}" 
-                         alt="${item.name}" 
-                         class="item-icon"
-                         onerror="this.src='https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/item/1001.png'">
-                    <div class="item-name">${item.name}</div>
-                    <div class="item-category">${category.name} - ${category.subcategories[item.subcategory] || item.subcategory}</div>
-                    <div class="item-cost">🪙 ${item.price}G (売却: ${item.sellPrice}G)</div>
+                    <div class="item-card-header">
+                        <img src="${getItemIconUrl(item.id)}" 
+                             alt="${item.name}" 
+                             class="item-icon"
+                             onerror="this.src='https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/item/1001.png'">
+                        <div class="item-info">
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-category">${category.name} - ${category.subcategories[item.subcategory] || item.subcategory}</div>
+                            <div class="item-cost">${item.price}G (売却: ${item.sellPrice}G)</div>
+                        </div>
+                    </div>
                     <div class="item-stats">${statsHtml}</div>
                     ${item.description ? `<div class="item-description">${item.description.replace(/ /g, '<br>')}</div>` : ''}
                 </div>
