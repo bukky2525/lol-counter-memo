@@ -45,8 +45,21 @@ function loadData() {
             itemsData = data;
             console.log('itemsData設定完了:', itemsData);
             
-            initializeCategoryButtons();
-            renderItems();
+            try {
+                initializeCategoryButtons();
+                console.log('カテゴリボタン初期化完了');
+            } catch (error) {
+                console.error('カテゴリボタン初期化エラー:', error);
+                throw error;
+            }
+            
+            try {
+                renderItems();
+                console.log('アイテム描画完了');
+            } catch (error) {
+                console.error('アイテム描画エラー:', error);
+                throw error;
+            }
         })
         .catch(error => {
             console.error('データの読み込みに失敗しました:', error);
