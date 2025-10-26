@@ -8,12 +8,26 @@
     <link rel="stylesheet" href="items-styles.css">
 </head>
 <body>
+    <!-- ハンバーガーメニューボタン -->
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    
+    <!-- サイドメニュー -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>メニュー</h2>
+            <button class="close-btn" id="closeBtn">×</button>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html" class="menu-item">🏠 カウンターピック</a></li>
+            <li><a href="items.html" class="menu-item active">📦 アイテム一覧</a></li>
+        </ul>
+    </nav>
+    
+    <!-- オーバーレイ -->
+    <div class="overlay" id="overlay"></div>
+    
     <div class="container">
         <h1>LOL アイテム一覧</h1>
-        
-        <div class="nav-links">
-            <a href="index.html" class="nav-btn">← カウンターピックに戻る</a>
-        </div>
         
         <div class="search-container">
             <input type="text" id="searchBox" class="search-box" placeholder="アイテム名で検索...">
@@ -27,6 +41,7 @@
         </div>
     </div>
 
+    <script src="menu.js"></script>
     <script src="items.js"></script>
 </body>
 </html>
