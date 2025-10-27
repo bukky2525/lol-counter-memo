@@ -398,66 +398,6 @@ body {
     border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
-/* 進化先 */
-.item-evolutions {
-    margin-top: 15px;
-}
-
-.item-evolutions h4 {
-    color: #ffd700;
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.evolutions-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
-}
-
-.evolution-item {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    padding: 4px 8px;
-    transition: all 0.3s ease;
-}
-
-.evolution-item:hover {
-    background: rgba(255, 215, 0, 0.1);
-    border-color: rgba(255, 215, 0, 0.3);
-}
-
-.evolution-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 6px;
-    border-radius: 3px;
-}
-
-.evolution-name {
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 500;
-}
-
-.no-evolution {
-    color: #b8c5d6;
-    font-size: 12px;
-    font-style: italic;
-}
-
-.other-evolutions {
-    color: #b8c5d6;
-    font-size: 12px;
-    font-style: italic;
-}
 
 /* アイテム詳細モーダル */
 .item-modal {
@@ -544,14 +484,12 @@ body {
 }
 
 .item-modal-description,
-.item-modal-stats,
-.item-modal-builds {
+.item-modal-stats {
     margin-bottom: 25px;
 }
 
 .item-modal-description h4,
-.item-modal-stats h4,
-.item-modal-builds h4 {
+.item-modal-stats h4 {
     color: #ffd700;
     font-size: 1.1rem;
     margin-bottom: 10px;
@@ -589,46 +527,6 @@ body {
     font-weight: 600;
 }
 
-.item-builds-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.item-build-item {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 8px 12px;
-    transition: all 0.3s ease;
-}
-
-.item-build-item:hover {
-    background: rgba(255, 215, 0, 0.1);
-    border-color: rgba(255, 215, 0, 0.3);
-}
-
-.item-build-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 8px;
-    border-radius: 4px;
-}
-
-.item-build-name {
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.other-evolutions {
-    color: #b8c5d6;
-    font-size: 14px;
-    font-style: italic;
-    padding: 8px 12px;
-}
 
 /* エラー・結果なし */
 .no-results {

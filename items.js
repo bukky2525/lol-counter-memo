@@ -43,57 +43,57 @@ async function loadItemsFromDDragon() {
             const response = await fetch(apiUrl);
             
             console.log('Response status:', response.status, response.statusText);
-            
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-            }
-            
-            const data = await response.json();
-            console.log('DDragon APIレスポンス:', data);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        console.log('DDragon APIレスポンス:', data);
             
             // 成功した場合はバージョンを更新
             DDragonVersion = version;
-            
-            // アイテムデータを処理
-            itemsData = data.data;
-            console.log(`取得したアイテム数: ${Object.keys(itemsData).length}`);
-            
-            // 最初のアイテムの構造を確認
-            const firstItemKey = Object.keys(itemsData)[0];
-            const firstItem = itemsData[firstItemKey];
-            console.log('最初のアイテム構造:', {
-                key: firstItemKey,
-                item: firstItem,
-                id: firstItem.id,
+        
+        // アイテムデータを処理
+        itemsData = data.data;
+        console.log(`取得したアイテム数: ${Object.keys(itemsData).length}`);
+        
+        // 最初のアイテムの構造を確認
+        const firstItemKey = Object.keys(itemsData)[0];
+        const firstItem = itemsData[firstItemKey];
+        console.log('最初のアイテム構造:', {
+            key: firstItemKey,
+            item: firstItem,
+            id: firstItem.id,
                 name: firstItem.name,
                 stats: firstItem.stats,
                 buildsInto: firstItem.buildsInto,
                 description: firstItem.description
-            });
-            
-            // フィルタリング可能なアイテムのみを抽出（IDを追加）
-            filteredItems = Object.entries(itemsData)
-                .filter(([id, item]) => {
-                    return item.gold && item.gold.purchasable && item.maps && item.maps['11']; // Summoner's Riftで購入可能
-                })
-                .map(([id, item]) => ({
-                    ...item,
-                    id: id // アイテムIDを追加
+        });
+        
+        // フィルタリング可能なアイテムのみを抽出（IDを追加）
+        filteredItems = Object.entries(itemsData)
+            .filter(([id, item]) => {
+                return item.gold && item.gold.purchasable && item.maps && item.maps['11']; // Summoner's Riftで購入可能
+            })
+            .map(([id, item]) => ({
+                ...item,
+                id: id // アイテムIDを追加
                 }))
                 .filter((item, index, array) => {
                     // 重複を防ぐため、同じIDのアイテムは最初のもののみ残す
                     return array.findIndex(i => i.id === item.id) === index;
                 });
-            
-            console.log(`フィルタリング後のアイテム数: ${filteredItems.length}`);
-            
-            // アイテムを表示
-            renderItems();
-            updateResultsCount(filteredItems.length);
-            
+        
+        console.log(`フィルタリング後のアイテム数: ${filteredItems.length}`);
+        
+        // アイテムを表示
+        renderItems();
+        updateResultsCount(filteredItems.length);
+        
             return; // 成功した場合は終了
             
-        } catch (error) {
+    } catch (error) {
             console.error(`バージョン ${version} でのアイテムデータ取得に失敗:`, error);
             continue; // 次のバージョンを試す
         }
@@ -302,13 +302,6 @@ function renderItems(items = filteredItems) {
                     <div class="item-tags">
                         ${(item.tags || []).map(tag => `<span class="item-tag">${tag}</span>`).join('')}
                     </div>
-                    
-                    <div class="item-evolutions">
-                        <h4>進化先</h4>
-                        <div class="evolutions-list">
-                            ${getEvolutions(item)}
-                        </div>
-                    </div>
                 </div>
             `).join('')}
         </div>
@@ -436,10 +429,6 @@ function showItemDetail(itemId) {
     const statsHtml = getFormattedStats(item);
     document.getElementById('modalStatsGrid').innerHTML = statsHtml;
     
-    // 進化先を表示
-    const buildsHtml = getBuildsHtml(item);
-    document.getElementById('modalBuildsList').innerHTML = buildsHtml;
-    
     // モーダルを表示
     itemModal.classList.add('show');
 }
@@ -479,14 +468,14 @@ function getFormattedStats(item) {
     
     // statsからステータスを取得
     if (item.stats) {
-        Object.entries(item.stats).forEach(([key, value]) => {
-            if (value && value !== 0 && statMap[key]) {
-                const stat = statMap[key];
-                let displayValue = value;
-                
-                // パーセンテージの場合は100倍して表示
-                if (stat.suffix === '%' && value < 1) {
-                    displayValue = Math.round(value * 100);
+    Object.entries(item.stats).forEach(([key, value]) => {
+        if (value && value !== 0 && statMap[key]) {
+            const stat = statMap[key];
+            let displayValue = value;
+            
+            // パーセンテージの場合は100倍して表示
+            if (stat.suffix === '%' && value < 1) {
+                displayValue = Math.round(value * 100);
                 } else if (!stat.suffix) {
                     displayValue = Math.round(value);
                 }
@@ -560,30 +549,6 @@ function extractBuffEffectsFromDescription(description) {
     return effects;
 }
 
-// 進化先HTMLを取得
-function getBuildsHtml(item) {
-    if (!item.buildsInto || item.buildsInto.length === 0) {
-        return '<div class="other-evolutions">進化先なし</div>';
-    }
-    
-    const builds = item.buildsInto.slice(0, 3).map(buildId => {
-        const buildItem = itemsData[buildId];
-        return buildItem ? `
-            <div class="item-build-item">
-                <img src="${getItemIconUrl(buildId)}" 
-                     alt="${buildItem.name}" 
-                     class="item-build-icon"
-                     onerror="this.style.display='none'">
-                <span class="item-build-name">${buildItem.name}</span>
-            </div>
-        ` : '';
-    }).join('');
-    
-    const remainingCount = item.buildsInto.length - 3;
-    const remainingHtml = remainingCount > 0 ? `<div class="other-evolutions">他${remainingCount}件</div>` : '';
-    
-    return builds + remainingHtml;
-}
 
 // アイテムのステータスを取得（カード表示用）
 function getItemStats(item) {
@@ -758,34 +723,6 @@ function getMainStats(item) {
     return stats.slice(0, 3).join(''); // 最大3つのステータスを表示
 }
 
-// 進化先を取得
-function getEvolutions(item) {
-    console.log('getEvolutions called for item:', item.name, 'buildsInto:', item.buildsInto);
-    
-    if (!item.buildsInto || item.buildsInto.length === 0) {
-        return '<span class="no-evolution">進化先なし</span>';
-    }
-    
-    const evolutions = item.buildsInto.slice(0, 2).map(buildId => {
-        const buildItem = itemsData[buildId];
-        console.log('Processing buildId:', buildId, 'buildItem:', buildItem);
-        return buildItem ? `
-            <div class="evolution-item">
-                <img src="${getItemIconUrl(buildId)}" 
-                     alt="${buildItem.name}" 
-                     class="evolution-icon"
-                     onerror="this.style.display='none'">
-                <span class="evolution-name">${buildItem.name}</span>
-            </div>
-        ` : '';
-    }).join('');
-    
-    const remainingCount = item.buildsInto.length - 2;
-    const remainingHtml = remainingCount > 0 ? `<span class="other-evolutions">他${remainingCount}件</span>` : '';
-    
-    console.log('getEvolutions result:', evolutions + remainingHtml);
-    return evolutions + remainingHtml;
-}
 
 // エラー表示
 function showError(message) {
