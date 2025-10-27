@@ -305,6 +305,14 @@ function showItemDetail(itemId) {
     const item = itemsData[itemId];
     if (!item) return;
 
+    // description からHTMLタグを除去して本文のみ取得
+    const cleanDescription = item.description 
+        ? stripHtmlTags(item.description) 
+        : item.plaintext || '説明なし';
+
+    // バフ効果を取得
+    const buffEffects = getBuffEffects(item);
+    
     const modal = document.createElement('div');
     modal.className = 'item-modal show';
     modal.innerHTML = `
@@ -321,16 +329,26 @@ function showItemDetail(itemId) {
                 </div>
             </div>
             <div class="item-modal-body">
-                ${item.description ? `<div class="item-modal-description">${item.description}</div>` : ''}
+                ${buffEffects.length > 0 ? `
+                    <div class="item-modal-description">
+                        <h4>バフ・デバフ効果</h4>
+                        <div class="buff-effects">
+                            ${buffEffects.map(effect => `<span class="buff-effect">${effect}</span>`).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+                
+                <div class="item-modal-description">
+                    <h4>説明</h4>
+                    <p>${cleanDescription}</p>
+                </div>
                 
                 ${item.stats ? `
                     <div class="item-modal-stats">
                         <h4>ステータス</h4>
-                        <ul>
-                            ${Object.entries(item.stats).map(([key, value]) => 
-                                `<li>${key}: ${value}</li>`
-                            ).join('')}
-                        </ul>
+                        <div class="stats-grid">
+                            ${getFormattedStats(item.stats)}
+                        </div>
                     </div>
                 ` : ''}
                 
@@ -368,11 +386,58 @@ function showItemDetail(itemId) {
     });
 }
 
-// アイテムのステータスを取得
-function getItemStats(item) {
-    if (!item.stats) return '';
+// HTMLタグを除去
+function stripHtmlTags(html) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+}
+
+// バフ効果を取得（「移動速度: +25」形式）
+function getBuffEffects(item) {
+    if (!item.stats) return [];
     
-    const stats = [];
+    const effects = [];
+    const statMap = {
+        'FlatPhysicalDamageMod': { name: '攻撃力', isPercentage: false },
+        'FlatMagicDamageMod': { name: '魔力', isPercentage: false },
+        'FlatHPPoolMod': { name: '体力', isPercentage: false },
+        'FlatMPPoolMod': { name: 'マナ', isPercentage: false },
+        'FlatArmorMod': { name: '物理防御', isPercentage: false },
+        'FlatSpellBlockMod': { name: '魔法防御', isPercentage: false },
+        'FlatMovementSpeedMod': { name: '移動速度', isPercentage: false },
+        'PercentAttackSpeedMod': { name: '攻撃速度', isPercentage: true },
+        'FlatCritChanceMod': { name: 'クリティカル率', isPercentage: true },
+        'PercentLifeStealMod': { name: 'ライフステール', isPercentage: true },
+        'FlatHPRegenMod': { name: '体力回復', isPercentage: false },
+        'FlatMPRegenMod': { name: 'マナ回復', isPercentage: false },
+        'PercentArmorMod': { name: '物理防御', isPercentage: true },
+        'PercentSpellBlockMod': { name: '魔法防御', isPercentage: true }
+    };
+    
+    Object.entries(item.stats).forEach(([key, value]) => {
+        if (value && value !== 0 && statMap[key]) {
+            const stat = statMap[key];
+            let displayValue = value;
+            
+            // パーセンテージの場合は100倍して表示
+            if (stat.isPercentage && value < 1 && value > -1) {
+                displayValue = Math.round(value * 100);
+            } else if (!stat.isPercentage) {
+                displayValue = Math.round(value);
+            }
+            
+            const sign = displayValue > 0 ? '+' : '';
+            effects.push(`${stat.name}: ${sign}${displayValue}${stat.isPercentage ? '%' : ''}`);
+        }
+    });
+    
+    return effects;
+}
+
+// フォーマット済みステータスを取得
+function getFormattedStats(stats) {
+    const formatted = [];
     const statMap = {
         'FlatPhysicalDamageMod': { name: '攻撃力', suffix: '' },
         'FlatMagicDamageMod': { name: '魔力', suffix: '' },
@@ -388,7 +453,7 @@ function getItemStats(item) {
         'FlatMPRegenMod': { name: 'マナ回復', suffix: '' }
     };
     
-    Object.entries(item.stats).forEach(([key, value]) => {
+    Object.entries(stats).forEach(([key, value]) => {
         if (value && value !== 0 && statMap[key]) {
             const stat = statMap[key];
             let displayValue = value;
@@ -396,9 +461,51 @@ function getItemStats(item) {
             // パーセンテージの場合は100倍して表示
             if (stat.suffix === '%' && value < 1) {
                 displayValue = Math.round(value * 100);
+            } else if (!stat.suffix) {
+                displayValue = Math.round(value);
             }
             
-            stats.push(`<span class="stat-item">${stat.name}: +${displayValue}${stat.suffix}</span>`);
+            formatted.push(`<div class="stat-row"><span class="stat-name">${stat.name}:</span><span class="stat-value">${displayValue}${stat.suffix}</span></div>`);
+        }
+    });
+    
+    return formatted.join('');
+}
+
+// アイテムのステータスを取得（カード表示用）
+function getItemStats(item) {
+    if (!item.stats) return '';
+    
+    const stats = [];
+    const statMap = {
+        'FlatPhysicalDamageMod': { name: '攻撃力', suffix: '', isPercentage: false },
+        'FlatMagicDamageMod': { name: '魔力', suffix: '', isPercentage: false },
+        'FlatHPPoolMod': { name: '体力', suffix: '', isPercentage: false },
+        'FlatMPPoolMod': { name: 'マナ', suffix: '', isPercentage: false },
+        'FlatArmorMod': { name: '物理防御', suffix: '', isPercentage: false },
+        'FlatSpellBlockMod': { name: '魔法防御', suffix: '', isPercentage: false },
+        'FlatMovementSpeedMod': { name: '移動速度', suffix: '', isPercentage: false },
+        'PercentAttackSpeedMod': { name: '攻撃速度', suffix: '%', isPercentage: true },
+        'FlatCritChanceMod': { name: 'クリティカル率', suffix: '%', isPercentage: true },
+        'PercentLifeStealMod': { name: 'ライフステール', suffix: '%', isPercentage: true },
+        'FlatHPRegenMod': { name: '体力回復', suffix: '', isPercentage: false },
+        'FlatMPRegenMod': { name: 'マナ回復', suffix: '', isPercentage: false }
+    };
+    
+    Object.entries(item.stats).forEach(([key, value]) => {
+        if (value && value !== 0 && statMap[key]) {
+            const stat = statMap[key];
+            let displayValue = value;
+            
+            // パーセンテージの場合は100倍して表示
+            if (stat.isPercentage && value < 1 && value > -1) {
+                displayValue = Math.round(value * 100);
+            } else if (!stat.isPercentage) {
+                displayValue = Math.round(value);
+            }
+            
+            const sign = displayValue > 0 ? '+' : '';
+            stats.push(`<span class="stat-item">${stat.name}: ${sign}${displayValue}${stat.suffix}</span>`);
         }
     });
     
