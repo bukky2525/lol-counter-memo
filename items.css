@@ -38,6 +38,11 @@ body {
     transform: scale(1.05);
 }
 
+/* サイドバーが開いている時はメニューボタンを非表示 */
+body.sidebar-open .menu-toggle {
+    display: none;
+}
+
 /* サイドバー */
 .sidebar {
     position: fixed;
