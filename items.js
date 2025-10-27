@@ -549,42 +549,22 @@ function getItemStats(item) {
     const stats = [];
     const addedStats = new Set(); // 重複を防ぐためのSet
     
-    // statsからバフ効果を取得
+    // statsからバフ効果を取得（詳細画面と同じロジック）
     if (item.stats) {
         const statMap = {
-            // 防御系
             'FlatPhysicalDamageMod': { name: '攻撃力', suffix: '', isPercentage: false },
             'FlatMagicDamageMod': { name: '魔力', suffix: '', isPercentage: false },
             'FlatHPPoolMod': { name: '体力', suffix: '', isPercentage: false },
             'FlatMPPoolMod': { name: 'マナ', suffix: '', isPercentage: false },
             'FlatArmorMod': { name: '物理防御', suffix: '', isPercentage: false },
             'FlatSpellBlockMod': { name: '魔法防御', suffix: '', isPercentage: false },
-            'FlatHPRegenMod': { name: '体力自動回復', suffix: '', isPercentage: false },
-            'FlatMPRegenMod': { name: 'マナ自動回復', suffix: '', isPercentage: false },
-            'PercentArmorMod': { name: '物理防御', suffix: '%', isPercentage: true },
-            'PercentSpellBlockMod': { name: '魔法防御', suffix: '%', isPercentage: true },
-            
-            // 攻撃系
-            'FlatAttackSpeedMod': { name: '攻撃速度', suffix: '%', isPercentage: true },
+            'FlatMovementSpeedMod': { name: '移動速度', suffix: '', isPercentage: false },
             'PercentAttackSpeedMod': { name: '攻撃速度', suffix: '%', isPercentage: true },
             'FlatCritChanceMod': { name: 'クリティカル', suffix: '%', isPercentage: true },
-            'FlatCritDamageMod': { name: 'クリティカルダメージ', suffix: '%', isPercentage: true },
             'PercentLifeStealMod': { name: 'ライフステール', suffix: '%', isPercentage: true },
-            'PercentSpellVampMod': { name: 'スペルヴァンプ', suffix: '%', isPercentage: true },
-            'rFlatArmorPenetrationMod': { name: '物理防御貫通', suffix: '', isPercentage: false },
-            'rPercentArmorPenetrationMod': { name: '物理防御貫通', suffix: '%', isPercentage: true },
-            
-            // 魔法系
-            'rFlatMagicPenetrationMod': { name: '魔法防御貫通', suffix: '', isPercentage: false },
-            'rPercentMagicPenetrationMod': { name: '魔法防御貫通', suffix: '%', isPercentage: true },
-            'rPercentCooldownMod': { name: 'スキルヘイスト', suffix: '%', isPercentage: true },
-            
-            // 移動・その他
-            'FlatMovementSpeedMod': { name: '移動速度', suffix: '', isPercentage: false },
-            'PercentMovementSpeedMod': { name: '移動速度', suffix: '%', isPercentage: true },
-            'rFlatGoldPer10Mod': { name: 'ゴールド獲得', suffix: '', isPercentage: false },
-            'FlatEXPBonus': { name: '経験値獲得', suffix: '', isPercentage: false },
-            'PercentEXPBonus': { name: '経験値獲得', suffix: '%', isPercentage: true }
+            'FlatHPRegenMod': { name: '体力自動回復', suffix: '', isPercentage: false },
+            'FlatMPRegenMod': { name: 'マナ自動回復', suffix: '', isPercentage: false },
+            'rPercentCooldownMod': { name: 'スキルヘイスト', suffix: '%', isPercentage: true }
         };
         
         Object.entries(item.stats).forEach(([key, value]) => {
@@ -599,26 +579,14 @@ function getItemStats(item) {
                     displayValue = Math.round(value);
                 }
                 
-                const sign = displayValue > 0 ? '+' : '';
-                const statText = `${stat.name}: ${sign}${displayValue}${stat.suffix}`;
+                const statNameKey = stat.name; // 名前のみをキーとして使用
                 
-                // 重複チェック
-                if (!addedStats.has(statText)) {
-                    addedStats.add(statText);
-                    stats.push(`<span class="stat-item">${statText}</span>`);
+                // 重複チェック（名前でチェック）
+                if (!addedStats.has(statNameKey)) {
+                    addedStats.add(statNameKey);
+                    const sign = displayValue > 0 ? '+' : '';
+                    stats.push(`<span class="stat-item">${stat.name}: ${sign}${displayValue}${stat.suffix}</span>`);
                 }
-            }
-        });
-    }
-    
-    // descriptionからバフ効果を取得
-    if (item.description) {
-        const descriptionEffects = extractBuffEffectsFromDescription(item.description);
-        descriptionEffects.forEach(effect => {
-            // 重複チェック
-            if (!addedStats.has(effect)) {
-                addedStats.add(effect);
-                stats.push(`<span class="stat-item">${effect}</span>`);
             }
         });
     }
