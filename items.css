@@ -472,23 +472,6 @@ body {
     color: #f0f6fc;
 }
 
-.buff-effects {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
-}
-
-.buff-effect {
-    background: rgba(0, 255, 0, 0.15);
-    color: #4CAF50;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    border: 1px solid rgba(0, 255, 0, 0.3);
-}
-
 .item-modal-stats {
     margin-bottom: 25px;
 }

@@ -329,25 +329,17 @@ function showItemDetail(itemId) {
                 </div>
             </div>
             <div class="item-modal-body">
-                ${buffEffects.length > 0 ? `
-                    <div class="item-modal-description">
-                        <h4>バフ・デバフ効果</h4>
-                        <div class="buff-effects">
-                            ${buffEffects.map(effect => `<span class="buff-effect">${effect}</span>`).join('')}
-                        </div>
-                    </div>
-                ` : ''}
-                
                 <div class="item-modal-description">
                     <h4>説明</h4>
                     <p>${cleanDescription}</p>
                 </div>
                 
-                ${item.stats ? `
+                ${item.stats || buffEffects.length > 0 ? `
                     <div class="item-modal-stats">
                         <h4>ステータス</h4>
                         <div class="stats-grid">
                             ${getFormattedStats(item.stats)}
+                            ${buffEffects.map(effect => `<div class="stat-row"><span class="stat-name">${effect}</span></div>`).join('')}
                         </div>
                     </div>
                 ` : ''}
@@ -395,65 +387,106 @@ function stripHtmlTags(html) {
 
 // バフ効果を取得（「移動速度: +25」形式）
 function getBuffEffects(item) {
-    if (!item.stats) return [];
-    
     const effects = [];
-    const statMap = {
-        // 防御系
-        'FlatPhysicalDamageMod': { name: '攻撃力', isPercentage: false },
-        'FlatMagicDamageMod': { name: '魔力', isPercentage: false },
-        'FlatHPPoolMod': { name: '体力', isPercentage: false },
-        'FlatMPPoolMod': { name: 'マナ', isPercentage: false },
-        'FlatArmorMod': { name: '物理防御', isPercentage: false },
-        'FlatSpellBlockMod': { name: '魔法防御', isPercentage: false },
-        'FlatHPRegenMod': { name: '体力自動回復', isPercentage: false },
-        'FlatMPRegenMod': { name: 'マナ自動回復', isPercentage: false },
-        'PercentArmorMod': { name: '物理防御', isPercentage: true },
-        'PercentSpellBlockMod': { name: '魔法防御', isPercentage: true },
-        'PercentHPPoolMod': { name: '体力', isPercentage: true },
-        'PercentMPPoolMod': { name: 'マナ', isPercentage: true },
-        
-        // 攻撃系
-        'FlatAttackSpeedMod': { name: '攻撃速度', isPercentage: true },
-        'PercentAttackSpeedMod': { name: '攻撃速度', isPercentage: true },
-        'FlatCritChanceMod': { name: 'クリティカル', isPercentage: true },
-        'FlatCritDamageMod': { name: 'クリティカルダメージ', isPercentage: true },
-        'PercentLifeStealMod': { name: 'ライフステール', isPercentage: true },
-        'PercentSpellVampMod': { name: 'スペルヴァンプ', isPercentage: true },
-        'rFlatArmorPenetrationMod': { name: '物理防御貫通', isPercentage: false },
-        'rPercentArmorPenetrationMod': { name: '物理防御貫通', isPercentage: true },
-        
-        // 魔法系
-        'rFlatMagicPenetrationMod': { name: '魔法防御貫通', isPercentage: false },
-        'rPercentMagicPenetrationMod': { name: '魔法防御貫通', isPercentage: true },
-        'rPercentCooldownMod': { name: 'スキルヘイスト', isPercentage: true },
-        
-        // 移動・その他
-        'FlatMovementSpeedMod': { name: '移動速度', isPercentage: false },
-        'PercentMovementSpeedMod': { name: '移動速度', isPercentage: true },
-        'rFlatGoldPer10Mod': { name: 'ゴールド獲得', isPercentage: false },
-        'FlatEXPBonus': { name: '経験値獲得', isPercentage: false },
-        'PercentEXPBonus': { name: '経験値獲得', isPercentage: true },
-        
-        // 行動妨害耐性
-        'rFlatTimeDeadMod': { name: '復活時間短縮', isPercentage: false },
-        'rPercentTimeDeadMod': { name: '復活時間短縮', isPercentage: true }
-    };
     
-    Object.entries(item.stats).forEach(([key, value]) => {
-        if (value && value !== 0 && statMap[key]) {
-            const stat = statMap[key];
-            let displayValue = value;
+    // statsからバフ効果を取得
+    if (item.stats) {
+        const statMap = {
+            // 防御系
+            'FlatPhysicalDamageMod': { name: '攻撃力', isPercentage: false },
+            'FlatMagicDamageMod': { name: '魔力', isPercentage: false },
+            'FlatHPPoolMod': { name: '体力', isPercentage: false },
+            'FlatMPPoolMod': { name: 'マナ', isPercentage: false },
+            'FlatArmorMod': { name: '物理防御', isPercentage: false },
+            'FlatSpellBlockMod': { name: '魔法防御', isPercentage: false },
+            'FlatHPRegenMod': { name: '体力自動回復', isPercentage: false },
+            'FlatMPRegenMod': { name: 'マナ自動回復', isPercentage: false },
+            'PercentArmorMod': { name: '物理防御', isPercentage: true },
+            'PercentSpellBlockMod': { name: '魔法防御', isPercentage: true },
+            'PercentHPPoolMod': { name: '体力', isPercentage: true },
+            'PercentMPPoolMod': { name: 'マナ', isPercentage: true },
             
-            // パーセンテージの場合は100倍して表示
-            if (stat.isPercentage && value < 1 && value > -1) {
-                displayValue = Math.round(value * 100);
-            } else if (!stat.isPercentage) {
-                displayValue = Math.round(value);
+            // 攻撃系
+            'FlatAttackSpeedMod': { name: '攻撃速度', isPercentage: true },
+            'PercentAttackSpeedMod': { name: '攻撃速度', isPercentage: true },
+            'FlatCritChanceMod': { name: 'クリティカル', isPercentage: true },
+            'FlatCritDamageMod': { name: 'クリティカルダメージ', isPercentage: true },
+            'PercentLifeStealMod': { name: 'ライフステール', isPercentage: true },
+            'PercentSpellVampMod': { name: 'スペルヴァンプ', isPercentage: true },
+            'rFlatArmorPenetrationMod': { name: '物理防御貫通', isPercentage: false },
+            'rPercentArmorPenetrationMod': { name: '物理防御貫通', isPercentage: true },
+            
+            // 魔法系
+            'rFlatMagicPenetrationMod': { name: '魔法防御貫通', isPercentage: false },
+            'rPercentMagicPenetrationMod': { name: '魔法防御貫通', isPercentage: true },
+            'rPercentCooldownMod': { name: 'スキルヘイスト', isPercentage: true },
+            
+            // 移動・その他
+            'FlatMovementSpeedMod': { name: '移動速度', isPercentage: false },
+            'PercentMovementSpeedMod': { name: '移動速度', isPercentage: true },
+            'rFlatGoldPer10Mod': { name: 'ゴールド獲得', isPercentage: false },
+            'FlatEXPBonus': { name: '経験値獲得', isPercentage: false },
+            'PercentEXPBonus': { name: '経験値獲得', isPercentage: true },
+            
+            // 行動妨害耐性
+            'rFlatTimeDeadMod': { name: '復活時間短縮', isPercentage: false },
+            'rPercentTimeDeadMod': { name: '復活時間短縮', isPercentage: true }
+        };
+        
+        Object.entries(item.stats).forEach(([key, value]) => {
+            if (value && value !== 0 && statMap[key]) {
+                const stat = statMap[key];
+                let displayValue = value;
+                
+                // パーセンテージの場合は100倍して表示
+                if (stat.isPercentage && value < 1 && value > -1) {
+                    displayValue = Math.round(value * 100);
+                } else if (!stat.isPercentage) {
+                    displayValue = Math.round(value);
+                }
+                
+                const sign = displayValue > 0 ? '+' : '';
+                effects.push(`${stat.name}: ${sign}${displayValue}${stat.isPercentage ? '%' : ''}`);
             }
-            
-            const sign = displayValue > 0 ? '+' : '';
-            effects.push(`${stat.name}: ${sign}${displayValue}${stat.isPercentage ? '%' : ''}`);
+        });
+    }
+    
+    // descriptionからバフ効果を抽出
+    if (item.description) {
+        const descriptionEffects = extractBuffEffectsFromDescription(item.description);
+        effects.push(...descriptionEffects);
+    }
+    
+    return effects;
+}
+
+// descriptionからバフ効果を抽出
+function extractBuffEffectsFromDescription(description) {
+    const effects = [];
+    const cleanDesc = stripHtmlTags(description);
+    
+    // パーセンテージバフ効果のパターンマッチング
+    const buffPatterns = [
+        { pattern: /基本マナ自動回復(\d+)%/, name: 'マナ自動回復' },
+        { pattern: /基本体力自動回復(\d+)%/, name: '体力自動回復' },
+        { pattern: /移動速度(\d+)/, name: '移動速度' },
+        { pattern: /攻撃速度(\d+)%/, name: '攻撃速度' },
+        { pattern: /クリティカル率(\d+)%/, name: 'クリティカル' },
+        { pattern: /ライフステール(\d+)%/, name: 'ライフステール' },
+        { pattern: /物理防御(\d+)/, name: '物理防御' },
+        { pattern: /魔法防御(\d+)/, name: '魔法防御' },
+        { pattern: /体力(\d+)/, name: '体力' },
+        { pattern: /マナ(\d+)/, name: 'マナ' },
+        { pattern: /攻撃力(\d+)/, name: '攻撃力' },
+        { pattern: /魔力(\d+)/, name: '魔力' }
+    ];
+    
+    buffPatterns.forEach(({ pattern, name }) => {
+        const match = cleanDesc.match(pattern);
+        if (match) {
+            const value = match[1];
+            const isPercentage = pattern.source.includes('%');
+            effects.push(`${name}: +${value}${isPercentage ? '%' : ''}`);
         }
     });
     
