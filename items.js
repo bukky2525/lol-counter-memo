@@ -79,13 +79,40 @@ async function loadItemsFromDDragon() {
             .map(([id, item]) => ({
                 ...item,
                 id: id // アイテムIDを追加
-                }))
-                .filter((item, index, array) => {
-                    // 重複を防ぐため、同じIDのアイテムは最初のもののみ残す
-                    return array.findIndex(i => i.id === item.id) === index;
-                });
+            }))
+            .filter((item, index, array) => {
+                // 重複を防ぐため、同じIDのアイテムは最初のもののみ残す
+                return array.findIndex(i => i.id === item.id) === index;
+            })
+            .filter((item, index, array) => {
+                // 同じ名前のアイテムも重複を防ぐ（例：「スコーチクロウの幼体」）
+                return array.findIndex(i => i.name === item.name) === index;
+            });
         
         console.log(`フィルタリング後のアイテム数: ${filteredItems.length}`);
+        
+        // 重複チェックの詳細ログ
+        const duplicateNames = [];
+        const nameCounts = {};
+        filteredItems.forEach(item => {
+            if (nameCounts[item.name]) {
+                nameCounts[item.name]++;
+                if (!duplicateNames.includes(item.name)) {
+                    duplicateNames.push(item.name);
+                }
+            } else {
+                nameCounts[item.name] = 1;
+            }
+        });
+        
+        if (duplicateNames.length > 0) {
+            console.log('重複が見つかったアイテム名:', duplicateNames);
+            duplicateNames.forEach(name => {
+                console.log(`- ${name}: ${nameCounts[name]}件`);
+            });
+        } else {
+            console.log('重複するアイテム名はありません');
+        }
         
         // アイテムを表示
         renderItems();
