@@ -338,11 +338,11 @@ function showItemDetail(itemId) {
                     <p>${cleanDescription}</p>
                 </div>
                 
-                ${item.stats || buffEffects.length > 0 ? `
+                ${item.stats ? `
                     <div class="item-modal-stats">
                         <h4>ステータス</h4>
                         <div class="stats-grid">
-                            ${getCombinedFormattedStats(item.stats, buffEffects)}
+                            ${getFormattedStatsOnly(item.stats)}
                         </div>
                     </div>
                 ` : ''}
@@ -496,8 +496,8 @@ function extractBuffEffectsFromDescription(description) {
     return effects;
 }
 
-// 統合されたフォーマット済みステータスを取得（重複を防ぐ）
-function getCombinedFormattedStats(stats, buffEffects) {
+// フォーマット済みステータスのみを取得（重複を完全に防ぐ）
+function getFormattedStatsOnly(stats) {
     const formatted = [];
     const addedStats = new Set(); // 重複を防ぐためのSet
     
@@ -517,41 +517,29 @@ function getCombinedFormattedStats(stats, buffEffects) {
         'rPercentCooldownMod': { name: 'スキルヘイスト', suffix: '%' }
     };
     
-    // statsからステータスを取得
-    if (stats) {
-        Object.entries(stats).forEach(([key, value]) => {
-            if (value && value !== 0 && statMap[key]) {
-                const stat = statMap[key];
-                let displayValue = value;
-                
-                // パーセンテージの場合は100倍して表示
-                if (stat.suffix === '%' && value < 1) {
-                    displayValue = Math.round(value * 100);
-                } else if (!stat.suffix) {
-                    displayValue = Math.round(value);
-                }
-                
-                const statText = `${stat.name}: ${displayValue}${stat.suffix}`;
-                
-                // 重複チェック
-                if (!addedStats.has(statText)) {
-                    addedStats.add(statText);
-                    formatted.push(`<div class="stat-row"><span class="stat-name">${stat.name}:</span><span class="stat-value">${displayValue}${stat.suffix}</span></div>`);
-                }
-            }
-        });
-    }
+    if (!stats) return '';
     
-    // buffEffectsからステータスを取得
-    if (buffEffects && buffEffects.length > 0) {
-        buffEffects.forEach(effect => {
-            // 重複チェック
-            if (!addedStats.has(effect)) {
-                addedStats.add(effect);
-                formatted.push(`<div class="stat-row"><span class="stat-name">${effect}</span></div>`);
+    Object.entries(stats).forEach(([key, value]) => {
+        if (value && value !== 0 && statMap[key]) {
+            const stat = statMap[key];
+            let displayValue = value;
+            
+            // パーセンテージの場合は100倍して表示
+            if (stat.suffix === '%' && value < 1) {
+                displayValue = Math.round(value * 100);
+            } else if (!stat.suffix) {
+                displayValue = Math.round(value);
             }
-        });
-    }
+            
+            const statNameKey = stat.name; // 名前のみをキーとして使用
+            
+            // 重複チェック（名前でチェック）
+            if (!addedStats.has(statNameKey)) {
+                addedStats.add(statNameKey);
+                formatted.push(`<div class="stat-row"><span class="stat-name">${stat.name}:</span><span class="stat-value">${displayValue}${stat.suffix}</span></div>`);
+            }
+        }
+    });
     
     return formatted.join('');
 }
