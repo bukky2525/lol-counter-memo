@@ -338,11 +338,11 @@ function showItemDetail(itemId) {
                     <p>${cleanDescription}</p>
                 </div>
                 
-                ${item.stats ? `
+                ${item.stats || item.description ? `
                     <div class="item-modal-stats">
                         <h4>ステータス</h4>
                         <div class="stats-grid">
-                            ${getFormattedStatsOnly(item.stats)}
+                            ${getFormattedStatsOnly(item.stats, item.description)}
                         </div>
                     </div>
                 ` : ''}
@@ -497,7 +497,7 @@ function extractBuffEffectsFromDescription(description) {
 }
 
 // フォーマット済みステータスのみを取得（重複を完全に防ぐ）
-function getFormattedStatsOnly(stats) {
+function getFormattedStatsOnly(stats, description) {
     const formatted = [];
     const addedStats = new Set(); // 重複を防ぐためのSet
     
@@ -517,29 +517,45 @@ function getFormattedStatsOnly(stats) {
         'rPercentCooldownMod': { name: 'スキルヘイスト', suffix: '%' }
     };
     
-    if (!stats) return '';
-    
-    Object.entries(stats).forEach(([key, value]) => {
-        if (value && value !== 0 && statMap[key]) {
-            const stat = statMap[key];
-            let displayValue = value;
-            
-            // パーセンテージの場合は100倍して表示
-            if (stat.suffix === '%' && value < 1) {
-                displayValue = Math.round(value * 100);
-            } else if (!stat.suffix) {
-                displayValue = Math.round(value);
+    // statsからステータスを取得
+    if (stats) {
+        Object.entries(stats).forEach(([key, value]) => {
+            if (value && value !== 0 && statMap[key]) {
+                const stat = statMap[key];
+                let displayValue = value;
+                
+                // パーセンテージの場合は100倍して表示
+                if (stat.suffix === '%' && value < 1) {
+                    displayValue = Math.round(value * 100);
+                } else if (!stat.suffix) {
+                    displayValue = Math.round(value);
+                }
+                
+                const statNameKey = stat.name; // 名前のみをキーとして使用
+                
+                // 重複チェック（名前でチェック）
+                if (!addedStats.has(statNameKey)) {
+                    addedStats.add(statNameKey);
+                    formatted.push(`<div class="stat-row"><span class="stat-name">${stat.name}:</span><span class="stat-value">${displayValue}${stat.suffix}</span></div>`);
+                }
             }
-            
-            const statNameKey = stat.name; // 名前のみをキーとして使用
+        });
+    }
+    
+    // descriptionからステータスを取得（statsにない場合の補完）
+    if (description) {
+        const descriptionEffects = extractBuffEffectsFromDescription(description);
+        descriptionEffects.forEach(effect => {
+            // 効果名を抽出（例：「マナ自動回復: +50%」から「マナ自動回復」）
+            const effectName = effect.split(':')[0];
             
             // 重複チェック（名前でチェック）
-            if (!addedStats.has(statNameKey)) {
-                addedStats.add(statNameKey);
-                formatted.push(`<div class="stat-row"><span class="stat-name">${stat.name}:</span><span class="stat-value">${displayValue}${stat.suffix}</span></div>`);
+            if (!addedStats.has(effectName)) {
+                addedStats.add(effectName);
+                formatted.push(`<div class="stat-row"><span class="stat-name">${effect}</span></div>`);
             }
-        }
-    });
+        });
+    }
     
     return formatted.join('');
 }
