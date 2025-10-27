@@ -549,7 +549,7 @@ function getItemStats(item) {
     const stats = [];
     const addedStats = new Set(); // 重複を防ぐためのSet
     
-    // statsからバフ効果を取得（詳細画面と同じロジック）
+    // statsからバフ効果を取得
     if (item.stats) {
         const statMap = {
             'FlatPhysicalDamageMod': { name: '攻撃力', suffix: '', isPercentage: false },
@@ -587,6 +587,21 @@ function getItemStats(item) {
                     const sign = displayValue > 0 ? '+' : '';
                     stats.push(`<span class="stat-item">${stat.name}: ${sign}${displayValue}${stat.suffix}</span>`);
                 }
+            }
+        });
+    }
+    
+    // descriptionからバフ効果を取得（statsにない場合の補完）
+    if (item.description) {
+        const descriptionEffects = extractBuffEffectsFromDescription(item.description);
+        descriptionEffects.forEach(effect => {
+            // 効果名を抽出（例：「マナ自動回復: +50%」から「マナ自動回復」）
+            const effectName = effect.split(':')[0];
+            
+            // 重複チェック（名前でチェック）
+            if (!addedStats.has(effectName)) {
+                addedStats.add(effectName);
+                stats.push(`<span class="stat-item">${effect}</span>`);
             }
         });
     }
