@@ -481,7 +481,10 @@ function extractBuffEffectsFromDescription(description) {
         { pattern: /体力(\d+)/, name: '体力' },
         { pattern: /マナ(\d+)/, name: 'マナ' },
         { pattern: /攻撃力(\d+)/, name: '攻撃力' },
-        { pattern: /魔力(\d+)/, name: '魔力' }
+        { pattern: /魔力(\d+)/, name: '魔力' },
+        { pattern: /スキルヘイスト(\d+)%/, name: 'スキルヘイスト' },
+        { pattern: /クールダウン短縮(\d+)%/, name: 'スキルヘイスト' },
+        { pattern: /クールダウン(\d+)%/, name: 'スキルヘイスト' }
     ];
     
     buffPatterns.forEach(({ pattern, name }) => {
