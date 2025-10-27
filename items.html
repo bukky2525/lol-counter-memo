@@ -3,92 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LoL アイテム一覧</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>アイテム一覧 - LoL Guide</title>
     <link rel="stylesheet" href="items.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-        <!-- ハンバーガーメニューボタン -->
-        <button class="menu-toggle" id="menuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    
-    <!-- サイドメニュー -->
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h2>メニュー</h2>
-            <button class="close-btn" id="closeBtn">×</button>
-        </div>
-        <ul class="sidebar-menu">
-            <li><a href="index.html" class="menu-item">
-                <span class="icon">🏠</span>
-                <span>カウンターピック</span>
-            </a></li>
-            <li><a href="items.html" class="menu-item active">
-                <span class="icon">📦</span>
-                <span>アイテム一覧</span>
-            </a></li>
-        </ul>
-    </nav>
-    
-    <!-- オーバーレイ -->
-    <div class="overlay" id="overlay"></div>
-    
     <div class="container">
         <!-- ヘッダー -->
         <header class="page-header">
-            <h1>アイテム一覧</h1>
+            <div class="header-content">
+                <h1>League of Legends アイテム一覧</h1>
+                <p class="header-subtitle">すべてのアイテムの詳細情報とステータス</p>
+            </div>
         </header>
-        
-        <!-- 検索・フィルター・結果 -->
-        <div class="search-section">
-            <div class="search-wrapper">
-                <input type="text" 
-                       id="searchInput" 
-                       class="search-input" 
-                       placeholder="アイテム名で検索..."
-                       autocomplete="off">
-                <div id="searchSuggestions" class="search-suggestions"></div>
+
+        <!-- 検索・フィルターセクション -->
+        <section class="search-section">
+            <div class="search-controls">
+                <div class="search-wrapper">
+                    <input type="text" 
+                           id="searchInput" 
+                           class="search-input" 
+                           placeholder="アイテム名で検索..."
+                           autocomplete="off">
+                    <div id="searchSuggestions" class="search-suggestions"></div>
+                </div>
+                
+                <div class="filter-container">
+                    <select id="categorySelect" class="category-select">
+                        <option value="all">すべてのカテゴリ</option>
+                        <option value="Boots">ブーツ</option>
+                        <option value="Consumable">消耗品</option>
+                        <option value="Jungle">ジャングル</option>
+                        <option value="Lane">レーン</option>
+                        <option value="Legendary">レジェンダリー</option>
+                        <option value="Mythic">神話</option>
+                        <option value="Ornn">オーン</option>
+                        <option value="Starter">スターター</option>
+                        <option value="Trinket">トリンケット</option>
+                    </select>
+                </div>
             </div>
             
-            <div class="filter-container">
-                <select id="categorySelect" class="category-select">
-                    <option value="all">すべてのカテゴリ</option>
-                    <option value="Boots">ブーツ</option>
-                    <option value="Health">体力</option>
-                    <option value="HealthRegen">体力回復</option>
-                    <option value="Mana">マナ</option>
-                    <option value="ManaRegen">マナ回復</option>
-                    <option value="Armor">物理防御</option>
-                    <option value="SpellBlock">魔法防御</option>
-                    <option value="Damage">攻撃力</option>
-                    <option value="SpellDamage">魔法攻撃力</option>
-                    <option value="AttackSpeed">攻撃速度</option>
-                    <option value="CriticalStrike">クリティカル</option>
-                    <option value="LifeSteal">ライフステール</option>
-                    <option value="Consumable">消費アイテム</option>
-                    <option value="Vision">視界</option>
-                    <option value="Jungle">ジャングル</option>
-                </select>
+            <div class="results-info">
+                <span id="resultsCount" class="results-count">読み込み中...</span>
             </div>
-            
-            <div class="results-container">
-                <div class="results-count" id="resultsCount">検索結果: 読み込み中...</div>
+        </section>
+
+        <!-- アイテム一覧 -->
+        <main class="main-content">
+            <div id="itemsContainer" class="items-container">
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>アイテムデータを読み込み中...</p>
+                </div>
             </div>
-        </div>
-        
-        <!-- アイテムコンテナ -->
-        <div id="itemsContainer" class="items-container">
-            <div class="loading">
-                <div class="loading-spinner"></div>
-                <p>アイテムデータを読み込み中...</p>
+        </main>
+
+        <!-- フッター -->
+        <footer class="page-footer">
+            <p>&copy; 2025 LoL Guide. League of Legends is a trademark of Riot Games, Inc.</p>
+        </footer>
+    </div>
+
+    <!-- アイテム詳細モーダル -->
+    <div id="itemModal" class="item-modal">
+        <div class="item-modal-content">
+            <button class="item-modal-close" onclick="closeItemModal()">×</button>
+            <div class="item-modal-header">
+                <img id="modalItemIcon" src="" alt="" class="item-modal-icon">
+                <div class="item-modal-title">
+                    <h2 id="modalItemName"></h2>
+                    <div class="item-modal-price" id="modalItemPrice"></div>
+                </div>
+            </div>
+            <div class="item-modal-body">
+                <div class="item-modal-description">
+                    <h4>説明</h4>
+                    <p id="modalItemDescription"></p>
+                </div>
+                
+                <div class="item-modal-stats" id="modalItemStats">
+                    <h4>ステータス</h4>
+                    <div class="stats-grid" id="modalStatsGrid"></div>
+                </div>
+                
+                <div class="item-modal-builds" id="modalItemBuilds">
+                    <h4>進化先</h4>
+                    <div class="item-builds-list" id="modalBuildsList"></div>
+                </div>
             </div>
         </div>
     </div>
-    
-    <script src="menu.js"></script>
+
     <script src="items.js"></script>
 </body>
 </html>

@@ -1,6 +1,5 @@
 /**
- * LoL Guide風アイテム一覧ページ
- * DDragon APIから直接アイテムデータを取得
+ * DDragon APIから直接アイテムデータを取得するアイテムページ
  */
 
 let itemsData = {};
@@ -14,7 +13,7 @@ const categorySelect = document.getElementById('categorySelect');
 const itemsContainer = document.getElementById('itemsContainer');
 const resultsCount = document.getElementById('resultsCount');
 const searchSuggestions = document.getElementById('searchSuggestions');
-const itemModal = document.getElementById('itemModal');
+
 
 // DDragon APIのバージョン
 const DDragonVersion = '15.17.1';
@@ -42,6 +41,16 @@ async function loadItemsFromDDragon() {
         // アイテムデータを処理
         itemsData = data.data;
         console.log(`取得したアイテム数: ${Object.keys(itemsData).length}`);
+        
+        // 最初のアイテムの構造を確認
+        const firstItemKey = Object.keys(itemsData)[0];
+        const firstItem = itemsData[firstItemKey];
+        console.log('最初のアイテム構造:', {
+            key: firstItemKey,
+            item: firstItem,
+            id: firstItem.id,
+            name: firstItem.name
+        });
         
         // フィルタリング可能なアイテムのみを抽出（IDを追加）
         filteredItems = Object.entries(itemsData)
@@ -118,15 +127,6 @@ function setupEventListeners() {
             hideSearchSuggestions();
         }
     });
-    
-    // モーダル外クリックで閉じる
-    if (itemModal) {
-        itemModal.addEventListener('click', (e) => {
-            if (e.target === itemModal) {
-                closeItemModal();
-            }
-        });
-    }
 }
 
 // アイテムをフィルタリングして表示
@@ -163,6 +163,7 @@ function filterAndRenderItems() {
 // アイテムを表示
 function renderItems(items = filteredItems) {
     console.log('renderItems called with', items.length, 'items');
+    console.log('itemsContainer:', itemsContainer);
     
     if (items.length === 0) {
         itemsContainer.innerHTML = `
@@ -200,7 +201,9 @@ function renderItems(items = filteredItems) {
         </div>
     `;
 
+    console.log('Setting innerHTML, itemsHtml length:', itemsHtml.length);
     itemsContainer.innerHTML = itemsHtml;
+    console.log('innerHTML set successfully');
 }
 
 // 検索候補を表示
@@ -311,28 +314,71 @@ function showItemDetail(itemId) {
         ? stripHtmlTags(item.description) 
         : item.plaintext || '説明なし';
 
-    // モーダル要素を更新
-    document.getElementById('modalItemIcon').src = getItemIconUrl(itemId);
-    document.getElementById('modalItemIcon').alt = item.name;
-    document.getElementById('modalItemName').textContent = item.name;
-    document.getElementById('modalItemPrice').textContent = item.gold ? item.gold.total + 'G' : '価格不明';
-    document.getElementById('modalItemDescription').textContent = cleanDescription;
+    // バフ効果を取得
+    const buffEffects = getBuffEffects(item);
     
-    // ステータスを表示
-    const statsHtml = getFormattedStats(item);
-    document.getElementById('modalStatsGrid').innerHTML = statsHtml;
-    
-    // 進化先を表示
-    const buildsHtml = getBuildsHtml(item);
-    document.getElementById('modalBuildsList').innerHTML = buildsHtml;
-    
-    // モーダルを表示
-    itemModal.classList.add('show');
-}
+    const modal = document.createElement('div');
+    modal.className = 'item-modal show';
+    modal.innerHTML = `
+        <div class="item-modal-content">
+            <button class="item-modal-close" onclick="this.closest('.item-modal').remove()">×</button>
+            <div class="item-modal-header">
+                <img src="${getItemIconUrl(itemId)}" 
+                     alt="${item.name}" 
+                     class="item-modal-icon"
+                     onerror="this.style.display='none'">
+                <div class="item-modal-title">
+                    <h2>${item.name}</h2>
+                    <div class="item-modal-price">${item.gold ? item.gold.total + 'G' : '価格不明'}</div>
+                </div>
+            </div>
+            <div class="item-modal-body">
+                <div class="item-modal-description">
+                    <h4>説明</h4>
+                    <p>${cleanDescription}</p>
+                </div>
+                
+                ${item.stats || item.description ? `
+                    <div class="item-modal-stats">
+                        <h4>ステータス</h4>
+                        <div class="stats-grid">
+                            ${getFormattedStatsOnly(item.stats, item.description)}
+                        </div>
+                    </div>
+                ` : ''}
+                
+                ${item.buildsInto && item.buildsInto.length > 0 ? `
+                    <div class="item-modal-builds">
+                        <h4>進化先</h4>
+                        <div class="item-builds-list">
+                            ${item.buildsInto.slice(0, 2).map(buildId => {
+                                const buildItem = itemsData[buildId];
+                                return buildItem ? `
+                                    <div class="item-build-item">
+                                        <img src="${getItemIconUrl(buildId)}" 
+                                             alt="${buildItem.name}" 
+                                             class="item-build-icon"
+                                             onerror="this.style.display='none'">
+                                        <span class="item-build-name">${buildItem.name}</span>
+                                    </div>
+                                ` : '';
+                            }).join('')}
+                            ${item.buildsInto.length > 2 ? `<div class="other-evolutions">他${item.buildsInto.length - 2}件</div>` : ''}
+                        </div>
+                    </div>
+                ` : ''}
+            </div>
+        </div>
+    `;
 
-// モーダルを閉じる
-function closeItemModal() {
-    itemModal.classList.remove('show');
+    document.body.appendChild(modal);
+
+    // モーダル外クリックで閉じる
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
 }
 
 // HTMLタグを除去
@@ -342,78 +388,90 @@ function stripHtmlTags(html) {
     return tmp.textContent || tmp.innerText || '';
 }
 
-// フォーマット済みステータスを取得
-function getFormattedStats(item) {
-    const formatted = [];
-    const addedStats = new Set(); // 重複を防ぐためのSet
+// バフ効果を取得（「移動速度: +25」形式）
+function getBuffEffects(item) {
+    const effects = [];
     
-    const statMap = {
-        'FlatPhysicalDamageMod': { name: '攻撃力', suffix: '' },
-        'FlatMagicDamageMod': { name: '魔力', suffix: '' },
-        'FlatHPPoolMod': { name: '体力', suffix: '' },
-        'FlatMPPoolMod': { name: 'マナ', suffix: '' },
-        'FlatArmorMod': { name: '物理防御', suffix: '' },
-        'FlatSpellBlockMod': { name: '魔法防御', suffix: '' },
-        'FlatMovementSpeedMod': { name: '移動速度', suffix: '' },
-        'PercentAttackSpeedMod': { name: '攻撃速度', suffix: '%' },
-        'FlatCritChanceMod': { name: 'クリティカル', suffix: '%' },
-        'PercentLifeStealMod': { name: 'ライフステール', suffix: '%' },
-        'FlatHPRegenMod': { name: '体力自動回復', suffix: '' },
-        'FlatMPRegenMod': { name: 'マナ自動回復', suffix: '' },
-        'rPercentCooldownMod': { name: 'スキルヘイスト', suffix: '%' }
-    };
-    
-    // statsからステータスを取得
+    // statsからバフ効果を取得
     if (item.stats) {
+        const statMap = {
+            // 防御系
+            'FlatPhysicalDamageMod': { name: '攻撃力', isPercentage: false },
+            'FlatMagicDamageMod': { name: '魔力', isPercentage: false },
+            'FlatHPPoolMod': { name: '体力', isPercentage: false },
+            'FlatMPPoolMod': { name: 'マナ', isPercentage: false },
+            'FlatArmorMod': { name: '物理防御', isPercentage: false },
+            'FlatSpellBlockMod': { name: '魔法防御', isPercentage: false },
+            'FlatHPRegenMod': { name: '体力自動回復', isPercentage: false },
+            'FlatMPRegenMod': { name: 'マナ自動回復', isPercentage: false },
+            'PercentArmorMod': { name: '物理防御', isPercentage: true },
+            'PercentSpellBlockMod': { name: '魔法防御', isPercentage: true },
+            'PercentHPPoolMod': { name: '体力', isPercentage: true },
+            'PercentMPPoolMod': { name: 'マナ', isPercentage: true },
+            
+            // 攻撃系
+            'FlatAttackSpeedMod': { name: '攻撃速度', isPercentage: true },
+            'PercentAttackSpeedMod': { name: '攻撃速度', isPercentage: true },
+            'FlatCritChanceMod': { name: 'クリティカル', isPercentage: true },
+            'FlatCritDamageMod': { name: 'クリティカルダメージ', isPercentage: true },
+            'PercentLifeStealMod': { name: 'ライフステール', isPercentage: true },
+            'PercentSpellVampMod': { name: 'スペルヴァンプ', isPercentage: true },
+            'rFlatArmorPenetrationMod': { name: '物理防御貫通', isPercentage: false },
+            'rPercentArmorPenetrationMod': { name: '物理防御貫通', isPercentage: true },
+            
+            // 魔法系
+            'rFlatMagicPenetrationMod': { name: '魔法防御貫通', isPercentage: false },
+            'rPercentMagicPenetrationMod': { name: '魔法防御貫通', isPercentage: true },
+            'rPercentCooldownMod': { name: 'スキルヘイスト', isPercentage: true },
+            
+            // 移動・その他
+            'FlatMovementSpeedMod': { name: '移動速度', isPercentage: false },
+            'PercentMovementSpeedMod': { name: '移動速度', isPercentage: true },
+            'rFlatGoldPer10Mod': { name: 'ゴールド獲得', isPercentage: false },
+            'FlatEXPBonus': { name: '経験値獲得', isPercentage: false },
+            'PercentEXPBonus': { name: '経験値獲得', isPercentage: true },
+            
+            // 行動妨害耐性
+            'rFlatTimeDeadMod': { name: '復活時間短縮', isPercentage: false },
+            'rPercentTimeDeadMod': { name: '復活時間短縮', isPercentage: true }
+        };
+        
         Object.entries(item.stats).forEach(([key, value]) => {
             if (value && value !== 0 && statMap[key]) {
                 const stat = statMap[key];
                 let displayValue = value;
                 
                 // パーセンテージの場合は100倍して表示
-                if (stat.suffix === '%' && value < 1) {
+                if (stat.isPercentage && value < 1 && value > -1) {
                     displayValue = Math.round(value * 100);
-                } else if (!stat.suffix) {
+                } else if (!stat.isPercentage) {
                     displayValue = Math.round(value);
                 }
                 
-                const statNameKey = stat.name; // 名前のみをキーとして使用
-                
-                // 重複チェック（名前でチェック）
-                if (!addedStats.has(statNameKey)) {
-                    addedStats.add(statNameKey);
-                    formatted.push(`<div class="stat-row"><span class="stat-name">${stat.name}:</span><span class="stat-value">${displayValue}${stat.suffix}</span></div>`);
-                }
+                const sign = displayValue > 0 ? '+' : '';
+                effects.push(`${stat.name}: ${sign}${displayValue}${stat.isPercentage ? '%' : ''}`);
             }
         });
     }
     
-    // descriptionからステータスを取得（statsにない場合の補完）
+    // descriptionからバフ効果を抽出
     if (item.description) {
         const descriptionEffects = extractBuffEffectsFromDescription(item.description);
-        descriptionEffects.forEach(effect => {
-            // 効果を解析（例：「マナ自動回復: +50%」から名前と値を分離）
-            const parts = effect.split(': ');
-            if (parts.length === 2) {
-                const effectName = parts[0];
-                const effectValue = parts[1];
-                
-                // 重複チェック（名前でチェック）
-                if (!addedStats.has(effectName)) {
-                    addedStats.add(effectName);
-                    formatted.push(`<div class="stat-row"><span class="stat-name">${effectName}:</span><span class="stat-value">${effectValue}</span></div>`);
-                }
-            }
-        });
+        effects.push(...descriptionEffects);
     }
     
-    return formatted.join('');
+    return effects;
 }
 
 // descriptionからバフ効果を抽出
 function extractBuffEffectsFromDescription(description) {
     const effects = [];
     const cleanDesc = stripHtmlTags(description);
+    
+    // デバッグ用：輝きのモートの説明を確認
+    if (cleanDesc.includes('輝きのモート') || cleanDesc.includes('クールダウン')) {
+        console.log('輝きのモートの説明:', cleanDesc);
+    }
     
     // パーセンテージバフ効果のパターンマッチング
     const buffPatterns = [
@@ -440,35 +498,83 @@ function extractBuffEffectsFromDescription(description) {
             const value = match[1];
             const isPercentage = pattern.source.includes('%');
             effects.push(`${name}: +${value}${isPercentage ? '%' : ''}`);
+            
+            // デバッグ用：スキルヘイストの抽出を確認
+            if (name === 'スキルヘイスト') {
+                console.log('スキルヘイスト抽出成功:', `${name}: +${value}${isPercentage ? '%' : ''}`);
+            }
         }
     });
     
     return effects;
 }
 
-// 進化先HTMLを取得
-function getBuildsHtml(item) {
-    if (!item.buildsInto || item.buildsInto.length === 0) {
-        return '<div class="other-evolutions">進化先なし</div>';
+// フォーマット済みステータスのみを取得（重複を完全に防ぐ）
+function getFormattedStatsOnly(stats, description) {
+    const formatted = [];
+    const addedStats = new Set(); // 重複を防ぐためのSet
+    
+    const statMap = {
+        'FlatPhysicalDamageMod': { name: '攻撃力', suffix: '' },
+        'FlatMagicDamageMod': { name: '魔力', suffix: '' },
+        'FlatHPPoolMod': { name: '体力', suffix: '' },
+        'FlatMPPoolMod': { name: 'マナ', suffix: '' },
+        'FlatArmorMod': { name: '物理防御', suffix: '' },
+        'FlatSpellBlockMod': { name: '魔法防御', suffix: '' },
+        'FlatMovementSpeedMod': { name: '移動速度', suffix: '' },
+        'PercentAttackSpeedMod': { name: '攻撃速度', suffix: '%' },
+        'FlatCritChanceMod': { name: 'クリティカル', suffix: '%' },
+        'PercentLifeStealMod': { name: 'ライフステール', suffix: '%' },
+        'FlatHPRegenMod': { name: '体力自動回復', suffix: '' },
+        'FlatMPRegenMod': { name: 'マナ自動回復', suffix: '' },
+        'rPercentCooldownMod': { name: 'スキルヘイスト', suffix: '%' }
+    };
+    
+    // statsからステータスを取得
+    if (stats) {
+        Object.entries(stats).forEach(([key, value]) => {
+            if (value && value !== 0 && statMap[key]) {
+                const stat = statMap[key];
+                let displayValue = value;
+                
+                // パーセンテージの場合は100倍して表示
+                if (stat.suffix === '%' && value < 1) {
+                    displayValue = Math.round(value * 100);
+                } else if (!stat.suffix) {
+                    displayValue = Math.round(value);
+                }
+                
+                const statNameKey = stat.name; // 名前のみをキーとして使用
+                
+                // 重複チェック（名前でチェック）
+                if (!addedStats.has(statNameKey)) {
+                    addedStats.add(statNameKey);
+                    formatted.push(`<div class="stat-row"><span class="stat-name">${stat.name}:</span><span class="stat-value">${displayValue}${stat.suffix}</span></div>`);
+                }
+            }
+        });
     }
     
-    const builds = item.buildsInto.slice(0, 3).map(buildId => {
-        const buildItem = itemsData[buildId];
-        return buildItem ? `
-            <div class="item-build-item">
-                <img src="${getItemIconUrl(buildId)}" 
-                     alt="${buildItem.name}" 
-                     class="item-build-icon"
-                     onerror="this.style.display='none'">
-                <span class="item-build-name">${buildItem.name}</span>
-            </div>
-        ` : '';
-    }).join('');
+    // descriptionからステータスを取得（statsにない場合の補完）
+    if (description) {
+        const descriptionEffects = extractBuffEffectsFromDescription(description);
+        descriptionEffects.forEach(effect => {
+            // 効果を解析（例：「マナ自動回復: +50%」から名前と値を分離）
+            const parts = effect.split(': ');
+            if (parts.length === 2) {
+                const effectName = parts[0];
+                const effectValue = parts[1];
+                
+                // 重複チェック（名前でチェック）
+                if (!addedStats.has(effectName)) {
+                    addedStats.add(effectName);
+                    formatted.push(`<div class="stat-row"><span class="stat-name">${effectName}:</span><span class="stat-value">${effectValue}</span></div>`);
+                }
+            }
+        });
+    }
     
-    const remainingCount = item.buildsInto.length - 3;
-    const remainingHtml = remainingCount > 0 ? `<div class="other-evolutions">他${remainingCount}件</div>` : '';
-    
-    return builds + remainingHtml;
+    return formatted.join('');
 }
 
 // アイテムのステータスを取得（カード表示用）
