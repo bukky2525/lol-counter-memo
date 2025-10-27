@@ -57,13 +57,10 @@ body {
     border: 1px solid rgba(255,255,255,0.2);
 }
 
-.search-container {
-    flex: 1;
-    min-width: 300px;
-}
-
 .search-wrapper {
     position: relative;
+    flex: 1;
+    min-width: 300px;
 }
 
 .search-input {
@@ -621,7 +618,7 @@ body {
         align-items: stretch;
     }
     
-    .search-container,
+    .search-wrapper,
     .filter-container,
     .results-container {
         min-width: auto;
