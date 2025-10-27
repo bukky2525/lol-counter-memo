@@ -399,20 +399,45 @@ function getBuffEffects(item) {
     
     const effects = [];
     const statMap = {
+        // 防御系
         'FlatPhysicalDamageMod': { name: '攻撃力', isPercentage: false },
         'FlatMagicDamageMod': { name: '魔力', isPercentage: false },
         'FlatHPPoolMod': { name: '体力', isPercentage: false },
         'FlatMPPoolMod': { name: 'マナ', isPercentage: false },
         'FlatArmorMod': { name: '物理防御', isPercentage: false },
         'FlatSpellBlockMod': { name: '魔法防御', isPercentage: false },
-        'FlatMovementSpeedMod': { name: '移動速度', isPercentage: false },
-        'PercentAttackSpeedMod': { name: '攻撃速度', isPercentage: true },
-        'FlatCritChanceMod': { name: 'クリティカル率', isPercentage: true },
-        'PercentLifeStealMod': { name: 'ライフステール', isPercentage: true },
-        'FlatHPRegenMod': { name: '体力回復', isPercentage: false },
-        'FlatMPRegenMod': { name: 'マナ回復', isPercentage: false },
+        'FlatHPRegenMod': { name: '体力自動回復', isPercentage: false },
+        'FlatMPRegenMod': { name: 'マナ自動回復', isPercentage: false },
         'PercentArmorMod': { name: '物理防御', isPercentage: true },
-        'PercentSpellBlockMod': { name: '魔法防御', isPercentage: true }
+        'PercentSpellBlockMod': { name: '魔法防御', isPercentage: true },
+        'PercentHPPoolMod': { name: '体力', isPercentage: true },
+        'PercentMPPoolMod': { name: 'マナ', isPercentage: true },
+        
+        // 攻撃系
+        'FlatAttackSpeedMod': { name: '攻撃速度', isPercentage: true },
+        'PercentAttackSpeedMod': { name: '攻撃速度', isPercentage: true },
+        'FlatCritChanceMod': { name: 'クリティカル', isPercentage: true },
+        'FlatCritDamageMod': { name: 'クリティカルダメージ', isPercentage: true },
+        'PercentLifeStealMod': { name: 'ライフステール', isPercentage: true },
+        'PercentSpellVampMod': { name: 'スペルヴァンプ', isPercentage: true },
+        'rFlatArmorPenetrationMod': { name: '物理防御貫通', isPercentage: false },
+        'rPercentArmorPenetrationMod': { name: '物理防御貫通', isPercentage: true },
+        
+        // 魔法系
+        'rFlatMagicPenetrationMod': { name: '魔法防御貫通', isPercentage: false },
+        'rPercentMagicPenetrationMod': { name: '魔法防御貫通', isPercentage: true },
+        'rPercentCooldownMod': { name: 'スキルヘイスト', isPercentage: true },
+        
+        // 移動・その他
+        'FlatMovementSpeedMod': { name: '移動速度', isPercentage: false },
+        'PercentMovementSpeedMod': { name: '移動速度', isPercentage: true },
+        'rFlatGoldPer10Mod': { name: 'ゴールド獲得', isPercentage: false },
+        'FlatEXPBonus': { name: '経験値獲得', isPercentage: false },
+        'PercentEXPBonus': { name: '経験値獲得', isPercentage: true },
+        
+        // 行動妨害耐性
+        'rFlatTimeDeadMod': { name: '復活時間短縮', isPercentage: false },
+        'rPercentTimeDeadMod': { name: '復活時間短縮', isPercentage: true }
     };
     
     Object.entries(item.stats).forEach(([key, value]) => {
@@ -478,18 +503,39 @@ function getItemStats(item) {
     
     const stats = [];
     const statMap = {
+        // 防御系
         'FlatPhysicalDamageMod': { name: '攻撃力', suffix: '', isPercentage: false },
         'FlatMagicDamageMod': { name: '魔力', suffix: '', isPercentage: false },
         'FlatHPPoolMod': { name: '体力', suffix: '', isPercentage: false },
         'FlatMPPoolMod': { name: 'マナ', suffix: '', isPercentage: false },
         'FlatArmorMod': { name: '物理防御', suffix: '', isPercentage: false },
         'FlatSpellBlockMod': { name: '魔法防御', suffix: '', isPercentage: false },
-        'FlatMovementSpeedMod': { name: '移動速度', suffix: '', isPercentage: false },
+        'FlatHPRegenMod': { name: '体力自動回復', suffix: '', isPercentage: false },
+        'FlatMPRegenMod': { name: 'マナ自動回復', suffix: '', isPercentage: false },
+        'PercentArmorMod': { name: '物理防御', suffix: '%', isPercentage: true },
+        'PercentSpellBlockMod': { name: '魔法防御', suffix: '%', isPercentage: true },
+        
+        // 攻撃系
+        'FlatAttackSpeedMod': { name: '攻撃速度', suffix: '%', isPercentage: true },
         'PercentAttackSpeedMod': { name: '攻撃速度', suffix: '%', isPercentage: true },
-        'FlatCritChanceMod': { name: 'クリティカル率', suffix: '%', isPercentage: true },
+        'FlatCritChanceMod': { name: 'クリティカル', suffix: '%', isPercentage: true },
+        'FlatCritDamageMod': { name: 'クリティカルダメージ', suffix: '%', isPercentage: true },
         'PercentLifeStealMod': { name: 'ライフステール', suffix: '%', isPercentage: true },
-        'FlatHPRegenMod': { name: '体力回復', suffix: '', isPercentage: false },
-        'FlatMPRegenMod': { name: 'マナ回復', suffix: '', isPercentage: false }
+        'PercentSpellVampMod': { name: 'スペルヴァンプ', suffix: '%', isPercentage: true },
+        'rFlatArmorPenetrationMod': { name: '物理防御貫通', suffix: '', isPercentage: false },
+        'rPercentArmorPenetrationMod': { name: '物理防御貫通', suffix: '%', isPercentage: true },
+        
+        // 魔法系
+        'rFlatMagicPenetrationMod': { name: '魔法防御貫通', suffix: '', isPercentage: false },
+        'rPercentMagicPenetrationMod': { name: '魔法防御貫通', suffix: '%', isPercentage: true },
+        'rPercentCooldownMod': { name: 'スキルヘイスト', suffix: '%', isPercentage: true },
+        
+        // 移動・その他
+        'FlatMovementSpeedMod': { name: '移動速度', suffix: '', isPercentage: false },
+        'PercentMovementSpeedMod': { name: '移動速度', suffix: '%', isPercentage: true },
+        'rFlatGoldPer10Mod': { name: 'ゴールド獲得', suffix: '', isPercentage: false },
+        'FlatEXPBonus': { name: '経験値獲得', suffix: '', isPercentage: false },
+        'PercentEXPBonus': { name: '経験値獲得', suffix: '%', isPercentage: true }
     };
     
     Object.entries(item.stats).forEach(([key, value]) => {
