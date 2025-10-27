@@ -12,6 +12,88 @@ body {
     color: #ffffff;
     min-height: 100vh;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* ナビゲーションメニュー */
+.top-nav {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.nav-brand {
+    flex: 1;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffd700;
+    text-decoration: none;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.3s ease;
+}
+
+.nav-logo:hover {
+    transform: scale(1.05);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    background: rgba(255, 215, 0, 0.1);
+    color: #ffd700;
+    transform: translateY(-2px);
+}
+
+.nav-link.active {
+    background: rgba(255, 215, 0, 0.2);
+    color: #ffd700;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background: #ffd700;
+    border-radius: 1px;
 }
 
 .container {
@@ -557,6 +639,24 @@ body {
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
+    .nav-container {
+        padding: 0 15px;
+        height: 50px;
+    }
+    
+    .nav-logo {
+        font-size: 1.2rem;
+    }
+    
+    .nav-menu {
+        gap: 15px;
+    }
+    
+    .nav-link {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+    
     .container {
         padding: 0 15px;
     }
@@ -609,6 +709,15 @@ body {
 }
 
 @media (max-width: 480px) {
+    .nav-menu {
+        gap: 10px;
+    }
+    
+    .nav-link {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+    
     .page-header h1 {
         font-size: 1.5rem;
     }
