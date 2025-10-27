@@ -468,6 +468,11 @@ function extractBuffEffectsFromDescription(description) {
     const effects = [];
     const cleanDesc = stripHtmlTags(description);
     
+    // デバッグ用：輝きのモートの説明を確認
+    if (cleanDesc.includes('輝きのモート') || cleanDesc.includes('クールダウン')) {
+        console.log('輝きのモートの説明:', cleanDesc);
+    }
+    
     // パーセンテージバフ効果のパターンマッチング
     const buffPatterns = [
         { pattern: /基本マナ自動回復(\d+)%/, name: 'マナ自動回復' },
@@ -493,6 +498,11 @@ function extractBuffEffectsFromDescription(description) {
             const value = match[1];
             const isPercentage = pattern.source.includes('%');
             effects.push(`${name}: +${value}${isPercentage ? '%' : ''}`);
+            
+            // デバッグ用：スキルヘイストの抽出を確認
+            if (name === 'スキルヘイスト') {
+                console.log('スキルヘイスト抽出成功:', `${name}: +${value}${isPercentage ? '%' : ''}`);
+            }
         }
     });
     
