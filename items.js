@@ -670,6 +670,8 @@ function getMainStats(item) {
     const stats = [];
     const addedStats = new Set();
     
+    console.log('getMainStats called for item:', item.name, 'stats:', item.stats);
+    
     const statMap = {
         'FlatPhysicalDamageMod': { name: '攻撃力', suffix: '' },
         'FlatMagicDamageMod': { name: '魔力', suffix: '' },
@@ -721,17 +723,21 @@ function getMainStats(item) {
         });
     }
     
+    console.log('getMainStats result:', stats);
     return stats.slice(0, 3).join(''); // 最大3つのステータスを表示
 }
 
 // 進化先を取得
 function getEvolutions(item) {
+    console.log('getEvolutions called for item:', item.name, 'buildsInto:', item.buildsInto);
+    
     if (!item.buildsInto || item.buildsInto.length === 0) {
         return '<span class="no-evolution">進化先なし</span>';
     }
     
     const evolutions = item.buildsInto.slice(0, 2).map(buildId => {
         const buildItem = itemsData[buildId];
+        console.log('Processing buildId:', buildId, 'buildItem:', buildItem);
         return buildItem ? `
             <div class="evolution-item">
                 <img src="${getItemIconUrl(buildId)}" 
@@ -746,6 +752,7 @@ function getEvolutions(item) {
     const remainingCount = item.buildsInto.length - 2;
     const remainingHtml = remainingCount > 0 ? `<span class="other-evolutions">他${remainingCount}件</span>` : '';
     
+    console.log('getEvolutions result:', evolutions + remainingHtml);
     return evolutions + remainingHtml;
 }
 
