@@ -11,20 +11,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- ナビゲーションメニュー -->
-    <nav class="top-nav">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <a href="index.html" class="nav-logo">LoL Guide</a>
-            </div>
-            <div class="nav-menu">
-                <a href="index.html" class="nav-link">ホーム</a>
-                <a href="items.html" class="nav-link active">アイテム一覧</a>
-                <a href="champions.html" class="nav-link">チャンピオン</a>
-                <a href="counter.html" class="nav-link">カウンター</a>
-            </div>
+    <!-- メニューボタン -->
+    <button id="menuToggle" class="menu-toggle">☰</button>
+    
+    <!-- サイドバー -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h3>LoL Guide</h3>
+            <button id="closeBtn" class="close-btn">×</button>
         </div>
-    </nav>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">ホーム</a>
+            <a href="items.html" class="nav-item active">アイテム一覧</a>
+            <a href="champions.html" class="nav-item">チャンピオン</a>
+            <a href="counter.html" class="nav-item">カウンター</a>
+        </nav>
+    </div>
+    
+    <!-- オーバーレイ -->
+    <div id="overlay" class="overlay"></div>
 
     <div class="container">
         <!-- ヘッダー -->
@@ -134,6 +139,7 @@
         </div>
     </div>
 
+    <script src="menu.js"></script>
     <script src="items.js"></script>
 </body>
 </html>
