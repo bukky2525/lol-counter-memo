@@ -60,7 +60,11 @@ async function loadItemsFromDDragon() {
             .map(([id, item]) => ({
                 ...item,
                 id: id // アイテムIDを追加
-            }));
+            }))
+            .filter((item, index, array) => {
+                // 重複を防ぐため、同じIDのアイテムは最初のもののみ残す
+                return array.findIndex(i => i.id === item.id) === index;
+            });
         
         console.log(`フィルタリング後のアイテム数: ${filteredItems.length}`);
         
@@ -496,6 +500,8 @@ function extractBuffEffectsFromDescription(description) {
 // フォーマット済みステータスを取得
 function getFormattedStats(stats) {
     const formatted = [];
+    const addedStats = new Set(); // 重複を防ぐためのSet
+    
     const statMap = {
         'FlatPhysicalDamageMod': { name: '攻撃力', suffix: '' },
         'FlatMagicDamageMod': { name: '魔力', suffix: '' },
@@ -505,10 +511,11 @@ function getFormattedStats(stats) {
         'FlatSpellBlockMod': { name: '魔法防御', suffix: '' },
         'FlatMovementSpeedMod': { name: '移動速度', suffix: '' },
         'PercentAttackSpeedMod': { name: '攻撃速度', suffix: '%' },
-        'FlatCritChanceMod': { name: 'クリティカル率', suffix: '%' },
+        'FlatCritChanceMod': { name: 'クリティカル', suffix: '%' },
         'PercentLifeStealMod': { name: 'ライフステール', suffix: '%' },
-        'FlatHPRegenMod': { name: '体力回復', suffix: '' },
-        'FlatMPRegenMod': { name: 'マナ回復', suffix: '' }
+        'FlatHPRegenMod': { name: '体力自動回復', suffix: '' },
+        'FlatMPRegenMod': { name: 'マナ自動回復', suffix: '' },
+        'rPercentCooldownMod': { name: 'スキルヘイスト', suffix: '%' }
     };
     
     Object.entries(stats).forEach(([key, value]) => {
@@ -523,7 +530,13 @@ function getFormattedStats(stats) {
                 displayValue = Math.round(value);
             }
             
-            formatted.push(`<div class="stat-row"><span class="stat-name">${stat.name}:</span><span class="stat-value">${displayValue}${stat.suffix}</span></div>`);
+            const statText = `${stat.name}: ${displayValue}${stat.suffix}`;
+            
+            // 重複チェック
+            if (!addedStats.has(statText)) {
+                addedStats.add(statText);
+                formatted.push(`<div class="stat-row"><span class="stat-name">${stat.name}:</span><span class="stat-value">${displayValue}${stat.suffix}</span></div>`);
+            }
         }
     });
     
@@ -533,6 +546,7 @@ function getFormattedStats(stats) {
 // アイテムのステータスを取得（カード表示用）
 function getItemStats(item) {
     const stats = [];
+    const addedStats = new Set(); // 重複を防ぐためのSet
     
     // statsからバフ効果を取得
     if (item.stats) {
@@ -585,7 +599,13 @@ function getItemStats(item) {
                 }
                 
                 const sign = displayValue > 0 ? '+' : '';
-                stats.push(`<span class="stat-item">${stat.name}: ${sign}${displayValue}${stat.suffix}</span>`);
+                const statText = `${stat.name}: ${sign}${displayValue}${stat.suffix}`;
+                
+                // 重複チェック
+                if (!addedStats.has(statText)) {
+                    addedStats.add(statText);
+                    stats.push(`<span class="stat-item">${statText}</span>`);
+                }
             }
         });
     }
@@ -594,7 +614,11 @@ function getItemStats(item) {
     if (item.description) {
         const descriptionEffects = extractBuffEffectsFromDescription(item.description);
         descriptionEffects.forEach(effect => {
-            stats.push(`<span class="stat-item">${effect}</span>`);
+            // 重複チェック
+            if (!addedStats.has(effect)) {
+                addedStats.add(effect);
+                stats.push(`<span class="stat-item">${effect}</span>`);
+            }
         });
     }
     
