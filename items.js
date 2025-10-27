@@ -22,7 +22,7 @@ const searchSuggestions = document.getElementById('searchSuggestions');
 const itemModal = document.getElementById('itemModal');
 
 // DDragon APIのバージョン
-const DDragonVersion = '15.21.1';
+let DDragonVersion = '15.21.1';
 
 // 初期化
 document.addEventListener('DOMContentLoaded', () => {
