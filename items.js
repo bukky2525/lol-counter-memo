@@ -342,8 +342,7 @@ function showItemDetail(itemId) {
                     <div class="item-modal-stats">
                         <h4>ステータス</h4>
                         <div class="stats-grid">
-                            ${getFormattedStats(item.stats)}
-                            ${buffEffects.map(effect => `<div class="stat-row"><span class="stat-name">${effect}</span></div>`).join('')}
+                            ${getCombinedFormattedStats(item.stats, buffEffects)}
                         </div>
                     </div>
                 ` : ''}
@@ -497,8 +496,8 @@ function extractBuffEffectsFromDescription(description) {
     return effects;
 }
 
-// フォーマット済みステータスを取得
-function getFormattedStats(stats) {
+// 統合されたフォーマット済みステータスを取得（重複を防ぐ）
+function getCombinedFormattedStats(stats, buffEffects) {
     const formatted = [];
     const addedStats = new Set(); // 重複を防ぐためのSet
     
@@ -518,27 +517,41 @@ function getFormattedStats(stats) {
         'rPercentCooldownMod': { name: 'スキルヘイスト', suffix: '%' }
     };
     
-    Object.entries(stats).forEach(([key, value]) => {
-        if (value && value !== 0 && statMap[key]) {
-            const stat = statMap[key];
-            let displayValue = value;
-            
-            // パーセンテージの場合は100倍して表示
-            if (stat.suffix === '%' && value < 1) {
-                displayValue = Math.round(value * 100);
-            } else if (!stat.suffix) {
-                displayValue = Math.round(value);
+    // statsからステータスを取得
+    if (stats) {
+        Object.entries(stats).forEach(([key, value]) => {
+            if (value && value !== 0 && statMap[key]) {
+                const stat = statMap[key];
+                let displayValue = value;
+                
+                // パーセンテージの場合は100倍して表示
+                if (stat.suffix === '%' && value < 1) {
+                    displayValue = Math.round(value * 100);
+                } else if (!stat.suffix) {
+                    displayValue = Math.round(value);
+                }
+                
+                const statText = `${stat.name}: ${displayValue}${stat.suffix}`;
+                
+                // 重複チェック
+                if (!addedStats.has(statText)) {
+                    addedStats.add(statText);
+                    formatted.push(`<div class="stat-row"><span class="stat-name">${stat.name}:</span><span class="stat-value">${displayValue}${stat.suffix}</span></div>`);
+                }
             }
-            
-            const statText = `${stat.name}: ${displayValue}${stat.suffix}`;
-            
+        });
+    }
+    
+    // buffEffectsからステータスを取得
+    if (buffEffects && buffEffects.length > 0) {
+        buffEffects.forEach(effect => {
             // 重複チェック
-            if (!addedStats.has(statText)) {
-                addedStats.add(statText);
-                formatted.push(`<div class="stat-row"><span class="stat-name">${stat.name}:</span><span class="stat-value">${displayValue}${stat.suffix}</span></div>`);
+            if (!addedStats.has(effect)) {
+                addedStats.add(effect);
+                formatted.push(`<div class="stat-row"><span class="stat-name">${effect}</span></div>`);
             }
-        }
-    });
+        });
+    }
     
     return formatted.join('');
 }
