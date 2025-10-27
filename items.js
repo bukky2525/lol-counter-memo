@@ -48,6 +48,19 @@ async function loadItemsFromDDragon() {
         itemsData = data.data;
         console.log(`取得したアイテム数: ${Object.keys(itemsData).length}`);
         
+        // 最初のアイテムの構造を確認
+        const firstItemKey = Object.keys(itemsData)[0];
+        const firstItem = itemsData[firstItemKey];
+        console.log('最初のアイテム構造:', {
+            key: firstItemKey,
+            item: firstItem,
+            id: firstItem.id,
+            name: firstItem.name,
+            stats: firstItem.stats,
+            buildsInto: firstItem.buildsInto,
+            description: firstItem.description
+        });
+        
         // フィルタリング可能なアイテムのみを抽出（IDを追加）
         filteredItems = Object.entries(itemsData)
             .filter(([id, item]) => {
@@ -230,6 +243,7 @@ function filterAndRenderItems() {
 // アイテムを表示
 function renderItems(items = filteredItems) {
     console.log('renderItems called with', items.length, 'items');
+    console.log('First item structure:', items[0]);
     
     if (items.length === 0) {
         itemsContainer.innerHTML = `
