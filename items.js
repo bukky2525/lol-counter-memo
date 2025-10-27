@@ -546,13 +546,17 @@ function getFormattedStatsOnly(stats, description) {
     if (description) {
         const descriptionEffects = extractBuffEffectsFromDescription(description);
         descriptionEffects.forEach(effect => {
-            // 効果名を抽出（例：「マナ自動回復: +50%」から「マナ自動回復」）
-            const effectName = effect.split(':')[0];
-            
-            // 重複チェック（名前でチェック）
-            if (!addedStats.has(effectName)) {
-                addedStats.add(effectName);
-                formatted.push(`<div class="stat-row"><span class="stat-name">${effect}</span></div>`);
+            // 効果を解析（例：「マナ自動回復: +50%」から名前と値を分離）
+            const parts = effect.split(': ');
+            if (parts.length === 2) {
+                const effectName = parts[0];
+                const effectValue = parts[1];
+                
+                // 重複チェック（名前でチェック）
+                if (!addedStats.has(effectName)) {
+                    addedStats.add(effectName);
+                    formatted.push(`<div class="stat-row"><span class="stat-name">${effectName}:</span><span class="stat-value">${effectValue}</span></div>`);
+                }
             }
         });
     }
