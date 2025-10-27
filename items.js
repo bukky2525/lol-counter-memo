@@ -22,7 +22,7 @@ const searchSuggestions = document.getElementById('searchSuggestions');
 const itemModal = document.getElementById('itemModal');
 
 // DDragon APIのバージョン
-const DDragonVersion = '15.17.1';
+const DDragonVersion = '15.21.1';
 
 // 初期化
 document.addEventListener('DOMContentLoaded', () => {
@@ -32,59 +32,76 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // DDragon APIからアイテムデータを取得
 async function loadItemsFromDDragon() {
-    try {
-        console.log('DDragon APIからアイテムデータを取得中...');
-        
-        const response = await fetch(`https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/data/ja_JP/item.json`);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        const data = await response.json();
-        console.log('DDragon APIレスポンス:', data);
-        
-        // アイテムデータを処理
-        itemsData = data.data;
-        console.log(`取得したアイテム数: ${Object.keys(itemsData).length}`);
-        
-        // 最初のアイテムの構造を確認
-        const firstItemKey = Object.keys(itemsData)[0];
-        const firstItem = itemsData[firstItemKey];
-        console.log('最初のアイテム構造:', {
-            key: firstItemKey,
-            item: firstItem,
-            id: firstItem.id,
-            name: firstItem.name,
-            stats: firstItem.stats,
-            buildsInto: firstItem.buildsInto,
-            description: firstItem.description
-        });
-        
-        // フィルタリング可能なアイテムのみを抽出（IDを追加）
-        filteredItems = Object.entries(itemsData)
-            .filter(([id, item]) => {
-                return item.gold && item.gold.purchasable && item.maps && item.maps['11']; // Summoner's Riftで購入可能
-            })
-            .map(([id, item]) => ({
-                ...item,
-                id: id // アイテムIDを追加
-            }))
-            .filter((item, index, array) => {
-                // 重複を防ぐため、同じIDのアイテムは最初のもののみ残す
-                return array.findIndex(i => i.id === item.id) === index;
+    const versions = ['15.21.1', '15.20.1', '15.19.1', '15.18.1', '15.17.1'];
+    
+    for (const version of versions) {
+        try {
+            console.log(`DDragon APIからアイテムデータを取得中... (バージョン: ${version})`);
+            const apiUrl = `https://ddragon.leagueoflegends.com/cdn/${version}/data/ja_JP/item.json`;
+            console.log('API URL:', apiUrl);
+            
+            const response = await fetch(apiUrl);
+            
+            console.log('Response status:', response.status, response.statusText);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            const data = await response.json();
+            console.log('DDragon APIレスポンス:', data);
+            
+            // 成功した場合はバージョンを更新
+            DDragonVersion = version;
+            
+            // アイテムデータを処理
+            itemsData = data.data;
+            console.log(`取得したアイテム数: ${Object.keys(itemsData).length}`);
+            
+            // 最初のアイテムの構造を確認
+            const firstItemKey = Object.keys(itemsData)[0];
+            const firstItem = itemsData[firstItemKey];
+            console.log('最初のアイテム構造:', {
+                key: firstItemKey,
+                item: firstItem,
+                id: firstItem.id,
+                name: firstItem.name,
+                stats: firstItem.stats,
+                buildsInto: firstItem.buildsInto,
+                description: firstItem.description
             });
-        
-        console.log(`フィルタリング後のアイテム数: ${filteredItems.length}`);
-        
-        // アイテムを表示
-        renderItems();
-        updateResultsCount(filteredItems.length);
-        
-    } catch (error) {
-        console.error('アイテムデータの取得に失敗:', error);
-        showError('アイテムデータの取得に失敗しました。ページを再読み込みしてください。');
+            
+            // フィルタリング可能なアイテムのみを抽出（IDを追加）
+            filteredItems = Object.entries(itemsData)
+                .filter(([id, item]) => {
+                    return item.gold && item.gold.purchasable && item.maps && item.maps['11']; // Summoner's Riftで購入可能
+                })
+                .map(([id, item]) => ({
+                    ...item,
+                    id: id // アイテムIDを追加
+                }))
+                .filter((item, index, array) => {
+                    // 重複を防ぐため、同じIDのアイテムは最初のもののみ残す
+                    return array.findIndex(i => i.id === item.id) === index;
+                });
+            
+            console.log(`フィルタリング後のアイテム数: ${filteredItems.length}`);
+            
+            // アイテムを表示
+            renderItems();
+            updateResultsCount(filteredItems.length);
+            
+            return; // 成功した場合は終了
+            
+        } catch (error) {
+            console.error(`バージョン ${version} でのアイテムデータ取得に失敗:`, error);
+            continue; // 次のバージョンを試す
+        }
     }
+    
+    // すべてのバージョンが失敗した場合
+    console.error('すべてのバージョンでアイテムデータの取得に失敗しました');
+    showError('アイテムデータの取得に失敗しました。ネットワーク接続を確認してページを再読み込みしてください。');
 }
 
 // イベントリスナー設定
