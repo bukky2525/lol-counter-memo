@@ -7,10 +7,15 @@ let itemsData = {};
 let filteredItems = [];
 let currentSearchTerm = '';
 let currentCategory = 'all';
+let currentPriceRange = 'all';
+let currentStatFilter = 'all';
 
 // DOM要素
 const searchInput = document.getElementById('searchInput');
 const categorySelect = document.getElementById('categorySelect');
+const priceSelect = document.getElementById('priceSelect');
+const statSelect = document.getElementById('statSelect');
+const clearFiltersBtn = document.getElementById('clearFilters');
 const itemsContainer = document.getElementById('itemsContainer');
 const resultsCount = document.getElementById('resultsCount');
 const searchSuggestions = document.getElementById('searchSuggestions');
@@ -102,6 +107,26 @@ function setupEventListeners() {
         });
     }
     
+    if (priceSelect) {
+        priceSelect.addEventListener('change', (e) => {
+            currentPriceRange = e.target.value;
+            filterAndRenderItems();
+        });
+    }
+    
+    if (statSelect) {
+        statSelect.addEventListener('change', (e) => {
+            currentStatFilter = e.target.value;
+            filterAndRenderItems();
+        });
+    }
+    
+    if (clearFiltersBtn) {
+        clearFiltersBtn.addEventListener('click', () => {
+            clearAllFilters();
+        });
+    }
+    
     // 検索候補のクリックイベント
     if (searchSuggestions) {
         searchSuggestions.addEventListener('click', (e) => {
@@ -149,6 +174,48 @@ function filterAndRenderItems() {
         });
     }
 
+    // 価格帯フィルタリング
+    if (currentPriceRange !== 'all') {
+        filtered = filtered.filter(item => {
+            const price = item.gold ? item.gold.total : 0;
+            switch (currentPriceRange) {
+                case '0-500':
+                    return price >= 0 && price <= 500;
+                case '500-1000':
+                    return price > 500 && price <= 1000;
+                case '1000-2000':
+                    return price > 1000 && price <= 2000;
+                case '2000-3000':
+                    return price > 2000 && price <= 3000;
+                case '3000+':
+                    return price > 3000;
+                default:
+                    return true;
+            }
+        });
+    }
+
+    // ステータスフィルタリング
+    if (currentStatFilter !== 'all') {
+        filtered = filtered.filter(item => {
+            if (!item.stats) return false;
+            
+            const statMap = {
+                'attack': 'FlatPhysicalDamageMod',
+                'ability': 'FlatMagicDamageMod',
+                'health': 'FlatHPPoolMod',
+                'mana': 'FlatMPPoolMod',
+                'armor': 'FlatArmorMod',
+                'magic': 'FlatSpellBlockMod',
+                'speed': 'FlatMovementSpeedMod',
+                'haste': 'rPercentCooldownMod'
+            };
+            
+            const statKey = statMap[currentStatFilter];
+            return statKey && item.stats[statKey] && item.stats[statKey] !== 0;
+        });
+    }
+
     // 価格でソート
     filtered.sort((a, b) => {
         const priceA = a.gold ? a.gold.total : 0;
@@ -189,11 +256,27 @@ function renderItems(items = filteredItems) {
                             <div class="item-price">${item.gold ? item.gold.total + 'G' : '価格不明'}</div>
                         </div>
                     </div>
-                    <div class="item-stats">
-                        ${getItemStats(item)}
+                    
+                    <div class="item-description">
+                        <p>${getItemDescription(item)}</p>
                     </div>
+                    
+                    <div class="item-main-stats">
+                        <h4>主要ステータス</h4>
+                        <div class="main-stats-list">
+                            ${getMainStats(item)}
+                        </div>
+                    </div>
+                    
                     <div class="item-tags">
                         ${(item.tags || []).map(tag => `<span class="item-tag">${tag}</span>`).join('')}
+                    </div>
+                    
+                    <div class="item-evolutions">
+                        <h4>進化先</h4>
+                        <div class="evolutions-list">
+                            ${getEvolutions(item)}
+                        </div>
                     </div>
                 </div>
             `).join('')}
@@ -553,6 +636,117 @@ function updateResultsCount(count) {
     if (resultsCount) {
         resultsCount.textContent = `検索結果: ${count}件`;
     }
+}
+
+// フィルターをクリア
+function clearAllFilters() {
+    currentSearchTerm = '';
+    currentCategory = 'all';
+    currentPriceRange = 'all';
+    currentStatFilter = 'all';
+    
+    searchInput.value = '';
+    categorySelect.value = 'all';
+    priceSelect.value = 'all';
+    statSelect.value = 'all';
+    
+    hideSearchSuggestions();
+    filterAndRenderItems();
+}
+
+// アイテムの説明を取得
+function getItemDescription(item) {
+    if (item.plaintext) {
+        return item.plaintext;
+    }
+    if (item.description) {
+        return stripHtmlTags(item.description).substring(0, 100) + '...';
+    }
+    return '説明なし';
+}
+
+// 主要ステータスを取得
+function getMainStats(item) {
+    const stats = [];
+    const addedStats = new Set();
+    
+    const statMap = {
+        'FlatPhysicalDamageMod': { name: '攻撃力', suffix: '' },
+        'FlatMagicDamageMod': { name: '魔力', suffix: '' },
+        'FlatHPPoolMod': { name: '体力', suffix: '' },
+        'FlatMPPoolMod': { name: 'マナ', suffix: '' },
+        'FlatArmorMod': { name: '物理防御', suffix: '' },
+        'FlatSpellBlockMod': { name: '魔法防御', suffix: '' },
+        'FlatMovementSpeedMod': { name: '移動速度', suffix: '' },
+        'PercentAttackSpeedMod': { name: '攻撃速度', suffix: '%' },
+        'FlatCritChanceMod': { name: 'クリティカル', suffix: '%' },
+        'PercentLifeStealMod': { name: 'ライフステール', suffix: '%' },
+        'FlatHPRegenMod': { name: '体力自動回復', suffix: '' },
+        'FlatMPRegenMod': { name: 'マナ自動回復', suffix: '' },
+        'rPercentCooldownMod': { name: 'スキルヘイスト', suffix: '%' }
+    };
+    
+    // statsからステータスを取得
+    if (item.stats) {
+        Object.entries(item.stats).forEach(([key, value]) => {
+            if (value && value !== 0 && statMap[key]) {
+                const stat = statMap[key];
+                let displayValue = value;
+                
+                // パーセンテージの場合は100倍して表示
+                if (stat.suffix === '%' && value < 1) {
+                    displayValue = Math.round(value * 100);
+                } else if (!stat.suffix) {
+                    displayValue = Math.round(value);
+                }
+                
+                if (!addedStats.has(stat.name)) {
+                    addedStats.add(stat.name);
+                    const sign = displayValue > 0 ? '+' : '';
+                    stats.push(`<span class="main-stat">${stat.name}+${displayValue}${stat.suffix}</span>`);
+                }
+            }
+        });
+    }
+    
+    // descriptionからステータスを取得（statsにない場合の補完）
+    if (item.description) {
+        const descriptionEffects = extractBuffEffectsFromDescription(item.description);
+        descriptionEffects.forEach(effect => {
+            const effectName = effect.split(':')[0];
+            if (!addedStats.has(effectName)) {
+                addedStats.add(effectName);
+                stats.push(`<span class="main-stat">${effect}</span>`);
+            }
+        });
+    }
+    
+    return stats.slice(0, 3).join(''); // 最大3つのステータスを表示
+}
+
+// 進化先を取得
+function getEvolutions(item) {
+    if (!item.buildsInto || item.buildsInto.length === 0) {
+        return '<span class="no-evolution">進化先なし</span>';
+    }
+    
+    const evolutions = item.buildsInto.slice(0, 2).map(buildId => {
+        const buildItem = itemsData[buildId];
+        return buildItem ? `
+            <div class="evolution-item">
+                <img src="${getItemIconUrl(buildId)}" 
+                     alt="${buildItem.name}" 
+                     class="evolution-icon"
+                     onerror="this.style.display='none'">
+                <span class="evolution-name">${buildItem.name}</span>
+            </div>
+        ` : '';
+    }).join('');
+    
+    const remainingCount = item.buildsInto.length - 2;
+    const remainingHtml = remainingCount > 0 ? `<span class="other-evolutions">他${remainingCount}件</span>` : '';
+    
+    return evolutions + remainingHtml;
 }
 
 // エラー表示

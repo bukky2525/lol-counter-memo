@@ -43,9 +43,35 @@
                         <option value="Trinket">トリンケット</option>
                     </select>
                 </div>
+                
+                <div class="filter-container">
+                    <select id="priceSelect" class="category-select">
+                        <option value="all">すべての価格帯</option>
+                        <option value="0-500">0-500G</option>
+                        <option value="500-1000">500-1000G</option>
+                        <option value="1000-2000">1000-2000G</option>
+                        <option value="2000-3000">2000-3000G</option>
+                        <option value="3000+">3000G以上</option>
+                    </select>
+                </div>
+                
+                <div class="filter-container">
+                    <select id="statSelect" class="category-select">
+                        <option value="all">すべてのステータス</option>
+                        <option value="attack">攻撃力</option>
+                        <option value="ability">魔力</option>
+                        <option value="health">体力</option>
+                        <option value="mana">マナ</option>
+                        <option value="armor">物理防御</option>
+                        <option value="magic">魔法防御</option>
+                        <option value="speed">移動速度</option>
+                        <option value="haste">スキルヘイスト</option>
+                    </select>
+                </div>
             </div>
             
-            <div class="results-info">
+            <div class="filter-actions">
+                <button id="clearFilters" class="clear-filters-btn">フィルターをクリア</button>
                 <span id="resultsCount" class="results-count">読み込み中...</span>
             </div>
         </section>
