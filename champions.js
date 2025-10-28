@@ -409,13 +409,13 @@ function displayChampionModal(champion, skills) {
                         <h5 class="selected-skill-name">${skills[selectedSkillIndex].name}</h5>
                         ${skills[selectedSkillIndex].videoUrl ? `
                         <div class="selected-skill-video">
-                            <video controls class="skill-video-player" autoplay>
+                            <video controls class="skill-video-player">
                                 <source src="${skills[selectedSkillIndex].videoUrl}" type="video/mp4">
                                 お使いのブラウザはビデオタグをサポートしていません。
                             </video>
                         </div>
                         ` : ''}
-                        <p class="selected-skill-description">${skills[selectedSkillIndex].description}</p>
+                        <p class="selected-skill-description">${formatSkillDescription(skills[selectedSkillIndex].description)}</p>
                     </div>
                     ` : ''}
                 </div>
@@ -436,9 +436,42 @@ function displayChampionModal(champion, skills) {
     };
 }
 
+// スキル説明のフォーマット
+function formatSkillDescription(description) {
+    if (!description) return '';
+    
+    // HTMLタグを削除
+    let cleanDesc = description.replace(/<[^>]+>/g, '');
+    
+    // 改行を<br>に変換
+    cleanDesc = cleanDesc.replace(/\n/g, '<br>');
+    
+    // 特殊文字をエスケープ
+    const div = document.createElement('div');
+    div.textContent = cleanDesc;
+    cleanDesc = div.innerHTML;
+    
+    // 改行を<br>に戻す
+    cleanDesc = cleanDesc.replace(/\n/g, '<br>');
+    
+    return cleanDesc;
+}
+
 // モーダルを閉じる
 function closeChampionModal() {
+    // すべての動画を停止
+    const videos = championModal.querySelectorAll('video');
+    videos.forEach(video => {
+        video.pause();
+        video.currentTime = 0;
+    });
+    
     championModal.classList.remove('show');
+    
+    // selectSkill関数を削除
+    if (window.selectSkill) {
+        delete window.selectSkill;
+    }
 }
 
 // チャンピオンアイコンURLを取得
