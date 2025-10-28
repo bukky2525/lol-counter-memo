@@ -8,6 +8,7 @@ let filteredChampions = [];
 let currentSearchTerm = '';
 let currentTag = 'all';
 let currentLane = 'all';
+let championImages = {}; // champion_images.jsonのデータ
 
 // DOM要素
 const searchInput = document.getElementById('searchInput');
@@ -36,11 +37,14 @@ function loadChampionsFromDDragon() {
         fetch('champion_images.json').then(r => r.json()),
         fetch('counter_data.json').then(r => r.json())
     ])
-        .then(([championImages, counterData]) => {
+        .then(([imagesData, counterData]) => {
             console.log('チャンピオンデータ読み込み成功');
             
+            // champion_imagesを保存
+            championImages = imagesData;
+            
             // champion_images.jsonのデータをチャンピオンリストに変換
-            filteredChampions = Object.entries(championImages).map(([japaneseName, englishName]) => {
+            filteredChampions = Object.entries(imagesData).map(([japaneseName, englishName]) => {
                 // カウンターデータからレーン情報を取得
                 const lanes = counterData[japaneseName] || [];
                 const laneTags = lanes.map(l => l.lane);
@@ -132,7 +136,7 @@ function getChampionRoleTags(championName) {
 function setupEventListeners() {
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
-            currentSearchTerm = e.target.value.toLowerCase();
+            currentSearchTerm = e.target.value;
             filterAndRenderChampions();
         });
     }
@@ -174,14 +178,7 @@ function filterAndRenderChampions() {
     // 検索フィルタリング
     if (currentSearchTerm) {
         filtered = filtered.filter(champion => {
-            const name = champion.name ? champion.name.toLowerCase() : '';
-            const id = champion.id ? champion.id.toLowerCase() : '';
-            const title = champion.title ? champion.title.toLowerCase() : '';
-            const tags = champion.tags ? champion.tags.join(' ').toLowerCase() : '';
-            return name.includes(currentSearchTerm) || 
-                   id.includes(currentSearchTerm) || 
-                   title.includes(currentSearchTerm) ||
-                   tags.includes(currentSearchTerm);
+            return matchesSearch(champion.name, currentSearchTerm);
         });
     }
 
