@@ -316,6 +316,44 @@ function showChampionDetail(championId) {
     const champion = championsData[championId];
     if (!champion) return;
 
+    // スキル情報を取得
+    fetchChampionSkills(champion.id).then(skills => {
+        displayChampionModal(champion, skills);
+    });
+}
+
+// チャンピオンのスキル情報を取得（簡易版）
+async function fetchChampionSkills(championId) {
+    try {
+        // DDragon APIから詳細情報を取得
+        const apiUrl = `https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/data/ja_JP/champion/${championId}.json`;
+        const response = await fetch(apiUrl);
+        
+        if (!response.ok) {
+            return [];
+        }
+        
+        const data = await response.json();
+        const championData = data.data[championId];
+        
+        if (championData && championData.spells) {
+            return championData.spells.map((spell, index) => ({
+                id: spell.id,
+                name: spell.name,
+                description: spell.description,
+                image: `https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/spell/${spell.id}.png`
+            }));
+        }
+        
+        return [];
+    } catch (error) {
+        console.error('スキル情報の取得に失敗:', error);
+        return [];
+    }
+}
+
+// モーダルを表示
+function displayChampionModal(champion, skills) {
     // モーダルヘッダーを更新
     const modalHeader = document.getElementById('modalHeader');
     modalHeader.innerHTML = `
@@ -342,6 +380,29 @@ function showChampionDetail(championId) {
             <h4>説明</h4>
             <p>${champion.blurb || '説明は現在利用できません。'}</p>
         </div>
+        
+        ${skills && skills.length > 0 ? `
+        <div class="modal-section">
+            <h4>スキル</h4>
+            <div class="skills-container">
+                ${skills.map((skill, index) => `
+                    <div class="skill-item">
+                        <div class="skill-icon-container">
+                            <img src="${skill.image}" alt="${skill.name}" class="skill-icon" onerror="this.style.display='none'">
+                            <span class="skill-number">${index + 1}</span>
+                        </div>
+                        <div class="skill-info">
+                            <h5 class="skill-name">${skill.name}</h5>
+                            <p class="skill-description">${skill.description}</p>
+                        </div>
+                        <a href="https://www.leagueoflegends.com/ja-jp/champions/${champion.id.toLowerCase()}/" target="_blank" rel="noopener noreferrer" class="skill-video-link">
+                            📹 動画を見る
+                        </a>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+        ` : ''}
     `;
     
     // モーダルを表示
