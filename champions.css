@@ -659,6 +659,10 @@ body.sidebar-open {
 /* 選択されたスキルの詳細 */
 .selected-skill-detail {
     margin-top: 20px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .selected-skill-name {
@@ -666,11 +670,20 @@ body.sidebar-open {
     color: #ffd700;
     font-size: 1.3rem;
     text-align: center;
+    min-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .selected-skill-video {
     margin: 0 auto 20px;
+    width: 100%;
     max-width: 500px;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .skill-video-player {
@@ -686,6 +699,9 @@ body.sidebar-open {
     font-size: 1rem;
     line-height: 1.8;
     text-align: center;
+    min-height: 100px;
+    max-height: 150px;
+    overflow-y: auto;
 }
 
 /* レスポンシブデザイン */
@@ -739,8 +755,22 @@ body.sidebar-open {
         font-size: 0.75rem;
     }
     
+    .selected-skill-detail {
+        min-height: 300px;
+    }
+    
+    .selected-skill-name {
+        min-height: 2rem;
+    }
+    
     .selected-skill-video {
         max-width: 100%;
+        min-height: 200px;
+    }
+    
+    .selected-skill-description {
+        min-height: 80px;
+        max-height: 120px;
     }
 }
 
