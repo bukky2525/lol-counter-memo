@@ -293,10 +293,8 @@ function getChampionRoleTags(championName) {
         'ヴェイン': ['Marksman', 'Assassin'],
         'ヴェックス': ['Mage'],
         'ヴェル＝コズ': ['Mage', 'Support'],
+        'ザイラ': ['Mage', 'Support'],
     };
-    
-    return roleMapping[championName] || [];
-};
     
     return roleMapping[championName] || [];
 }
