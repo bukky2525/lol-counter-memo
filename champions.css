@@ -598,78 +598,94 @@ body.sidebar-open {
 }
 
 /* スキル表示 */
-.skills-container {
+.skills-preview {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
 }
 
-.skill-item {
+/* スキルアイコンボタンの行 */
+.skill-icons-row {
     display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    padding: 15px;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.skill-icon-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
     background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,215,0,0.3);
     border-radius: 10px;
-    border-left: 3px solid #ffd700;
-    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 80px;
 }
 
-.skill-icon-container {
-    position: relative;
-    flex-shrink: 0;
+.skill-icon-button:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,215,0,0.5);
+    transform: translateY(-2px);
 }
 
-.skill-icon {
+.skill-icon-button.active {
+    background: rgba(255,215,0,0.2);
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255,215,0,0.3);
+}
+
+.skill-icon-btn-img {
     width: 64px;
     height: 64px;
     border-radius: 8px;
-    border: 2px solid rgba(255,215,0,0.5);
+    margin-bottom: 8px;
 }
 
-.skill-number {
-    position: absolute;
-    top: -8px;
-    left: -8px;
-    background: #ffd700;
-    color: #1e3c72;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
-.skill-info {
-    flex: 1;
-}
-
-.skill-name {
-    margin: 0 0 8px;
-    color: #ffd700;
-    font-size: 1.1rem;
-}
-
-.skill-description {
-    margin: 0;
+.skill-icon-btn-label {
+    font-size: 0.85rem;
     color: rgba(255,255,255,0.8);
-    font-size: 0.9rem;
-    line-height: 1.6;
+    text-align: center;
+    line-height: 1.2;
 }
 
-.skill-video {
-    flex: 1;
-    max-width: 300px;
-    margin-left: auto;
+.skill-icon-button.active .skill-icon-btn-label {
+    color: #ffd700;
+    font-weight: 600;
+}
+
+/* 選択されたスキルの詳細 */
+.selected-skill-detail {
+    margin-top: 20px;
+}
+
+.selected-skill-name {
+    margin: 0 0 15px;
+    color: #ffd700;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.selected-skill-video {
+    margin: 0 auto 20px;
+    max-width: 500px;
 }
 
 .skill-video-player {
     width: 100%;
-    border-radius: 8px;
-    border: 2px solid rgba(255,215,0,0.5);
+    border-radius: 10px;
+    border: 3px solid rgba(255,215,0,0.5);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.selected-skill-description {
+    margin: 0;
+    color: rgba(255,255,255,0.9);
+    font-size: 1rem;
+    line-height: 1.8;
+    text-align: center;
 }
 
 /* レスポンシブデザイン */
@@ -705,15 +721,26 @@ body.sidebar-open {
         padding: 20px;
     }
     
-    .skill-item {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    .skill-icons-row {
+        gap: 8px;
     }
     
-    .skill-video {
+    .skill-icon-button {
+        min-width: 70px;
+        padding: 10px;
+    }
+    
+    .skill-icon-btn-img {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .skill-icon-btn-label {
+        font-size: 0.75rem;
+    }
+    
+    .selected-skill-video {
         max-width: 100%;
-        margin-left: 0;
     }
 }
 

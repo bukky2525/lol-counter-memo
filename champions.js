@@ -370,49 +370,70 @@ function displayChampionModal(champion, skills) {
         </div>
     `;
     
+    // 選択されたスキルのインデックス（初期値は0）
+    let selectedSkillIndex = 0;
+    
     // モーダルボディを更新
     const modalBody = document.getElementById('modalBody');
-    modalBody.innerHTML = `
-        ${champion.tags && champion.tags.length > 0 ? `
-        <div class="modal-section">
-            <h4>メインロール</h4>
-            <div class="modal-tags">
-                ${champion.tags.map(tag => `<span class="modal-tag">${tag}</span>`).join('')}
+    
+    function renderModalBody() {
+        modalBody.innerHTML = `
+            ${champion.tags && champion.tags.length > 0 ? `
+            <div class="modal-section">
+                <h4>メインロール</h4>
+                <div class="modal-tags">
+                    ${champion.tags.map(tag => `<span class="modal-tag">${tag}</span>`).join('')}
+                </div>
             </div>
-        </div>
-        ` : ''}
-        
-        ${skills && skills.length > 0 ? `
-        <div class="modal-section">
-            <h4>スキル</h4>
-            <div class="skills-container">
-                ${skills.map((skill, index) => `
-                    <div class="skill-item">
-                        <div class="skill-icon-container">
-                            <img src="${skill.image}" alt="${skill.name}" class="skill-icon" onerror="this.style.display='none'">
-                            <span class="skill-number">${index + 1}</span>
-                        </div>
-                        <div class="skill-info">
-                            <h5 class="skill-name">${skill.name}</h5>
-                            <p class="skill-description">${skill.description}</p>
-                        </div>
-                        ${skill.videoUrl ? `
-                        <div class="skill-video">
-                            <video controls class="skill-video-player">
-                                <source src="${skill.videoUrl}" type="video/mp4">
+            ` : ''}
+            
+            ${skills && skills.length > 0 ? `
+            <div class="modal-section">
+                <h4>スキル</h4>
+                <div class="skills-preview">
+                    <!-- スキルアイコンボタン -->
+                    <div class="skill-icons-row">
+                        ${skills.map((skill, index) => `
+                            <div class="skill-icon-button ${index === selectedSkillIndex ? 'active' : ''}" 
+                                 data-skill-index="${index}"
+                                 onclick="selectSkill(${index})">
+                                <img src="${skill.image}" alt="${skill.name}" class="skill-icon-btn-img" onerror="this.style.display='none'">
+                                <span class="skill-icon-btn-label">${skill.name}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <!-- 選択されたスキルの詳細 -->
+                    ${skills[selectedSkillIndex] ? `
+                    <div class="selected-skill-detail">
+                        <h5 class="selected-skill-name">${skills[selectedSkillIndex].name}</h5>
+                        ${skills[selectedSkillIndex].videoUrl ? `
+                        <div class="selected-skill-video">
+                            <video controls class="skill-video-player" autoplay>
+                                <source src="${skills[selectedSkillIndex].videoUrl}" type="video/mp4">
                                 お使いのブラウザはビデオタグをサポートしていません。
                             </video>
                         </div>
                         ` : ''}
+                        <p class="selected-skill-description">${skills[selectedSkillIndex].description}</p>
                     </div>
-                `).join('')}
+                    ` : ''}
+                </div>
             </div>
-        </div>
-        ` : ''}
-    `;
+            ` : ''}
+        `;
+    }
+    
+    renderModalBody();
     
     // モーダルを表示
     championModal.classList.add('show');
+    
+    // グローバルにselectSkill関数を定義
+    window.selectSkill = function(index) {
+        selectedSkillIndex = index;
+        renderModalBody();
+    };
 }
 
 // モーダルを閉じる
