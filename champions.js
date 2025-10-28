@@ -264,7 +264,7 @@ function getChampionRoleTags(championName) {
         'モルガナ': ['Support', 'Mage'],
         'モルデカイザー': ['Fighter', 'Mage'],
         'ヤスオ': ['Fighter', 'Assassin'],
-        'ユナラ': ['Marksman'],
+        'ユナラ': ['Support', 'Mage'],
         'ユーミ': ['Support', 'Mage'],
         'ヨネ': ['Fighter', 'Assassin'],
         'ヨリック': ['Fighter', 'Tank'],
@@ -293,7 +293,6 @@ function getChampionRoleTags(championName) {
         'ヴェイン': ['Marksman', 'Assassin'],
         'ヴェックス': ['Mage'],
         'ヴェル＝コズ': ['Mage', 'Support'],
-        'ザイラ': ['Mage', 'Support'],
     };
     
     return roleMapping[championName] || [];
