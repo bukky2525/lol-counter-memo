@@ -7,9 +7,11 @@ let championsData = {};
 let filteredChampions = [];
 let currentSearchTerm = '';
 let currentTag = 'all';
+let currentLane = 'all';
 
 // DOM要素
 const searchInput = document.getElementById('searchInput');
+const laneSelect = document.getElementById('laneSelect');
 const tagSelect = document.getElementById('tagSelect');
 const clearFiltersBtn = document.getElementById('clearFilters');
 const championsContainer = document.getElementById('championsContainer');
@@ -135,6 +137,13 @@ function setupEventListeners() {
         });
     }
     
+    if (laneSelect) {
+        laneSelect.addEventListener('change', (e) => {
+            currentLane = e.target.value;
+            filterAndRenderChampions();
+        });
+    }
+    
     if (tagSelect) {
         tagSelect.addEventListener('change', (e) => {
             currentTag = e.target.value;
@@ -176,8 +185,15 @@ function filterAndRenderChampions() {
         });
     }
 
-    // タグフィルタリング（チャンピオンデータにタグ情報がない場合はスキップ）
-    if (currentTag !== 'all' && filtered.length > 0 && filtered[0].tags && filtered[0].tags.length > 0) {
+    // レーンフィルタリング
+    if (currentLane !== 'all') {
+        filtered = filtered.filter(champion => {
+            return champion.tags && champion.tags.includes(currentLane);
+        });
+    }
+
+    // ロールフィルタリング
+    if (currentTag !== 'all') {
         filtered = filtered.filter(champion => {
             return champion.tags && champion.tags.includes(currentTag);
         });
@@ -316,8 +332,10 @@ function updateResultsCount(count) {
 function clearAllFilters() {
     currentSearchTerm = '';
     currentTag = 'all';
+    currentLane = 'all';
     
     searchInput.value = '';
+    laneSelect.value = 'all';
     tagSelect.value = 'all';
     
     filterAndRenderChampions();
