@@ -338,7 +338,8 @@ async function fetchChampionSkills(championId) {
         
         if (championData && championData.spells) {
             // チャンピオンキーを取得（例：0266）
-            const championKey = championData.key;
+            // padStartで4桁になるように先頭に0を追加（例：266 → 0266）
+            const championKey = String(championData.key).padStart(4, '0');
             const skillLetters = ['Q', 'W', 'E', 'R'];
             
             return championData.spells.map((spell, index) => ({
