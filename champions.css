@@ -432,7 +432,8 @@ body.sidebar-open {
 .champion-modal-content {
     background: linear-gradient(135deg, #1A1E28 0%, #2D3748 100%);
     border-radius: 15px;
-    max-width: 1200px;
+    width: 1200px;
+    height: 95vh;
     max-height: 95vh;
     overflow-y: auto;
     position: relative;
@@ -725,6 +726,8 @@ body.sidebar-open {
     
     .champion-modal-content {
         margin: 10px;
+        width: calc(100vw - 20px);
+        max-width: calc(100vw - 20px);
     }
     
     .champion-modal-header {
