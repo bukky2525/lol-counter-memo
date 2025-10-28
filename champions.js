@@ -210,113 +210,26 @@ function showChampionDetail(championId) {
         <img src="${getChampionIconUrl(champion.id)}" alt="${champion.name}" class="modal-champion-icon">
         <div class="modal-champion-info">
             <h2>${champion.name}</h2>
-            <p class="modal-champion-title">${champion.title || '情報なし'}</p>
-            <div class="modal-tags">
-                ${champion.tags && champion.tags.length > 0 
-                    ? champion.tags.map(tag => `<span class="modal-tag">${tag}</span>`).join('') 
-                    : '<span class="modal-tag">情報なし</span>'}
-            </div>
+            ${champion.title ? `<p class="modal-champion-title">${champion.title}</p>` : ''}
         </div>
     `;
     
     // モーダルボディを更新
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
+        ${champion.tags && champion.tags.length > 0 ? `
         <div class="modal-section">
-            <h4>チャンピオン情報</h4>
-            <p>このチャンピオンの詳細情報はDDragon APIから取得されています。</p>
-            <p><strong>日本語名:</strong> ${champion.name}</p>
-            <p><strong>英語名:</strong> ${champion.id}</p>
-            ${champion.blurb ? `<p><strong>説明:</strong> ${champion.blurb}</p>` : ''}
-        </div>
-        
-        ${champion.stats && Object.keys(champion.stats).length > 0 ? `
-        <div class="modal-section">
-            <h4>基本ステータス</h4>
-            <div class="modal-stats-grid">
-                ${champion.stats.hp ? `
-                <div class="modal-stat-item">
-                    <span class="modal-stat-label">HP:</span>
-                    <span class="modal-stat-value">${champion.stats.hp}</span>
-                </div>
-                ` : ''}
-                ${champion.stats.hpregen ? `
-                <div class="modal-stat-item">
-                    <span class="modal-stat-label">体力回復:</span>
-                    <span class="modal-stat-value">${champion.stats.hpregen.toFixed(2)}</span>
-                </div>
-                ` : ''}
-                ${champion.stats.attackdamage ? `
-                <div class="modal-stat-item">
-                    <span class="modal-stat-label">攻撃力:</span>
-                    <span class="modal-stat-value">${champion.stats.attackdamage}</span>
-                </div>
-                ` : ''}
-                ${champion.stats.attackspeed ? `
-                <div class="modal-stat-item">
-                    <span class="modal-stat-label">攻撃速度:</span>
-                    <span class="modal-stat-value">${champion.stats.attackspeed.toFixed(3)}</span>
-                </div>
-                ` : ''}
-                ${champion.stats.armor ? `
-                <div class="modal-stat-item">
-                    <span class="modal-stat-label">物理防御:</span>
-                    <span class="modal-stat-value">${champion.stats.armor}</span>
-                </div>
-                ` : ''}
-                ${champion.stats.spellblock ? `
-                <div class="modal-stat-item">
-                    <span class="modal-stat-label">魔法防御:</span>
-                    <span class="modal-stat-value">${champion.stats.spellblock}</span>
-                </div>
-                ` : ''}
-                ${champion.stats.movespeed ? `
-                <div class="modal-stat-item">
-                    <span class="modal-stat-label">移動速度:</span>
-                    <span class="modal-stat-value">${champion.stats.movespeed}</span>
-                </div>
-                ` : ''}
-                ${champion.stats.attackrange ? `
-                <div class="modal-stat-item">
-                    <span class="modal-stat-label">攻撃範囲:</span>
-                    <span class="modal-stat-value">${champion.stats.attackrange}</span>
-                </div>
-                ` : ''}
-            </div>
-        </div>
-        ` : '<p class="modal-section">ステータス情報なし</p>'}
-        
-        ${champion.info && Object.keys(champion.info).length > 0 ? `
-        <div class="modal-section">
-            <h4>詳細情報</h4>
-            <div class="info-grid">
-                <div class="info-item">
-                    <span class="info-label">難易度:</span>
-                    <span class="info-value">
-                        ${'⭐'.repeat(champion.info.difficulty || 0)}
-                    </span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">攻撃:</span>
-                    <span class="info-value">
-                        ${'⭐'.repeat(champion.info.attack || 0)}
-                    </span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">防御:</span>
-                    <span class="info-value">
-                        ${'⭐'.repeat(champion.info.defense || 0)}
-                    </span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">魔法:</span>
-                    <span class="info-value">
-                        ${'⭐'.repeat(champion.info.magic || 0)}
-                    </span>
-                </div>
+            <h4>メインロール</h4>
+            <div class="modal-tags">
+                ${champion.tags.map(tag => `<span class="modal-tag">${tag}</span>`).join('')}
             </div>
         </div>
         ` : ''}
+        
+        <div class="modal-section">
+            <h4>説明</h4>
+            <p>${champion.blurb || '説明は現在利用できません。'}</p>
+        </div>
     `;
     
     // モーダルを表示
