@@ -265,7 +265,6 @@ function getChampionRoleTags(championName) {
         'モルデカイザー': ['Fighter', 'Mage'],
         'ヤスオ': ['Fighter', 'Assassin'],
         'ユナラ': ['Marksman'],
-        'アイバーン': ['Support', 'Mage'],
         'ユーミ': ['Support', 'Mage'],
         'ヨネ': ['Fighter', 'Assassin'],
         'ヨリック': ['Fighter', 'Tank'],
