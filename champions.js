@@ -20,7 +20,7 @@ const resultsCount = document.getElementById('resultsCount');
 const championModal = document.getElementById('championModal');
 
 // DDragon APIのバージョン
-let DDragonVersion = '14.24.1';
+let DDragonVersion = '15.21.1';
 
 // 初期化
 document.addEventListener('DOMContentLoaded', () => {
