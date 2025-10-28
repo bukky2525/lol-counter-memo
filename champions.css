@@ -432,8 +432,8 @@ body.sidebar-open {
 .champion-modal-content {
     background: linear-gradient(135deg, #1A1E28 0%, #2D3748 100%);
     border-radius: 15px;
-    max-width: 800px;
-    max-height: 90vh;
+    max-width: 1200px;
+    max-height: 95vh;
     overflow-y: auto;
     position: relative;
     margin: 20px;
@@ -660,23 +660,16 @@ body.sidebar-open {
     line-height: 1.6;
 }
 
-.skill-video-link {
-    align-self: center;
-    padding: 8px 16px;
-    background: rgba(255,215,0,0.2);
-    border: 1px solid rgba(255,215,0,0.5);
-    border-radius: 6px;
-    color: #ffd700;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    white-space: nowrap;
+.skill-video {
+    flex: 1;
+    max-width: 300px;
+    margin-left: auto;
 }
 
-.skill-video-link:hover {
-    background: rgba(255,215,0,0.3);
-    border-color: #ffd700;
-    transform: translateY(-2px);
+.skill-video-player {
+    width: 100%;
+    border-radius: 8px;
+    border: 2px solid rgba(255,215,0,0.5);
 }
 
 /* レスポンシブデザイン */
@@ -718,8 +711,9 @@ body.sidebar-open {
         text-align: center;
     }
     
-    .skill-video-link {
-        width: 100%;
+    .skill-video {
+        max-width: 100%;
+        margin-left: 0;
     }
 }
 

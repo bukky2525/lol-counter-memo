@@ -341,7 +341,8 @@ async function fetchChampionSkills(championId) {
                 id: spell.id,
                 name: spell.name,
                 description: spell.description,
-                image: `https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/spell/${spell.id}.png`
+                image: `https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/spell/${spell.id}.png`,
+                videoUrl: spell.video?.link || `https://d28xe8vt774jo5.cloudfront.net/champion-abilities/${championId}/ability_${index + 1}_MQ1.mp4`
             }));
         }
         
@@ -376,11 +377,6 @@ function displayChampionModal(champion, skills) {
         </div>
         ` : ''}
         
-        <div class="modal-section">
-            <h4>説明</h4>
-            <p>${champion.blurb || '説明は現在利用できません。'}</p>
-        </div>
-        
         ${skills && skills.length > 0 ? `
         <div class="modal-section">
             <h4>スキル</h4>
@@ -395,9 +391,14 @@ function displayChampionModal(champion, skills) {
                             <h5 class="skill-name">${skill.name}</h5>
                             <p class="skill-description">${skill.description}</p>
                         </div>
-                        <a href="https://www.leagueoflegends.com/ja-jp/champions/${champion.id.toLowerCase()}/" target="_blank" rel="noopener noreferrer" class="skill-video-link">
-                            📹 動画を見る
-                        </a>
+                        ${skill.videoUrl ? `
+                        <div class="skill-video">
+                            <video controls class="skill-video-player">
+                                <source src="${skill.videoUrl}" type="video/mp4">
+                                お使いのブラウザはビデオタグをサポートしていません。
+                            </video>
+                        </div>
+                        ` : ''}
                     </div>
                 `).join('')}
             </div>
