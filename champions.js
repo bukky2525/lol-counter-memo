@@ -534,12 +534,12 @@ function displayChampionModal(champion, skills) {
                     <div class="selected-skill-detail">
                         <h5 class="selected-skill-name">${skills[selectedSkillIndex].name}</h5>
                         ${skills[selectedSkillIndex].videoUrl ? `
-                        <div class="selected-skill-video">
-                            <video controls autoplay class="skill-video-player">
-                                <source src="${skills[selectedSkillIndex].videoUrl}" type="video/mp4">
-                                お使いのブラウザはビデオタグをサポートしていません。
-                            </video>
-                        </div>
+                               <div class="selected-skill-video">
+                                   <video controls autoplay volume="0.3" class="skill-video-player">
+                                       <source src="${skills[selectedSkillIndex].videoUrl}" type="video/mp4">
+                                       お使いのブラウザはビデオタグをサポートしていません。
+                                   </video>
+                               </div>
                         ` : ''}
                         <p class="selected-skill-description">${formatSkillDescription(skills[selectedSkillIndex].description)}</p>
                     </div>
