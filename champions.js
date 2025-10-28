@@ -32,12 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function loadChampionsFromDDragon() {
     console.log('チャンピオンデータを読み込み中...');
     
-    // チャンピオン情報とカウンターデータを同時に読み込み
+    // チャンピオン情報、レーンデータ、カウンターデータを同時に読み込み
     Promise.all([
         fetch('champion_images.json').then(r => r.json()),
+        fetch('champion_lanes.json').then(r => r.json()),
         fetch('counter_data.json').then(r => r.json())
     ])
-        .then(([imagesData, counterData]) => {
+        .then(([imagesData, laneData, counterData]) => {
             console.log('チャンピオンデータ読み込み成功');
             
             // champion_imagesを保存
@@ -45,18 +46,17 @@ function loadChampionsFromDDragon() {
             
             // champion_images.jsonのデータをチャンピオンリストに変換
             filteredChampions = Object.entries(imagesData).map(([japaneseName, englishName]) => {
-                // カウンターデータからレーン情報を取得
-                const lanes = counterData[japaneseName] || [];
-                const laneTags = lanes.map(l => l.lane);
+                // レーンデータからメインレーン情報を取得
+                const mainLanes = laneData[japaneseName] || [];
                 
-                // チャンピオンのロールタグを追加（実装のため固定値）
+                // チャンピオンのロールタグを追加
                 const roleTags = getChampionRoleTags(japaneseName);
                 
                 return {
                     id: englishName,
                     name: japaneseName,
                     title: '',
-                    tags: [...roleTags, ...laneTags],
+                    tags: [...roleTags, ...mainLanes],
                     stats: {}
                 };
             });
