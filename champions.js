@@ -409,7 +409,7 @@ function displayChampionModal(champion, skills) {
                         <h5 class="selected-skill-name">${skills[selectedSkillIndex].name}</h5>
                         ${skills[selectedSkillIndex].videoUrl ? `
                         <div class="selected-skill-video">
-                            <video controls class="skill-video-player">
+                            <video controls autoplay class="skill-video-player">
                                 <source src="${skills[selectedSkillIndex].videoUrl}" type="video/mp4">
                                 お使いのブラウザはビデオタグをサポートしていません。
                             </video>
