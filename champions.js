@@ -29,25 +29,31 @@ document.addEventListener('DOMContentLoaded', () => {
 function loadChampionsFromDDragon() {
     console.log('チャンピオンデータを読み込み中...');
     
-    // ローカルのchampion_images.jsonから読み込み
-    fetch('champion_images.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
+    // チャンピオン情報とカウンターデータを同時に読み込み
+    Promise.all([
+        fetch('champion_images.json').then(r => r.json()),
+        fetch('counter_data.json').then(r => r.json())
+    ])
+        .then(([championImages, counterData]) => {
             console.log('チャンピオンデータ読み込み成功');
             
             // champion_images.jsonのデータをチャンピオンリストに変換
-            filteredChampions = Object.entries(data).map(([japaneseName, englishName]) => ({
-                id: englishName,
-                name: japaneseName,
-                title: '',  // DDragonから詳細を取得できない場合は空
-                tags: [],   // デフォルトで空
-                stats: {}   // デフォルトで空
-            }));
+            filteredChampions = Object.entries(championImages).map(([japaneseName, englishName]) => {
+                // カウンターデータからレーン情報を取得
+                const lanes = counterData[japaneseName] || [];
+                const laneTags = lanes.map(l => l.lane);
+                
+                // チャンピオンのロールタグを追加（実装のため固定値）
+                const roleTags = getChampionRoleTags(japaneseName);
+                
+                return {
+                    id: englishName,
+                    name: japaneseName,
+                    title: '',
+                    tags: [...roleTags, ...laneTags],
+                    stats: {}
+                };
+            });
             
             // チャンピオンデータを保存（モーダル表示用）
             championsData = {};
@@ -65,6 +71,59 @@ function loadChampionsFromDDragon() {
             console.error('チャンピオンデータの読み込みに失敗しました:', error);
             showError('チャンピオンデータの読み込みに失敗しました。ページを再読み込みしてください。');
         });
+}
+
+// チャンピオンのロールタグを取得
+function getChampionRoleTags(championName) {
+    const roleMapping = {
+        // Fighter
+        'エイトロックス': ['Fighter'], 'アクシャン': ['Fighter'], 'アリスタ': ['Fighter'], 'アンベッサ': ['Fighter'],
+        'カミール': ['Fighter'], 'ダリウス': ['Fighter'], 'ダイアナ': ['Fighter'], 'ドクター・ムンド': ['Fighter'],
+        'フィオラ': ['Fighter'], 'ガレン': ['Fighter'], 'グウェン': ['Fighter'], 'ヘカリム': ['Fighter'],
+        'イレリア': ['Fighter'], 'ジャックス': ['Fighter'], 'ジェイス': ['Fighter'], 'ケイル': ['Fighter'],
+        'ケイン': ['Fighter'], 'ケネン': ['Fighter'], 'リー・シン': ['Fighter'], 'ナサス': ['Fighter'],
+        'ノーチラス': ['Fighter'], 'オラフ': ['Fighter'], 'パンテオン': ['Fighter'], 'レネクトン': ['Fighter'],
+        'レンガー': ['Fighter'], 'リヴェン': ['Fighter'], 'ランブル': ['Fighter'], 'セト': ['Fighter'],
+        'シェン': ['Fighter'], 'シンジド': ['Fighter'], 'サイオン': ['Fighter'], 'シンドラ': ['Fighter'],
+        'トリンダメア': ['Fighter'], 'アーゴット': ['Fighter'], 'ヴァイ': ['Fighter'], 'ヴィエゴ': ['Fighter'],
+        'ブラッドミア': ['Fighter'], 'ボリベア': ['Fighter'], 'ワーウィック': ['Fighter'], 'ウーコン': ['Fighter'],
+        'シン・ジャオ': ['Fighter'], 'ヤスオ': ['Fighter'], 'ヨネ': ['Fighter'], 'ヴェイン': ['Fighter'],
+        
+        // Tank
+        'アリスター': ['Tank'], 'アムム': ['Tank'], 'ブラウム': ['Tank'], 'ガリオ': ['Tank'],
+        'マルファイト': ['Tank'], 'マオカイ': ['Tank'], 'ノーチラス': ['Tank'], 'オーン': ['Tank'],
+        'ラムス': ['Tank'], 'サイオン': ['Tank'], 'タリック': ['Tank'], 'ヌヌ＆ウィルンプ': ['Tank'],
+        
+        // Mage
+        'エイトロックス': ['Mage'], 'アーリ': ['Mage'], 'アニー': ['Mage'], 'ブランド': ['Mage'],
+        'ベイガー': ['Mage'], 'ヴェックス': ['Mage'], 'ビクター': ['Mage'], 'ブラッドミア': ['Mage'],
+        'ザイラ': ['Mage'], 'ジグス': ['Mage'], 'ゾーイ': ['Mage'],
+        
+        // Assassin
+        'アカリ': ['Assassin'], 'イブリン': ['Assassin'], 'エコー': ['Assassin'], 'フィズ': ['Assassin'],
+        'カサディン': ['Assassin'], 'カタリナ': ['Assassin'], 'カ＝ジックス': ['Assassin'], 'ケイン': ['Assassin'],
+        'キンドレッド': ['Assassin'], 'レブ': ['Assassin'], 'ナフイリー': ['Assassin'], 'タロン': ['Assassin'],
+        'ゼド': ['Assassin'],
+        
+        // Marksman
+        'エイプヘリオス': ['Marksman'], 'アッシュ': ['Marksman'], 'ケイトリン': ['Marksman'], 'コーキ': ['Marksman'],
+        'ドレイヴン': ['Marksman'], 'エズリアル': ['Marksman'], 'ジン': ['Marksman'], 'ジンクス': ['Marksman'],
+        'カイ＝サ': ['Marksman'], 'カリスタ': ['Marksman'], 'キンドレッド': ['Marksman'], 'ルシアン': ['Marksman'],
+        'ミス・フォーチュン': ['Marksman'], 'ニーラ': ['Marksman'], 'サミーラ': ['Marksman'], 'セナ': ['Marksman'],
+        'シヴィア': ['Marksman'], 'トリスターナ': ['Marksman'], 'トゥイッチ': ['Marksman'], 'ヴァルス': ['Marksman'],
+        'ヴェイン': ['Marksman'], 'ゼリ': ['Marksman'], 'ザヤ': ['Marksman'],
+        
+        // Support
+        'アリスター': ['Support'], 'ブラウム': ['Support'], 'ブリッツクランク': ['Support'], 'ジャンナ': ['Support'],
+        'カルマ': ['Support'], 'レオナ': ['Support'], 'ルル': ['Support'], 'ルックス': ['Support'],
+        'ナミ': ['Support'], 'ナウティラス': ['Support'], 'レネター': ['Support'], 'ラカン': ['Support'],
+        'ラクサン': ['Support'], 'シェン': ['Support'], 'ソナ': ['Support'], 'ソラカ': ['Support'],
+        'スウェイン': ['Support'], 'タリック': ['Support'], 'スレッシュ': ['Support'], 'ツイステッド・フェイト': ['Support'],
+        'ユーミ': ['Support'], 'ザヤ': ['Support'], 'セラフィーン': ['Support'], 'ミリオ': ['Support'],
+        'セナ': ['Support'], 'パイク': ['Support'],
+    };
+    
+    return roleMapping[championName] || [];
 }
 
 // イベントリスナー設定
