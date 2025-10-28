@@ -337,12 +337,16 @@ async function fetchChampionSkills(championId) {
         const championData = data.data[championId];
         
         if (championData && championData.spells) {
+            // チャンピオンキーを取得（例：0266）
+            const championKey = championData.key;
+            const skillLetters = ['Q', 'W', 'E', 'R'];
+            
             return championData.spells.map((spell, index) => ({
                 id: spell.id,
                 name: spell.name,
                 description: spell.description,
                 image: `https://ddragon.leagueoflegends.com/cdn/${DDragonVersion}/img/spell/${spell.id}.png`,
-                videoUrl: spell.video?.link || `https://d28xe8vt774jo5.cloudfront.net/champion-abilities/${championId}/ability_${index + 1}_MQ1.mp4`
+                videoUrl: `https://lol.dyn.riotcdn.net/x/videos/champion-abilities/${championKey}/ability_${championKey}_${skillLetters[index]}1.mp4`
             }));
         }
         
