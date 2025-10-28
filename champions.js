@@ -79,6 +79,46 @@ function loadChampionsFromDDragon() {
         });
 }
 
+// 検索マッチング関数
+function matchesSearch(championName, searchQuery) {
+    if (!searchQuery) return true;
+    
+    const query = searchQuery.toLowerCase();
+    
+    // 入力が半角英数字のみかチェック（ローマ字入力判定）
+    const isRomajiInput = /^[a-z0-9]+$/i.test(searchQuery);
+    
+    if (isRomajiInput) {
+        // ローマ字入力の場合は前方一致
+        // 1. 英語名での検索（前方一致）- 優先
+        const englishName = championImages[championName];
+        if (englishName && englishName.toLowerCase().startsWith(query)) return true;
+        
+        // 2. ローマ字→ひらがな変換して検索（前方一致）
+        const inputHiragana = romajiToHiragana(query);
+        const championHiragana = katakanaToHiragana(championName);
+        if (championHiragana.startsWith(inputHiragana)) return true;
+        
+        // 3. ローマ字変換での検索（前方一致）- フォールバック
+        const romaji = katakanaToRomaji(championName);
+        if (romaji.startsWith(query)) return true;
+    } else {
+        // 日本語入力の場合は部分一致
+        // 1. 日本語名での部分一致（カタカナ）
+        if (championName.toLowerCase().includes(query)) return true;
+        
+        // 2. ひらがなでの検索
+        const hiragana = katakanaToHiragana(championName);
+        if (hiragana.toLowerCase().includes(query)) return true;
+        
+        // 3. ひらがな入力をカタカナに変換して検索
+        const katakana = hiraganaToKatakana(searchQuery);
+        if (championName.includes(katakana)) return true;
+    }
+    
+    return false;
+}
+
 // チャンピオンのロールタグを取得
 function getChampionRoleTags(championName) {
     const roleMapping = {
