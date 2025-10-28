@@ -139,6 +139,7 @@ function getChampionRoleTags(championName) {
         'アリスター': ['Tank'], 'アムム': ['Tank'], 'ブラウム': ['Tank'], 'ガリオ': ['Tank'],
         'マルファイト': ['Tank'], 'マオカイ': ['Tank'], 'ノーチラス': ['Tank'], 'オーン': ['Tank'],
         'ラムス': ['Tank'], 'サイオン': ['Tank'], 'タリック': ['Tank'], 'ヌヌ＆ウィルンプ': ['Tank'],
+        'ユナラ': ['Tank'],
         
         // Mage
         'エイトロックス': ['Mage'], 'アーリ': ['Mage'], 'アニー': ['Mage'], 'ブランド': ['Mage'],
@@ -165,7 +166,7 @@ function getChampionRoleTags(championName) {
         'ナミ': ['Support'], 'ナウティラス': ['Support'], 'レネター': ['Support'], 'ラカン': ['Support'],
         'ラクサン': ['Support'], 'シェン': ['Support'], 'ソナ': ['Support'], 'ソラカ': ['Support'],
         'スウェイン': ['Support'], 'タリック': ['Support'], 'スレッシュ': ['Support'], 'ツイステッド・フェイト': ['Support'],
-        'ユーミ': ['Support'], 'ザヤ': ['Support'], 'セラフィーン': ['Support'], 'ミリオ': ['Support'],
+        'ユナラ': ['Support', 'Tank'], 'ユーミ': ['Support'], 'ザヤ': ['Support'], 'セラフィーン': ['Support'], 'ミリオ': ['Support'],
         'セナ': ['Support'], 'パイク': ['Support'],
     };
     
