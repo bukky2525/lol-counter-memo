@@ -17,7 +17,7 @@ const resultsCount = document.getElementById('resultsCount');
 const championModal = document.getElementById('championModal');
 
 // DDragon APIのバージョン
-let DDragonVersion = '25.21';
+let DDragonVersion = '14.24.1';
 
 // 初期化
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,54 +25,46 @@ document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
 });
 
-// DDragon APIからチャンピオンデータを取得
-async function loadChampionsFromDDragon() {
-    const versions = ['25.21', '25.20', '25.19', '25.18', '25.17'];
+// チャンピオンデータを読み込み
+function loadChampionsFromDDragon() {
+    console.log('チャンピオンデータを読み込み中...');
     
-    for (const version of versions) {
-        try {
-            console.log(`DDragon APIからチャンピオンデータを取得中... (バージョン: ${version})`);
-            const apiUrl = `https://ddragon.leagueoflegends.com/cdn/${version}/data/ja_JP/champion.json`;
-            console.log('API URL:', apiUrl);
+    // ローカルのchampion_images.jsonから読み込み
+    fetch('champion_images.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('チャンピオンデータ読み込み成功');
             
-            const response = await fetch(apiUrl);
+            // champion_images.jsonのデータをチャンピオンリストに変換
+            filteredChampions = Object.entries(data).map(([japaneseName, englishName]) => ({
+                id: englishName,
+                name: japaneseName,
+                title: '',  // DDragonから詳細を取得できない場合は空
+                tags: [],   // デフォルトで空
+                stats: {}   // デフォルトで空
+            }));
             
-            console.log('Response status:', response.status, response.statusText);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        const data = await response.json();
-        console.log('DDragon APIレスポンス:', data);
+            // チャンピオンデータを保存（モーダル表示用）
+            championsData = {};
+            filteredChampions.forEach(champion => {
+                championsData[champion.id] = champion;
+            });
             
-            // 成功した場合はバージョンを更新
-            DDragonVersion = version;
-        
-        // チャンピオンデータを処理
-        championsData = data.data;
-        console.log(`取得したチャンピオン数: ${Object.keys(championsData).length}`);
-        
-        // チャンピオンリストを作成
-        filteredChampions = Object.values(championsData);
-        
-        console.log(`フィルタリング後のチャンピオン数: ${filteredChampions.length}`);
-        
-        // チャンピオンを表示
-        renderChampions();
-        updateResultsCount(filteredChampions.length);
-        
-            return; // 成功した場合は終了
+            console.log(`チャンピオン数: ${filteredChampions.length}`);
             
-    } catch (error) {
-            console.error(`バージョン ${version} でのチャンピオンデータ取得に失敗:`, error);
-            continue; // 次のバージョンを試す
-        }
-    }
-    
-    // すべてのバージョンが失敗した場合
-    console.error('すべてのバージョンでチャンピオンデータの取得に失敗しました');
-    showError('チャンピオンデータの取得に失敗しました。ネットワーク接続を確認してページを再読み込みしてください。');
+            // チャンピオンを表示
+            renderChampions();
+            updateResultsCount(filteredChampions.length);
+        })
+        .catch(error => {
+            console.error('チャンピオンデータの読み込みに失敗しました:', error);
+            showError('チャンピオンデータの読み込みに失敗しました。ページを再読み込みしてください。');
+        });
 }
 
 // イベントリスナー設定
@@ -125,8 +117,8 @@ function filterAndRenderChampions() {
         });
     }
 
-    // タグフィルタリング
-    if (currentTag !== 'all') {
+    // タグフィルタリング（チャンピオンデータにタグ情報がない場合はスキップ）
+    if (currentTag !== 'all' && filtered.length > 0 && filtered[0].tags && filtered[0].tags.length > 0) {
         filtered = filtered.filter(champion => {
             return champion.tags && champion.tags.includes(currentTag);
         });
@@ -171,24 +163,34 @@ function renderChampions(champions = filteredChampions) {
                         </div>
                     </div>
                     
+                    ${champion.tags && champion.tags.length > 0 ? `
                     <div class="champion-tags">
-                        ${(champion.tags || []).map(tag => `<span class="champion-tag">${tag}</span>`).join('')}
+                        ${champion.tags.map(tag => `<span class="champion-tag">${tag}</span>`).join('')}
                     </div>
+                    ` : ''}
                     
+                    ${champion.stats && Object.keys(champion.stats).length > 0 ? `
                     <div class="champion-stats">
+                        ${champion.stats.hp ? `
                         <div class="stat-row">
                             <span class="stat-label">HP:</span>
-                            <span class="stat-value">${champion.stats?.hp || 'N/A'}</span>
+                            <span class="stat-value">${champion.stats.hp}</span>
                         </div>
+                        ` : ''}
+                        ${champion.stats.attackdamage ? `
                         <div class="stat-row">
                             <span class="stat-label">攻撃力:</span>
-                            <span class="stat-value">${champion.stats?.attackdamage || 'N/A'}</span>
+                            <span class="stat-value">${champion.stats.attackdamage}</span>
                         </div>
+                        ` : ''}
+                        ${champion.stats.armor ? `
                         <div class="stat-row">
                             <span class="stat-label">防御力:</span>
-                            <span class="stat-value">${champion.stats?.armor || 'N/A'}</span>
+                            <span class="stat-value">${champion.stats.armor}</span>
                         </div>
+                        ` : ''}
                     </div>
+                    ` : ''}
                 </div>
             `).join('')}
         </div>
@@ -208,9 +210,11 @@ function showChampionDetail(championId) {
         <img src="${getChampionIconUrl(champion.id)}" alt="${champion.name}" class="modal-champion-icon">
         <div class="modal-champion-info">
             <h2>${champion.name}</h2>
-            <p class="modal-champion-title">${champion.title || ''}</p>
+            <p class="modal-champion-title">${champion.title || '情報なし'}</p>
             <div class="modal-tags">
-                ${(champion.tags || []).map(tag => `<span class="modal-tag">${tag}</span>`).join('')}
+                ${champion.tags && champion.tags.length > 0 
+                    ? champion.tags.map(tag => `<span class="modal-tag">${tag}</span>`).join('') 
+                    : '<span class="modal-tag">情報なし</span>'}
             </div>
         </div>
     `;
@@ -219,77 +223,100 @@ function showChampionDetail(championId) {
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
         <div class="modal-section">
-            <h4>チャンピオンの説明</h4>
-            <p>${champion.blurb || '説明なし'}</p>
+            <h4>チャンピオン情報</h4>
+            <p>このチャンピオンの詳細情報はDDragon APIから取得されています。</p>
+            <p><strong>日本語名:</strong> ${champion.name}</p>
+            <p><strong>英語名:</strong> ${champion.id}</p>
+            ${champion.blurb ? `<p><strong>説明:</strong> ${champion.blurb}</p>` : ''}
         </div>
         
+        ${champion.stats && Object.keys(champion.stats).length > 0 ? `
         <div class="modal-section">
             <h4>基本ステータス</h4>
             <div class="modal-stats-grid">
+                ${champion.stats.hp ? `
                 <div class="modal-stat-item">
                     <span class="modal-stat-label">HP:</span>
-                    <span class="modal-stat-value">${champion.stats?.hp || 'N/A'}</span>
+                    <span class="modal-stat-value">${champion.stats.hp}</span>
                 </div>
+                ` : ''}
+                ${champion.stats.hpregen ? `
                 <div class="modal-stat-item">
                     <span class="modal-stat-label">体力回復:</span>
-                    <span class="modal-stat-value">${champion.stats?.hpregen ? champion.stats.hpregen.toFixed(2) : 'N/A'}</span>
+                    <span class="modal-stat-value">${champion.stats.hpregen.toFixed(2)}</span>
                 </div>
+                ` : ''}
+                ${champion.stats.attackdamage ? `
                 <div class="modal-stat-item">
                     <span class="modal-stat-label">攻撃力:</span>
-                    <span class="modal-stat-value">${champion.stats?.attackdamage || 'N/A'}</span>
+                    <span class="modal-stat-value">${champion.stats.attackdamage}</span>
                 </div>
+                ` : ''}
+                ${champion.stats.attackspeed ? `
                 <div class="modal-stat-item">
                     <span class="modal-stat-label">攻撃速度:</span>
-                    <span class="modal-stat-value">${champion.stats?.attackspeed ? champion.stats.attackspeed.toFixed(3) : 'N/A'}</span>
+                    <span class="modal-stat-value">${champion.stats.attackspeed.toFixed(3)}</span>
                 </div>
+                ` : ''}
+                ${champion.stats.armor ? `
                 <div class="modal-stat-item">
-                    <span class="modal-stat-label">体力:</span>
-                    <span class="modal-stat-value">${champion.stats?.armor || 'N/A'}</span>
+                    <span class="modal-stat-label">物理防御:</span>
+                    <span class="modal-stat-value">${champion.stats.armor}</span>
                 </div>
+                ` : ''}
+                ${champion.stats.spellblock ? `
                 <div class="modal-stat-item">
                     <span class="modal-stat-label">魔法防御:</span>
-                    <span class="modal-stat-value">${champion.stats?.spellblock || 'N/A'}</span>
+                    <span class="modal-stat-value">${champion.stats.spellblock}</span>
                 </div>
+                ` : ''}
+                ${champion.stats.movespeed ? `
                 <div class="modal-stat-item">
                     <span class="modal-stat-label">移動速度:</span>
-                    <span class="modal-stat-value">${champion.stats?.movespeed || 'N/A'}</span>
+                    <span class="modal-stat-value">${champion.stats.movespeed}</span>
                 </div>
+                ` : ''}
+                ${champion.stats.attackrange ? `
                 <div class="modal-stat-item">
                     <span class="modal-stat-label">攻撃範囲:</span>
-                    <span class="modal-stat-value">${champion.stats?.attackrange || 'N/A'}</span>
+                    <span class="modal-stat-value">${champion.stats.attackrange}</span>
                 </div>
+                ` : ''}
             </div>
         </div>
+        ` : '<p class="modal-section">ステータス情報なし</p>'}
         
+        ${champion.info && Object.keys(champion.info).length > 0 ? `
         <div class="modal-section">
             <h4>詳細情報</h4>
             <div class="info-grid">
                 <div class="info-item">
                     <span class="info-label">難易度:</span>
                     <span class="info-value">
-                        ${'⭐'.repeat(champion.info?.difficulty || 0)}
+                        ${'⭐'.repeat(champion.info.difficulty || 0)}
                     </span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">攻撃:</span>
                     <span class="info-value">
-                        ${'⭐'.repeat(champion.info?.attack || 0)}
+                        ${'⭐'.repeat(champion.info.attack || 0)}
                     </span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">防御:</span>
                     <span class="info-value">
-                        ${'⭐'.repeat(champion.info?.defense || 0)}
+                        ${'⭐'.repeat(champion.info.defense || 0)}
                     </span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">魔法:</span>
                     <span class="info-value">
-                        ${'⭐'.repeat(champion.info?.magic || 0)}
+                        ${'⭐'.repeat(champion.info.magic || 0)}
                     </span>
                 </div>
             </div>
         </div>
+        ` : ''}
     `;
     
     // モーダルを表示
